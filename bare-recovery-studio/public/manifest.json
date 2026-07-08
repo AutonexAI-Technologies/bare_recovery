@@ -1,0 +1,9 @@
+﻿{
+  "name": "Bare Recovery Studio",
+  "short_name": "Bare Recovery",
+  "description": "Kompally's Premier Recovery Studio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0B0B",
+  "theme_color": "#0B0B0B"
+}
