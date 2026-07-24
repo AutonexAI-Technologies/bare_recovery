@@ -1,13 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors */
-  --color-bare-black: #12110F;
-  --color-bare-charcoal: #1B1916;
-  --color-bare-graphite: #292723;
-  --color-bare-white: #FFFBF5;
-  --color-bare-silver: #A19F97;
-  --color-brand-gold: #BCA386;
+  /* ── Urban Concrete Brand Palette ── */
+  --color-uc-cream:     #f5f0eb; /* warm off-white — primary text      */
+  --color-uc-limestone: #d9d1cc; /* warm light grey — accent / CTA     */
+  --color-uc-ash:       #c3c1c0; /* light cool grey — subtle text      */
+  --color-uc-slate:     #aeadab; /* medium grey — muted text / borders */
+  --color-uc-steel:     #8a878a; /* medium-dark grey — surface mid     */
+  --color-uc-shadow:    #686974; /* dark purple-grey — secondary bg    */
+  --color-uc-twilight:  #494a51; /* darkest charcoal — primary bg      */
+
+  /* Legacy aliases (mapped to concrete palette) */
+  --color-bare-black:    #3a3b41; /* remapped → near-twilight           */
+  --color-bare-charcoal: #494a51; /* remapped → twilight                */
+  --color-bare-graphite: #5c5d65; /* remapped → between shadow/twilight */
+  --color-bare-white:    #f5f0eb; /* remapped → cream                   */
+  --color-bare-silver:   #aeadab; /* remapped → slate                   */
+  --color-brand-gold:    #d9d1cc; /* remapped → limestone               */
   --color-whatsapp: #25D366;
 
   /* Fonts */
@@ -138,10 +147,18 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #12110F;
-  background-image: 
-    radial-gradient(ellipse at 50% 0%, rgba(188, 163, 134, 0.04) 0%, transparent 50%),
-    url('/images/background/luxury-bg.png');
+  /* Urban Concrete — deep twilight base with concrete gradient */
+  background-color: #494a51;
+  background-image:
+    radial-gradient(ellipse at 20% 0%,   rgba(217, 209, 204, 0.07) 0%, transparent 45%),
+    radial-gradient(ellipse at 80% 100%, rgba(174, 173, 171, 0.05) 0%, transparent 40%),
+    linear-gradient(
+      160deg,
+      #3a3b41 0%,
+      #494a51 35%,
+      #5c5d65 65%,
+      #686974 100%
+    );
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -151,28 +168,28 @@ html {
 
 body {
   background: transparent;
-  color: #FFFBF5;
+  color: #f5f0eb; /* uc-cream */
   font-family: var(--font-body, sans-serif);
   font-feature-settings: "rlig" 1, "calt" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar — Urban Concrete */
 ::-webkit-scrollbar        { width: 6px; height: 6px; }
-::-webkit-scrollbar-track  { background: #12110F; }
-::-webkit-scrollbar-thumb  { background: #292723; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #BCA386; }
+::-webkit-scrollbar-track  { background: #494a51; }   /* twilight */
+::-webkit-scrollbar-thumb  { background: #686974; border-radius: 3px; } /* shadow */
+::-webkit-scrollbar-thumb:hover { background: #d9d1cc; } /* limestone */
 
-/* Selection */
+/* Selection — Urban Concrete */
 ::selection {
-  background-color: rgba(188, 163, 134, 0.25);
-  color: #FFFBF5;
+  background-color: rgba(217, 209, 204, 0.25); /* limestone tint */
+  color: #f5f0eb; /* cream */
 }
 
-/* Focus visible */
+/* Focus visible — Urban Concrete */
 *:focus-visible {
-  outline: 2px solid #BCA386;
+  outline: 2px solid #d9d1cc; /* limestone */
   outline-offset: 2px;
 }
 
@@ -204,42 +221,42 @@ body {
   }
 }
 
-/* Glass card (Option B Warm Charcoal Bezel) */
+/* Glass card — Urban Concrete */
 .glass-card {
-  background: rgba(27, 25, 22, 0.65);
+  background: rgba(73, 74, 81, 0.55);   /* twilight 55% */
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(217, 209, 204, 0.08); /* limestone border */
   border-radius: 1.5rem;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover {
-  background: rgba(27, 25, 22, 0.85);
-  border-color: rgba(188, 163, 134, 0.2);
+  background: rgba(73, 74, 81, 0.80);
+  border-color: rgba(217, 209, 204, 0.22); /* limestone hover border */
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(58, 59, 65, 0.4);
 }
 
-/* Button styles */
+/* Button styles — Urban Concrete */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: #BCA386;
-  color: #12110F;
+  background-color: #d9d1cc; /* limestone */
+  color: #494a51;            /* twilight text */
   padding: 0.875rem 2.25rem;
   border-radius: 9999px;
   font-weight: 600;
   font-family: var(--font-body, sans-serif);
-  border: 1px solid #BCA386;
+  border: 1px solid #d9d1cc;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   text-decoration: none;
 }
 
-.btn-primary:hover  { background-color: transparent; color: #BCA386; transform: scale(1.02); }
+.btn-primary:hover  { background-color: transparent; color: #d9d1cc; transform: scale(1.02); }
 .btn-primary:active { transform: scale(0.98); }
 
 .btn-secondary {
@@ -247,8 +264,8 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #FFFBF5;
+  border: 1px solid rgba(217, 209, 204, 0.18); /* limestone border */
+  color: #f5f0eb;                               /* cream text */
   padding: 0.875rem 2.25rem;
   border-radius: 9999px;
   font-weight: 600;
@@ -259,7 +276,7 @@ body {
   background: transparent;
 }
 
-.btn-secondary:hover  { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.25); transform: scale(1.02); }
+.btn-secondary:hover  { background: rgba(217, 209, 204, 0.07); border-color: rgba(217, 209, 204, 0.35); transform: scale(1.02); }
 .btn-secondary:active { transform: scale(0.98); }
 
 /* Bento grid */

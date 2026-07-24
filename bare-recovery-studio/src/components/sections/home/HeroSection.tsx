@@ -18,15 +18,15 @@ const TICKER_ITEMS = [
 function Ticker() {
   const items = [...TICKER_ITEMS, ...TICKER_ITEMS]
   return (
-    <div className="relative overflow-hidden py-4.5 border-t border-b border-white/[0.07]" style={{ background: 'rgba(0,0,0,0.35)' }}>
+    <div className="relative overflow-hidden py-4.5 border-t border-b" style={{ borderColor: 'rgba(217,209,204,0.10)', background: 'rgba(58,59,65,0.55)' }}>
       <div
         className="flex gap-14 whitespace-nowrap"
         style={{ animation: 'marquee-right 32s linear infinite', width: 'max-content' }}
       >
         {items.map((item, i) => (
-          <span key={i} className="flex items-center gap-14 text-[13px] md:text-[15px] font-bold tracking-[0.25em] text-[#c9c6c5] uppercase">
+          <span key={i} className="flex items-center gap-14 text-[13px] md:text-[15px] font-bold tracking-[0.25em] uppercase" style={{ color: '#aeadab' }}>
             {item}
-            <span className="w-1.5 h-1.5 rounded-full bg-[#c9c6c5]/40 inline-block" />
+            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: 'rgba(217,209,204,0.35)' }} />
           </span>
         ))}
       </div>
@@ -34,99 +34,102 @@ function Ticker() {
   )
 }
 
-/* ── Aurora / Mesh animated background ── */
+/* ── Urban Concrete animated background ── */
 function HeroBackground() {
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden">
-      {/* Base image with overlay */}
+      {/* Base — deep twilight-to-shadow gradient, no external image */}
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: `
-            linear-gradient(to bottom,
-              rgba(18,17,15,0.2) 0%,
-              rgba(18,17,15,0.1) 30%,
-              rgba(18,17,15,0.3) 60%,
-              rgba(18,17,15,0.7) 85%,
-              #12110F 100%
-            ),
-            url('/images/background/luxury-bg.png')
+          background: `
+            linear-gradient(
+              170deg,
+              #3a3b41 0%,
+              #494a51 30%,
+              #5c5d65 60%,
+              #686974 100%
+            )
           `,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center center',
-          backgroundRepeat: 'no-repeat',
         }}
       />
 
-      {/* Aurora layer 1 — warm gold/bronze */}
+      {/* Aurora layer 1 — limestone warm bloom, top-left */}
       <div
         className="absolute -top-[20%] -left-[10%] w-[80vw] h-[80vh] rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse, rgba(188,163,134,0.12) 0%, rgba(188,163,134,0.04) 40%, transparent 70%)',
+          background: 'radial-gradient(ellipse, rgba(217,209,204,0.10) 0%, rgba(195,193,192,0.04) 40%, transparent 70%)',
           animation: 'orb-pulse-1 14s ease-in-out infinite',
-          filter: 'blur(60px)',
-        }}
-      />
-
-      {/* Aurora layer 2 — soft champagne */}
-      <div
-        className="absolute -top-[10%] -right-[15%] w-[70vw] h-[70vh] rounded-full pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse, rgba(224,206,184,0.08) 0%, rgba(188,163,134,0.03) 40%, transparent 70%)',
-          animation: 'orb-pulse-2 18s ease-in-out infinite',
           filter: 'blur(70px)',
         }}
       />
 
-      {/* Aurora layer 3 — warm gold accent at bottom */}
+      {/* Aurora layer 2 — ash cool bloom, top-right */}
       <div
-        className="absolute bottom-[5%] left-1/3 w-[50vw] h-[40vh] rounded-full pointer-events-none"
+        className="absolute -top-[10%] -right-[15%] w-[70vw] h-[70vh] rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse, rgba(188,163,134,0.06) 0%, transparent 60%)',
-          animation: 'orb-pulse-3 22s ease-in-out infinite',
-          filter: 'blur(50px)',
+          background: 'radial-gradient(ellipse, rgba(195,193,192,0.07) 0%, rgba(174,173,171,0.03) 40%, transparent 70%)',
+          animation: 'orb-pulse-2 18s ease-in-out infinite',
+          filter: 'blur(80px)',
         }}
       />
 
-      {/* Subtle dot grid */}
+      {/* Aurora layer 3 — slate accent, bottom centre */}
+      <div
+        className="absolute bottom-[5%] left-1/3 w-[50vw] h-[40vh] rounded-full pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse, rgba(174,173,171,0.06) 0%, transparent 60%)',
+          animation: 'orb-pulse-3 22s ease-in-out infinite',
+          filter: 'blur(60px)',
+        }}
+      />
+
+      {/* Subtle concrete dot grid */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
+          backgroundImage: 'radial-gradient(circle, rgba(217,209,204,0.06) 1px, transparent 1px)',
+          backgroundSize: '44px 44px',
           animation: 'grid-fade 8s ease-in-out infinite',
         }}
       />
 
-      {/* Animated scan line */}
+      {/* Animated scan line — concrete shimmer */}
       <div
         className="absolute inset-x-0 h-[1px] pointer-events-none"
         style={{
-          background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 30%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 70%, transparent 100%)',
+          background: 'linear-gradient(90deg, transparent 0%, rgba(217,209,204,0.04) 30%, rgba(217,209,204,0.09) 50%, rgba(217,209,204,0.04) 70%, transparent 100%)',
           animation: 'scan-line 9s linear infinite',
           top: 0,
         }}
       />
 
-      {/* Floating particles */}
+      {/* Floating concrete dust particles */}
       {[...Array(12)].map((_, i) => (
         <div
           key={i}
           className="absolute rounded-full pointer-events-none"
           style={{
-            width: i % 3 === 0 ? 2 : 1,
+            width:  i % 3 === 0 ? 2 : 1,
             height: i % 3 === 0 ? 2 : 1,
-            background: i % 4 === 0 ? 'rgba(56,189,248,0.6)' : 'rgba(255,255,255,0.35)',
-            left: `${8 + (i * 7.5) % 84}%`,
+            // Alternate between limestone, ash, and slate tones
+            background: i % 4 === 0
+              ? 'rgba(217,209,204,0.55)'  // limestone
+              : i % 4 === 1
+              ? 'rgba(195,193,192,0.45)'  // ash
+              : i % 4 === 2
+              ? 'rgba(174,173,171,0.40)'  // slate
+              : 'rgba(138,135,138,0.30)', // steel
+            left:   `${8 + (i * 7.5) % 84}%`,
             bottom: `${10 + (i * 13) % 50}%`,
             animation: `particle-float ${6 + (i * 1.3) % 6}s ease-in-out ${(i * 0.7) % 5}s infinite`,
           }}
         />
       ))}
 
-      {/* Vignette edges */}
+      {/* Vignette edges — dark twilight corners */}
       <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.55) 100%)',
+        background: 'radial-gradient(ellipse at center, transparent 50%, rgba(58,59,65,0.65) 100%)',
       }} />
     </div>
   )
@@ -155,14 +158,15 @@ export default function HeroSection() {
           }}
         >
           <h1
-            className="font-display text-[#F5F5F2] uppercase leading-none block"
+            className="font-display uppercase leading-none block"
             style={{
               fontSize: 'clamp(36px, 10vw, 140px)',
               fontWeight: 300,
               letterSpacing: '-0.04em',
+              color: '#f5f0eb', /* cream */
               transform: mounted ? 'translateY(0) skewY(0)' : 'translateY(80px) skewY(3deg)',
               transition: 'transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.35s',
-              textShadow: '0 0 80px rgba(56,189,248,0.15)',
+              textShadow: '0 0 80px rgba(217,209,204,0.12)',
             }}
           >
             Recover Better.
@@ -182,7 +186,7 @@ export default function HeroSection() {
               fontSize: 'clamp(36px, 10vw, 140px)',
               fontWeight: 300,
               letterSpacing: '-0.04em',
-              color: 'rgba(245,245,242,0.28)',
+              color: 'rgba(245,240,235,0.22)', /* faded cream */
               transform: mounted ? 'translateY(0) skewY(0)' : 'translateY(80px) skewY(3deg)',
               transition: 'transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s',
             }}
@@ -193,8 +197,9 @@ export default function HeroSection() {
 
         {/* Subline */}
         <p
-          className="text-[#8e9192] text-sm md:text-lg max-w-lg mx-auto leading-relaxed mb-8 md:mb-10 px-2 md:px-0"
+          className="text-sm md:text-lg max-w-lg mx-auto leading-relaxed mb-8 md:mb-10 px-2 md:px-0"
           style={{
+            color: '#aeadab', /* slate */
             opacity: mounted ? 1 : 0,
             transform: mounted ? 'translateY(0)' : 'translateY(20px)',
             transition: 'opacity 0.8s ease 0.7s, transform 0.8s cubic-bezier(0.32,0.72,0,1) 0.7s',
@@ -217,11 +222,18 @@ export default function HeroSection() {
             target="_blank"
             rel="noopener noreferrer"
             id="hero-book-cta"
-            className="group inline-flex items-center gap-3 bg-[#BCA386] text-[#12110F] pl-7 pr-2.5 py-3.5 rounded-full font-bold text-sm hover:bg-[#cbb499] transition-all duration-300 active:scale-[0.97] shadow-[0_8px_40px_rgba(188,163,134,0.18)]"
+            className="group inline-flex items-center gap-3 pl-7 pr-2.5 py-3.5 rounded-full font-bold text-sm transition-all duration-300 active:scale-[0.97]"
+            style={{
+              background: '#d9d1cc',           /* limestone */
+              color: '#494a51',                /* twilight */
+              boxShadow: '0 8px 40px rgba(217,209,204,0.15)',
+            }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#c3c1c0' }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = '#d9d1cc' }}
           >
             Book a Session
-            <span className="w-8 h-8 rounded-full bg-[#12110F]/10 flex items-center justify-center transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-px">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#12110F" strokeWidth="2.5">
+            <span className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-px" style={{ background: 'rgba(73,74,81,0.14)' }}>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#494a51" strokeWidth="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </span>
@@ -229,7 +241,23 @@ export default function HeroSection() {
           <Link
             href="/services"
             id="hero-services-cta"
-            className="inline-flex items-center gap-2 text-[#c9c6c5] text-sm font-semibold hover:text-[#F5F5F2] transition-colors duration-300 border border-white/15 px-6 py-3.5 rounded-full hover:border-white/30 hover:bg-white/5"
+            className="inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-300 px-6 py-3.5 rounded-full"
+            style={{
+              color: '#aeadab',                          /* slate */
+              border: '1px solid rgba(217,209,204,0.18)', /* limestone */
+            }}
+            onMouseEnter={e => {
+              const el = e.currentTarget as HTMLElement
+              el.style.color = '#f5f0eb'
+              el.style.borderColor = 'rgba(217,209,204,0.35)'
+              el.style.background = 'rgba(217,209,204,0.06)'
+            }}
+            onMouseLeave={e => {
+              const el = e.currentTarget as HTMLElement
+              el.style.color = '#aeadab'
+              el.style.borderColor = 'rgba(217,209,204,0.18)'
+              el.style.background = 'transparent'
+            }}
           >
             Explore Services
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -256,13 +284,13 @@ export default function HeroSection() {
               key={stat.label}
               className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full"
               style={{
-                background: 'rgba(255,255,255,0.05)',
-                border: '1px solid rgba(255,255,255,0.09)',
+                background: 'rgba(217,209,204,0.07)',       /* limestone tint */
+                border: '1px solid rgba(217,209,204,0.12)', /* limestone border */
                 backdropFilter: 'blur(8px)',
               }}
             >
-              <span className="text-[#F5F5F2] text-[11px] md:text-xs font-bold">{stat.value}</span>
-              <span className="text-[#8e9192] text-[11px] md:text-xs">{stat.label}</span>
+              <span className="text-[11px] md:text-xs font-bold" style={{ color: '#f5f0eb' }}>{stat.value}</span>
+              <span className="text-[11px] md:text-xs" style={{ color: '#aeadab' }}>{stat.label}</span>
             </div>
           ))}
         </div>
@@ -277,11 +305,11 @@ export default function HeroSection() {
         }}
       >
         <div className="flex flex-col items-center gap-1.5">
-          <span className="text-[9px] uppercase tracking-[0.3em] text-[#8e9192]">Scroll</span>
+          <span className="text-[9px] uppercase tracking-[0.3em]" style={{ color: '#8a878a' }}>Scroll</span>
           <div className="w-px h-8 overflow-hidden relative">
             <div
-              className="absolute inset-x-0 h-1/2 bg-white/30 rounded-full"
-              style={{ animation: 'slide-up 1.5s ease-in-out infinite' }}
+              className="absolute inset-x-0 h-1/2 rounded-full"
+              style={{ background: 'rgba(217,209,204,0.25)', animation: 'slide-up 1.5s ease-in-out infinite' }}
             />
           </div>
         </div>
