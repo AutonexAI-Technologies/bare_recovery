@@ -36,20 +36,23 @@ export const STUDIO_HOURS = {
 export const SOCIAL_LINKS = {
     instagram: 'https://www.instagram.com/bare.recovery',
     instagramHandle: '@bare.recovery',
-    founderInstagram: 'https://www.instagram.com/de_abhinav',
-    founderHandle: '@de_abhinav',
-    youtube: 'https://www.youtube.com/@de_abhinav',
-    youtubeHandle: '@de_abhinav',
+    founderInstagram: 'https://www.instagram.com/abhinav._lifts/',
+    founderHandle: '@abhinav._lifts',
+    founderYoutube: 'https://youtube.com/@abhinavliftsvlogs',
+    youtube: 'https://youtube.com/@abhinavliftsvlogs',
+    youtubeHandle: '@abhinavliftsvlogs',
 }
 
 export const STUDIO_ADDRESS = {
-    full: '3rd Floor, Raichandani Orion, NH44, Bashirabad, Kompally, Secunderabad, Telangana 500067',
-    line1: '3rd Floor, Raichandani Orion',
-    line2: 'NH44, Bashirabad, Kompally',
-    city: 'Secunderabad',
+    full: 'Bare Recovery Studio, Raichandani, Jeedimetla, Hyderabad, Secunderabad, Telangana 500010',
+    line1: 'Raichandani, Jeedimetla',
+    line2: 'Hyderabad, Secunderabad',
+    city: 'Hyderabad',
     state: 'Telangana',
-    pincode: '500067',
-    googleMapsUrl: 'https://share.google/lS1Gy7gRXuZ2x51wI',
+    pincode: '500010',
+    googleMapsUrl: 'https://share.google/oXZa5ckymZtv529Ei',
+    googleMapsEmbed: 'https://maps.google.com/maps?q=Bare+Recovery+Studio,+Raichandani,+Jeedimetla,+Hyderabad,+Telangana+500010&output=embed&z=16',
+    appleMapsUrl: 'https://maps.apple.com/?q=Bare+Recovery+Studio+Raichandani+Jeedimetla+Hyderabad+Telangana+500010',
 }
 
 export const WHATSAPP_MESSAGES = {

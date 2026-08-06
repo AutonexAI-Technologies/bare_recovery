@@ -6,8 +6,9 @@ export const founderInfo: FounderInfo = {
 
     instagram: {
         handle: '@abhinav._lifts',
-        url: 'https://www.instagram.com/abhinav._lifts',
-        followers: '83.3K',
+        url: 'https://www.instagram.com/abhinav._lifts/',
+        followers: '85.3K',
+        followersRaw: 85300,
         verified: true,
     },
 
@@ -25,7 +26,7 @@ My philosophy is simple: BE BORING. Consistency beats intensity every time. This
     stats: [
         {
             label: 'Instagram Community',
-            value: '83.3K',
+            value: '85.3K',
             icon: 'instagram',
         },
         {
@@ -43,7 +44,8 @@ My philosophy is simple: BE BORING. Consistency beats intensity every time. This
     links: {
         consultation1on1: 'https://superprofile.bio/bookings/abhinavlifts',
         coachingForm: 'https://whatsform.com/i4zbbr',
-        instagram: 'https://www.instagram.com/abhinav._lifts',
+        instagram: 'https://www.instagram.com/abhinav._lifts/',
+        youtube: 'https://youtube.com/@abhinavliftsvlogs',
         strava: 'https://strava.app.link/bbsoZZ4QO0b',
     },
 

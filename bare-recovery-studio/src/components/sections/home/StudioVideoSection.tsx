@@ -1,164 +1,260 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import FadeIn from '@/components/animations/FadeIn'
 
+// Featured studio video + recent uploads — update IDs as new videos go live
+const VIDEOS = [
+  {
+    id: 'BHbBl4G3VrE',
+    title: 'Bare Recovery Studio — Full Tour',
+    duration: 'Studio Reel',
+    featured: true,
+  },
+  // Add more video IDs here as the channel grows
+  // { id: 'VIDEO_ID_2', title: 'Cold Plunge Experience', duration: '3 min' },
+  // { id: 'VIDEO_ID_3', title: 'Contrast Therapy Protocol', duration: '5 min' },
+]
+
+const CHANNEL_URL = 'https://youtube.com/@abhinavliftsvlogs'
+
+function VideoThumbnail({
+  video,
+  onPlay,
+}: {
+  video: (typeof VIDEOS)[0]
+  onPlay: () => void
+}) {
+  return (
+    <button
+      onClick={onPlay}
+      className="group relative w-full text-left focus:outline-none"
+      aria-label={`Play: ${video.title}`}
+    >
+      {/* YouTube thumbnail */}
+      <div
+        className="relative rounded-[16px] overflow-hidden"
+        style={{ aspectRatio: '16/9', background: '#1a1919' }}
+      >
+        <img
+          src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
+          alt={video.title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          onError={e => {
+            // Fallback to hqdefault if maxres not available
+            const img = e.currentTarget as HTMLImageElement
+            img.src = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`
+          }}
+        />
+        {/* Dark overlay */}
+        <div
+          className="absolute inset-0 transition-opacity duration-300"
+          style={{ background: 'rgba(20,19,19,0.30)' }}
+        />
+        {/* Play button */}
+        <div
+          className="absolute inset-0 flex items-center justify-center"
+        >
+          <div
+            className="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:shadow-2xl"
+            style={{
+              background: '#d9d1cc',
+              boxShadow: '0 8px 32px rgba(217,209,204,0.30)',
+            }}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#3d3b3d" style={{ marginLeft: 3 }}>
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg>
+          </div>
+        </div>
+        {/* Duration badge */}
+        <span
+          className="absolute bottom-2 right-2 text-[10px] font-semibold px-2 py-1 rounded"
+          style={{ background: 'rgba(20,19,19,0.85)', color: '#c4c1c4' }}
+        >
+          {video.duration}
+        </span>
+      </div>
+      <p
+        className="mt-2.5 text-sm font-medium leading-snug"
+        style={{ color: '#a8a5a8' }}
+      >
+        {video.title}
+      </p>
+    </button>
+  )
+}
+
 export default function StudioVideoSection() {
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [muted, setMuted] = useState(true)
-  const [playing, setPlaying] = useState(true)
-
-  const toggleMute = () => {
-    const vid = videoRef.current
-    if (!vid) return
-    vid.muted = !vid.muted
-    setMuted(vid.muted)
-  }
-
-  const togglePlay = () => {
-    const vid = videoRef.current
-    if (!vid) return
-    if (vid.paused) { vid.play(); setPlaying(true) }
-    else { vid.pause(); setPlaying(false) }
-  }
+  const [playingId, setPlayingId] = useState<string | null>(null)
+  const featured = VIDEOS.find(v => v.featured) ?? VIDEOS[0]
+  const rest = VIDEOS.filter(v => !v.featured)
 
   return (
     <section className="py-16 md:py-[120px] px-4 md:px-12">
       <div className="max-w-[1320px] mx-auto">
 
-        {/* Header row */}
         <FadeIn direction="up">
-          <div className="flex items-end justify-between mb-12 md:mb-16">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 md:mb-14">
             <div>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#A19F97] block mb-3">
-                Inside the Studio
-              </span>
+              <span className="section-label">Inside the Studio</span>
               <h2
-                className="font-display text-[32px] md:text-[48px] text-[#FFFBF5]"
-                style={{ letterSpacing: '-0.02em', lineHeight: 1.1 }}
+                className="font-display text-[32px] md:text-[52px]"
+                style={{ letterSpacing: '-0.025em', lineHeight: 1.1, color: '#f5f0eb' }}
               >
-                See it for yourself.
+                Built for Performance
               </h2>
             </div>
-            <p className="hidden md:block text-[#A19F97] text-sm max-w-[300px] text-right leading-relaxed">
-              A glimpse inside Bare Recovery Studio, 3rd Floor, Raichandani Orion, Kompally.
-            </p>
+            <a
+              href={CHANNEL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="self-start md:self-auto inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300"
+              style={{
+                border: '1px solid rgba(196,193,196,0.16)',
+                color: '#8a878a',
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLElement
+                el.style.color = '#f5f0eb'
+                el.style.borderColor = 'rgba(196,193,196,0.30)'
+                el.style.background = 'rgba(196,193,196,0.05)'
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLElement
+                el.style.color = '#8a878a'
+                el.style.borderColor = 'rgba(196,193,196,0.16)'
+                el.style.background = 'transparent'
+              }}
+            >
+              {/* YouTube icon */}
+              <svg width="16" height="12" viewBox="0 0 24 17" fill="#FF0000">
+                <path d="M23.5 2.5S23.2.7 22.4 0C21.4-1 20.2-1 19.7-.9 16.5-.7 12-.7 12-.7s-4.5 0-7.7.2C3.8-.3 2.6-.3 1.6.7.8 1.4.5 3.2.5 3.2S.2 5.3.2 7.4v1.9c0 2.1.3 4.2.3 4.2s.3 1.8 1.1 2.5c1 1 2.4 1 3 1.1C6.5 17 12 17 12 17s4.5 0 7.7-.2c.5-.1 1.7-.1 2.7-1.1.8-.7 1.1-2.5 1.1-2.5s.3-2.1.3-4.2V6.7c0-2.1-.3-4.2-.3-4.2zM9.7 11.5V5l6.6 3.3-6.6 3.2z" />
+              </svg>
+              @abhinavliftsvlogs
+            </a>
           </div>
         </FadeIn>
 
-        {/* Double-Bezel video container */}
-        <FadeIn direction="up" delay={100}>
+        {/* Featured video — full width */}
+        <FadeIn direction="up" delay={80}>
           <div
-            className="relative"
+            className="relative rounded-[24px] overflow-hidden mb-4"
             style={{
-              background: 'rgba(27,25,22,0.6)',
-              border: '1px solid rgba(188,163,134,0.15)',
-              borderRadius: '32px',
-              padding: '6px',
-              boxShadow: '0 40px 120px rgba(0,0,0,0.5)',
+              background: '#1a1919',
+              border: '1px solid rgba(196,193,196,0.08)',
+              aspectRatio: '16 / 9',
+              boxShadow: '0 32px 80px rgba(0,0,0,0.55)',
             }}
           >
-            <div className="relative rounded-[26px] overflow-hidden aspect-video bg-[#111]">
-              <video
-                ref={videoRef}
-                className="w-full h-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-              >
-                <source src="/videos/bare-recovery.mp4" type="video/mp4" />
-              </video>
-
-              {/* Inset highlight */}
-              <div
-                className="absolute inset-0 pointer-events-none rounded-[26px]"
-                style={{ boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.05)' }}
+            {playingId === featured.id ? (
+              <iframe
+                src={`https://www.youtube.com/embed/${featured.id}?autoplay=1&rel=0&modestbranding=1&color=white`}
+                title={featured.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  border: 0,
+                }}
               />
-
-              {/* Controls overlay — bottom bar */}
-              <div className="absolute inset-x-0 bottom-0 p-5 md:p-6 flex items-center justify-between">
-                {/* Left: studio label */}
-                <div
-                  className="flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold text-[#FFFBF5]"
-                  style={{
-                    background: 'rgba(18,17,15,0.75)',
-                    backdropFilter: 'blur(16px)',
-                    border: '1px solid rgba(188,163,134,0.15)',
+            ) : (
+              <button
+                onClick={() => setPlayingId(featured.id)}
+                className="absolute inset-0 w-full group focus:outline-none"
+                aria-label={`Play: ${featured.title}`}
+              >
+                {/* YouTube maxres thumbnail */}
+                <img
+                  src={`https://img.youtube.com/vi/${featured.id}/maxresdefault.jpg`}
+                  alt={featured.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                  onError={e => {
+                    const img = e.currentTarget as HTMLImageElement
+                    img.src = `https://img.youtube.com/vi/${featured.id}/hqdefault.jpg`
                   }}
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#BCA386] animate-pulse" />
-                  Bare Recovery Studio · Kompally
-                </div>
-
-                {/* Right: controls */}
-                <div className="flex items-center gap-2">
-                  {/* Play/Pause */}
-                  <button
-                    onClick={togglePlay}
-                    aria-label={playing ? 'Pause' : 'Play'}
-                    className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
+                />
+                {/* Gradient overlay */}
+                <div
+                  className="absolute inset-0"
+                  style={{ background: 'rgba(20,19,19,0.28)' }}
+                />
+                {/* Large play button */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+                  <div
+                    className="w-20 h-20 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
                     style={{
-                      background: 'rgba(11,11,11,0.65)',
-                      backdropFilter: 'blur(16px)',
-                      border: '1px solid rgba(255,255,255,0.1)',
+                      background: '#d9d1cc',
+                      boxShadow: '0 16px 64px rgba(217,209,204,0.40)',
                     }}
                   >
-                    {playing ? (
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="#F5F5F2">
-                        <rect x="6" y="4" width="4" height="16" rx="1"/>
-                        <rect x="14" y="4" width="4" height="16" rx="1"/>
-                      </svg>
-                    ) : (
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="#F5F5F2">
-                        <polygon points="5 3 19 12 5 21 5 3"/>
-                      </svg>
-                    )}
-                  </button>
-
-                  {/* Mute/Unmute */}
-                  <button
-                    onClick={toggleMute}
-                    aria-label={muted ? 'Unmute sound' : 'Mute sound'}
-                    className="group w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
-                    style={{
-                      background: muted ? 'rgba(11,11,11,0.65)' : 'rgba(245,245,242,0.9)',
-                      backdropFilter: 'blur(16px)',
-                      border: '1px solid rgba(255,255,255,0.1)',
-                    }}
-                    title={muted ? 'Click to enable sound' : 'Click to mute'}
-                  >
-                    {muted ? (
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F5F5F2" strokeWidth="1.8">
-                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-                        <line x1="23" y1="9" x2="17" y2="15"/>
-                        <line x1="17" y1="9" x2="23" y2="15"/>
-                      </svg>
-                    ) : (
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0B0B0B" strokeWidth="1.8">
-                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
-                      </svg>
-                    )}
-                  </button>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#3d3b3d" style={{ marginLeft: 4 }}>
+                      <polygon points="5 3 19 12 5 21 5 3" />
+                    </svg>
+                  </div>
+                  <span className="text-sm font-semibold" style={{ color: '#f5f0eb', textShadow: '0 2px 8px rgba(0,0,0,0.60)' }}>
+                    {featured.title}
+                  </span>
                 </div>
-              </div>
-            </div>
+              </button>
+            )}
           </div>
         </FadeIn>
 
-        {/* Sound hint */}
-        {muted && (
-          <FadeIn direction="up" delay={200}>
-            <p className="text-center text-xs text-[#A19F97] mt-5">
-              <button onClick={toggleMute} className="underline underline-offset-2 hover:text-[#BCA386] transition-colors">
-                Click the 🔊 button
-              </button>
-              {' '}to enable sound
-            </p>
+        {/* Side-by-side additional videos (shown when more than 1 video exists) */}
+        {rest.length > 0 && (
+          <FadeIn direction="up" delay={140}>
+            <div className={`grid gap-4 ${rest.length === 1 ? 'grid-cols-1 max-w-sm' : rest.length === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
+              {rest.map(video => (
+                <div
+                  key={video.id}
+                  className="relative rounded-[16px] overflow-hidden"
+                  style={{
+                    border: '1px solid rgba(196,193,196,0.08)',
+                    background: '#1a1919',
+                  }}
+                >
+                  {playingId === video.id ? (
+                    <div style={{ aspectRatio: '16/9' }}>
+                      <iframe
+                        src={`https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0&modestbranding=1`}
+                        title={video.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        style={{ width: '100%', height: '100%', border: 0 }}
+                      />
+                    </div>
+                  ) : (
+                    <VideoThumbnail video={video} onPlay={() => setPlayingId(video.id)} />
+                  )}
+                </div>
+              ))}
+            </div>
           </FadeIn>
         )}
+
+        {/* Channel CTA */}
+        <FadeIn direction="up" delay={200}>
+          <div className="mt-8 flex items-center justify-center">
+            <a
+              href={CHANNEL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 text-sm font-medium transition-colors duration-300"
+              style={{ color: '#6e6c6e' }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = '#f5f0eb' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#6e6c6e' }}
+            >
+              More videos on YouTube
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M7 17L17 7M17 7H7M17 7v10" />
+              </svg>
+            </a>
+          </div>
+        </FadeIn>
       </div>
     </section>
   )

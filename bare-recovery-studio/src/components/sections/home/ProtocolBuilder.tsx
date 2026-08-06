@@ -116,7 +116,7 @@ const protocols: Protocol[] = [
     benefits: [
       { label: 'Norepinephrine Release', value: '+500%' },
       { label: 'Dopamine Baseline Shift', value: '+250%' },
-      { label: 'Focus & Vigilance Duration', value: '4 - 6 Hours' }
+      { label: 'Focus & Vigilance Duration', value: '4–6 Hours' }
     ],
     steps: [
       {
@@ -134,7 +134,7 @@ const protocols: Protocol[] = [
         desc: 'Immersion up to the collarbone triggers the highest natural norepinephrine response, resetting mental fatigue and raising physical grit.'
       },
       {
-        name: 'Red Light Therapy integration',
+        name: 'Red Light Therapy',
         duration: '15 Mins',
         spec: '660nm & 850nm',
         benefit: 'Mitochondrial ATP production.',
@@ -169,7 +169,7 @@ const protocols: Protocol[] = [
         desc: 'Cold stress triggers systemic brown fat activation, driving glucose clearance and accelerating mitochondrial turnover.'
       },
       {
-        name: 'Red Light Therapy session',
+        name: 'Red Light Therapy',
         duration: '20 Mins',
         spec: 'Near-Infrared Depth',
         benefit: 'Cellular respiration & skin rejuvenation.',
@@ -188,83 +188,155 @@ export default function ProtocolBuilder() {
   )}`
 
   return (
-    <section className="py-16 md:py-[120px] px-4 md:px-12 relative overflow-hidden" id="protocol-builder">
-      {/* Background radial accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vh] pointer-events-none -z-10 rounded-full" style={{ background: 'radial-gradient(circle, rgba(188, 163, 134, 0.03) 0%, transparent 70%)' }} />
-
+    <section
+      className="py-16 md:py-[120px] px-4 md:px-12"
+      style={{ background: 'rgba(42,40,41,0.45)' }}
+      id="protocol-builder"
+    >
       <div className="max-w-[1320px] mx-auto">
+
         <FadeIn direction="up">
-          <div className="text-center mb-16 max-w-2xl mx-auto">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#BCA386] block mb-3">
-              Interactive Circuit Guide
-            </span>
-            <h2 className="font-display text-[38px] md:text-[54px] text-[#FFFBF5] mb-4">
+          <div className="text-center mb-14 max-w-2xl mx-auto">
+            <span className="section-label">Interactive Guide</span>
+            <h2
+              className="font-display text-[32px] md:text-[52px] mb-4"
+              style={{ color: '#f5f0eb', letterSpacing: '-0.025em', lineHeight: 1.1 }}
+            >
               Build Your Recovery Circuit
             </h2>
-            <p className="text-[#A19F97] text-sm md:text-base">
-              Science shows recovery is not one-size-fits-all. Select your physiological goal below to assemble your custom sequence.
+            <p className="text-sm md:text-base leading-relaxed" style={{ color: '#8a878a' }}>
+              Recovery is not one-size-fits-all. Select your physiological goal to assemble your custom sequence.
             </p>
           </div>
         </FadeIn>
 
-        {/* ── Selection Tabs ── */}
+        {/* ── Protocol selector — 2×2 card grid ── */}
         <FadeIn direction="up" delay={80}>
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
-            {protocols.map((p) => (
-              <button
-                key={p.id}
-                onClick={() => setActiveTab(p.id)}
-                className={`flex items-center gap-2.5 px-6 py-3.5 rounded-full text-xs font-semibold uppercase tracking-[0.15em] transition-all duration-300 ${
-                  activeTab === p.id
-                    ? 'bg-[#BCA386] text-[#12110F] shadow-[0_4px_20px_rgba(188,163,134,0.25)]'
-                    : 'text-[#A19F97] bg-[#1B1916]/40 hover:bg-[#1B1916]/80 hover:text-[#FFFBF5]'
-                }`}
-                style={{
-                  border: activeTab === p.id ? '1px solid #BCA386' : '1px solid rgba(255,255,255,0.05)',
-                }}
-              >
-                <span>{p.icon}</span>
-                {p.title}
-              </button>
-            ))}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-12">
+            {protocols.map((p) => {
+              const active = activeTab === p.id
+              return (
+                <button
+                  key={p.id}
+                  onClick={() => setActiveTab(p.id)}
+                  className="group text-left p-5 rounded-[20px] transition-all duration-300 focus:outline-none"
+                  style={
+                    active
+                      ? {
+                          background: '#d9d1cc',
+                          border: '1px solid #d9d1cc',
+                          boxShadow: '0 8px 32px rgba(217,209,204,0.22)',
+                        }
+                      : {
+                          background: 'rgba(86,84,86,0.35)',
+                          border: '1px solid rgba(196,193,196,0.10)',
+                        }
+                  }
+                  onMouseEnter={e => {
+                    if (!active) {
+                      const el = e.currentTarget as HTMLElement
+                      el.style.background = 'rgba(86,84,86,0.60)'
+                      el.style.borderColor = 'rgba(196,193,196,0.22)'
+                    }
+                  }}
+                  onMouseLeave={e => {
+                    if (!active) {
+                      const el = e.currentTarget as HTMLElement
+                      el.style.background = 'rgba(86,84,86,0.35)'
+                      el.style.borderColor = 'rgba(196,193,196,0.10)'
+                    }
+                  }}
+                >
+                  {/* Icon */}
+                  <span
+                    className="block text-2xl mb-3"
+                    style={{ lineHeight: 1 }}
+                  >
+                    {p.icon}
+                  </span>
+
+                  {/* Title */}
+                  <span
+                    className="block text-sm font-semibold leading-snug mb-1"
+                    style={{ color: active ? '#3d3b3d' : '#f5f0eb' }}
+                  >
+                    {p.title}
+                  </span>
+
+                  {/* Goal */}
+                  <span
+                    className="block text-[10px] uppercase tracking-[0.14em] leading-tight"
+                    style={{ color: active ? 'rgba(61,59,61,0.65)' : '#6e6c6e' }}
+                  >
+                    {p.id === 'nervous-system' && 'Deep Relaxation'}
+                    {p.id === 'athletic-restoration' && 'Muscle Recovery'}
+                    {p.id === 'cognitive-longevity' && 'Mental Clarity'}
+                    {p.id === 'immune-shield' && 'Cellular Defence'}
+                  </span>
+                </button>
+              )
+            })}
           </div>
         </FadeIn>
 
-        {/* ── Display Panel ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left panel: Protocol metadata */}
-          <div className="lg:col-span-4 flex flex-col gap-6 h-full">
+        {/* ── Two-column panel ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+          {/* Left — protocol meta */}
+          <div className="lg:col-span-4">
             <FadeIn direction="right" delay={100} key={`${activeTab}-meta`}>
               <div
-                className="p-8 rounded-[24px] h-full flex flex-col"
+                className="p-8 rounded-[24px] flex flex-col h-full"
                 style={{
-                  background: 'rgba(27,25,22,0.65)',
+                  background: 'rgba(42,40,41,0.75)',
                   backdropFilter: 'blur(24px)',
-                  border: '1px solid rgba(188,163,134,0.15)',
+                  border: '1px solid rgba(196,193,196,0.10)',
                 }}
               >
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#BCA386] mb-3 block">
-                  Scientific Intent
-                </span>
-                <h3 className="font-display text-2xl text-[#FFFBF5] mb-3">{activeProtocol.title}</h3>
-                <p className="text-[#A19F97] text-sm leading-relaxed mb-6">
+                <span className="section-label mb-1">Scientific Intent</span>
+                <h3
+                  className="font-display text-2xl mb-3"
+                  style={{ color: '#f5f0eb', letterSpacing: '-0.015em' }}
+                >
+                  {activeProtocol.title}
+                </h3>
+                <p className="text-sm leading-relaxed mb-6" style={{ color: '#8a878a' }}>
                   {activeProtocol.tagline}
                 </p>
 
-                <div className="pt-6 border-t border-white/[0.06] mb-6">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A19F97]/60 mb-2">Physiological Basis</p>
-                  <p className="text-xs text-[#A19F97]/80 leading-relaxed italic">
+                <div
+                  className="pt-5 mb-6"
+                  style={{ borderTop: '1px solid rgba(196,193,196,0.07)' }}
+                >
+                  <p className="text-[9px] uppercase tracking-[0.22em] font-semibold mb-2" style={{ color: '#6e6c6e' }}>
+                    Physiological Basis
+                  </p>
+                  <p className="text-xs leading-relaxed italic" style={{ color: '#8a878a' }}>
                     &ldquo;{activeProtocol.scientificBasis}&rdquo;
                   </p>
                 </div>
 
-                <div className="mt-auto space-y-4">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A19F97]/60">Targeted Impact</p>
+                {/* Targeted impact */}
+                <div className="mt-auto space-y-3 mb-6">
+                  <p className="text-[9px] uppercase tracking-[0.22em] font-semibold" style={{ color: '#6e6c6e' }}>
+                    Targeted Impact
+                  </p>
                   <div className="grid grid-cols-3 gap-2">
                     {activeProtocol.benefits.map((b) => (
-                      <div key={b.label} className="p-3 rounded-xl bg-[#12110F]/60 border border-white/[0.05] text-center">
-                        <p className="font-display text-lg text-[#FFFBF5] mb-0.5">{b.value}</p>
-                        <p className="text-[9px] uppercase tracking-[0.1em] text-[#A19F97]/60 leading-tight">{b.label}</p>
+                      <div
+                        key={b.label}
+                        className="p-3 rounded-xl text-center"
+                        style={{
+                          background: 'rgba(61,59,61,0.80)',
+                          border: '1px solid rgba(196,193,196,0.07)',
+                        }}
+                      >
+                        <p className="font-display text-lg mb-0.5" style={{ color: '#f5f0eb', letterSpacing: '-0.02em' }}>
+                          {b.value}
+                        </p>
+                        <p className="text-[8px] uppercase tracking-[0.10em] leading-tight" style={{ color: '#6e6c6e' }}>
+                          {b.label}
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -274,82 +346,106 @@ export default function ProtocolBuilder() {
                   href={waLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-8 w-full inline-flex items-center justify-center gap-2 bg-[#BCA386] text-[#12110F] py-3.5 rounded-full font-bold text-xs uppercase tracking-[0.18em] transition-all hover:bg-[#cbb499] active:scale-98"
+                  className="mt-2 w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-full font-semibold text-sm transition-all duration-300 active:scale-[0.97]"
+                  style={{ background: '#d9d1cc', color: '#3d3b3d' }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#c4c1c4' }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = '#d9d1cc' }}
                 >
                   Book This Circuit
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                    <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
                 </a>
               </div>
             </FadeIn>
           </div>
 
-          {/* Right panel: Timeline Steps */}
+          {/* Right — timeline steps */}
           <div className="lg:col-span-8">
             <FadeIn direction="left" delay={120} key={`${activeTab}-timeline`}>
               <div
-                className="p-8 rounded-[24px] space-y-8"
+                className="p-8 rounded-[24px]"
                 style={{
-                  background: 'rgba(27,25,22,0.45)',
-                  backdropFilter: 'blur(24px)',
-                  border: '1px solid rgba(255,255,255,0.05)',
+                  background: 'rgba(86,84,86,0.28)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(196,193,196,0.08)',
                 }}
               >
-                <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#BCA386]">
-                    Timeline Sequence
-                  </span>
-                  <span className="text-[10px] text-[#A19F97]/60 uppercase tracking-[0.15em]">
-                    Guided Protocols
+                {/* Timeline header */}
+                <div
+                  className="flex items-center justify-between pb-4 mb-6"
+                  style={{ borderBottom: '1px solid rgba(196,193,196,0.07)' }}
+                >
+                  <span className="section-label mb-0">Timeline Sequence</span>
+                  <span
+                    className="text-[10px] uppercase tracking-[0.16em]"
+                    style={{ color: '#6e6c6e' }}
+                  >
+                    Guided Protocol
                   </span>
                 </div>
 
-                <div className="relative pl-6 md:pl-8 space-y-12">
-                  {/* Vertical sequence connection line */}
-                  <div className="absolute left-3 md:left-4 top-3 bottom-3 w-px bg-gradient-to-b from-[#BCA386]/60 to-[#BCA386]/0" />
+                {/* Steps with connector line */}
+                <div className="relative pl-6 md:pl-8 space-y-10">
+                  {/* Vertical line */}
+                  <div
+                    className="absolute left-3 md:left-4 top-3 bottom-3 w-px"
+                    style={{ background: 'linear-gradient(to bottom, rgba(196,193,196,0.35), rgba(196,193,196,0.04))' }}
+                  />
 
                   {activeProtocol.steps.map((step, idx) => (
                     <div key={idx} className="relative group/step">
-                      {/* Step Number Dot */}
+                      {/* Step dot */}
                       <span
-                        className="absolute -left-[19px] md:-left-[23px] top-1.5 w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-[#12110F] bg-[#BCA386] transition-all group-hover/step:scale-110"
+                        className="absolute -left-[19px] md:-left-[23px] top-1.5 w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-bold transition-all duration-300 group-hover/step:scale-110"
                         style={{
-                          boxShadow: '0 0 10px rgba(188, 163, 134, 0.4)',
+                          background: '#d9d1cc',
+                          color: '#3d3b3d',
+                          boxShadow: '0 0 12px rgba(217,209,204,0.30)',
                         }}
                       >
                         {idx + 1}
                       </span>
 
-                      {/* Step Details */}
-                      <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
-                        <div className="space-y-1.5 max-w-[80%]">
-                          <h4 className="font-display text-lg text-[#FFFBF5] flex items-center gap-3">
+                      <div className="flex flex-col md:flex-row md:items-start gap-4 justify-between">
+                        {/* Content */}
+                        <div className="space-y-1.5 max-w-[75%]">
+                          <h4
+                            className="font-display text-lg flex flex-wrap items-center gap-3"
+                            style={{ color: '#f5f0eb' }}
+                          >
                             {step.name}
-                            <span className="text-xs text-[#BCA386] border border-[#BCA386]/25 rounded-full px-2 py-0.5 bg-[#BCA386]/5">
+                            <span
+                              className="text-xs font-normal px-2.5 py-0.5 rounded-full border"
+                              style={{
+                                color: '#c4c1c4',
+                                borderColor: 'rgba(196,193,196,0.18)',
+                                background: 'rgba(86,84,86,0.50)',
+                              }}
+                            >
                               {step.duration}
                             </span>
                           </h4>
-                          <p className="text-xs uppercase tracking-[0.1em] text-[#A19F97] font-semibold">
+                          <p className="text-[10px] uppercase tracking-[0.12em] font-semibold" style={{ color: '#8a878a' }}>
                             {step.spec}
                           </p>
-                          <p className="text-xs text-[#A19F97] leading-relaxed">
+                          <p className="text-xs leading-relaxed" style={{ color: '#8a878a' }}>
                             {step.desc}
                           </p>
                         </div>
 
-                        {/* Impact highlight pill */}
+                        {/* Impact pill */}
                         <div
-                          className="md:max-w-[200px] shrink-0 p-3.5 rounded-xl text-left"
+                          className="shrink-0 md:max-w-[180px] p-3.5 rounded-[14px]"
                           style={{
-                            background: 'rgba(188, 163, 134, 0.04)',
-                            border: '1px solid rgba(188, 163, 134, 0.12)',
+                            background: 'rgba(61,59,61,0.70)',
+                            border: '1px solid rgba(196,193,196,0.10)',
                           }}
                         >
-                          <span className="text-[9px] uppercase tracking-[0.15em] text-[#BCA386] font-bold block mb-1">
+                          <span className="text-[8px] uppercase tracking-[0.16em] font-bold block mb-1" style={{ color: '#c4c1c4' }}>
                             Primary Trigger
                           </span>
-                          <span className="text-xs text-[#A19F97]/90 leading-tight block">
+                          <span className="text-xs leading-tight block" style={{ color: '#8a878a' }}>
                             {step.benefit}
                           </span>
                         </div>

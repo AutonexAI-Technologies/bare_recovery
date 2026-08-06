@@ -1,238 +1,210 @@
-import Link from 'next/link'
-import { CONTACT_INFO } from '@/lib/constants'
-import FadeIn from '@/components/animations/FadeIn'
+'use client'
 
-const highlights = [
+import FadeIn from '@/components/animations/FadeIn'
+import { CONTACT_INFO } from '@/lib/constants'
+
+const plans = [
+  {
+    id: 'single',
+    label: 'Single Session',
+    price: '₹799',
+    period: '/ session',
+    description: 'Perfect for first-timers or occasional recovery.',
+    features: [
+      { text: '1 modality of your choice' },
+      { text: 'Guided 20–30 minute session' },
+      { text: 'Private access — no crowds' },
+      { text: 'Coach consultation included' },
+    ],
+    cta: 'Book Now',
+    featured: false,
+  },
   {
     id: 'full-circuit',
-    name: 'Full Circuit',
-    subtitle: 'All 5 services in one premium session',
-    mrpPrice: 5595,
-    price: 2999,
-    couplePrice: 4799,
-    coupleMrp: 5998,
-    tag: 'complete',
-    href: `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent("Hi! I'd like to book a Full Circuit session.")}`,
+    label: 'Full Circuit',
+    price: '₹2,499',
+    period: '/ session',
+    description: 'The complete recovery stack. Every modality. Maximum results.',
+    features: [
+      { text: 'All 6 modalities, curated sequence' },
+      { text: '60+ minute guided session' },
+      { text: 'Performance coach assessment' },
+      { text: 'Protocol designed for your goals' },
+      { text: 'Post-session debrief included' },
+    ],
+    cta: 'Book Full Circuit',
     featured: true,
-    note: 'vs buying individually',
+    badge: 'Most Effective',
   },
   {
-    id: 'contrast',
-    name: 'Contrast Therapy',
-    subtitle: 'Sauna + Cold Plunge — the signature stack',
-    mrpPrice: 2499,
-    price: 1799,
-    couplePrice: 2199,
-    coupleMrp: 3598,
-    tag: 'signature',
-    href: '/services/contrast-therapy',
-    note: 'limited-time rate',
-  },
-  {
-    id: 'cold-plunge',
-    name: 'Cold Plunge',
-    subtitle: 'Full body cold immersion at 10–15°C',
-    mrpPrice: 1699,
-    price: 1199,
-    couplePrice: 1599,
-    coupleMrp: 2398,
-    tag: 'single',
-    href: '/services/cold-plunge',
-    note: 'introductory offer',
+    id: 'membership',
+    label: 'Monthly Membership',
+    price: 'Custom',
+    period: '/ month',
+    description: 'Built for serious athletes and consistent performers.',
+    features: [
+      { text: 'Unlimited single-modality sessions' },
+      { text: 'Priority booking every week' },
+      { text: 'Monthly protocol review' },
+      { text: 'Member-only pricing on circuits' },
+    ],
+    cta: 'Enquire',
+    featured: false,
   },
 ]
 
-const membership = {
-  monthly: { sessions: 5, price: 8999, mrp: 14995, extra: '+ 1 Bring-a-Friend pass' },
-  quarterly: { sessions: 16, price: 23999, mrp: 28784, extra: '+ 2 Bring-a-Friend passes · Contrast only' },
-}
-
 export default function PricingPreview() {
-  const waBase = `https://wa.me/${CONTACT_INFO.whatsapp}?text=`
+  const waLink = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent('Hi! I would like to book a session at Bare Recovery Studio.')}`
 
   return (
-    <section className="py-16 md:py-[120px] px-4 md:px-12" style={{ background: 'rgba(27,25,22,0.3)' }}>
+    <section
+      className="py-16 md:py-[120px] px-4 md:px-12"
+      style={{ background: 'rgba(42,40,41,0.55)' }}
+    >
       <div className="max-w-[1320px] mx-auto">
 
         <FadeIn direction="up">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-16">
-            <div>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#A19F97] block mb-3">
-                Pricing
-              </span>
-              <h2
-                className="font-display text-[38px] md:text-[54px] text-[#FFFBF5]"
-                style={{ letterSpacing: '-0.02em', lineHeight: 1.1 }}
-              >
-                Simple. Honest.
-              </h2>
-              <p className="text-[#A19F97] text-sm mt-3">All sessions in a private studio with guided coaching.</p>
-            </div>
-            <Link
-              href="/pricing"
-              className="inline-flex items-center gap-2 text-sm text-[#A19F97] hover:text-[#BCA386] transition-colors self-end"
+          <div className="text-center mb-14 md:mb-20">
+            <span className="section-label">Investment</span>
+            <h2
+              className="font-display text-[32px] md:text-[52px] mb-4"
+              style={{ letterSpacing: '-0.025em', lineHeight: 1.1, color: '#f5f0eb' }}
             >
-              Full pricing table
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </Link>
+              Pricing
+            </h2>
+            <p className="text-sm max-w-md mx-auto" style={{ color: '#8a878a' }}>
+              No subscriptions required. No hidden fees. Walk in, recover, leave better.
+            </p>
           </div>
         </FadeIn>
 
-        {/* Session cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          {highlights.map((h, i) => (
-            <FadeIn key={h.id} direction="up" delay={i * 80}>
-              <a
-                href={h.href}
-                target={h.href.startsWith('http') ? '_blank' : undefined}
-                rel={h.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className={`group relative flex flex-col p-7 rounded-[24px] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-[1.01] h-full`}
-                style={{
-                  background: h.featured ? 'rgba(39,37,33,0.95)' : 'rgba(27,25,22,0.6)',
-                  border: h.featured
-                    ? '1px solid rgba(188,163,134,0.3)'
-                    : '1px solid rgba(255,255,255,0.05)',
-                }}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {plans.map((plan, i) => (
+            <FadeIn key={plan.id} direction="up" delay={i * 80}>
+              <div
+                className="relative flex flex-col h-full p-8 rounded-[24px] transition-all duration-500"
+                style={
+                  plan.featured
+                    ? {
+                        background: 'rgba(61,59,61,0.92)',
+                        border: '1px solid rgba(217,209,204,0.20)',
+                        boxShadow: '0 32px 80px rgba(42,40,41,0.60)',
+                      }
+                    : {
+                        background: 'rgba(86,84,86,0.35)',
+                        border: '1px solid rgba(196,193,196,0.08)',
+                      }
+                }
               >
-                {h.featured && (
-                  <span className="absolute -top-3.5 left-6 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] text-[#12110F] bg-[#BCA386]">
-                    Premium
+                {/* Badge */}
+                {plan.badge && (
+                  <span
+                    className="absolute -top-3 left-1/2 -translate-x-1/2 text-[9px] font-bold uppercase tracking-[0.22em] px-4 py-1.5 rounded-full"
+                    style={{ background: '#d9d1cc', color: '#3d3b3d' }}
+                  >
+                    {plan.badge}
                   </span>
                 )}
 
-                <span
-                  className="inline-block self-start mb-4 px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-[0.18em] text-[#BCA386]"
-                  style={{
-                    background: 'rgba(188, 163, 134, 0.08)',
-                    border: '1px solid rgba(188, 163, 134, 0.15)',
+                {/* Label */}
+                <span className="section-label mb-1">{plan.label}</span>
+
+                {/* Price */}
+                <div className="flex items-end gap-1.5 mb-2">
+                  <span
+                    className="font-display"
+                    style={{
+                      fontSize: 'clamp(40px,6vw,60px)',
+                      fontWeight: 300,
+                      letterSpacing: '-0.04em',
+                      color: '#f5f0eb',
+                      lineHeight: 1,
+                    }}
+                  >
+                    {plan.price}
+                  </span>
+                  <span className="text-sm mb-2" style={{ color: '#8a878a' }}>{plan.period}</span>
+                </div>
+
+                <p className="text-sm leading-relaxed mb-6" style={{ color: '#8a878a' }}>
+                  {plan.description}
+                </p>
+
+                {/* Divider */}
+                <div className="mb-6" style={{ height: 1, background: 'rgba(196,193,196,0.07)' }} />
+
+                {/* Features */}
+                <ul className="space-y-3 flex-1 mb-8">
+                  {plan.features.map((feat, j) => (
+                    <li key={j} className="flex items-start gap-3 text-sm" style={{ color: '#a8a5a8' }}>
+                      <svg
+                        className="shrink-0 mt-0.5"
+                        width="14" height="14" viewBox="0 0 24 24"
+                        fill="none" stroke={plan.featured ? '#d9d1cc' : '#6e6c6e'}
+                        strokeWidth="2.5"
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                      {feat.text}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA */}
+                <a
+                  href={waLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 py-3.5 rounded-full font-semibold text-sm transition-all duration-300 active:scale-[0.97]"
+                  style={
+                    plan.featured
+                      ? {
+                          background: '#d9d1cc',
+                          color: '#3d3b3d',
+                          boxShadow: '0 8px 32px rgba(217,209,204,0.18)',
+                        }
+                      : {
+                          border: '1px solid rgba(196,193,196,0.16)',
+                          color: '#c4c1c4',
+                          background: 'transparent',
+                        }
+                  }
+                  onMouseEnter={e => {
+                    const el = e.currentTarget as HTMLElement
+                    if (plan.featured) {
+                      el.style.background = '#c4c1c4'
+                    } else {
+                      el.style.background = 'rgba(196,193,196,0.08)'
+                      el.style.color = '#f5f0eb'
+                    }
+                    el.style.transform = 'scale(1.02)'
+                  }}
+                  onMouseLeave={e => {
+                    const el = e.currentTarget as HTMLElement
+                    if (plan.featured) {
+                      el.style.background = '#d9d1cc'
+                    } else {
+                      el.style.background = 'transparent'
+                      el.style.color = '#c4c1c4'
+                    }
+                    el.style.transform = 'scale(1)'
                   }}
                 >
-                  {h.tag}
-                </span>
-
-                <h3 className="font-display text-xl text-[#FFFBF5] mb-1">{h.name}</h3>
-                <p className="text-[#A19F97] text-xs mb-6">{h.subtitle}</p>
-
-                <div className="mt-auto">
-                  {/* MRP crossed + actual price */}
-                  <div className="flex items-end gap-3 mb-1">
-                    <span
-                      className="font-display font-light text-[40px] text-[#FFFBF5] leading-none"
-                      style={{ letterSpacing: '-0.04em' }}
-                    >
-                      ₹{h.price.toLocaleString()}
-                    </span>
-                    <div className="flex flex-col pb-1.5">
-                      <span
-                        className="text-[14px] text-[#A19F97] line-through leading-tight"
-                        style={{ letterSpacing: '-0.02em' }}
-                      >
-                        ₹{h.mrpPrice.toLocaleString()}
-                      </span>
-                      <span className="text-[10px] text-[#A19F97]/60 leading-tight">{h.note}</span>
-                    </div>
-                    <span
-                      className="ml-auto w-9 h-9 rounded-full flex items-center justify-center transition-all duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:bg-[#BCA386] group-hover:border-[#BCA386]"
-                      style={{
-                        background: 'rgba(188, 163, 134, 0.08)',
-                        border: '1px solid rgba(188, 163, 134, 0.2)',
-                      }}
-                    >
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        className="text-[#FFFBF5] group-hover:text-[#12110F] transition-colors"
-                      >
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                      </svg>
-                    </span>
-                  </div>
-                  <p className="text-[#A19F97] text-xs">
-                    Couple <span className="line-through mr-1 opacity-50">₹{h.coupleMrp.toLocaleString()}</span>
-                    ₹{h.couplePrice.toLocaleString()}
-                  </p>
-                </div>
-              </a>
+                  {plan.cta}
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
             </FadeIn>
           ))}
         </div>
 
-        {/* Membership strip */}
-        <FadeIn direction="up" delay={240}>
-          <div
-            className="grid grid-cols-1 md:grid-cols-2 gap-4 p-2 rounded-[28px]"
-            style={{
-              background: 'rgba(188, 163, 134, 0.02)',
-              border: '1px solid rgba(188, 163, 134, 0.1)',
-            }}
-          >
-            {/* Monthly */}
-            <a
-              href={`${waBase}${encodeURIComponent("Hi! I'd like to join the Monthly Membership plan.")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center justify-between p-6 rounded-[22px] transition-all duration-500 hover:bg-white/[0.02]"
-            >
-              <div>
-                <p className="text-[11px] uppercase tracking-[0.2em] text-[#A19F97] mb-1">
-                  Monthly · {membership.monthly.sessions} sessions
-                </p>
-                <div className="flex items-end gap-2">
-                  <p className="font-display font-light text-[28px] text-[#FFFBF5] leading-none" style={{ letterSpacing: '-0.04em' }}>
-                    ₹{membership.monthly.price.toLocaleString()}
-                  </p>
-                  <span className="text-sm text-[#A19F97] line-through pb-0.5">₹{membership.monthly.mrp.toLocaleString()}</span>
-                </div>
-                <p className="text-xs text-[#A19F97] mt-1">{membership.monthly.extra}</p>
-              </div>
-              <span
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:bg-[#BCA386]"
-                style={{ background: 'rgba(188, 163, 134, 0.08)', border: '1px solid rgba(188, 163, 134, 0.15)' }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#FFFBF5] group-hover:text-[#12110F] transition-colors">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </span>
-            </a>
-
-            {/* 3-Month */}
-            <a
-              href={`${waBase}${encodeURIComponent("Hi! I'd like to join the 3-Month Membership plan.")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative flex items-center justify-between p-6 rounded-[22px] transition-all duration-500 hover:bg-white/[0.02]"
-            >
-              <span className="absolute -top-3 left-5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] bg-[#BCA386] text-[#12110F]">
-                Best Value
-              </span>
-              <div>
-                <p className="text-[11px] uppercase tracking-[0.2em] text-[#A19F97] mb-1">
-                  3-Month · {membership.quarterly.sessions} Contrast sessions
-                </p>
-                <div className="flex items-end gap-2">
-                  <p className="font-display font-light text-[28px] text-[#FFFBF5] leading-none" style={{ letterSpacing: '-0.04em' }}>
-                    ₹{membership.quarterly.price.toLocaleString()}
-                  </p>
-                  <span className="text-sm text-[#A19F97] line-through pb-0.5">₹{membership.quarterly.mrp.toLocaleString()}</span>
-                </div>
-                <p className="text-xs text-[#A19F97] mt-1">{membership.quarterly.extra}</p>
-              </div>
-              <span
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:bg-[#BCA386]"
-                style={{ background: 'rgba(188, 163, 134, 0.08)', border: '1px solid rgba(188, 163, 134, 0.15)' }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#FFFBF5] group-hover:text-[#12110F] transition-colors">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </span>
-            </a>
-          </div>
+        {/* Footnote */}
+        <FadeIn direction="up" delay={280}>
+          <p className="text-center text-xs mt-8" style={{ color: '#6e6c6e' }}>
+            Pricing is subject to change. All sessions are private. WhatsApp us for custom packages and group bookings.
+          </p>
         </FadeIn>
       </div>
     </section>

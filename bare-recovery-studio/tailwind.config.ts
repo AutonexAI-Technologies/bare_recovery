@@ -10,12 +10,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        steel: {
+          deep:   '#3d3b3d',
+          dark:   '#565456',
+          mid:    '#6e6c6e',
+          base:   '#8a878a',
+          light:  '#a8a5a8',
+          silver: '#c4c1c4',
+          mist:   '#dddadd',
+        },
         bare: {
-          black: '#0B0B0B',
-          charcoal: '#1A1A1A',
-          graphite: '#2D2D2D',
-          white: '#F5F5F2',
-          silver: '#C6C6C6',
+          black:    '#3d3b3d',
+          charcoal: '#565456',
+          graphite: '#6e6c6e',
+          white:    '#f5f0eb',
+          silver:   '#c4c1c4',
         },
         whatsapp: '#25D366',
       },
