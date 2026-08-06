@@ -63,11 +63,11 @@ export default function FounderStory() {
               }}
               onMouseEnter={e => {
                 (e.currentTarget as HTMLElement).style.color = '#f5f0eb'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,193,196,0.32)'
+                  ; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,193,196,0.32)'
               }}
               onMouseLeave={e => {
                 (e.currentTarget as HTMLElement).style.color = '#8a878a'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,193,196,0.16)'
+                  ; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,193,196,0.16)'
               }}
             >
               @abhinavliftsvlogs YouTube

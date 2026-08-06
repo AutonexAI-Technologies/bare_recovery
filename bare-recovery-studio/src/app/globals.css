@@ -168,6 +168,10 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  /* Prevent iOS font size inflation on orientation change */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   /* STEEL DOMINANT BACKGROUND */
   background-color: #8a878a;
   background-image:
@@ -190,6 +194,7 @@ html {
 }
 
 body {
+  overflow-x: hidden;
   background: transparent;
   color: #f5f0eb;
   font-family: var(--font-body, sans-serif);
@@ -197,6 +202,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
+  /* Remove tap highlight on mobile browsers */
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Scrollbar */
@@ -249,6 +256,16 @@ body {
   .section-padding {
     padding-top: 8rem;
     padding-bottom: 8rem;
+  }
+}
+
+/* ─── Hero viewport height ─ cross-browser (iOS Safari, Chrome, Firefox) ─── */
+.hero-height {
+  min-height: 100vh; /* universal safe fallback */
+}
+@supports (min-height: 100svh) {
+  .hero-height {
+    min-height: 100svh; /* modern browsers: excludes retractable browser chrome */
   }
 }
 

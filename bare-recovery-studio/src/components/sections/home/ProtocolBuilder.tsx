@@ -219,7 +219,7 @@ export default function ProtocolBuilder() {
                 <button
                   key={p.id}
                   onClick={() => setActiveTab(p.id)}
-                  className="group text-left p-5 rounded-[20px] transition-all duration-300 focus:outline-none"
+                  className="group text-left p-3.5 md:p-5 rounded-[20px] transition-all duration-300 focus:outline-none"
                   style={
                     active
                       ? {
@@ -286,7 +286,7 @@ export default function ProtocolBuilder() {
           <div className="lg:col-span-4">
             <FadeIn direction="right" delay={100} key={`${activeTab}-meta`}>
               <div
-                className="p-8 rounded-[24px] flex flex-col h-full"
+                className="p-5 md:p-8 rounded-[24px] flex flex-col h-full"
                 style={{
                   background: 'rgba(42,40,41,0.75)',
                   backdropFilter: 'blur(24px)',
@@ -364,7 +364,7 @@ export default function ProtocolBuilder() {
           <div className="lg:col-span-8">
             <FadeIn direction="left" delay={120} key={`${activeTab}-timeline`}>
               <div
-                className="p-8 rounded-[24px]"
+                className="p-5 md:p-8 rounded-[24px]"
                 style={{
                   background: 'rgba(86,84,86,0.28)',
                   backdropFilter: 'blur(20px)',
@@ -385,71 +385,79 @@ export default function ProtocolBuilder() {
                   </span>
                 </div>
 
-                {/* Steps with connector line */}
-                <div className="relative pl-6 md:pl-8 space-y-10">
-                  {/* Vertical line */}
-                  <div
-                    className="absolute left-3 md:left-4 top-3 bottom-3 w-px"
-                    style={{ background: 'linear-gradient(to bottom, rgba(196,193,196,0.35), rgba(196,193,196,0.04))' }}
-                  />
-
+                {/* Steps — flex layout for clean gap between number and heading */}
+                <div className="space-y-0">
                   {activeProtocol.steps.map((step, idx) => (
-                    <div key={idx} className="relative group/step">
-                      {/* Step dot */}
-                      <span
-                        className="absolute -left-[19px] md:-left-[23px] top-1.5 w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-bold transition-all duration-300 group-hover/step:scale-110"
-                        style={{
-                          background: '#d9d1cc',
-                          color: '#3d3b3d',
-                          boxShadow: '0 0 12px rgba(217,209,204,0.30)',
-                        }}
-                      >
-                        {idx + 1}
-                      </span>
+                    <div key={idx} className="flex gap-4 md:gap-5 group/step">
 
-                      <div className="flex flex-col md:flex-row md:items-start gap-4 justify-between">
-                        {/* Content */}
-                        <div className="space-y-1.5 max-w-[75%]">
-                          <h4
-                            className="font-display text-lg flex flex-wrap items-center gap-3"
-                            style={{ color: '#f5f0eb' }}
-                          >
-                            {step.name}
-                            <span
-                              className="text-xs font-normal px-2.5 py-0.5 rounded-full border"
-                              style={{
-                                color: '#c4c1c4',
-                                borderColor: 'rgba(196,193,196,0.18)',
-                                background: 'rgba(86,84,86,0.50)',
-                              }}
-                            >
-                              {step.duration}
-                            </span>
-                          </h4>
-                          <p className="text-[10px] uppercase tracking-[0.12em] font-semibold" style={{ color: '#8a878a' }}>
-                            {step.spec}
-                          </p>
-                          <p className="text-xs leading-relaxed" style={{ color: '#8a878a' }}>
-                            {step.desc}
-                          </p>
-                        </div>
-
-                        {/* Impact pill */}
-                        <div
-                          className="shrink-0 md:max-w-[180px] p-3.5 rounded-[14px]"
+                      {/* Number column — circle + connector line below */}
+                      <div className="flex flex-col items-center flex-shrink-0">
+                        <span
+                          className="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold transition-all duration-300 group-hover/step:scale-110 flex-shrink-0"
                           style={{
-                            background: 'rgba(61,59,61,0.70)',
-                            border: '1px solid rgba(196,193,196,0.10)',
+                            background: '#d9d1cc',
+                            color: '#3d3b3d',
+                            boxShadow: '0 0 12px rgba(217,209,204,0.30)',
                           }}
                         >
-                          <span className="text-[8px] uppercase tracking-[0.16em] font-bold block mb-1" style={{ color: '#c4c1c4' }}>
-                            Primary Trigger
-                          </span>
-                          <span className="text-xs leading-tight block" style={{ color: '#8a878a' }}>
-                            {step.benefit}
-                          </span>
+                          {idx + 1}
+                        </span>
+                        {/* Connector line between steps */}
+                        {idx < activeProtocol.steps.length - 1 && (
+                          <div
+                            className="w-px flex-1 mt-2 mb-0"
+                            style={{ background: 'linear-gradient(to bottom, rgba(196,193,196,0.30), rgba(196,193,196,0.04))' }}
+                          />
+                        )}
+                      </div>
+
+                      {/* Content */}
+                      <div className={`flex-1 ${idx < activeProtocol.steps.length - 1 ? 'pb-8' : 'pb-2'}`}>
+                        <div className="flex flex-col lg:flex-row lg:items-start gap-3 justify-between">
+                          {/* Step info */}
+                          <div className="space-y-1.5">
+                            <h4
+                              className="font-display text-lg flex flex-wrap items-center gap-2"
+                              style={{ color: '#f5f0eb' }}
+                            >
+                              {step.name}
+                              <span
+                                className="text-xs font-normal px-2.5 py-0.5 rounded-full border"
+                                style={{
+                                  color: '#c4c1c4',
+                                  borderColor: 'rgba(196,193,196,0.18)',
+                                  background: 'rgba(86,84,86,0.50)',
+                                }}
+                              >
+                                {step.duration}
+                              </span>
+                            </h4>
+                            <p className="text-[10px] uppercase tracking-[0.12em] font-semibold" style={{ color: '#8a878a' }}>
+                              {step.spec}
+                            </p>
+                            <p className="text-xs leading-relaxed" style={{ color: '#8a878a' }}>
+                              {step.desc}
+                            </p>
+                          </div>
+
+                          {/* Impact pill */}
+                          <div
+                            className="shrink-0 lg:max-w-[180px] p-3.5 rounded-[14px]"
+                            style={{
+                              background: 'rgba(61,59,61,0.70)',
+                              border: '1px solid rgba(196,193,196,0.10)',
+                            }}
+                          >
+                            <span className="text-[8px] uppercase tracking-[0.16em] font-bold block mb-1" style={{ color: '#c4c1c4' }}>
+                              Primary Trigger
+                            </span>
+                            <span className="text-xs leading-tight block" style={{ color: '#8a878a' }}>
+                              {step.benefit}
+                            </span>
+                          </div>
                         </div>
                       </div>
+
                     </div>
                   ))}
                 </div>

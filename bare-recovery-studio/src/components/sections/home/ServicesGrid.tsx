@@ -71,7 +71,7 @@ function ServiceCard({
   height = 420,
 }: {
   svc: (typeof services)[0]
-  height?: number
+  height?: number | string
 }) {
   return (
     <Link href={svc.href} style={{ display: 'block', textDecoration: 'none' }}>
@@ -185,7 +185,7 @@ function ServiceCard({
           <div
             style={{
               fontFamily: 'var(--font-display, serif)',
-              fontSize: height >= 500 ? 22 : 18,
+              fontSize: 20,
               fontWeight: 400,
               letterSpacing: '-0.01em',
               color: '#f5f0eb',
@@ -197,19 +197,17 @@ function ServiceCard({
             {svc.name}
           </div>
 
-          {/* Tagline — only on taller cards */}
-          {height >= 480 && (
-            <p
-              style={{
-                fontSize: 12,
-                color: '#a8a5a8',
-                lineHeight: 1.55,
-                marginBottom: 10,
-              }}
-            >
-              {svc.tagline}
-            </p>
-          )}
+          {/* Tagline */}
+          <p
+            style={{
+              fontSize: 12,
+              color: '#a8a5a8',
+              lineHeight: 1.55,
+              marginBottom: 10,
+            }}
+          >
+            {svc.tagline}
+          </p>
 
           {/* Price + CTA row */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -274,20 +272,20 @@ export default function ServicesGrid() {
         </div>
       </FadeIn>
 
-      {/* Row 1: 3 equal tall cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+      {/* Row 1: tall cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-5">
         {services.slice(0, 3).map((svc, i) => (
           <FadeIn key={svc.id} direction="up" delay={i * 60}>
-            <ServiceCard svc={svc} height={500} />
+            <ServiceCard svc={svc} height="clamp(260px, 72vw, 500px)" />
           </FadeIn>
         ))}
       </div>
 
-      {/* Row 2: 3 equal shorter cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      {/* Row 2: shorter cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
         {services.slice(3).map((svc, i) => (
           <FadeIn key={svc.id} direction="up" delay={(i + 3) * 60}>
-            <ServiceCard svc={svc} height={380} />
+            <ServiceCard svc={svc} height="clamp(220px, 62vw, 380px)" />
           </FadeIn>
         ))}
       </div>

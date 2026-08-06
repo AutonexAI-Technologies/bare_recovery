@@ -20,7 +20,7 @@ export default function FounderIntro() {
             }}
           >
             <div
-              className="rounded-[calc(2rem-0.375rem)] p-8"
+              className="rounded-[calc(2rem-0.375rem)] p-5 md:p-8"
               style={{
                 background: 'rgba(42,40,41,0.92)',
                 backdropFilter: 'blur(20px)',
@@ -49,25 +49,25 @@ export default function FounderIntro() {
               </h3>
               <p className="text-sm mb-8" style={{ color: '#8a878a' }}>{founderInfo.role}</p>
 
-              {/* Stats grid — no live counter */}
-              <div className="grid grid-cols-3 gap-3 mb-6">
+              {/* Stats grid */}
+              <div className="grid grid-cols-3 gap-2 mb-6">
                 {founderInfo.stats.map((stat) => (
                   <div
                     key={stat.label}
-                    className="p-4 rounded-[16px] text-center"
+                    className="p-2.5 md:p-4 rounded-[14px] text-center"
                     style={{
                       background: 'rgba(86,84,86,0.50)',
                       border: '1px solid rgba(196,193,196,0.07)',
                     }}
                   >
                     <p
-                      className="font-display text-xl mb-1"
+                      className="font-display text-base md:text-xl mb-0.5"
                       style={{ color: '#f5f0eb', letterSpacing: '-0.03em' }}
                     >
                       {stat.value}
                     </p>
                     <p
-                      className="text-[9px] uppercase tracking-[0.12em] leading-tight"
+                      className="text-[8px] md:text-[9px] uppercase tracking-[0.10em] leading-tight"
                       style={{ color: '#6e6c6e' }}
                     >
                       {stat.label}

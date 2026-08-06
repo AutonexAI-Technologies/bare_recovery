@@ -73,7 +73,7 @@ export default function Navbar() {
       >
         <div className="max-w-[1400px] mx-auto px-4 md:px-10 h-[60px] md:h-[70px] flex items-center justify-between">
 
-          {/* Logo */}
+          {/* Logo — maxWidth guard prevents collision on narrow phones */}
           <Link
             href="/"
             className="flex-shrink-0 transition-opacity duration-300 hover:opacity-75"
@@ -86,8 +86,10 @@ export default function Navbar() {
               height={44}
               priority
               style={{
-                height: 'clamp(32px, 4vw, 44px)',
+                height: 'clamp(28px, 3.8vw, 44px)',
                 width: 'auto',
+                maxWidth: 'min(140px, 38vw)',
+                objectFit: 'contain',
                 filter: 'brightness(1.05)',
               }}
             />
@@ -201,8 +203,8 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* ── CTA + Hamburger ── */}
-          <div className="flex items-center gap-3">
+          {/* ── CTA + Hamburger — flex-shrink-0 so it never gets squished ── */}
+          <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
             <a
               href={waLink}
               target="_blank"
@@ -265,19 +267,7 @@ export default function Navbar() {
           pointerEvents: open ? 'auto' : 'none',
         }}
       >
-        <div className="h-full flex flex-col px-6 pt-24 pb-10 overflow-y-auto">
-
-          {/* Logo in mobile */}
-          <div className="mb-8">
-            <Image
-              src="/images/logo/nav-logo.png"
-              alt="Bare Recovery Studio"
-              width={120}
-              height={38}
-              style={{ height: 38, width: 'auto', opacity: 0.85 }}
-            />
-          </div>
-
+        <div className="h-full flex flex-col px-6 pt-20 pb-10 overflow-y-auto">
           <nav className="flex-1">
             {mainLinks.map((link, i) => (
               <Link

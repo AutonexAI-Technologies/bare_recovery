@@ -127,18 +127,18 @@ export default function RecoveryScience() {
           </div>
         </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {scienceCards.map((card, i) => (
             <FadeIn key={card.id} direction="up" delay={i * 80}>
               <div
-                className="science-card p-8 md:p-10 group cursor-default"
+                className="science-card p-5 md:p-10 group cursor-default"
                 style={{
                   background: `rgba(86, 84, 86, 0.50)`,
                   border: `1px solid ${card.borderColor}`,
                 }}
               >
                 {/* Top row */}
-                <div className="flex items-start justify-between mb-8">
+                <div className="flex items-start justify-between mb-5 md:mb-8">
                   <div>
                     <span
                       className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-semibold uppercase tracking-[0.18em] mb-4"
