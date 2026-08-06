@@ -70,6 +70,7 @@ export interface FounderInfo {
         handle: string
         url: string
         followers: string
+        followersRaw?: number
         verified: boolean
     }
     philosophy: {
@@ -93,6 +94,7 @@ export interface FounderLinks {
     consultation1on1: string
     coachingForm: string
     instagram: string
+    youtube?: string
     strava: string
 }
 
