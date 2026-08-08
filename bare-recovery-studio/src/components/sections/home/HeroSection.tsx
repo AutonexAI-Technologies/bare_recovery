@@ -113,7 +113,7 @@ export default function HeroSection() {
               Recover
             </h1>
           </div>
-          <div className="mb-5 overflow-hidden">
+          <div className="mb-5 overflow-hidden" style={{ background: 'transparent' }}>
             <h1
               className="font-display uppercase leading-[0.88] block"
               style={{
@@ -124,9 +124,10 @@ export default function HeroSection() {
                 transform: mounted ? 'translateY(0) skewY(0)' : 'translateY(110px) skewY(4deg)',
                 transition: 'transform 1.1s cubic-bezier(0.16,1,0.3,1) 0.52s',
                 textShadow: '0 4px 24px rgba(0,0,0,0.55)',
+                background: 'transparent',
               }}
             >
-              Perform.
+              Perform
             </h1>
           </div>
 
@@ -241,7 +242,7 @@ export default function HeroSection() {
               Recover
             </h1>
           </div>
-          <div className="overflow-hidden mb-8">
+          <div className="overflow-hidden mb-8" style={{ background: 'transparent' }}>
             <h1
               className="font-display uppercase leading-[0.90]"
               style={{
@@ -251,9 +252,10 @@ export default function HeroSection() {
                 color: 'rgba(245,240,235,0.35)',
                 transform: mounted ? 'translateY(0) skewY(0)' : 'translateY(100px) skewY(3deg)',
                 transition: 'transform 1.1s cubic-bezier(0.16,1,0.3,1) 0.46s',
+                background: 'transparent',
               }}
             >
-              Perform.
+              Perform
             </h1>
           </div>
 
