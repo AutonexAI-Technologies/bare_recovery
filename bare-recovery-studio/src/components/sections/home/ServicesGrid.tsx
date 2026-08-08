@@ -13,6 +13,7 @@ const services = [
     image: '/images/services/cold-plunge.PNG',
     label: 'HIGH INTENSITY',
     href: '/services/cold-plunge',
+    objectPosition: 'center center',
   },
   {
     id: 'contrast-therapy',
@@ -23,6 +24,7 @@ const services = [
     image: '/images/services/contrast-therapy.PNG',
     label: 'SIGNATURE',
     href: '/services/contrast-therapy',
+    objectPosition: 'center center',
   },
   {
     id: 'traditional-sauna',
@@ -33,6 +35,7 @@ const services = [
     image: '/images/services/sauna.PNG',
     label: 'HEAT THERAPY',
     href: '/services/traditional-sauna',
+    objectPosition: 'center center',
   },
   {
     id: 'infrared-sauna',
@@ -43,6 +46,7 @@ const services = [
     image: '/images/services/infrared-sauna.PNG',
     label: 'DEEP HEAT',
     href: '/services/traditional-sauna',
+    objectPosition: 'center top',
   },
   {
     id: 'red-light-therapy',
@@ -53,6 +57,7 @@ const services = [
     image: '/images/services/redlight-therapy.PNG',
     label: 'CELLULAR',
     href: '/services/red-light-therapy',
+    objectPosition: 'center top',
   },
   {
     id: 'compression-therapy',
@@ -63,6 +68,7 @@ const services = [
     image: '/images/services/compression-therapy.PNG',
     label: 'LYMPHATIC',
     href: '/services/compression-therapy',
+    objectPosition: 'center 20%',
   },
 ]
 
@@ -103,7 +109,7 @@ function ServiceCard({
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'center',
+            objectPosition: svc.objectPosition,
             transition: 'transform 700ms cubic-bezier(0.32,0.72,0,1)',
             willChange: 'transform',
           }}
@@ -116,7 +122,7 @@ function ServiceCard({
             position: 'absolute',
             inset: 0,
             background:
-              'linear-gradient(to top, rgba(10,10,10,0.97) 0%, rgba(10,10,10,0.60) 38%, rgba(10,10,10,0.10) 70%, transparent 100%)',
+              'linear-gradient(to top, rgba(10,10,10,0.97) 0%, rgba(10,10,10,0.65) 42%, rgba(10,10,10,0.15) 72%, transparent 100%)',
           }}
         />
 
@@ -276,16 +282,16 @@ export default function ServicesGrid() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-5">
         {services.slice(0, 3).map((svc, i) => (
           <FadeIn key={svc.id} direction="up" delay={i * 60}>
-            <ServiceCard svc={svc} height="clamp(260px, 72vw, 500px)" />
+            <ServiceCard svc={svc} height="clamp(280px, 72vw, 520px)" />
           </FadeIn>
         ))}
       </div>
 
-      {/* Row 2: shorter cards */}
+      {/* Row 2: cards with full image visibility */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
         {services.slice(3).map((svc, i) => (
           <FadeIn key={svc.id} direction="up" delay={(i + 3) * 60}>
-            <ServiceCard svc={svc} height="clamp(220px, 62vw, 380px)" />
+            <ServiceCard svc={svc} height="clamp(280px, 72vw, 420px)" />
           </FadeIn>
         ))}
       </div>
