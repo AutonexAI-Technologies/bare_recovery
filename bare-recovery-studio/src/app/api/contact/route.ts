@@ -93,19 +93,19 @@ export async function POST(req: NextRequest) {
     const html = `
       <div style="font-family:'Helvetica Neue',sans-serif;background:#12110F;color:#FFFBF5;padding:40px;border-radius:16px;max-width:600px;margin:0 auto;border:1px solid rgba(188,163,134,0.15)">
         <h2 style="color:#FFFBF5;font-size:24px;font-weight:700;margin-bottom:8px;font-family:'Marcellus',serif">New Contact Form Submission</h2>
-        <p style="color:#A19F97;font-size:14px;margin-bottom:32px">Received via barerecovery.studio</p>
+        <p style="color:#c4c1c4;font-size:14px;margin-bottom:32px">Received via barerecovery.studio</p>
         <table style="width:100%;border-collapse:collapse">
-          <tr><td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#A19F97;font-size:13px;width:140px">Name</td><td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#FFFBF5;font-weight:600">${cleanName}</td></tr>
-          <tr><td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#A19F97;font-size:13px">Email</td><td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#FFFBF5;font-weight:600">${cleanEmail}</td></tr>
-          <tr><td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#A19F97;font-size:13px">Phone</td><td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#FFFBF5;font-weight:600">${cleanPhone || 'Not provided'}</td></tr>
-          <tr><td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#A19F97;font-size:13px">Service</td><td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#FFFBF5;font-weight:600">${cleanService || 'Not specified'}</td></tr>
+          <tr><td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#c4c1c4;font-size:13px;width:140px">Name</td><td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#FFFBF5;font-weight:600">${cleanName}</td></tr>
+          <tr><td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#c4c1c4;font-size:13px">Email</td><td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#FFFBF5;font-weight:600">${cleanEmail}</td></tr>
+          <tr><td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#c4c1c4;font-size:13px">Phone</td><td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#FFFBF5;font-weight:600">${cleanPhone || 'Not provided'}</td></tr>
+          <tr><td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#c4c1c4;font-size:13px">Service</td><td style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#FFFBF5;font-weight:600">${cleanService || 'Not specified'}</td></tr>
         </table>
         <div style="margin-top:24px;padding:20px;background:rgba(255,255,255,0.02);border-radius:12px;border:1px solid rgba(255,255,255,0.06)">
-          <p style="color:#A19F97;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px">Message</p>
+          <p style="color:#c4c1c4;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px">Message</p>
           <p style="color:#FFFBF5;font-size:15px;line-height:1.7;margin:0">${cleanMessage.replace(/\n/g, '<br>')}</p>
         </div>
         <div style="margin-top:32px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06)">
-          <p style="color:#A19F97;font-size:12px">Bare Recovery Studio · Kompally, Secunderabad</p>
+          <p style="color:#c4c1c4;font-size:12px">Bare Recovery Studio · Kompally, Secunderabad</p>
         </div>
       </div>
     `

@@ -11,12 +11,12 @@ export default function PrivacyPolicyPage() {
       <div className="pt-32 pb-24 px-5 md:px-16 max-w-[800px] mx-auto">
 
         {/* Header */}
-        <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#8e9192] block mb-4">Legal</span>
+        <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#dddadd] block mb-4">Legal</span>
         <h1 className="font-display text-[40px] md:text-[56px] font-black text-[#F5F5F2] mb-4" style={{ letterSpacing: '-0.03em', lineHeight: 1.0 }}>
           Privacy Policy
         </h1>
-        <p className="text-[#8e9192] text-sm mb-2">Last updated: June 2025</p>
-        <p className="text-[#8e9192] text-sm mb-12">
+        <p className="text-[#dddadd] text-sm mb-2">Last updated: June 2025</p>
+        <p className="text-[#dddadd] text-sm mb-12">
           Effective for all users interacting with Bare Recovery Studio services, websites, and communication channels.
         </p>
 

@@ -73,7 +73,7 @@ export default function WhyBare() {
                 Why Bare<br />Stands Alone.
               </h2>
             </div>
-            <p className="text-sm md:text-[15px] leading-[1.75] max-w-[300px]" style={{ color: '#8a878a' }}>
+            <p className="text-sm md:text-[15px] leading-[1.75] max-w-[300px]" style={{ color: '#dddadd' }}>
               There are gyms with recovery corners.<br />
               Then there is Bare — built exclusively for this.
             </p>
@@ -122,7 +122,7 @@ export default function WhyBare() {
                       {p.title}
                     </h3>
                   </div>
-                  <p className="text-sm md:text-[15px] leading-[1.80] max-w-[560px]" style={{ color: '#8a878a' }}>
+                  <p className="text-sm md:text-[15px] leading-[1.80] max-w-[560px]" style={{ color: '#dddadd' }}>
                     {p.body}
                   </p>
                 </div>

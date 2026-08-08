@@ -106,14 +106,14 @@ export default function Navbar() {
                       onClick={() => setDropOpen(!dropOpen)}
                       className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300"
                       style={{
-                        color: active || pathname.startsWith('/services') ? '#f5f0eb' : '#8a878a',
+                        color: active || pathname.startsWith('/services') ? '#f5f0eb' : '#c4c1c4',
                         background: active || pathname.startsWith('/services') ? 'rgba(196,193,196,0.08)' : 'transparent',
                       }}
                       onMouseEnter={e => {
                         if (!active) (e.currentTarget as HTMLElement).style.color = '#f5f0eb'
                       }}
                       onMouseLeave={e => {
-                        if (!active) (e.currentTarget as HTMLElement).style.color = '#8a878a'
+                        if (!active) (e.currentTarget as HTMLElement).style.color = '#c4c1c4'
                       }}
                     >
                       Services
@@ -152,10 +152,10 @@ export default function Navbar() {
                           onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(196,193,196,0.06)' }}
                           onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent' }}
                         >
-                          <span className="text-sm font-medium" style={{ color: '#c4c1c4' }}>
+                          <span className="text-sm font-medium" style={{ color: '#dddadd' }}>
                             {s.label}
                           </span>
-                          <span className="text-[11px] text-right shrink-0 mt-0.5" style={{ color: '#6e6c6e' }}>
+                          <span className="text-[11px] text-right shrink-0 mt-0.5" style={{ color: '#dddadd' }}>
                             {s.sub}
                           </span>
                         </Link>
@@ -167,9 +167,9 @@ export default function Navbar() {
                         <Link
                           href="/services"
                           className="flex items-center justify-between px-4 py-2.5 rounded-xl text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors duration-200"
-                          style={{ color: '#8a878a' }}
+                          style={{ color: '#c4c1c4' }}
                           onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = '#f5f0eb' }}
-                          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#8a878a' }}
+                          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#c4c1c4' }}
                         >
                           All Services
                           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -187,14 +187,14 @@ export default function Navbar() {
                   href={link.href}
                   className="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300"
                   style={{
-                    color: active ? '#f5f0eb' : '#8a878a',
+                    color: active ? '#f5f0eb' : '#c4c1c4',
                     background: active ? 'rgba(196,193,196,0.08)' : 'transparent',
                   }}
                   onMouseEnter={e => {
                     if (!active) (e.currentTarget as HTMLElement).style.color = '#f5f0eb'
                   }}
                   onMouseLeave={e => {
-                    if (!active) (e.currentTarget as HTMLElement).style.color = '#8a878a'
+                    if (!active) (e.currentTarget as HTMLElement).style.color = '#c4c1c4'
                   }}
                 >
                   {link.label}
@@ -277,14 +277,14 @@ export default function Navbar() {
                 style={{
                   borderColor: 'rgba(196,193,196,0.07)',
                   letterSpacing: '-0.02em',
-                  color: isActive(link.href) ? '#f5f0eb' : '#6e6c6e',
+                  color: isActive(link.href) ? '#f5f0eb' : '#a8a5a8',
                   opacity: open ? 1 : 0,
                   transform: open ? 'translateY(0)' : 'translateY(16px)',
                   transition: `opacity 0.5s ease ${i * 55 + 60}ms, transform 0.5s cubic-bezier(0.32,0.72,0,1) ${i * 55 + 60}ms, color 0.2s ease`,
                 }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = '#f5f0eb' }}
                 onMouseLeave={e => {
-                  if (!isActive(link.href)) (e.currentTarget as HTMLElement).style.color = '#6e6c6e'
+                  if (!isActive(link.href)) (e.currentTarget as HTMLElement).style.color = '#a8a5a8'
                 }}
               >
                 {link.label}
@@ -312,7 +312,7 @@ export default function Navbar() {
                     style={{
                       background: 'rgba(86,84,86,0.40)',
                       border: '1px solid rgba(196,193,196,0.08)',
-                      color: '#a8a5a8',
+                      color: '#c4c1c4',
                     }}
                   >
                     {s.label}

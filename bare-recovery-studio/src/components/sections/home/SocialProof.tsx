@@ -4,7 +4,7 @@ import FadeIn from '@/components/animations/FadeIn'
 import { CONTACT_INFO, SOCIAL_LINKS } from '@/lib/constants'
 
 const metrics = [
-  { value: '6', label: 'Recovery Modalities', sub: 'All under one roof' },
+  { value: '6', label: 'Recovery Services', sub: 'All under one roof' },
   { value: '100%', label: 'Private', sub: 'Every session exclusive' },
   { value: '₹799+', label: 'Starts At', sub: 'No hidden fees' },
   { value: '4.9 ★', label: 'Member Rating', sub: 'Verified experiences' },
@@ -34,7 +34,7 @@ export default function SocialProof() {
               >
                 Why Athletes<br />Choose Bare.
               </h2>
-              <p className="text-sm max-w-xs" style={{ color: '#8a878a' }}>
+              <p className="text-sm max-w-xs" style={{ color: '#dddadd' }}>
                 Trusted by powerlifters, marathon runners, cricketers, and everyday performers across Hyderabad.
               </p>
             </div>
@@ -59,8 +59,8 @@ export default function SocialProof() {
                 >
                   {m.value}
                 </p>
-                <p className="text-sm font-semibold mb-0.5" style={{ color: '#c4c1c4' }}>{m.label}</p>
-                <p className="text-xs" style={{ color: '#6e6c6e' }}>{m.sub}</p>
+                <p className="text-sm font-semibold mb-0.5" style={{ color: '#dddadd' }}>{m.label}</p>
+                <p className="text-xs" style={{ color: '#dddadd' }}>{m.sub}</p>
               </div>
             ))}
           </div>
@@ -79,7 +79,7 @@ export default function SocialProof() {
               }}
             >
               <div className="mb-8">
-                <p className="text-xs uppercase tracking-[0.22em] font-medium mb-3" style={{ color: '#8a878a' }}>
+                <p className="text-xs uppercase tracking-[0.22em] font-medium mb-3" style={{ color: '#dddadd' }}>
                   Follow the Founder
                 </p>
                 <div className="flex items-center gap-3 mb-4">
@@ -93,10 +93,10 @@ export default function SocialProof() {
                   </div>
                   <div>
                     <p className="font-bold text-base" style={{ color: '#f5f0eb' }}>@abhinav._lifts</p>
-                    <p className="text-xs" style={{ color: '#8a878a' }}>Performance coach · Founder</p>
+                    <p className="text-xs" style={{ color: '#dddadd' }}>Performance coach · Founder</p>
                   </div>
                 </div>
-                <p className="text-sm leading-relaxed" style={{ color: '#8a878a' }}>
+                <p className="text-sm leading-relaxed" style={{ color: '#dddadd' }}>
                   Behind-the-scenes, recovery science breakdowns, and honest performance content. No fluff.
                 </p>
               </div>
@@ -137,7 +137,7 @@ export default function SocialProof() {
               />
 
               <div className="relative mb-8">
-                <p className="text-xs uppercase tracking-[0.22em] font-medium mb-3" style={{ color: '#8a878a' }}>
+                <p className="text-xs uppercase tracking-[0.22em] font-medium mb-3" style={{ color: '#dddadd' }}>
                   Ready to Start?
                 </p>
                 <h3
@@ -146,7 +146,7 @@ export default function SocialProof() {
                 >
                   Book your first session today.
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: '#8a878a' }}>
+                <p className="text-sm leading-relaxed" style={{ color: '#dddadd' }}>
                   WhatsApp us directly — our coach will confirm your slot and recommend the right protocol for your goals.
                 </p>
               </div>
@@ -168,13 +168,13 @@ export default function SocialProof() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 py-3.5 rounded-full font-semibold text-sm transition-all duration-300"
-                  style={{ border: '1px solid rgba(196,193,196,0.14)', color: '#8a878a' }}
+                  style={{ border: '1px solid rgba(196,193,196,0.14)', color: '#c4c1c4' }}
                   onMouseEnter={e => {
                     (e.currentTarget as HTMLElement).style.color = '#f5f0eb'
                     ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,193,196,0.30)'
                   }}
                   onMouseLeave={e => {
-                    (e.currentTarget as HTMLElement).style.color = '#8a878a'
+                    (e.currentTarget as HTMLElement).style.color = '#c4c1c4'
                     ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,193,196,0.14)'
                   }}
                 >

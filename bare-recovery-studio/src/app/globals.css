@@ -3,7 +3,7 @@
 @theme {
   /* ══════════════════════════════════════
      BARE RECOVERY STUDIO — DESIGN SYSTEM
-     Primary: Steel (#8a878a) background
+     Primary: Steel (#c4c1c4) background
      Accent: Limestone (#d9d1cc)
      Text: Cream (#f5f0eb)
   ══════════════════════════════════════ */
@@ -12,8 +12,8 @@
   --color-steel-900:  #2a2829;  /* near-black steel                    */
   --color-steel-800:  #3d3b3d;  /* very dark steel — deepest bg        */
   --color-steel-700:  #565456;  /* dark steel — section backgrounds    */
-  --color-steel-600:  #6e6c6e;  /* medium-dark — card bases            */
-  --color-steel-500:  #8a878a;  /* BASE STEEL — dominant background    */
+  --color-steel-600:  #a8a5a8;  /* medium-dark — card bases            */
+  --color-steel-500:  #c4c1c4;  /* BASE STEEL — dominant background    */
   --color-steel-400:  #a8a5a8;  /* medium steel — muted text           */
   --color-steel-300:  #c4c1c4;  /* light steel — borders, dividers     */
   --color-steel-200:  #dddadd;  /* very light steel                    */
@@ -22,20 +22,20 @@
   /* Brand Text */
   --color-cream:      #f5f0eb;  /* primary text                        */
   --color-limestone:  #d9d1cc;  /* secondary text / CTA fill           */
-  --color-muted:      #a8a5a8;  /* muted text                          */
-  --color-faint:      #6e6c6e;  /* very muted / disabled               */
+  --color-muted:      #c4c1c4;  /* muted text — now bright enough to read      */
+  --color-faint:      #a8a5a8;  /* very muted / disabled                       */
 
   /* Legacy compat */
   --color-uc-cream:     #f5f0eb;
   --color-uc-limestone: #d9d1cc;
   --color-uc-ash:       #c4c1c4;
   --color-uc-slate:     #a8a5a8;
-  --color-uc-steel:     #8a878a;
-  --color-uc-shadow:    #6e6c6e;
+  --color-uc-steel:     #c4c1c4;
+  --color-uc-shadow:    #a8a5a8;
   --color-uc-twilight:  #565456;
   --color-bare-black:   #3d3b3d;
   --color-bare-charcoal:#565456;
-  --color-bare-graphite:#6e6c6e;
+  --color-bare-graphite:#a8a5a8;
   --color-bare-white:   #f5f0eb;
   --color-bare-silver:  #c4c1c4;
   --color-brand-gold:   #d9d1cc;
@@ -173,7 +173,7 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   /* STEEL DOMINANT BACKGROUND */
-  background-color: #8a878a;
+  background-color: #c4c1c4;
   background-image:
     radial-gradient(ellipse at 12% 0%,    rgba(196, 193, 196, 0.10) 0%, transparent 48%),
     radial-gradient(ellipse at 88% 100%,  rgba(110, 108, 110, 0.08) 0%, transparent 44%),
@@ -182,8 +182,8 @@ html {
       #2a2829 0%,
       #3d3b3d 18%,
       #565456 40%,
-      #6e6c6e 62%,
-      #8a878a 82%,
+      #a8a5a8 62%,
+      #c4c1c4 82%,
       #7a787a 100%
     );
   background-size: cover;
@@ -198,10 +198,11 @@ body {
   background: transparent;
   color: #f5f0eb;
   font-family: var(--font-body, sans-serif);
+  font-size: 16px;
   font-feature-settings: "rlig" 1, "calt" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
+  line-height: 1.7;
   /* Remove tap highlight on mobile browsers */
   -webkit-tap-highlight-color: transparent;
 }
@@ -209,7 +210,7 @@ body {
 /* Scrollbar */
 ::-webkit-scrollbar        { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track  { background: #3d3b3d; }
-::-webkit-scrollbar-thumb  { background: #6e6c6e; border-radius: 10px; }
+::-webkit-scrollbar-thumb  { background: #a8a5a8; border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: #d9d1cc; }
 
 /* Selection */
@@ -391,9 +392,18 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.25em;
-  color: #8a878a;
+  color: #c4c1c4;
   display: block;
   margin-bottom: 0.75rem;
+}
+
+/* ─── Footer Link ─────────────────────────── */
+.footer-link {
+  color: #c4c1c4;
+  transition: color 0.2s ease;
+}
+.footer-link:hover {
+  color: #f5f0eb;
 }
 
 /* ─── Live Dot ───────────────────────────── */

@@ -28,9 +28,9 @@ export const CONTACT_INFO = {
 }
 
 export const STUDIO_HOURS = {
-    display: '10 AM – 10:30 PM',
+    display: '10 AM – 10 PM',
     days: 'Everyday',
-    full: 'Open 10 AM – 10:30 PM, Everyday',
+    full: 'Open 10 AM – 10 PM, Everyday',
 }
 
 export const SOCIAL_LINKS = {

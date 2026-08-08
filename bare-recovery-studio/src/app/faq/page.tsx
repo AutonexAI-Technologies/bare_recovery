@@ -148,7 +148,7 @@ function FAQItem({ question, answer, isOpen, onClick }: {
             transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
           }}
         >
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={isOpen ? '#0B0B0B' : '#8e9192'} strokeWidth="2.5">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={isOpen ? '#0B0B0B' : '#c4c1c4'} strokeWidth="2.5">
             <path d="M6 9l6 6 6-6"/>
           </svg>
         </span>
@@ -157,7 +157,7 @@ function FAQItem({ question, answer, isOpen, onClick }: {
         className="overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
         style={{ maxHeight: isOpen ? '400px' : '0px' }}
       >
-        <p className="text-[#8e9192] text-sm leading-relaxed px-5 pb-5">{answer}</p>
+        <p className="text-[#dddadd] text-sm leading-relaxed px-5 pb-5">{answer}</p>
       </div>
     </div>
   )
@@ -180,7 +180,7 @@ export default function FAQPage() {
       <div className="pt-32 pb-24 px-5 md:px-16 max-w-[900px] mx-auto">
 
         {/* Header */}
-        <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#8e9192] block mb-4">Help Center</span>
+        <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#dddadd] block mb-4">Help Center</span>
         <h1
           className="font-display font-black text-[48px] md:text-[72px] text-[#F5F5F2] mb-6"
           style={{ letterSpacing: '-0.04em', lineHeight: 1.0 }}
@@ -188,7 +188,7 @@ export default function FAQPage() {
           Frequently<br />
           <span style={{ color: 'rgba(245,245,242,0.3)' }}>Asked Questions.</span>
         </h1>
-        <p className="text-[#8e9192] text-base mb-12 max-w-md leading-relaxed">
+        <p className="text-[#dddadd] text-base mb-12 max-w-md leading-relaxed">
           Everything you need to know about Bare Recovery Studio — services, safety, bookings, and memberships.
         </p>
 
@@ -201,7 +201,7 @@ export default function FAQPage() {
               className="px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300"
               style={{
                 background: activeCategory === cat ? '#F5F5F2' : 'rgba(255,255,255,0.05)',
-                color: activeCategory === cat ? '#0B0B0B' : '#8e9192',
+                color: activeCategory === cat ? '#0B0B0B' : '#c4c1c4',
                 border: activeCategory === cat ? '1px solid transparent' : '1px solid rgba(255,255,255,0.08)',
               }}
             >
@@ -241,11 +241,11 @@ export default function FAQPage() {
           className="mt-16 p-8 md:p-10 rounded-[24px] text-center"
           style={{ background: 'rgba(20,20,20,0.8)', border: '1px solid rgba(255,255,255,0.06)' }}
         >
-          <p className="text-[#8e9192] text-xs uppercase tracking-[0.2em] mb-3">Still have questions?</p>
+          <p className="text-[#dddadd] text-xs uppercase tracking-[0.2em] mb-3">Still have questions?</p>
           <h2 className="font-display font-bold text-[22px] text-[#F5F5F2] mb-3" style={{ letterSpacing: '-0.02em' }}>
             We&apos;re happy to help
           </h2>
-          <p className="text-[#8e9192] text-sm mb-6 max-w-sm mx-auto leading-relaxed">
+          <p className="text-[#dddadd] text-sm mb-6 max-w-sm mx-auto leading-relaxed">
             Chat with us directly on WhatsApp. Most queries are answered within minutes.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">

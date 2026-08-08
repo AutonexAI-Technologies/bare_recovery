@@ -62,7 +62,7 @@ export default function ServicesPage() {
             >
               Recovery<br /><span style={{ color: 'rgba(245,245,242,0.3)' }}>Services.</span>
             </h1>
-            <p className="text-[#8e9192] text-sm md:text-base max-w-xs leading-relaxed md:pb-3">
+            <p className="text-[#dddadd] text-sm md:text-base max-w-xs leading-relaxed md:pb-3">
               Every modality backed by science. Delivered in a private studio with guided coaching available on request.
             </p>
           </div>
@@ -122,7 +122,7 @@ export default function ServicesPage() {
                   </span>
                   {coupleLabel(svc) && (
                     <span
-                      className="text-[#8e9192] text-xs px-2.5 py-1 rounded-full"
+                      className="text-[#dddadd] text-xs px-2.5 py-1 rounded-full"
                       style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}
                     >
                       {coupleLabel(svc)}
@@ -131,7 +131,7 @@ export default function ServicesPage() {
                   {/* Special compression pricing */}
                   {svc.id === 'compression-therapy' && (
                     <span
-                      className="text-[#8e9192] text-xs px-2.5 py-1 rounded-full"
+                      className="text-[#dddadd] text-xs px-2.5 py-1 rounded-full"
                       style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}
                     >
                       Full Body ₹1,399
@@ -149,19 +149,19 @@ export default function ServicesPage() {
           style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
         >
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#8e9192] mb-2">Best Value</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#dddadd] mb-2">Best Value</p>
             <h3
               className="font-display font-light text-[#F5F5F2] mb-1"
               style={{ fontSize: 'clamp(24px, 3vw, 36px)', letterSpacing: '-0.04em', lineHeight: 1 }}
             >
               Full Circuit — All 5 Services
             </h3>
-            <p className="text-[#8e9192] text-sm">Cold Plunge + Contrast + Sauna + Red Light + Compression in one premium session</p>
+            <p className="text-[#dddadd] text-sm">Cold Plunge + Contrast + Sauna + Red Light + Compression in one premium session</p>
           </div>
           <div className="flex items-center gap-6 shrink-0">
             <div>
               <p className="font-display font-light text-[#F5F5F2]" style={{ fontSize: 'clamp(32px, 4vw, 48px)', letterSpacing: '-0.04em', lineHeight: 1 }}>₹2,999</p>
-              <p className="text-[#8e9192] text-xs">Couple ₹4,799</p>
+              <p className="text-[#dddadd] text-xs">Couple ₹4,799</p>
             </div>
             <a
               href={waLink}

@@ -108,7 +108,7 @@ function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
 
       <StarRating rating={t.rating} />
 
-      <p className="text-[14px] leading-[1.7] mb-5" style={{ color: '#c4c1c4' }}>
+      <p className="text-[14px] leading-[1.7] mb-5" style={{ color: '#dddadd' }}>
         &ldquo;{t.text}&rdquo;
       </p>
 
@@ -117,7 +117,7 @@ function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
         <div
           className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 text-xs font-bold"
           style={{
-            background: 'linear-gradient(135deg, #8a878a 0%, #565456 100%)',
+            background: 'linear-gradient(135deg, #c4c1c4 0%, #565456 100%)',
             color: '#f5f0eb',
             border: '1px solid rgba(196, 193, 196, 0.20)',
           }}
@@ -126,7 +126,7 @@ function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
         </div>
         <div>
           <p className="text-sm font-semibold" style={{ color: '#f5f0eb' }}>{t.name}</p>
-          <p className="text-[11px]" style={{ color: '#a8a5a8' }}>{t.role}</p>
+          <p className="text-[11px]" style={{ color: '#dddadd' }}>{t.role}</p>
         </div>
       </div>
     </div>
@@ -148,7 +148,7 @@ export default function TestimonialsMarquee() {
     >
       <div className="container-custom mb-12 md:mb-16">
         <div className="text-center">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.25em] block mb-3" style={{ color: '#a8a5a8' }}>
+          <span className="text-[11px] font-semibold uppercase tracking-[0.25em] block mb-3" style={{ color: '#dddadd' }}>
             What Members Say
           </span>
           <h2
@@ -157,7 +157,7 @@ export default function TestimonialsMarquee() {
           >
             Real Recoveries.
           </h2>
-          <p className="text-sm mt-3 max-w-md mx-auto" style={{ color: '#a8a5a8' }}>
+          <p className="text-sm mt-3 max-w-md mx-auto" style={{ color: '#dddadd' }}>
             Every review is from a real member. No scripts, no incentives — just honest results.
           </p>
         </div>
@@ -190,11 +190,11 @@ export default function TestimonialsMarquee() {
       {/* Fade edges */}
       <div
         className="absolute left-0 inset-y-0 w-24 pointer-events-none"
-        style={{ background: 'linear-gradient(to right, #6e6c6e, transparent)', zIndex: 2 }}
+        style={{ background: 'linear-gradient(to right, #a8a5a8, transparent)', zIndex: 2 }}
       />
       <div
         className="absolute right-0 inset-y-0 w-24 pointer-events-none"
-        style={{ background: 'linear-gradient(to left, #6e6c6e, transparent)', zIndex: 2 }}
+        style={{ background: 'linear-gradient(to left, #a8a5a8, transparent)', zIndex: 2 }}
       />
     </section>
   )

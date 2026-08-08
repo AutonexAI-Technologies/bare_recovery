@@ -204,7 +204,7 @@ export default function ProtocolBuilder() {
             >
               Build Your Recovery Circuit
             </h2>
-            <p className="text-sm md:text-base leading-relaxed" style={{ color: '#8a878a' }}>
+            <p className="text-sm md:text-base leading-relaxed" style={{ color: '#dddadd' }}>
               Recovery is not one-size-fits-all. Select your physiological goal to assemble your custom sequence.
             </p>
           </div>
@@ -266,7 +266,7 @@ export default function ProtocolBuilder() {
                   {/* Goal */}
                   <span
                     className="block text-[10px] uppercase tracking-[0.14em] leading-tight"
-                    style={{ color: active ? 'rgba(61,59,61,0.65)' : '#6e6c6e' }}
+                    style={{ color: active ? 'rgba(61,59,61,0.65)' : '#a8a5a8' }}
                   >
                     {p.id === 'nervous-system' && 'Deep Relaxation'}
                     {p.id === 'athletic-restoration' && 'Muscle Recovery'}
@@ -300,7 +300,7 @@ export default function ProtocolBuilder() {
                 >
                   {activeProtocol.title}
                 </h3>
-                <p className="text-sm leading-relaxed mb-6" style={{ color: '#8a878a' }}>
+                <p className="text-sm leading-relaxed mb-6" style={{ color: '#dddadd' }}>
                   {activeProtocol.tagline}
                 </p>
 
@@ -308,17 +308,17 @@ export default function ProtocolBuilder() {
                   className="pt-5 mb-6"
                   style={{ borderTop: '1px solid rgba(196,193,196,0.07)' }}
                 >
-                  <p className="text-[9px] uppercase tracking-[0.22em] font-semibold mb-2" style={{ color: '#6e6c6e' }}>
+                  <p className="text-[9px] uppercase tracking-[0.22em] font-semibold mb-2" style={{ color: '#dddadd' }}>
                     Physiological Basis
                   </p>
-                  <p className="text-xs leading-relaxed italic" style={{ color: '#8a878a' }}>
+                  <p className="text-sm leading-relaxed italic" style={{ color: '#dddadd' }}>
                     &ldquo;{activeProtocol.scientificBasis}&rdquo;
                   </p>
                 </div>
 
                 {/* Targeted impact */}
                 <div className="mt-auto space-y-3 mb-6">
-                  <p className="text-[9px] uppercase tracking-[0.22em] font-semibold" style={{ color: '#6e6c6e' }}>
+                  <p className="text-[9px] uppercase tracking-[0.22em] font-semibold" style={{ color: '#dddadd' }}>
                     Targeted Impact
                   </p>
                   <div className="grid grid-cols-3 gap-2">
@@ -334,7 +334,7 @@ export default function ProtocolBuilder() {
                         <p className="font-display text-lg mb-0.5" style={{ color: '#f5f0eb', letterSpacing: '-0.02em' }}>
                           {b.value}
                         </p>
-                        <p className="text-[8px] uppercase tracking-[0.10em] leading-tight" style={{ color: '#6e6c6e' }}>
+                        <p className="text-[8px] uppercase tracking-[0.10em] leading-tight" style={{ color: '#dddadd' }}>
                           {b.label}
                         </p>
                       </div>
@@ -379,7 +379,7 @@ export default function ProtocolBuilder() {
                   <span className="section-label mb-0">Timeline Sequence</span>
                   <span
                     className="text-[10px] uppercase tracking-[0.16em]"
-                    style={{ color: '#6e6c6e' }}
+                    style={{ color: '#c4c1c4' }}
                   >
                     Guided Protocol
                   </span>
@@ -432,10 +432,10 @@ export default function ProtocolBuilder() {
                                 {step.duration}
                               </span>
                             </h4>
-                            <p className="text-[10px] uppercase tracking-[0.12em] font-semibold" style={{ color: '#8a878a' }}>
+                            <p className="text-[10px] uppercase tracking-[0.12em] font-semibold" style={{ color: '#dddadd' }}>
                               {step.spec}
                             </p>
-                            <p className="text-xs leading-relaxed" style={{ color: '#8a878a' }}>
+                            <p className="text-sm leading-relaxed" style={{ color: '#dddadd' }}>
                               {step.desc}
                             </p>
                           </div>
@@ -448,10 +448,10 @@ export default function ProtocolBuilder() {
                               border: '1px solid rgba(196,193,196,0.10)',
                             }}
                           >
-                            <span className="text-[8px] uppercase tracking-[0.16em] font-bold block mb-1" style={{ color: '#c4c1c4' }}>
+                            <span className="text-[8px] uppercase tracking-[0.16em] font-bold block mb-1" style={{ color: '#dddadd' }}>
                               Primary Trigger
                             </span>
-                            <span className="text-xs leading-tight block" style={{ color: '#8a878a' }}>
+                            <span className="text-xs leading-tight block" style={{ color: '#dddadd' }}>
                               {step.benefit}
                             </span>
                           </div>

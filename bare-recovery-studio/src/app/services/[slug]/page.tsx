@@ -101,10 +101,10 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <div className="lg:col-span-7 flex flex-col justify-center">
             {/* Breadcrumb */}
             <div className="flex items-center gap-2 mb-6">
-              <Link href="/services" className="text-xs text-[#8e9192] hover:text-[#F5F5F2] transition-colors font-medium">
+              <Link href="/services" className="text-xs text-[#dddadd] hover:text-[#F5F5F2] transition-colors font-medium">
                 Services
               </Link>
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#8e9192" strokeWidth="2.5">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#c4c1c4" strokeWidth="2.5">
                 <path d="M9 18l6-6-6-6"/>
               </svg>
               <span className="text-xs text-[#c9c6c5] font-medium">{svc.name}</span>
@@ -119,21 +119,21 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </h1>
 
             {/* Tagline */}
-            <p className="text-[#8e9192] text-lg max-w-xl mb-8 leading-relaxed">
+            <p className="text-[#dddadd] text-lg max-w-xl mb-8 leading-relaxed">
               {svc.tagline}
             </p>
 
             {/* Badges / Duration & Price */}
             <div className="flex flex-wrap gap-3 mb-8">
               <span
-                className="px-4 py-2 rounded-full text-xs font-semibold text-[#BCA386] uppercase tracking-wider"
+                className="px-4 py-2 rounded-full text-xs font-semibold text-[#f5f0eb] uppercase tracking-wider"
                 style={{ background: 'rgba(188,163,134,0.08)', border: '1px solid rgba(188,163,134,0.18)', backdropFilter: 'blur(8px)' }}
               >
                 {svc.duration}
               </span>
               {pricingRows[0] && (
                 <span
-                  className="px-4 py-2 rounded-full text-xs font-semibold text-[#BCA386] uppercase tracking-wider"
+                  className="px-4 py-2 rounded-full text-xs font-semibold text-[#f5f0eb] uppercase tracking-wider"
                   style={{ background: 'rgba(188,163,134,0.08)', border: '1px solid rgba(188,163,134,0.18)', backdropFilter: 'blur(8px)' }}
                 >
                   From ₹{pricingRows[0].price.toLocaleString()}
@@ -147,7 +147,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=${waMsg}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 bg-[#BCA386] text-[#12110F] px-8 py-4 rounded-full font-bold text-sm hover:bg-[#cbb499] transition-all duration-300 active:scale-[0.97] shadow-[0_8px_30px_rgba(188,163,134,0.15)]"
+                className="inline-flex items-center gap-2.5 bg-[#f5f0eb] text-[#12110F] px-8 py-4 rounded-full font-bold text-sm hover:bg-[#cbb499] transition-all duration-300 active:scale-[0.97] shadow-[0_8px_30px_rgba(188,163,134,0.15)]"
               >
                 Book This Session
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -184,7 +184,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             <h2 className="font-display font-bold text-[28px] md:text-[36px] text-[#F5F5F2] mb-6" style={{ letterSpacing: '-0.02em' }}>
               What Is {svc.name}?
             </h2>
-            <div className="space-y-4 text-[#8e9192] text-base leading-[1.9]">
+            <div className="space-y-4 text-[#dddadd] text-base leading-[1.9]">
               {svc.description.split('\n\n').map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
@@ -194,19 +194,19 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             className="p-8 rounded-[24px] space-y-5"
             style={{ background: 'rgba(20,20,20,0.8)', border: '1px solid rgba(255,255,255,0.06)' }}
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8e9192]">At A Glance</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#dddadd]">At A Glance</p>
             <div className="space-y-4">
               <div className="flex justify-between items-center py-3 border-b border-white/[0.06]">
-                <span className="text-[#8e9192] text-sm">Duration</span>
+                <span className="text-[#dddadd] text-sm">Duration</span>
                 <span className="text-[#F5F5F2] font-semibold text-sm">{svc.duration}</span>
               </div>
               <div className="flex justify-between items-center py-3 border-b border-white/[0.06]">
-                <span className="text-[#8e9192] text-sm">Benefits</span>
+                <span className="text-[#dddadd] text-sm">Benefits</span>
                 <span className="text-[#F5F5F2] font-semibold text-sm">{svc.benefits.length} proven</span>
               </div>
               {pricingRows.map((row) => (
                 <div key={row.label} className="flex justify-between items-center py-3 border-b border-white/[0.06]">
-                  <span className="text-[#8e9192] text-sm">{row.label}</span>
+                  <span className="text-[#dddadd] text-sm">{row.label}</span>
                   <span className="text-[#F5F5F2] font-semibold text-sm">₹{row.price.toLocaleString()}</span>
                 </div>
               ))}
@@ -245,7 +245,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     {parseInt(s.step)}
                   </div>
                   <h3 className="font-display font-semibold text-lg text-[#F5F5F2] mb-3">{s.title}</h3>
-                  <p className="text-[#8e9192] text-sm leading-relaxed">{s.desc}</p>
+                  <p className="text-[#dddadd] text-sm leading-relaxed">{s.desc}</p>
                 </div>
               ))}
             </div>
@@ -272,7 +272,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   </div>
                   <span className="font-semibold text-[#F5F5F2] text-sm">{b.text}</span>
                 </div>
-                <p className="text-[#8e9192] text-xs leading-relaxed pl-8">{b.detail}</p>
+                <p className="text-[#dddadd] text-xs leading-relaxed pl-8">{b.detail}</p>
               </div>
             ))}
           </div>
@@ -336,7 +336,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   </div>
                   <div>
                     <h3 className="font-display font-semibold text-[#F5F5F2] mb-1">{r.name}</h3>
-                    <p className="text-[#8e9192] text-xs">{r.duration}</p>
+                    <p className="text-[#dddadd] text-xs">{r.duration}</p>
                   </div>
                 </Link>
               ))}

@@ -93,7 +93,7 @@ export default function HowItWorks() {
               </h3>
               <p
                 className="text-sm leading-[1.75] mb-4"
-                style={{ color: '#8a878a' }}
+                style={{ color: '#c4c1c4' }}
                 dangerouslySetInnerHTML={{ __html: step.desc }}
               />
               <span

@@ -1,80 +1,18 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { CONTACT_INFO, SOCIAL_LINKS } from '@/lib/constants'
 import { founderInfo } from '@/data/founder'
-import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'About | Bare Recovery Studio',
-  description: 'Bare Recovery Studio is Kompally\'s premier recovery destination. Science-backed recovery for athletes, professionals, and wellness seekers.',
+  description: "Bare Recovery Studio is Kompally's premier recovery destination. Science-backed recovery for athletes, professionals, and wellness seekers.",
 }
 
 const values = [
-  {
-    number: '01',
-    title: 'Science-Backed',
-    body: 'Every service is rooted in peer-reviewed physiological research. We follow biological evidence, not wellness trends.',
-    tag: 'Evidence-first',
-  },
-  {
-    number: '02',
-    title: 'Premium Experience',
-    body: 'High-end equipment. Limited slots. Private studio. One coach guides every session.',
-    tag: 'Elevated',
-  },
-  {
-    number: '03',
-    title: 'Holistic View',
-    body: 'We treat the body as one integrated system. Mental clarity is as important as muscular repair.',
-    tag: 'Complete',
-  },
-  {
-    number: '04',
-    title: 'Accessible Excellence',
-    body: 'World-class recovery shouldn\'t be reserved for professional athletes. Starting from ₹799 — recovery for anyone serious.',
-    tag: 'For everyone',
-  },
-]
-
-const founderLinks = [
-  {
-    label: 'YouTube',
-    handle: '@de_abhinav',
-    href: SOCIAL_LINKS.youtube,
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-      </svg>
-    ),
-    color: '#FF0000',
-    bg: 'rgba(255,0,0,0.08)',
-    border: 'rgba(255,0,0,0.2)',
-  },
-  {
-    label: 'Instagram',
-    handle: '@de_abhinav',
-    href: SOCIAL_LINKS.founderInstagram,
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-      </svg>
-    ),
-    color: '#E1306C',
-    bg: 'rgba(225,48,108,0.08)',
-    border: 'rgba(225,48,108,0.2)',
-  },
-  {
-    label: 'Bare Recovery Studio',
-    handle: '@bare.recovery',
-    href: SOCIAL_LINKS.instagram,
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-      </svg>
-    ),
-    color: '#c9c6c5',
-    bg: 'rgba(255,255,255,0.05)',
-    border: 'rgba(255,255,255,0.12)',
-  },
+  { number: '01', title: 'Science-Backed', body: 'Every service is rooted in peer-reviewed physiological research. We follow biological evidence, not wellness trends.', tag: 'Evidence-first', icon: '🔬' },
+  { number: '02', title: 'Premium Experience', body: 'High-end equipment. Limited slots. Private studio. One coach guides every session — no crowds, no compromise.', tag: 'Elevated', icon: '⭐' },
+  { number: '03', title: 'Holistic View', body: 'We treat the body as one integrated system. Mental clarity is as important as muscular repair.', tag: 'Complete', icon: '🧠' },
+  { number: '04', title: 'Accessible Excellence', body: "World-class recovery shouldn't be reserved for professional athletes. Starting from ₹799 — recovery for anyone serious.", tag: 'For everyone', icon: '🎯' },
 ]
 
 export default function AboutPage() {
@@ -83,106 +21,112 @@ export default function AboutPage() {
   return (
     <div>
 
-      {/* ─── Hero ─── */}
-      <section className="pt-36 md:pt-48 pb-24 px-5 md:px-12">
+      {/* ─── HERO ─── */}
+      <section className="pt-36 md:pt-52 pb-20 px-5 md:px-12">
         <div className="max-w-[1320px] mx-auto">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#8e9192] block mb-6">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.28em] block mb-6" style={{ color: '#dddadd' }}>
             Bare Recovery Studio
           </span>
-          <h1
-            className="font-display font-light text-[#F5F5F2] mb-8 max-w-4xl"
-            style={{ fontSize: 'clamp(44px, 7vw, 100px)', letterSpacing: '-0.04em', lineHeight: 1.0 }}
-          >
+          <h1 className="font-display font-light mb-8 max-w-4xl"
+            style={{ fontSize: 'clamp(40px, 7vw, 100px)', letterSpacing: '-0.04em', lineHeight: 1.0, color: '#f5f0eb' }}>
             Where science<br />
-            <span style={{ color: 'rgba(245,245,242,0.3)' }}>meets recovery.</span>
+            <span style={{ color: 'rgba(245,240,235,0.30)' }}>meets recovery.</span>
           </h1>
-          <p className="text-[#8e9192] text-lg max-w-xl leading-relaxed">
-            Kompally&apos;s first dedicated recovery studio. We bring the tools of elite sport science to everyday athletes, professionals, and anyone serious about feeling better.
+          <p className="text-base md:text-lg max-w-xl leading-relaxed" style={{ color: '#dddadd' }}>
+            Kompally&apos;s first dedicated recovery studio — bringing the tools of elite sport science to everyday athletes, professionals, and anyone serious about feeling better.
           </p>
-        </div>
-      </section>
 
-      {/* ─── Vision | Mission side by side ─── */}
-      <section className="py-20 px-5 md:px-12" style={{ borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-        <div className="max-w-[1320px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-0 md:divide-x divide-white/[0.06]">
-          {/* Vision */}
-          <div className="pr-0 md:pr-16 pb-12 md:pb-0">
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#8e9192] block mb-6">Vision</span>
-            <h2
-              className="font-display font-light text-[#F5F5F2] mb-5"
-              style={{ fontSize: 'clamp(28px, 4vw, 48px)', letterSpacing: '-0.03em', lineHeight: 1.1 }}
-            >
-              To make world-class recovery accessible to every serious person in India.
-            </h2>
-            <p className="text-[#8e9192] leading-relaxed">
-              Elite recovery tools have been available to professional athletes for decades. We&apos;re bringing the exact same technology — cold plunge, contrast therapy, red light, sauna, compression — to Kompally, without the exclusive price tag.
-            </p>
-          </div>
-
-          {/* Mission */}
-          <div className="pl-0 md:pl-16 pt-12 md:pt-0">
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#8e9192] block mb-6">Mission</span>
-            <h2
-              className="font-display font-light text-[#F5F5F2] mb-5"
-              style={{ fontSize: 'clamp(28px, 4vw, 48px)', letterSpacing: '-0.03em', lineHeight: 1.1 }}
-            >
-              Help people recover better so they can perform better and feel better in every part of life.
-            </h2>
-            <p className="text-[#8e9192] leading-relaxed">
-              We follow the science. Every modality at Bare Recovery is backed by peer-reviewed research. No pseudoscience. No wellness theatre. Just evidence-based protocols delivered in a private, premium environment.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Studio Stats ─── */}
-      <section className="py-20 px-5 md:px-12">
-        <div className="max-w-[1320px] mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {/* Stats */}
+          <div className="flex flex-wrap gap-3 mt-10">
             {[
-              { value: '5', label: 'Recovery Modalities' },
-              { value: 'From ₹799', label: 'Per Session' },
-              { value: 'Private', label: 'Studio Format' },
-              { value: '10AM–10:30PM', label: 'Open Everyday' },
-            ].map((stat) => (
-              <div key={stat.label} className="p-6 rounded-2xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                <p
-                  className="font-display font-light text-[#F5F5F2] mb-2"
-                  style={{ fontSize: 'clamp(22px, 3vw, 34px)', letterSpacing: '-0.03em', lineHeight: 1 }}
-                >
-                  {stat.value}
-                </p>
-                <p className="text-[#8e9192] text-xs uppercase tracking-[0.15em]">{stat.label}</p>
+              { v: '6', l: 'Recovery Services' },
+              { v: '₹799+', l: 'Starting from' },
+              { v: '10AM–10PM', l: 'Open everyday' },
+              { v: '100%', l: 'Private studio' },
+            ].map(s => (
+              <div key={s.l} className="px-5 py-3 rounded-2xl" style={{ background: 'rgba(86,84,86,0.35)', border: '1px solid rgba(196,193,196,0.14)' }}>
+                <p className="font-display font-light text-xl md:text-2xl" style={{ color: '#f5f0eb', letterSpacing: '-0.03em' }}>{s.v}</p>
+                <p className="text-[10px] uppercase tracking-[0.15em]" style={{ color: '#dddadd' }}>{s.l}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ─── Our Values / DNA ─── */}
-      <section className="py-20 px-5 md:px-12" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      {/* ─── VISION | MISSION ─── */}
+      <section className="py-20 px-5 md:px-12" style={{ borderTop: '1px solid rgba(196,193,196,0.08)' }}>
+        <div className="max-w-[1320px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-0">
+          <div className="pr-0 md:pr-16 pb-12 md:pb-0 md:border-r" style={{ borderColor: 'rgba(196,193,196,0.08)' }}>
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] block mb-6" style={{ color: '#dddadd' }}>Vision</span>
+            <h2 className="font-display font-light mb-5"
+              style={{ fontSize: 'clamp(22px, 3.5vw, 42px)', letterSpacing: '-0.03em', lineHeight: 1.1, color: '#f5f0eb' }}>
+              To make world-class recovery accessible to every serious person in India.
+            </h2>
+            <p className="leading-relaxed text-[15px]" style={{ color: '#dddadd' }}>
+              Elite recovery tools have been available to professional athletes for decades. We&apos;re bringing cold plunge, contrast therapy, red light, sauna, and compression to Kompally — without the exclusive price tag.
+            </p>
+          </div>
+          <div className="pl-0 md:pl-16 pt-12 md:pt-0">
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] block mb-6" style={{ color: '#dddadd' }}>Mission</span>
+            <h2 className="font-display font-light mb-5"
+              style={{ fontSize: 'clamp(22px, 3.5vw, 42px)', letterSpacing: '-0.03em', lineHeight: 1.1, color: '#f5f0eb' }}>
+              Help people recover better so they can perform better in every part of life.
+            </h2>
+            <p className="leading-relaxed text-[15px]" style={{ color: '#dddadd' }}>
+              We follow the science. Every service at Bare Recovery is backed by peer-reviewed research. No pseudoscience. No wellness theatre. Evidence-based protocols in a private, premium environment.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── STUDIO STATS ─── */}
+      <section className="py-16 px-5 md:px-12" style={{ borderTop: '1px solid rgba(196,193,196,0.08)' }}>
         <div className="max-w-[1320px] mx-auto">
-          <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-[#8e9192] block mb-3">Our DNA</span>
-          <h2
-            className="font-display font-light text-[#F5F5F2] mb-14"
-            style={{ fontSize: 'clamp(32px, 5vw, 56px)', letterSpacing: '-0.04em', lineHeight: 1.0 }}
-          >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { value: '6', label: 'Recovery Services' },
+              { value: 'From ₹799', label: 'Per Session' },
+              { value: 'Private', label: 'Studio Format' },
+              { value: '10AM–10PM', label: 'Open Everyday' },
+            ].map(stat => (
+              <div key={stat.label} className="p-5 rounded-2xl" style={{ background: 'rgba(42,40,41,0.70)', border: '1px solid rgba(196,193,196,0.10)' }}>
+                <p className="font-display font-light mb-2" style={{ fontSize: 'clamp(18px, 3vw, 32px)', letterSpacing: '-0.03em', lineHeight: 1, color: '#f5f0eb' }}>
+                  {stat.value}
+                </p>
+                <p className="text-xs uppercase tracking-[0.15em]" style={{ color: '#dddadd' }}>{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── VALUES ─── */}
+      <section className="py-20 px-5 md:px-12" style={{ borderTop: '1px solid rgba(196,193,196,0.08)' }}>
+        <div className="max-w-[1320px] mx-auto">
+          <span className="text-[11px] font-bold uppercase tracking-[0.28em] block mb-3" style={{ color: '#dddadd' }}>Our DNA</span>
+          <h2 className="font-display font-light mb-12"
+            style={{ fontSize: 'clamp(28px, 5vw, 56px)', letterSpacing: '-0.04em', lineHeight: 1.0, color: '#f5f0eb' }}>
             What we stand for
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {values.map((v) => (
-              <div
-                key={v.number}
-                className="group flex gap-5 p-7 rounded-2xl transition-all duration-300"
-                style={{ background: 'rgba(17,17,17,0.75)', border: '1px solid rgba(255,255,255,0.06)' }}
-              >
-                <span className="font-display font-light text-5xl text-white/[0.06] select-none shrink-0 leading-none">{v.number}</span>
-                <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <h3 className="font-display font-semibold text-[#F5F5F2]">{v.title}</h3>
-                    <span className="text-[9px] uppercase tracking-[0.18em] text-[#8e9192] px-2 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.05)' }}>{v.tag}</span>
+              <div key={v.number} className="flex gap-5 p-6 md:p-8 rounded-2xl transition-all duration-300 hover:scale-[1.01]"
+                style={{ background: 'rgba(42,40,41,0.80)', border: '1px solid rgba(196,193,196,0.10)' }}>
+                <div className="flex-shrink-0">
+                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-xl"
+                    style={{ background: 'rgba(86,84,86,0.55)', border: '1px solid rgba(196,193,196,0.10)' }}>
+                    {v.icon}
                   </div>
-                  <p className="text-[#C6C6C6]/70 text-sm leading-relaxed">{v.body}</p>
+                </div>
+                <div>
+                  <div className="flex items-center gap-3 mb-2 flex-wrap">
+                    <h3 className="font-display font-semibold text-lg" style={{ color: '#f5f0eb' }}>{v.title}</h3>
+                    <span className="text-[9px] uppercase tracking-[0.18em] px-2 py-0.5 rounded-full"
+                      style={{ background: 'rgba(196,193,196,0.10)', color: '#c4c1c4', border: '1px solid rgba(196,193,196,0.14)' }}>
+                      {v.tag}
+                    </span>
+                  </div>
+                  <p className="text-sm leading-relaxed" style={{ color: '#dddadd' }}>{v.body}</p>
                 </div>
               </div>
             ))}
@@ -190,59 +134,52 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── Founder Profile ─── */}
-      <section className="py-20 px-5 md:px-12" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      {/* ─── FOUNDER ─── */}
+      <section className="py-20 px-5 md:px-12" style={{ borderTop: '1px solid rgba(196,193,196,0.08)' }}>
         <div className="max-w-[1320px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-14 items-start">
 
             {/* Left — copy */}
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-[#8e9192] block mb-6">The Founder</span>
-              <h2
-                className="font-display font-light text-[#F5F5F2] mb-2"
-                style={{ fontSize: 'clamp(36px, 5vw, 64px)', letterSpacing: '-0.04em', lineHeight: 1.0 }}
-              >
+              <span className="text-[11px] font-bold uppercase tracking-[0.28em] block mb-6" style={{ color: '#dddadd' }}>The Founder</span>
+              <h2 className="font-display font-light mb-2"
+                style={{ fontSize: 'clamp(32px, 5vw, 64px)', letterSpacing: '-0.04em', lineHeight: 1.0, color: '#f5f0eb' }}>
                 {founderInfo.name}
               </h2>
-              <p className="text-[#8e9192] text-sm uppercase tracking-[0.18em] mb-8">{founderInfo.role}</p>
+              <p className="text-sm uppercase tracking-[0.18em] mb-8" style={{ color: '#dddadd' }}>{founderInfo.role}</p>
 
-              <div className="space-y-4 text-[#C6C6C6] leading-[1.9] mb-10">
-                {founderInfo.bio.split('\n\n').map((para, i) => (
-                  <p key={i}>{para}</p>
-                ))}
+              <div className="space-y-4 leading-[1.9] mb-10 text-[15px]" style={{ color: '#dddadd' }}>
+                {founderInfo.bio.split('\n\n').map((para, i) => <p key={i}>{para}</p>)}
               </div>
 
-              {/* Philosophy quote */}
-              <div className="p-6 rounded-2xl mb-10" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                <p className="text-[10px] uppercase tracking-[0.25em] text-[#8e9192] mb-3">Philosophy</p>
-                <p
-                  className="font-display font-light text-[#F5F5F2]"
-                  style={{ fontSize: 'clamp(28px, 3vw, 40px)', letterSpacing: '-0.04em' }}
-                >
+              {/* Philosophy */}
+              <div className="p-6 rounded-2xl mb-10"
+                style={{ background: 'rgba(42,40,41,0.90)', border: '1px solid rgba(196,193,196,0.12)', borderLeft: '3px solid rgba(217,209,204,0.50)' }}>
+                <p className="text-[10px] uppercase tracking-[0.25em] mb-3" style={{ color: '#dddadd' }}>Philosophy</p>
+                <p className="font-display font-light"
+                  style={{ fontSize: 'clamp(22px, 3vw, 38px)', letterSpacing: '-0.04em', color: '#f5f0eb' }}>
                   &ldquo;{founderInfo.philosophy.tagline}&rdquo;
                 </p>
-                <p className="text-[#8e9192] text-sm mt-2">{founderInfo.philosophy.description}</p>
+                <p className="text-sm mt-2" style={{ color: '#dddadd' }}>{founderInfo.philosophy.description}</p>
               </div>
 
-              {/* Social Links */}
+              {/* Social links */}
               <div className="space-y-3">
-                <p className="text-[10px] uppercase tracking-[0.25em] text-[#8e9192] mb-4">Connect with {founderInfo.name}</p>
-                {founderLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 hover:scale-[1.01]"
-                    style={{ background: link.bg, border: `1px solid ${link.border}` }}
-                  >
-                    <span style={{ color: link.color }}>{link.icon}</span>
+                <p className="text-[10px] uppercase tracking-[0.25em] mb-4" style={{ color: '#dddadd' }}>Connect with {founderInfo.name}</p>
+                {[
+                  { label: 'YouTube', handle: '@abhinavliftsvlogs', href: SOCIAL_LINKS.youtube, color: '#FF4444', bg: 'rgba(255,68,68,0.10)', border: 'rgba(255,68,68,0.22)' },
+                  { label: 'Instagram — Personal', handle: '@abhinav._lifts', href: SOCIAL_LINKS.founderInstagram, color: '#E1306C', bg: 'rgba(225,48,108,0.10)', border: 'rgba(225,48,108,0.22)' },
+                  { label: 'Instagram — Studio', handle: '@bare.recovery', href: SOCIAL_LINKS.instagram, color: '#d9d1cc', bg: 'rgba(217,209,204,0.08)', border: 'rgba(217,209,204,0.18)' },
+                ].map((link) => (
+                  <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center justify-between gap-4 p-4 rounded-2xl transition-all duration-300 hover:scale-[1.01]"
+                    style={{ background: link.bg, border: `1px solid ${link.border}` }}>
                     <div>
-                      <p className="text-[#F5F5F2] text-sm font-semibold">{link.label}</p>
-                      <p className="text-[#8e9192] text-xs">{link.handle}</p>
+                      <p className="text-sm font-semibold" style={{ color: '#f5f0eb' }}>{link.label}</p>
+                      <p className="text-xs" style={{ color: '#dddadd' }}>{link.handle}</p>
                     </div>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8e9192" strokeWidth="2" className="ml-auto">
-                      <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c4c1c4" strokeWidth="2">
+                      <path d="M7 17L17 7M17 7H7M17 7v10" />
                     </svg>
                   </a>
                 ))}
@@ -252,57 +189,45 @@ export default function AboutPage() {
             {/* Right — photo */}
             <div className="relative">
               <div className="rounded-[2rem] overflow-hidden aspect-[3/4] max-w-sm mx-auto md:max-w-none">
-                <img
-                  src="/images/founder/photo-7.png"
-                  alt={founderInfo.name}
-                  className="w-full h-full object-cover object-top"
-                />
+                <img src="/images/founder/photo-7.png" alt={founderInfo.name} className="w-full h-full object-cover object-top" />
               </div>
-              {/* Floating stat card */}
-              <div
-                className="absolute -bottom-5 -left-5 p-5 rounded-2xl"
-                style={{ background: 'rgba(17,17,17,0.95)', border: '1px solid rgba(255,255,255,0.1)', backdropFilter: 'blur(12px)' }}
-              >
-                <p className="text-[#8e9192] text-xs uppercase tracking-[0.15em] mb-1">Instagram</p>
-                <p className="font-display font-light text-[#F5F5F2] text-2xl" style={{ letterSpacing: '-0.04em' }}>83.3K</p>
-                <p className="text-[#8e9192] text-xs">Followers</p>
+              <div className="absolute -bottom-5 -left-5 p-5 rounded-2xl"
+                style={{ background: 'rgba(20,19,19,0.97)', border: '1px solid rgba(196,193,196,0.18)', backdropFilter: 'blur(12px)' }}>
+                <p className="text-xs uppercase tracking-[0.15em] mb-1" style={{ color: '#dddadd' }}>Instagram</p>
+                <p className="font-display font-light text-2xl" style={{ letterSpacing: '-0.04em', color: '#f5f0eb' }}>85.3K</p>
+                <p className="text-xs" style={{ color: '#dddadd' }}>Followers</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── Final CTA ─── */}
-      <section className="py-24 px-5 md:px-12" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      {/* ─── CTA ─── */}
+      <section className="py-24 px-5 md:px-12" style={{ borderTop: '1px solid rgba(196,193,196,0.08)' }}>
         <div className="max-w-[1320px] mx-auto text-center">
-          <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-[#8e9192] block mb-4">Ready to Start?</span>
-          <h2
-            className="font-display font-light text-[#F5F5F2] mb-4"
-            style={{ fontSize: 'clamp(36px, 6vw, 72px)', letterSpacing: '-0.04em', lineHeight: 1.0 }}
-          >
-            Your recovery starts<br /><span style={{ color: 'rgba(245,245,242,0.3)' }}>today.</span>
+          <span className="text-[11px] font-bold uppercase tracking-[0.28em] block mb-4" style={{ color: '#dddadd' }}>Ready to Start?</span>
+          <h2 className="font-display font-light mb-4"
+            style={{ fontSize: 'clamp(32px, 6vw, 72px)', letterSpacing: '-0.04em', lineHeight: 1.0, color: '#f5f0eb' }}>
+            Your recovery starts<br /><span style={{ color: 'rgba(245,240,235,0.25)' }}>today.</span>
           </h2>
-          <p className="text-[#8e9192] text-base max-w-sm mx-auto leading-relaxed mb-10">
+          <p className="text-base max-w-sm mx-auto leading-relaxed mb-10" style={{ color: '#dddadd' }}>
             Book a session at Bare Recovery Studio, Kompally. Private studio. Expert guidance. Starting from ₹799.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={waLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 bg-[#F5F5F2] text-[#0B0B0B] pl-7 pr-2.5 py-4 rounded-full font-bold hover:bg-white transition-all active:scale-[0.98]"
-            >
+            <a href={waLink} target="_blank" rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 pl-7 pr-2.5 py-4 rounded-full font-bold hover:opacity-90 transition-all active:scale-[0.98]"
+              style={{ background: '#d9d1cc', color: '#3d3b3d' }}>
               Book a Session
-              <span className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center transition-all duration-300 group-hover:translate-x-0.5">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0B0B0B" strokeWidth="2.5">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
+              <span className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 group-hover:translate-x-0.5"
+                style={{ background: 'rgba(61,59,61,0.16)' }}>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#3d3b3d" strokeWidth="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </span>
             </a>
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 border border-white/15 text-[#c9c6c5] px-8 py-4 rounded-full font-semibold hover:bg-white/5 transition-all"
-            >
+            <Link href="/services"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold transition-all"
+              style={{ border: '1px solid rgba(196,193,196,0.25)', color: '#dddadd' }}>
               View Services
             </Link>
           </div>

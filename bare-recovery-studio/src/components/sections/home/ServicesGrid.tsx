@@ -207,7 +207,7 @@ function ServiceCard({
           <p
             style={{
               fontSize: 12,
-              color: '#a8a5a8',
+              color: '#c4c1c4',
               lineHeight: 1.55,
               marginBottom: 10,
             }}
@@ -266,9 +266,9 @@ export default function ServicesGrid() {
           <Link
             href="/services"
             className="flex items-center gap-2 text-sm font-medium transition-colors duration-300"
-            style={{ color: '#8a878a' }}
+            style={{ color: '#c4c1c4' }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = '#f5f0eb' }}
-            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#8a878a' }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#c4c1c4' }}
           >
             View all
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -291,7 +291,7 @@ export default function ServicesGrid() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
         {services.slice(3).map((svc, i) => (
           <FadeIn key={svc.id} direction="up" delay={(i + 3) * 60}>
-            <ServiceCard svc={svc} height="clamp(280px, 72vw, 420px)" />
+            <ServiceCard svc={svc} height="clamp(280px, 72vw, 520px)" />
           </FadeIn>
         ))}
       </div>

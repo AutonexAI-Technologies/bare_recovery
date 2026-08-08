@@ -2,13 +2,13 @@
 
 const items = [
   { label: '100% Private Sessions', icon: '🔒' },
-  { label: 'Open 10AM – 10:30PM · Everyday', icon: '🕐' },
+  { label: 'Open 10AM – 10PM · Everyday', icon: '🕐' },
   { label: 'Medical-Grade Equipment', icon: '⚡' },
   { label: 'Science-Based Protocols', icon: '🔬' },
   { label: 'Expert Coach Guidance', icon: '🎯' },
   { label: "Kompally's First Recovery Studio", icon: '🥇' },
   { label: 'From ₹799 Per Session', icon: '₹' },
-  { label: '6 Recovery Modalities', icon: '✦' },
+  { label: '6 Recovery Services', icon: '❖' },
 ]
 
 export default function TrustBadges() {
@@ -31,7 +31,7 @@ export default function TrustBadges() {
           <span
             key={i}
             className="inline-flex items-center gap-3 px-8 text-[12px] font-medium tracking-[0.08em]"
-            style={{ color: '#8a878a' }}
+            style={{ color: '#c4c1c4' }}
           >
             <span style={{ fontSize: 14 }}>{item.icon}</span>
             {item.label}

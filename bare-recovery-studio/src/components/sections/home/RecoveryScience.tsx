@@ -111,7 +111,7 @@ export default function RecoveryScience() {
 
         <FadeIn direction="up">
           <div className="text-center mb-14 md:mb-20">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.25em] block mb-3" style={{ color: '#a8a5a8' }}>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.25em] block mb-3" style={{ color: '#dddadd' }}>
               The Science
             </span>
             <h2
@@ -119,9 +119,9 @@ export default function RecoveryScience() {
               style={{ color: '#f5f0eb', letterSpacing: '-0.02em', lineHeight: 1.1 }}
             >
               Evidence-based Recovery.<br />
-              <span style={{ color: '#8a878a' }}>Not a wellness trend.</span>
+              <span style={{ color: '#dddadd' }}>Not a wellness trend.</span>
             </h2>
-            <p className="text-sm mt-4 max-w-lg mx-auto" style={{ color: '#a8a5a8' }}>
+            <p className="text-sm mt-4 max-w-lg mx-auto" style={{ color: '#dddadd' }}>
               Every modality at Bare Recovery is supported by peer-reviewed research and used by elite sports teams worldwide.
             </p>
           </div>
@@ -161,14 +161,14 @@ export default function RecoveryScience() {
                   {/* Stat */}
                   <div className="text-right">
                     <AnimatedStat value={card.stat} />
-                    <span className="text-[11px] leading-tight block mt-1 text-right" style={{ color: '#a8a5a8', maxWidth: 100 }}>
+                    <span className="text-[11px] leading-tight block mt-1 text-right" style={{ color: '#c4c1c4', maxWidth: 100 }}>
                       {card.statLabel}
                     </span>
                   </div>
                 </div>
 
                 {/* Description */}
-                <p className="text-sm leading-[1.75] mb-6" style={{ color: '#a8a5a8' }}>
+                <p className="text-sm leading-[1.75] mb-6" style={{ color: '#dddadd' }}>
                   {card.description}
                 </p>
 
@@ -190,7 +190,7 @@ export default function RecoveryScience() {
                 </div>
 
                 {/* Footer */}
-                <p className="text-[10px] uppercase tracking-[0.18em]" style={{ color: '#6e6c6e' }}>
+                <p className="text-[10px] uppercase tracking-[0.18em]" style={{ color: '#dddadd' }}>
                   Supported by {card.studies}
                 </p>
               </div>
@@ -223,7 +223,7 @@ export default function RecoveryScience() {
             }}
           >
             <div>
-              <p className="text-xs uppercase tracking-[0.2em] mb-1" style={{ color: '#8a878a' }}>Combined Protocol</p>
+              <p className="text-xs uppercase tracking-[0.2em] mb-1" style={{ color: '#dddadd' }}>Combined Protocol</p>
               <p className="font-display text-xl md:text-2xl" style={{ color: '#f5f0eb', letterSpacing: '-0.02em' }}>
                 Full Circuit = Maximum Recovery Velocity
               </p>

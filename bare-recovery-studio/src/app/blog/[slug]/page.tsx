@@ -71,7 +71,7 @@ function renderMarkdown(content: string) {
         <ol key={`ol-${i}`} className="space-y-3 my-6 pl-0">
           {listItems.map((item, j) => (
             <li key={j} className="flex items-start gap-3 text-[#c4c7c7] text-base leading-relaxed">
-              <span className="font-display font-bold text-[#8e9192] text-sm w-6 flex-shrink-0 pt-0.5">{j + 1}.</span>
+              <span className="font-display font-bold text-[#dddadd] text-sm w-6 flex-shrink-0 pt-0.5">{j + 1}.</span>
               <span dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.+?)\*\*/g, '<strong class="text-[#F5F5F2] font-semibold">$1</strong>') }} />
             </li>
           ))}
@@ -142,7 +142,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         {/* If no image, show breadcrumb here */}
         {!post.image && (
-          <div className="flex items-center gap-2 mb-8 text-xs text-[#8e9192]">
+          <div className="flex items-center gap-2 mb-8 text-xs text-[#dddadd]">
             <Link href="/blog" className="hover:text-[#F5F5F2] transition-colors">Blog</Link>
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M9 18l6-6-6-6"/>
@@ -175,7 +175,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             )}
             <span className="text-[#c4c7c7] text-sm font-semibold">{post.author}</span>
           </div>
-          <span className="text-[#8e9192] text-xs">
+          <span className="text-[#dddadd] text-xs">
             {new Date(post.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
           </span>
           <span
@@ -202,7 +202,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <p className="font-display font-bold text-[20px] md:text-[24px] text-[#F5F5F2] mb-3" style={{ letterSpacing: '-0.02em' }}>
             Ready to put this into practice?
           </p>
-          <p className="text-[#8e9192] text-sm mb-7 max-w-xs mx-auto leading-relaxed">
+          <p className="text-[#dddadd] text-sm mb-7 max-w-xs mx-auto leading-relaxed">
             Book your session at Bare Recovery Studio, Kompally.
           </p>
           <a

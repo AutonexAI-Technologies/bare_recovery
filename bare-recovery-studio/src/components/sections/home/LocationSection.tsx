@@ -21,7 +21,7 @@ export default function LocationSection() {
           </h2>
           <p
             className="text-[15px] leading-[1.75] mb-8 max-w-sm"
-            style={{ color: '#8a878a' }}
+            style={{ color: '#c4c1c4' }}
           >
             Bare Recovery Studio is located at Raichandani, Jeedimetla, Hyderabad — easy access from the surrounding localities. Free parking available.
           </p>
@@ -78,10 +78,10 @@ export default function LocationSection() {
                   {item.icon}
                 </div>
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.18em] font-medium mb-0.5" style={{ color: '#6e6c6e' }}>
+                  <p className="text-[10px] uppercase tracking-[0.18em] font-medium mb-0.5" style={{ color: '#dddadd' }}>
                     {item.label}
                   </p>
-                  <p className="text-sm leading-relaxed" style={{ color: '#c4c1c4' }}>
+                  <p className="text-sm leading-relaxed" style={{ color: '#dddadd' }}>
                     {item.value}
                   </p>
                 </div>
@@ -135,9 +135,9 @@ export default function LocationSection() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm font-medium transition-colors duration-300"
-            style={{ color: '#8a878a' }}
+            style={{ color: '#c4c1c4' }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = '#f5f0eb' }}
-            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#8a878a' }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#c4c1c4' }}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7" />

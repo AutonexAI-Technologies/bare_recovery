@@ -72,7 +72,7 @@ export default function PricingPreview() {
             >
               Pricing
             </h2>
-            <p className="text-sm max-w-md mx-auto" style={{ color: '#8a878a' }}>
+            <p className="text-sm max-w-md mx-auto" style={{ color: '#dddadd' }}>
               No subscriptions required. No hidden fees. Walk in, recover, leave better.
             </p>
           </div>
@@ -123,10 +123,10 @@ export default function PricingPreview() {
                   >
                     {plan.price}
                   </span>
-                  <span className="text-sm mb-2" style={{ color: '#8a878a' }}>{plan.period}</span>
+                  <span className="text-sm mb-2" style={{ color: '#dddadd' }}>{plan.period}</span>
                 </div>
 
-                <p className="text-sm leading-relaxed mb-6" style={{ color: '#8a878a' }}>
+                <p className="text-sm leading-relaxed mb-6" style={{ color: '#dddadd' }}>
                   {plan.description}
                 </p>
 
@@ -136,11 +136,11 @@ export default function PricingPreview() {
                 {/* Features */}
                 <ul className="space-y-3 flex-1 mb-8">
                   {plan.features.map((feat, j) => (
-                    <li key={j} className="flex items-start gap-3 text-sm" style={{ color: '#a8a5a8' }}>
+                    <li key={j} className="flex items-start gap-3 text-sm" style={{ color: '#dddadd' }}>
                       <svg
                         className="shrink-0 mt-0.5"
                         width="14" height="14" viewBox="0 0 24 24"
-                        fill="none" stroke={plan.featured ? '#d9d1cc' : '#6e6c6e'}
+                        fill="none" stroke={plan.featured ? '#d9d1cc' : '#a8a5a8'}
                         strokeWidth="2.5"
                       >
                         <polyline points="20 6 9 17 4 12" />
@@ -202,7 +202,7 @@ export default function PricingPreview() {
 
         {/* Footnote */}
         <FadeIn direction="up" delay={280}>
-          <p className="text-center text-xs mt-8" style={{ color: '#6e6c6e' }}>
+          <p className="text-center text-xs mt-8" style={{ color: '#dddadd' }}>
             Pricing is subject to change. All sessions are private. WhatsApp us for custom packages and group bookings.
           </p>
         </FadeIn>

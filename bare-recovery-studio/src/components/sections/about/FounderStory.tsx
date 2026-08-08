@@ -18,7 +18,7 @@ export default function FounderStory() {
             Meet {founderInfo.name}
           </h2>
 
-          <div className="space-y-4 text-[15px] leading-[1.80] mb-8" style={{ color: '#8a878a' }}>
+          <div className="space-y-4 text-[15px] leading-[1.80] mb-8" style={{ color: '#dddadd' }}>
             {founderInfo.bio.split('\n\n').map((para, i) => (
               <p key={i}>{para}</p>
             ))}
@@ -36,7 +36,7 @@ export default function FounderStory() {
             <p className="font-display text-lg" style={{ color: '#f5f0eb' }}>
               &ldquo;BE BORING. Consistency beats intensity every time.&rdquo;
             </p>
-            <p className="text-xs mt-2" style={{ color: '#6e6c6e' }}>— {founderInfo.name}, Founder</p>
+            <p className="text-xs mt-2" style={{ color: '#dddadd' }}>— {founderInfo.name}, Founder</p>
           </div>
 
           {/* Links */}
@@ -59,14 +59,14 @@ export default function FounderStory() {
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
               style={{
                 border: '1px solid rgba(196,193,196,0.16)',
-                color: '#8a878a',
+                color: '#c4c1c4',
               }}
               onMouseEnter={e => {
                 (e.currentTarget as HTMLElement).style.color = '#f5f0eb'
                   ; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,193,196,0.32)'
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.color = '#8a878a'
+                (e.currentTarget as HTMLElement).style.color = '#c4c1c4'
                   ; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,193,196,0.16)'
               }}
             >
@@ -124,7 +124,7 @@ export default function FounderStory() {
                     <p className="font-display font-bold text-2xl" style={{ color: '#f5f0eb', letterSpacing: '-0.03em' }}>
                       85.3K
                     </p>
-                    <p className="text-[10px] uppercase tracking-[0.15em]" style={{ color: '#6e6c6e' }}>
+                    <p className="text-[10px] uppercase tracking-[0.15em]" style={{ color: '#dddadd' }}>
                       Instagram Followers
                     </p>
                   </div>
@@ -148,7 +148,7 @@ export default function FounderStory() {
                     <p className="font-display font-bold text-xl" style={{ color: '#f5f0eb' }}>
                       Performance Coach
                     </p>
-                    <p className="text-[10px] uppercase tracking-[0.15em]" style={{ color: '#6e6c6e' }}>
+                    <p className="text-[10px] uppercase tracking-[0.15em]" style={{ color: '#dddadd' }}>
                       Specialization
                     </p>
                   </div>
@@ -172,7 +172,7 @@ export default function FounderStory() {
                     <p className="font-display font-bold text-xl" style={{ color: '#f5f0eb' }}>
                       BE BORING
                     </p>
-                    <p className="text-[10px] uppercase tracking-[0.15em]" style={{ color: '#6e6c6e' }}>
+                    <p className="text-[10px] uppercase tracking-[0.15em]" style={{ color: '#dddadd' }}>
                       Philosophy
                     </p>
                   </div>
@@ -188,7 +188,7 @@ export default function FounderStory() {
                     style={{
                       background: 'rgba(61,59,61,0.80)',
                       border: '1px solid rgba(196,193,196,0.06)',
-                      color: '#8a878a',
+                      color: '#c4c1c4',
                     }}
                   >
                     {badge}

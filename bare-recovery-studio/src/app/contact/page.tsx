@@ -107,7 +107,7 @@ export default function ContactPage() {
     }
   }
 
-  const inputClass = `w-full bg-[#111] border border-white/[0.08] text-[#F5F5F2] placeholder-[#8e9192] rounded-2xl px-5 py-3.5 text-sm outline-none transition-all duration-300
+  const inputClass = `w-full bg-[#111] border border-white/[0.08] text-[#F5F5F2] placeholder-[#c4c1c4] rounded-2xl px-5 py-3.5 text-sm outline-none transition-all duration-300
     focus:border-white/25 focus:bg-[#161616] focus:shadow-[0_0_0_3px_rgba(255,255,255,0.04)]`
 
   return (
@@ -116,7 +116,7 @@ export default function ContactPage() {
 
         {/* Header */}
         <div className="mb-16">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#8e9192] block mb-4">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#dddadd] block mb-4">
             Get In Touch
           </span>
           <h1
@@ -125,7 +125,7 @@ export default function ContactPage() {
           >
             Let&apos;s talk<br />recovery.
           </h1>
-          <p className="text-[#8e9192] text-lg mt-5 max-w-lg leading-relaxed">
+          <p className="text-[#dddadd] text-lg mt-5 max-w-lg leading-relaxed">
             Questions about services, memberships, or booking — we respond fast. WhatsApp is quickest.
           </p>
         </div>
@@ -153,12 +153,12 @@ export default function ContactPage() {
                   {c.icon}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-[#8e9192] mb-1">{c.label}</p>
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-[#dddadd] mb-1">{c.label}</p>
                   <p className="font-display font-semibold text-[#F5F5F2] text-base leading-tight truncate group-hover:text-white transition-colors">{c.value}</p>
-                  <p className="text-[#8e9192] text-xs mt-0.5">{c.sub}</p>
+                  <p className="text-[#dddadd] text-xs mt-0.5">{c.sub}</p>
                 </div>
                 <svg
-                  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e9192" strokeWidth="2"
+                  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c4c1c4" strokeWidth="2"
                   className="flex-shrink-0 transition-all duration-300 group-hover:stroke-[#F5F5F2] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 >
                   <path d="M5 12h14M12 5l7 7-7 7" />
@@ -171,7 +171,7 @@ export default function ContactPage() {
               className="p-6 rounded-[20px]"
               style={{ background: 'rgba(16,16,16,0.8)', border: '1px solid rgba(255,255,255,0.06)' }}
             >
-              <p className="text-[11px] uppercase tracking-[0.18em] text-[#8e9192] mb-4">Studio Hours</p>
+              <p className="text-[11px] uppercase tracking-[0.18em] text-[#dddadd] mb-4">Studio Hours</p>
               <div className="space-y-2">
                 {[
                   { days: 'Monday – Friday', hours: '10:00 AM – 22:30 PM' },
@@ -179,7 +179,7 @@ export default function ContactPage() {
                   { days: 'Sunday', hours: '10:00 AM – 22:30 PM' },
                 ].map((h) => (
                   <div key={h.days} className="flex justify-between text-sm">
-                    <span className="text-[#8e9192]">{h.days}</span>
+                    <span className="text-[#dddadd]">{h.days}</span>
                     <span className="text-[#F5F5F2] font-medium">{h.hours}</span>
                   </div>
                 ))}
@@ -204,12 +204,12 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <h3 className="font-display font-bold text-2xl text-[#F5F5F2] mb-3">Message received.</h3>
-                <p className="text-[#8e9192] leading-relaxed max-w-sm">
+                <p className="text-[#dddadd] leading-relaxed max-w-sm">
                   We&apos;ll get back to you at <strong className="text-[#c9c6c5]">{form.email || 'your email'}</strong> shortly. For fastest response, WhatsApp us directly.
                 </p>
                 <button
                   onClick={() => setStatus('idle')}
-                  className="mt-8 text-sm text-[#8e9192] hover:text-[#F5F5F2] transition-colors underline underline-offset-4"
+                  className="mt-8 text-sm text-[#dddadd] hover:text-[#F5F5F2] transition-colors underline underline-offset-4"
                 >
                   Send another message
                 </button>
@@ -231,13 +231,13 @@ export default function ContactPage() {
                 <h2 className="font-display font-bold text-2xl text-[#FFFBF5] mb-1" style={{ letterSpacing: '-0.02em' }}>
                   Send us a message
                 </h2>
-                <p className="text-[#8e9192] text-sm mb-8">We&apos;ll reply to your email within 24 hours.</p>
+                <p className="text-[#dddadd] text-sm mb-8">We&apos;ll reply to your email within 24 hours.</p>
 
                 <div className="space-y-4">
                   {/* Name + Email */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[11px] uppercase tracking-[0.15em] text-[#8e9192] mb-2">
+                      <label className="block text-[11px] uppercase tracking-[0.15em] text-[#dddadd] mb-2">
                         Name <span className="text-red-400">*</span>
                       </label>
                       <input
@@ -250,7 +250,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-[11px] uppercase tracking-[0.15em] text-[#8e9192] mb-2">
+                      <label className="block text-[11px] uppercase tracking-[0.15em] text-[#dddadd] mb-2">
                         Email <span className="text-red-400">*</span>
                       </label>
                       <input
@@ -267,7 +267,7 @@ export default function ContactPage() {
                   {/* Phone + Service */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[11px] uppercase tracking-[0.15em] text-[#8e9192] mb-2">Phone</label>
+                      <label className="block text-[11px] uppercase tracking-[0.15em] text-[#dddadd] mb-2">Phone</label>
                       <input
                         type="tel"
                         placeholder="+91 98765 43210"
@@ -277,7 +277,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-[11px] uppercase tracking-[0.15em] text-[#8e9192] mb-2">
+                      <label className="block text-[11px] uppercase tracking-[0.15em] text-[#dddadd] mb-2">
                         Interested In
                       </label>
                       <select
@@ -295,7 +295,7 @@ export default function ContactPage() {
 
                   {/* Message */}
                   <div>
-                    <label className="block text-[11px] uppercase tracking-[0.15em] text-[#8e9192] mb-2">
+                    <label className="block text-[11px] uppercase tracking-[0.15em] text-[#dddadd] mb-2">
                       Message <span className="text-red-400">*</span>
                     </label>
                     <textarea
@@ -341,7 +341,7 @@ export default function ContactPage() {
                     )}
                   </button>
 
-                  <p className="text-center text-xs text-[#8e9192]">
+                  <p className="text-center text-xs text-[#dddadd]">
                     Or reach us instantly on{' '}
                     <a
                       href={`https://wa.me/${CONTACT_INFO.whatsapp}`}

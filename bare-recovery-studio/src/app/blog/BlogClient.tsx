@@ -46,14 +46,14 @@ export default function BlogClient({ posts }: BlogClientProps) {
             The Recovery<br />
             <span style={{ color: 'rgba(245,245,242,0.35)' }}>Blog.</span>
           </h1>
-          <p className="text-[#8e9192] text-base max-w-xs leading-relaxed">
+          <p className="text-[#dddadd] text-base max-w-xs leading-relaxed">
             Science-backed insights on recovery, performance, and the discipline of feeling better.
           </p>
         </div>
       </div>
 
       {posts.length === 0 ? (
-        <div className="px-5 md:px-12 max-w-[1320px] mx-auto text-center py-20 text-[#8e9192]">
+        <div className="px-5 md:px-12 max-w-[1320px] mx-auto text-center py-20 text-[#dddadd]">
           <p className="text-lg mb-3">No posts yet.</p>
           <p className="text-sm">Add <code className="bg-white/5 px-2 py-0.5 rounded text-[#c9c6c5]">.md</code> files to the <code className="bg-white/5 px-2 py-0.5 rounded text-[#c9c6c5]">content/blog/</code> directory.</p>
         </div>
@@ -95,7 +95,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
                     {featuredPost.subject}
                   </span>
                   <span
-                    className="px-3 py-1 rounded-full text-xs font-semibold text-[#8e9192] uppercase tracking-wider"
+                    className="px-3 py-1 rounded-full text-xs font-semibold text-[#dddadd] uppercase tracking-wider"
                     style={{ background: 'rgba(255,255,255,0.06)' }}
                   >
                     Featured
@@ -118,10 +118,10 @@ export default function BlogClient({ posts }: BlogClientProps) {
                       )}
                       <span className="text-[#c4c7c7] text-xs font-semibold">{featuredPost.author}</span>
                     </div>
-                    <span className="text-[#8e9192] text-xs">·</span>
-                    <span className="text-[#8e9192] text-xs">{formatDate(featuredPost.date)}</span>
-                    <span className="text-[#8e9192] text-xs">·</span>
-                    <span className="text-[#8e9192] text-xs">{featuredPost.readTime}</span>
+                    <span className="text-[#dddadd] text-xs">·</span>
+                    <span className="text-[#dddadd] text-xs">{formatDate(featuredPost.date)}</span>
+                    <span className="text-[#dddadd] text-xs">·</span>
+                    <span className="text-[#dddadd] text-xs">{featuredPost.readTime}</span>
                     <span
                       className="ml-auto inline-flex items-center gap-2 bg-[#F5F5F2] text-[#0B0B0B] pl-5 pr-2 py-2 rounded-full font-bold text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0"
                     >
@@ -149,7 +149,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
                     className="px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300"
                     style={{
                       background: activeFilter === cat ? '#F5F5F2' : 'rgba(255,255,255,0.05)',
-                      color: activeFilter === cat ? '#0B0B0B' : '#8e9192',
+                      color: activeFilter === cat ? '#0B0B0B' : '#c4c1c4',
                       border: activeFilter === cat ? '1px solid transparent' : '1px solid rgba(255,255,255,0.08)',
                     }}
                   >
@@ -203,15 +203,15 @@ export default function BlogClient({ posts }: BlogClientProps) {
                         <h3 className="font-display font-bold text-lg text-[#F5F5F2] mb-2 leading-tight group-hover:text-white transition-colors line-clamp-2 flex-1">
                           {post.title}
                         </h3>
-                        <p className="text-[#8e9192] text-sm line-clamp-2 leading-relaxed mb-5">{post.excerpt}</p>
+                        <p className="text-[#dddadd] text-sm line-clamp-2 leading-relaxed mb-5">{post.excerpt}</p>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
                             {authorPhotos[post.author] && (
                               <img src={authorPhotos[post.author]} alt={post.author} className="w-6 h-6 rounded-full object-cover object-top" />
                             )}
-                            <span className="text-[#8e9192] text-xs">{post.author}</span>
+                            <span className="text-[#dddadd] text-xs">{post.author}</span>
                           </div>
-                          <div className="flex items-center gap-2 text-xs text-[#8e9192]">
+                          <div className="flex items-center gap-2 text-xs text-[#dddadd]">
                             <span>{formatDate(post.date)}</span>
                             <span>·</span>
                             <span>{post.readTime}</span>
@@ -222,7 +222,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-20 text-[#8e9192]">
+                <div className="text-center py-20 text-[#dddadd]">
                   <p>No posts in this category yet.</p>
                 </div>
               )}
@@ -234,14 +234,14 @@ export default function BlogClient({ posts }: BlogClientProps) {
             className="mt-16 rounded-[28px] p-8 md:p-12 text-center"
             style={{ background: 'rgba(20,20,20,0.8)', border: '1px solid rgba(255,255,255,0.06)' }}
           >
-            <p className="text-[#8e9192] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Put the Science to Work</p>
+            <p className="text-[#dddadd] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Put the Science to Work</p>
             <h2
               className="font-display font-black text-[28px] md:text-[36px] text-[#F5F5F2] mb-3"
               style={{ letterSpacing: '-0.02em' }}
             >
               Ready to recover smarter?
             </h2>
-            <p className="text-[#8e9192] text-sm mb-8 max-w-sm mx-auto leading-relaxed">
+            <p className="text-[#dddadd] text-sm mb-8 max-w-sm mx-auto leading-relaxed">
               Book a session at Bare Recovery Studio, Kompally. Starting from ₹800.
             </p>
             <a

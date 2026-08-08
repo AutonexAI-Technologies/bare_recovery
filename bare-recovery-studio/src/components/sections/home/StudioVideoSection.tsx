@@ -77,7 +77,7 @@ function VideoThumbnail({
       </div>
       <p
         className="mt-2.5 text-sm font-medium leading-snug"
-        style={{ color: '#a8a5a8' }}
+        style={{ color: '#c4c1c4' }}
       >
         {video.title}
       </p>
@@ -112,7 +112,7 @@ export default function StudioVideoSection() {
               className="self-start md:self-auto inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300"
               style={{
                 border: '1px solid rgba(196,193,196,0.16)',
-                color: '#8a878a',
+                color: '#c4c1c4',
               }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLElement
@@ -122,7 +122,7 @@ export default function StudioVideoSection() {
               }}
               onMouseLeave={e => {
                 const el = e.currentTarget as HTMLElement
-                el.style.color = '#8a878a'
+                el.style.color = '#c4c1c4'
                 el.style.borderColor = 'rgba(196,193,196,0.16)'
                 el.style.background = 'transparent'
               }}
@@ -244,9 +244,9 @@ export default function StudioVideoSection() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 text-sm font-medium transition-colors duration-300"
-              style={{ color: '#6e6c6e' }}
+              style={{ color: '#c4c1c4' }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = '#f5f0eb' }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#6e6c6e' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#a8a5a8' }}
             >
               More videos on YouTube
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

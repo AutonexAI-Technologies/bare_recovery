@@ -11,12 +11,12 @@ export default function TermsPage() {
       <div className="pt-32 pb-24 px-5 md:px-16 max-w-[800px] mx-auto">
 
         {/* Header */}
-        <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#8e9192] block mb-4">Legal</span>
+        <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#dddadd] block mb-4">Legal</span>
         <h1 className="font-display text-[40px] md:text-[56px] font-black text-[#F5F5F2] mb-4" style={{ letterSpacing: '-0.03em', lineHeight: 1.0 }}>
           Terms & Conditions
         </h1>
-        <p className="text-[#8e9192] text-sm mb-2">Last updated: June 2025</p>
-        <p className="text-[#8e9192] text-sm mb-12">
+        <p className="text-[#dddadd] text-sm mb-2">Last updated: June 2025</p>
+        <p className="text-[#dddadd] text-sm mb-12">
           These Terms govern all services provided by Bare Recovery Studio. Please read carefully before using our services.
         </p>
 
@@ -97,7 +97,7 @@ export default function TermsPage() {
                 'Bare Recovery Studio reserves the right to cancel or reschedule sessions due to operational or safety requirements, with a full credit or refund provided in such cases.',
               ].map((item, i) => (
                 <li key={i} className="flex gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#BCA386] flex-shrink-0 mt-2" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#f5f0eb] flex-shrink-0 mt-2" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -168,7 +168,7 @@ export default function TermsPage() {
                 'Safety Compliance: All posted temperature, exposure duration, and safety instructions for saunas, ice plunges, and compression units must be followed exactly.',
               ].map((item, i) => (
                 <li key={i} className="flex gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#BCA386] flex-shrink-0 mt-2" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#f5f0eb] flex-shrink-0 mt-2" />
                   <span>{item}</span>
                 </li>
               ))}

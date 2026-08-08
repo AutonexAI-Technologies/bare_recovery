@@ -47,7 +47,7 @@ export default function FounderIntro() {
               >
                 {founderInfo.name}
               </h3>
-              <p className="text-sm mb-8" style={{ color: '#8a878a' }}>{founderInfo.role}</p>
+              <p className="text-sm mb-8" style={{ color: '#dddadd' }}>{founderInfo.role}</p>
 
               {/* Stats grid */}
               <div className="grid grid-cols-3 gap-2 mb-6">
@@ -68,7 +68,7 @@ export default function FounderIntro() {
                     </p>
                     <p
                       className="text-[8px] md:text-[9px] uppercase tracking-[0.10em] leading-tight"
-                      style={{ color: '#6e6c6e' }}
+                      style={{ color: '#c4c1c4' }}
                     >
                       {stat.label}
                     </p>
@@ -86,7 +86,7 @@ export default function FounderIntro() {
               >
                 <span className="text-lg mt-0.5">🎯</span>
                 <div>
-                  <p className="text-[9px] uppercase tracking-[0.18em] mb-1" style={{ color: '#6e6c6e' }}>Philosophy</p>
+                  <p className="text-[9px] uppercase tracking-[0.18em] mb-1" style={{ color: '#dddadd' }}>Philosophy</p>
                   <p className="font-display text-sm" style={{ color: '#f5f0eb' }}>
                     &ldquo;{founderInfo.philosophy?.tagline ?? 'Consistency beats intensity every time.'}&rdquo;
                   </p>
@@ -102,7 +102,7 @@ export default function FounderIntro() {
                     style={{
                       background: 'rgba(61,59,61,0.80)',
                       border: '1px solid rgba(196,193,196,0.06)',
-                      color: '#8a878a',
+                      color: '#c4c1c4',
                     }}
                   >
                     {badge}
@@ -121,10 +121,10 @@ export default function FounderIntro() {
             style={{ letterSpacing: '-0.025em', lineHeight: 1.1, color: '#f5f0eb' }}
           >
             Built by an athlete,<br />
-            <span style={{ color: '#6e6c6e' }}>for athletes.</span>
+            <span style={{ color: '#dddadd' }}>for athletes.</span>
           </h2>
 
-          <div className="space-y-4 text-[15px] leading-[1.80] mb-8" style={{ color: '#8a878a' }}>
+          <div className="space-y-4 text-[15px] leading-[1.80] mb-8" style={{ color: '#dddadd' }}>
             {founderInfo.bio.split('\n\n').map((para, i) => (
               <p key={i}>{para}</p>
             ))}
@@ -142,7 +142,7 @@ export default function FounderIntro() {
             <p className="font-display text-lg" style={{ color: '#f5f0eb' }}>
               &ldquo;Consistency beats intensity every time. BE BORING.&rdquo;
             </p>
-            <p className="text-xs mt-2" style={{ color: '#6e6c6e' }}>— {founderInfo.name}, Founder</p>
+            <p className="text-xs mt-2" style={{ color: '#dddadd' }}>— {founderInfo.name}, Founder</p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3">
@@ -163,13 +163,13 @@ export default function FounderIntro() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold text-sm transition-all duration-300"
-              style={{ border: '1px solid rgba(196,193,196,0.16)', color: '#8a878a' }}
+              style={{ border: '1px solid rgba(196,193,196,0.16)', color: '#c4c1c4' }}
               onMouseEnter={e => {
                 (e.currentTarget as HTMLElement).style.color = '#f5f0eb'
                 ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,193,196,0.32)'
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.color = '#8a878a'
+                (e.currentTarget as HTMLElement).style.color = '#c4c1c4'
                 ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,193,196,0.16)'
               }}
             >
@@ -180,13 +180,13 @@ export default function FounderIntro() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold text-sm transition-all duration-300"
-              style={{ border: '1px solid rgba(196,193,196,0.16)', color: '#8a878a' }}
+              style={{ border: '1px solid rgba(196,193,196,0.16)', color: '#c4c1c4' }}
               onMouseEnter={e => {
                 (e.currentTarget as HTMLElement).style.color = '#f5f0eb'
                 ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,193,196,0.32)'
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.color = '#8a878a'
+                (e.currentTarget as HTMLElement).style.color = '#c4c1c4'
                 ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,193,196,0.16)'
               }}
             >

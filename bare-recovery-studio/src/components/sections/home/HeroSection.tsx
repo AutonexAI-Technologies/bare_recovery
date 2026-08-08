@@ -135,7 +135,7 @@ export default function HeroSection() {
           <p
             className="text-[13px] leading-[1.65] mb-6"
             style={{
-              color: '#a8a5a8',
+              color: '#c4c1c4',
               maxWidth: 320,
               transform: mounted ? 'translateY(0)' : 'translateY(16px)',
               transition: 'transform 0.9s cubic-bezier(0.32,0.72,0,1) 0.64s',
@@ -193,9 +193,9 @@ export default function HeroSection() {
             }}
           >
             {[
-              { icon: '⚡', value: '6 Modalities' },
+              { icon: '⚡', value: '6 Services' },
               { icon: '🔒', value: 'Private Sessions' },
-              { icon: '🕐', value: '10 AM – 10:30 PM' },
+              { icon: '🕐', value: '10 AM – 10 PM' },
               { icon: '₹', value: 'From ₹799' },
             ].map((stat) => (
               <div
@@ -209,7 +209,7 @@ export default function HeroSection() {
                 }}
               >
                 <span className="text-sm flex-shrink-0">{stat.icon}</span>
-                <span className="text-[11px] font-semibold truncate" style={{ color: '#c4c1c4' }}>{stat.value}</span>
+                <span className="text-[11px] font-semibold truncate" style={{ color: '#dddadd' }}>{stat.value}</span>
               </div>
             ))}
           </div>
@@ -262,7 +262,7 @@ export default function HeroSection() {
           <p
             className="text-[15px] md:text-[17px] leading-[1.70] mb-9"
             style={{
-              color: '#a8a5a8',
+              color: '#c4c1c4',
               maxWidth: 400,
               transform: mounted ? 'translateY(0)' : 'translateY(16px)',
               transition: 'transform 0.9s cubic-bezier(0.32,0.72,0,1) 0.62s',
@@ -334,9 +334,9 @@ export default function HeroSection() {
             style={{ opacity: mounted ? 1 : 0, transition: 'opacity 0.9s ease 0.95s' }}
           >
             {[
-              { icon: '⚡', value: '6 Modalities' },
+              { icon: '⚡', value: '6 Services' },
               { icon: '🔒', value: 'Private Sessions' },
-              { icon: '🕐', value: '10 AM – 10:30 PM' },
+              { icon: '🕐', value: '10 AM – 10 PM' },
               { icon: '₹', value: 'From ₹799' },
             ].map((stat) => (
               <div
@@ -349,7 +349,7 @@ export default function HeroSection() {
                 }}
               >
                 <span className="text-sm">{stat.icon}</span>
-                <span className="text-[11px] font-semibold" style={{ color: '#c4c1c4' }}>{stat.value}</span>
+                <span className="text-[11px] font-semibold" style={{ color: '#dddadd' }}>{stat.value}</span>
               </div>
             ))}
           </div>
@@ -361,7 +361,7 @@ export default function HeroSection() {
         className="hidden md:flex absolute bottom-7 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-2"
         style={{ opacity: mounted ? 0.55 : 0, transition: 'opacity 1s ease 1.3s' }}
       >
-        <span className="text-[9px] uppercase tracking-[0.35em]" style={{ color: '#6e6c6e' }}>Scroll</span>
+        <span className="text-[9px] uppercase tracking-[0.35em]" style={{ color: '#dddadd' }}>Scroll</span>
         <div className="w-px h-8 overflow-hidden relative">
           <div
             className="absolute inset-x-0 h-1/2 rounded-full"
@@ -402,7 +402,7 @@ export default function HeroSection() {
               <span
                 key={i}
                 className="inline-flex items-center gap-6 text-[10px] md:text-[11px] font-semibold tracking-[0.24em] uppercase px-6"
-                style={{ color: '#6e6c6e' }}
+                style={{ color: '#c4c1c4' }}
               >
                 {item}
                 <span className="inline-block w-[3px] h-[3px] rounded-full flex-shrink-0" style={{ background: 'rgba(196,193,196,0.25)' }} />
