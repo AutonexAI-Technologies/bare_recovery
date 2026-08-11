@@ -11,7 +11,7 @@ const plans = [
     period: '/ session',
     description: 'Perfect for first-timers or occasional recovery.',
     features: [
-      { text: '1 modality of your choice' },
+      { text: '1 service of your choice' },
       { text: 'Guided 20–30 minute session' },
       { text: 'Private access — no crowds' },
       { text: 'Coach consultation included' },
@@ -24,9 +24,9 @@ const plans = [
     label: 'Full Circuit',
     price: '₹2,499',
     period: '/ session',
-    description: 'The complete recovery stack. Every modality. Maximum results.',
+    description: 'The complete recovery stack. Every service. Maximum results.',
     features: [
-      { text: 'All 6 modalities, curated sequence' },
+      { text: 'All 6 services, curated sequence' },
       { text: '60+ minute guided session' },
       { text: 'Performance coach assessment' },
       { text: 'Protocol designed for your goals' },
@@ -43,7 +43,7 @@ const plans = [
     period: '/ month',
     description: 'Built for serious athletes and consistent performers.',
     features: [
-      { text: 'Unlimited single-modality sessions' },
+      { text: 'Unlimited single-service sessions' },
       { text: 'Priority booking every week' },
       { text: 'Monthly protocol review' },
       { text: 'Member-only pricing on circuits' },

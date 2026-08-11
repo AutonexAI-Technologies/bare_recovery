@@ -21,7 +21,7 @@ const steps = [
     num: '03',
     title: 'Execute',
     headline: 'Guided protocol',
-    desc: 'Step through your custom sequence — Full Circuit, Contrast, or single modality. Every temperature, duration, and transition is coached.',
+    desc: 'Step through your custom sequence — Full Circuit, Contrast, or single service. Every temperature, duration, and transition is coached.',
     icon: '⚡',
     duration: '20–60 minutes',
   },

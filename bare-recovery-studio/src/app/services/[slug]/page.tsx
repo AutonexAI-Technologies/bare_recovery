@@ -9,6 +9,7 @@ const serviceImages: Record<string, string> = {
   'compression-therapy': '/images/services/compression-therapy.PNG',
   'red-light-therapy': '/images/services/redlight-therapy.PNG',
   'traditional-sauna': '/images/services/sauna.PNG',
+  'infrared-sauna': '/images/services/infrared-sauna.PNG',
   'cold-plunge': '/images/services/cold-plunge.PNG',
   'contrast-therapy': '/images/services/contrast-therapy.PNG',
 }
@@ -18,6 +19,7 @@ const serviceThumbs: Record<string, string> = {
   'compression-therapy': '/images/services/compression-therapy.PNG',
   'red-light-therapy': '/images/services/redlight-therapy.PNG',
   'traditional-sauna': '/images/services/sauna.PNG',
+  'infrared-sauna': '/images/services/infrared-sauna.PNG',
   'cold-plunge': '/images/services/cold-plunge.PNG',
   'contrast-therapy': '/images/services/contrast-therapy.PNG',
 }
@@ -47,6 +49,11 @@ const howItWorks: Record<string, { step: string; title: string; desc: string }[]
     { step: '01', title: 'Sauna Round (15–20 min)', desc: 'Begin with heat. Vasodilation opens blood vessels, muscles relax, and circulation increases.' },
     { step: '02', title: 'Cold Plunge (2–3 min)', desc: 'Rapid vasoconstriction. The temperature contrast creates a powerful vascular pump effect.' },
     { step: '03', title: 'Repeat 2–3 Rounds', desc: 'Each cycle compounds the effect. Athletes report feeling completely reset after a full contrast session.' },
+  ],
+  'infrared-sauna': [
+    { step: '01', title: 'Settle Into the Heat', desc: 'Step into the infrared sauna. Unlike traditional saunas, the air stays comfortable while the infrared wavelengths begin penetrating deep into your tissues.' },
+    { step: '02', title: 'Deep Tissue Warming', desc: 'Far-infrared light heats your body from within — raising core temperature efficiently at 45–60°C, triggering a deeper sweat and detox response.' },
+    { step: '03', title: 'Recover & Rejuvenate', desc: 'Inflammation reduces, muscles relax, circulation improves, and collagen synthesis activates. You leave feeling deeply restored.' },
   ],
 }
 

@@ -45,7 +45,7 @@ const services = [
     price: 'From ₹999',
     image: '/images/services/infrared-sauna.PNG',
     label: 'DEEP HEAT',
-    href: '/services/traditional-sauna',
+    href: '/services/infrared-sauna',
     objectPosition: 'center top',
   },
   {

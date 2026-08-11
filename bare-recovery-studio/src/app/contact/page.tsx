@@ -7,6 +7,7 @@ const services = [
   'Compression Therapy',
   'Red Light Therapy',
   'Traditional Sauna',
+  'Infrared Sauna',
   'Cold Plunge',
   'Contrast Therapy',
   'Full Circuit',
@@ -174,9 +175,9 @@ export default function ContactPage() {
               <p className="text-[11px] uppercase tracking-[0.18em] text-[#dddadd] mb-4">Studio Hours</p>
               <div className="space-y-2">
                 {[
-                  { days: 'Monday – Friday', hours: '10:00 AM – 22:30 PM' },
-                  { days: 'Saturday', hours: '10:00 AM – 22:30 PM' },
-                  { days: 'Sunday', hours: '10:00 AM – 22:30 PM' },
+                  { days: 'Monday – Friday', hours: '10:00 AM – 10:00 PM' },
+                  { days: 'Saturday', hours: '10:00 AM – 10:00 PM' },
+                  { days: 'Sunday', hours: '10:00 AM – 10:00 PM' },
                 ].map((h) => (
                   <div key={h.days} className="flex justify-between text-sm">
                     <span className="text-[#dddadd]">{h.days}</span>

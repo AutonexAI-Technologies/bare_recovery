@@ -282,7 +282,103 @@ Regular sauna use has been linked to improved cardiovascular function, reduced s
         },
     },
 
-    // SERVICE 4: COLD PLUNGE
+    // SERVICE 4: INFRARED SAUNA
+    {
+        id: 'infrared-sauna',
+        name: 'Infrared Sauna',
+        slug: 'infrared-sauna',
+        tagline: 'Deep-penetrating infrared heat therapy for detoxification, pain relief, and cellular recovery',
+        description: `Unlike traditional saunas that heat the air around you, our infrared sauna uses far-infrared wavelengths to directly penetrate deep into your body's tissues — up to 1.5 inches — raising your core temperature more efficiently at a lower ambient temperature (around 45–60°C).
+
+This means you sweat more, detoxify deeper, and recover faster while experiencing a gentler, more comfortable heat. Infrared sauna therapy has been clinically studied for its benefits in pain relief, cardiovascular health, skin rejuvenation, and athletic recovery.`,
+        duration: '15-30 minutes',
+
+        benefits: [
+            {
+                icon: 'check-circle',
+                text: 'Deep tissue detoxification',
+                detail: 'Infrared heat penetrates up to 1.5 inches into tissues, promoting a deeper, more thorough sweat and toxin release compared to traditional saunas.',
+            },
+            {
+                icon: 'check-circle',
+                text: 'Relieves joint and muscle pain',
+                detail: 'Far-infrared wavelengths reduce inflammation and improve circulation, providing significant relief for sore muscles and stiff joints.',
+            },
+            {
+                icon: 'check-circle',
+                text: 'Supports cardiovascular health',
+                detail: 'Regular infrared sauna use mimics mild cardiovascular exercise, improving heart rate variability and circulation.',
+            },
+            {
+                icon: 'check-circle',
+                text: 'Improves skin tone and texture',
+                detail: 'Infrared light stimulates collagen production and increases circulation to skin cells, improving tone, elasticity, and clarity.',
+            },
+            {
+                icon: 'check-circle',
+                text: 'Promotes deep relaxation',
+                detail: 'The gentle radiant heat calms the nervous system, lowers cortisol, and promotes a deep parasympathetic relaxation response.',
+            },
+            {
+                icon: 'check-circle',
+                text: 'Enhances athletic recovery',
+                detail: 'Accelerates muscle repair, reduces delayed onset muscle soreness (DOMS), and speeds up overall recovery time.',
+            },
+        ],
+
+        pricing: {
+            single: 999,
+            couple: 1399,
+        },
+
+        images: {
+            hero: '/images/services/infrared-sauna.PNG',
+            detail: '/images/services/infrared-sauna.PNG',
+            gallery: [
+                '/images/services/infrared-sauna.PNG',
+            ],
+        },
+
+        coachInsight: 'Infrared sauna is my preferred recovery tool after long training blocks. The deep penetrating heat targets muscle fatigue at a cellular level. It\'s gentler than a traditional sauna, so you can stay in longer and get more out of each session.',
+
+        relatedServices: ['traditional-sauna', 'red-light-therapy'],
+
+        faqs: [
+            {
+                question: 'How is infrared sauna different from a traditional sauna?',
+                answer: 'Traditional saunas heat the air around you (160–180°F), while infrared saunas use light waves to directly heat your body at lower temperatures (130–150°F). This means you absorb more heat, sweat more efficiently, and experience a deeper detox with more comfort.',
+            },
+            {
+                question: 'How long is a session?',
+                answer: '15–30 minutes is recommended. Beginners should start with 15 minutes and build up gradually as your body adapts to the heat.',
+            },
+            {
+                question: 'What should I wear?',
+                answer: 'Minimal clothing is best for maximum infrared absorption. We provide private, comfortable rooms for your session.',
+            },
+            {
+                question: 'Is infrared sauna safe?',
+                answer: 'Yes, infrared sauna is safe for most people. The lower ambient temperature makes it more tolerable than traditional saunas. Avoid if pregnant or if you have uncontrolled cardiovascular conditions — consult your physician if unsure.',
+            },
+            {
+                question: 'How often should I use the infrared sauna?',
+                answer: '3–5 times per week yields the best results. Benefits are cumulative — consistent use over weeks and months produces the most significant improvements.',
+            },
+            {
+                question: 'Can I combine infrared sauna with other services?',
+                answer: 'Absolutely. Pairing infrared sauna with red light therapy or cold plunge creates a powerful recovery stack. Our team can help you design a protocol based on your goals.',
+            },
+        ],
+
+        metadata: {
+            title: 'Infrared Sauna | Deep Heat Therapy | Bare Recovery Studio',
+            description: 'Infrared sauna therapy in Kompally. Deep-penetrating heat for detoxification, pain relief, and recovery. 15-30 minute sessions. ₹999 single, ₹1,399 couple.',
+            keywords: ['infrared sauna Hyderabad', 'infrared sauna Kompally', 'far infrared therapy', 'detox sauna Secunderabad'],
+            ogImage: '/images/services/infrared-sauna.PNG',
+        },
+    },
+
+    // SERVICE 5: COLD PLUNGE
     {
         id: 'cold-plunge',
         name: 'Cold Plunge',
@@ -435,7 +531,7 @@ The rapid vasodilation (heat) and vasoconstriction (cold) creates a "pumping" ef
             },
             {
                 question: 'Is contrast therapy better than sauna or cold plunge alone?',
-                answer: 'It provides synergistic benefits—the alternating heat and cold creates effects you don\'t get from either modality alone. This is why it\'s our signature protocol.',
+                answer: 'It provides synergistic benefits—the alternating heat and cold creates effects you don\'t get from either service alone. This is why it\'s our signature protocol.',
             },
             {
                 question: 'Who should use contrast therapy?',

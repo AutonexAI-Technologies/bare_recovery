@@ -5,13 +5,14 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Services | Bare Recovery Studio',
-  description: 'Explore Bare Recovery Studio\'s 5 science-backed recovery services: Cold Plunge, Contrast Therapy, Traditional Sauna, Red Light Therapy, and Compression Therapy in Kompally.',
+  description: 'Explore Bare Recovery Studio\'s 6 science-backed recovery services: Cold Plunge, Contrast Therapy, Traditional Sauna, Infrared Sauna, Red Light Therapy, and Compression Therapy in Kompally.',
 }
 
 const serviceImages: Record<string, string> = {
   'compression-therapy': '/images/services/compression-therapy.PNG',
   'red-light-therapy': '/images/services/redlight-therapy.PNG',
   'traditional-sauna': '/images/services/sauna.PNG',
+  'infrared-sauna': '/images/services/infrared-sauna.PNG',
   'cold-plunge': '/images/services/cold-plunge.PNG',
   'contrast-therapy': '/images/services/contrast-therapy.PNG',
 }
@@ -35,6 +36,7 @@ export default function ServicesPage() {
     services.find(s => s.id === 'contrast-therapy')!,
     services.find(s => s.id === 'cold-plunge')!,
     services.find(s => s.id === 'traditional-sauna')!,
+    services.find(s => s.id === 'infrared-sauna')!,
     services.find(s => s.id === 'red-light-therapy')!,
     services.find(s => s.id === 'compression-therapy')!,
   ].filter(Boolean)
@@ -53,7 +55,7 @@ export default function ServicesPage() {
             style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#c9c6c5] animate-pulse" />
-            5 Recovery Modalities
+            6 Recovery Modalities
           </span>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <h1
@@ -63,7 +65,7 @@ export default function ServicesPage() {
               Recovery<br /><span style={{ color: 'rgba(245,245,242,0.3)' }}>Services.</span>
             </h1>
             <p className="text-[#dddadd] text-sm md:text-base max-w-xs leading-relaxed md:pb-3">
-              Every modality backed by science. Delivered in a private studio with guided coaching available on request.
+              Every service backed by science. Delivered in a private studio with guided coaching available on request.
             </p>
           </div>
         </div>
@@ -154,9 +156,9 @@ export default function ServicesPage() {
               className="font-display font-light text-[#F5F5F2] mb-1"
               style={{ fontSize: 'clamp(24px, 3vw, 36px)', letterSpacing: '-0.04em', lineHeight: 1 }}
             >
-              Full Circuit — All 5 Services
+              Full Circuit — All 6 Services
             </h3>
-            <p className="text-[#dddadd] text-sm">Cold Plunge + Contrast + Sauna + Red Light + Compression in one premium session</p>
+            <p className="text-[#dddadd] text-sm">Cold Plunge + Contrast + Sauna + Infrared Sauna + Red Light + Compression in one premium session</p>
           </div>
           <div className="flex items-center gap-6 shrink-0">
             <div>

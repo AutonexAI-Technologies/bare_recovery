@@ -122,7 +122,7 @@ export default function RecoveryScience() {
               <span style={{ color: '#dddadd' }}>Not a wellness trend.</span>
             </h2>
             <p className="text-sm mt-4 max-w-lg mx-auto" style={{ color: '#dddadd' }}>
-              Every modality at Bare Recovery is supported by peer-reviewed research and used by elite sports teams worldwide.
+              Every service at Bare Recovery is supported by peer-reviewed research and used by elite sports teams worldwide.
             </p>
           </div>
         </FadeIn>

@@ -2,7 +2,7 @@ import FadeIn from '@/components/animations/FadeIn'
 import StaggerChildren from '@/components/animations/StaggerChildren'
 
 const values = [
-  { icon: '🔬', title: 'Evidence-Based', desc: 'Every modality we offer has peer-reviewed research behind it. No pseudoscience.' },
+  { icon: '🔬', title: 'Evidence-Based', desc: 'Every service we offer has peer-reviewed research behind it. No pseudoscience.' },
   { icon: '🎯', title: 'Consistency First', desc: 'We embody the "BE BORING" philosophy — showing up consistently beats intensity every time.' },
   { icon: '🤝', title: 'Community', desc: 'We\'re building a community of people serious about their health and performance.' },
   { icon: '💡', title: 'Education', desc: 'We want every member to understand why they\'re recovering, not just how.' },
