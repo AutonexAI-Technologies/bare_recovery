@@ -113,7 +113,7 @@ export default function HeroSection() {
               Recover
             </h1>
           </div>
-          <div className="mb-5 overflow-hidden" style={{ background: 'transparent' }}>
+          <div className="mb-8 overflow-hidden" style={{ background: 'transparent' }}>
             <h1
               className="font-display uppercase leading-[0.88] block"
               style={{
@@ -130,21 +130,6 @@ export default function HeroSection() {
               Perform
             </h1>
           </div>
-
-          {/* Descriptor */}
-          <p
-            className="text-[13px] leading-[1.65] mb-6"
-            style={{
-              color: '#c4c1c4',
-              maxWidth: 320,
-              transform: mounted ? 'translateY(0)' : 'translateY(16px)',
-              transition: 'transform 0.9s cubic-bezier(0.32,0.72,0,1) 0.64s',
-              textShadow: '0 2px 8px rgba(0,0,0,0.60)',
-            }}
-          >
-            Cold plunge, contrast therapy, red light, sauna &amp; compression —
-            science-backed recovery under one roof.
-          </p>
 
           {/* CTAs row */}
           <div
@@ -242,7 +227,7 @@ export default function HeroSection() {
               Recover
             </h1>
           </div>
-          <div className="overflow-hidden mb-8" style={{ background: 'transparent' }}>
+          <div className="overflow-hidden mb-10" style={{ background: 'transparent' }}>
             <h1
               className="font-display uppercase leading-[0.90]"
               style={{
@@ -258,19 +243,6 @@ export default function HeroSection() {
               Perform
             </h1>
           </div>
-
-          <p
-            className="text-[15px] md:text-[17px] leading-[1.70] mb-9"
-            style={{
-              color: '#c4c1c4',
-              maxWidth: 400,
-              transform: mounted ? 'translateY(0)' : 'translateY(16px)',
-              transition: 'transform 0.9s cubic-bezier(0.32,0.72,0,1) 0.62s',
-            }}
-          >
-            Cold plunge, contrast therapy, red light, sauna &amp; compression —
-            science-backed recovery under one roof.
-          </p>
 
           <div
             className="flex items-center gap-3 mb-10"

@@ -21,7 +21,7 @@ const contactCards = [
     id: 'wa',
     label: 'WhatsApp',
     value: '+91 76708 61496',
-    sub: 'Fastest response — typically under 1 hour',
+    sub: 'Chat with us — typically replies under 1 hour',
     href: `https://wa.me/${CONTACT_INFO.whatsapp}?text=Hi!%20I'd%20like%20to%20know%20more.`,
     external: true,
     accent: '#25D366',
@@ -155,7 +155,15 @@ export default function ContactPage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-[11px] uppercase tracking-[0.18em] text-[#dddadd] mb-1">{c.label}</p>
-                  <p className="font-display font-semibold text-[#F5F5F2] text-base leading-tight truncate group-hover:text-white transition-colors">{c.value}</p>
+                  <p
+                    className={`font-semibold text-[#F5F5F2] leading-tight truncate group-hover:text-white transition-colors ${
+                      c.id === 'wa'
+                        ? 'text-[17px] tracking-[0.06em] font-mono'
+                        : 'font-display text-base'
+                    }`}
+                  >
+                    {c.value}
+                  </p>
                   <p className="text-[#dddadd] text-xs mt-0.5">{c.sub}</p>
                 </div>
                 <svg
