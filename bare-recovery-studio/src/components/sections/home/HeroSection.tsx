@@ -129,6 +129,36 @@ export default function HeroSection() {
             </h1>
           </div>
 
+          {/* Sale urgency badge */}
+          <div
+            className="flex items-center gap-2 mb-4"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transition: 'opacity 0.7s ease 0.65s',
+            }}
+          >
+            <span
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                fontSize: 10,
+                fontWeight: 800,
+                letterSpacing: '0.16em',
+                textTransform: 'uppercase',
+                color: '#fff',
+                background: 'linear-gradient(90deg,#dc2626,#ea580c)',
+                padding: '5px 12px',
+                borderRadius: 9999,
+                boxShadow: '0 0 16px rgba(220,38,38,0.50)',
+                animation: 'heroBadgePulse 2.5s infinite ease-in-out',
+              }}
+            >
+              🔥 Launch Sale — 50% Off
+            </span>
+            <span style={{ fontSize: 10, color: 'rgba(196,193,196,0.70)', letterSpacing: '0.04em' }}>Limited period</span>
+          </div>
+
           {/* CTAs row */}
           <div
             className="flex items-center gap-3 mb-5"
@@ -239,6 +269,36 @@ export default function HeroSection() {
             >
               Perform
             </h1>
+          </div>
+
+          {/* Sale urgency badge — desktop */}
+          <div
+            className="flex items-center gap-2 mb-5"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transition: 'opacity 0.7s ease 0.65s',
+            }}
+          >
+            <span
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                fontSize: 10,
+                fontWeight: 800,
+                letterSpacing: '0.16em',
+                textTransform: 'uppercase',
+                color: '#fff',
+                background: 'linear-gradient(90deg,#dc2626,#ea580c)',
+                padding: '5px 12px',
+                borderRadius: 9999,
+                boxShadow: '0 0 16px rgba(220,38,38,0.50)',
+                animation: 'heroBadgePulse 2.5s infinite ease-in-out',
+              }}
+            >
+              🔥 Launch Sale — 50% Off
+            </span>
+            <span style={{ fontSize: 10, color: 'rgba(196,193,196,0.70)', letterSpacing: '0.04em' }}>Limited period</span>
           </div>
 
           <div

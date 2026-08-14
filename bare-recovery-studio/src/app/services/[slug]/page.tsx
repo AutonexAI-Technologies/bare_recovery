@@ -202,6 +202,14 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             style={{ background: 'rgba(20,20,20,0.8)', border: '1px solid rgba(255,255,255,0.06)' }}
           >
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#dddadd]">At A Glance</p>
+            {/* Sale callout */}
+            <div className="rounded-xl p-3 flex items-center gap-3" style={{ background: 'linear-gradient(135deg,rgba(127,29,29,0.50),rgba(154,52,18,0.40))', border: '1px solid rgba(220,38,38,0.28)' }}>
+              <span className="text-base shrink-0">🔥</span>
+              <div>
+                <p className="text-xs font-black uppercase tracking-wider" style={{ color: '#fca5a5' }}>50% Off — Launch Sale</p>
+                <p className="text-[10px] mt-0.5" style={{ color: 'rgba(252,165,165,0.70)' }}>ICN Athletes: 50% off every visit on registration</p>
+              </div>
+            </div>
             <div className="space-y-4">
               <div className="flex justify-between items-center py-3 border-b border-white/[0.06]">
                 <span className="text-[#dddadd] text-sm">Duration</span>

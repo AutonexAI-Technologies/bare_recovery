@@ -8,7 +8,7 @@ const services = [
     id: 'cold-plunge',
     name: 'Cold Plunge',
     tagline: 'Full-body immersion at 10–15°C. Sharpen the mind, kill inflammation.',
-    duration: '2–5 min',
+    duration: '10–15 min',
     price: 'From ₹1,199',
     image: '/images/services/cold-plunge.PNG',
     label: 'HIGH INTENSITY',
@@ -52,7 +52,7 @@ const services = [
     id: 'red-light-therapy',
     name: 'Red Light Therapy',
     tagline: 'Cellular repair at 660nm & 850nm. Medical-grade photobiomodulation.',
-    duration: '10–20 min',
+    duration: '30–40 min',
     price: '₹799',
     image: '/images/services/redlight-therapy.PNG',
     label: 'CELLULAR',
@@ -63,7 +63,7 @@ const services = [
     id: 'compression-therapy',
     name: 'Compression Therapy',
     tagline: 'Dynamic air pressure that flushes metabolic waste and restores circulation.',
-    duration: '20–30 min',
+    duration: '30–40 min',
     price: 'From ₹799',
     image: '/images/services/compression-therapy.PNG',
     label: 'LYMPHATIC',
@@ -136,6 +136,27 @@ function ServiceCard({
           }}
           className="group-hover:bg-black/10"
         />
+
+        {/* 50% OFF sale ribbon — top right */}
+        <span
+          style={{
+            position: 'absolute',
+            top: 12,
+            right: 12,
+            fontSize: 9,
+            fontWeight: 900,
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            color: '#fff',
+            background: 'linear-gradient(90deg,#dc2626,#ea580c)',
+            padding: '4px 10px',
+            borderRadius: 9999,
+            boxShadow: '0 0 12px rgba(220,38,38,0.45)',
+            zIndex: 10,
+          }}
+        >
+          50% OFF
+        </span>
 
         {/* Top label */}
         <span

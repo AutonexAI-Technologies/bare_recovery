@@ -1,64 +1,82 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { CONTACT_INFO } from '@/lib/constants'
 
 const waBase = `https://wa.me/${CONTACT_INFO.whatsapp}?text=`
 const bookMsg = (service: string) => encodeURIComponent(`Hi! I'd like to book a ${service} session at Bare Recovery Studio.`)
 
+// MRP = sale price × 2 → exactly 50% off across the board
 const singleSessions = [
-  { name: 'Full Circuit', desc: 'All 6 services in one premium session', price: 2999, mrpPrice: 5595, tag: 'complete', featured: true, note: 'vs buying all individually', href: waBase + bookMsg('Full Circuit') },
-  { name: 'Contrast Therapy', desc: 'Sauna + Cold Plunge — the signature stack', price: 1799, mrpPrice: 2499, note: 'introductory rate', href: waBase + bookMsg('Contrast Therapy') },
-  { name: 'Cold Plunge', desc: 'Full body cold immersion at 10–15°C', price: 1199, mrpPrice: 1699, note: 'introductory rate', href: waBase + bookMsg('Cold Plunge') },
-  { name: 'Traditional Sauna', desc: 'Dry heat at 70–80°C for deep recovery', price: 999, mrpPrice: 1399, note: 'introductory rate', href: waBase + bookMsg('Traditional Sauna') },
-  { name: 'Red Light Therapy', desc: '660nm & 850nm photobiomodulation', price: 799, mrpPrice: 1099, note: 'introductory rate', href: waBase + bookMsg('Red Light Therapy') },
-  { name: 'Compression — Upper Body', desc: 'Dynamic air compression for upper limbs', price: 799, mrpPrice: 1099, note: 'introductory rate', href: waBase + bookMsg('Compression Therapy (Upper Body)') },
-  { name: 'Compression — Lower Body', desc: 'Dynamic air compression for legs & hips', price: 799, mrpPrice: 1099, note: 'introductory rate', href: waBase + bookMsg('Compression Therapy (Lower Body)') },
-  { name: 'Compression — Full Body', desc: 'Upper + Lower body compression together', price: 1399, mrpPrice: 1799, note: 'introductory rate', href: waBase + bookMsg('Compression Therapy (Full Body)') },
+  { name: 'Full Circuit', desc: 'All 6 services in one premium session', price: 2999, mrpPrice: 5998, tag: 'complete', featured: true, note: 'vs buying all individually', duration: '60–90 min', href: waBase + bookMsg('Full Circuit') },
+  { name: 'Contrast Therapy', desc: 'Sauna + Cold Plunge — the signature stack', price: 1799, mrpPrice: 3598, note: 'introductory rate', duration: '20–40 min', href: waBase + bookMsg('Contrast Therapy') },
+  { name: 'Cold Plunge', desc: 'Full body cold immersion at 10–15°C', price: 1199, mrpPrice: 2398, note: 'introductory rate', duration: '10–15 min', href: waBase + bookMsg('Cold Plunge') },
+  { name: 'Traditional Sauna', desc: 'Dry heat at 70–80°C for deep recovery', price: 999, mrpPrice: 1998, note: 'introductory rate', duration: '15–30 min', href: waBase + bookMsg('Traditional Sauna') },
+  { name: 'Red Light Therapy', desc: '660nm & 850nm photobiomodulation', price: 799, mrpPrice: 1598, note: 'introductory rate', duration: '30–40 min', href: waBase + bookMsg('Red Light Therapy') },
+  { name: 'Compression — Upper Body', desc: 'Dynamic air compression for upper limbs', price: 799, mrpPrice: 1598, note: 'introductory rate', duration: '30–40 min', href: waBase + bookMsg('Compression Therapy (Upper Body)') },
+  { name: 'Compression — Lower Body', desc: 'Dynamic air compression for legs & hips', price: 799, mrpPrice: 1598, note: 'introductory rate', duration: '30–40 min', href: waBase + bookMsg('Compression Therapy (Lower Body)') },
+  { name: 'Compression — Full Body', desc: 'Upper + Lower body compression together', price: 1399, mrpPrice: 2798, note: 'introductory rate', duration: '30–40 min', href: waBase + bookMsg('Compression Therapy (Full Body)') },
 ]
 
 const coupleSessions = [
-  { name: 'Full Circuit', desc: 'All 6 services — best shared experience', price: 4799, mrpPrice: 5998, featured: true, note: 'save ₹1,199 vs 2 singles', href: waBase + bookMsg('Full Circuit Couple') },
-  { name: 'Contrast Therapy', desc: 'Sauna + Cold Plunge for two', price: 2199, mrpPrice: 3598, note: 'save ₹1,399 vs 2 singles', href: waBase + bookMsg('Contrast Therapy Couple') },
-  { name: 'Cold Plunge', desc: 'Side-by-side cold immersion', price: 1599, mrpPrice: 2398, note: 'save ₹799 vs 2 singles', href: waBase + bookMsg('Cold Plunge Couple') },
-  { name: 'Traditional Sauna', desc: 'Shared heat session for two', price: 1399, mrpPrice: 1998, note: 'save ₹599 vs 2 singles', href: waBase + bookMsg('Traditional Sauna Couple') },
+  { name: 'Full Circuit', desc: 'All 6 services — best shared experience', price: 4799, mrpPrice: 9598, featured: true, note: 'save ₹4,799 vs 2 singles', duration: '60–90 min', href: waBase + bookMsg('Full Circuit Couple') },
+  { name: 'Contrast Therapy', desc: 'Sauna + Cold Plunge for two', price: 2199, mrpPrice: 4398, note: 'save ₹2,199 vs 2 singles', duration: '20–40 min', href: waBase + bookMsg('Contrast Therapy Couple') },
+  { name: 'Cold Plunge', desc: 'Side-by-side cold immersion', price: 1599, mrpPrice: 3198, note: 'save ₹1,599 vs 2 singles', duration: '10–15 min', href: waBase + bookMsg('Cold Plunge Couple') },
+  { name: 'Traditional Sauna', desc: 'Shared heat session for two', price: 1399, mrpPrice: 2798, note: 'save ₹1,399 vs 2 singles', duration: '15–30 min', href: waBase + bookMsg('Traditional Sauna Couple') },
 ]
 
 const memberships = [
-  { id: 'monthly', label: '1 Month', sessions: 5, type: 'Recovery Stack', price: 8999, mrpPrice: 14995, perSession: Math.round(8999 / 5), savingsNote: 'Save ₹5,996 vs 5 full circuits', perks: ['5 Full Circuit sessions', '1 Bring-a-Friend guest pass', 'Priority booking', 'All 6 services included'], href: waBase + encodeURIComponent("Hi! I'd like to join the 1-Month Membership plan."), featured: false },
-  { id: 'quarterly', label: '3 Month', sessions: 16, type: 'Contrast Only', price: 23999, mrpPrice: 28784, perSession: Math.round(23999 / 16), savingsNote: 'Save ₹4,785 vs 16 single sessions', perks: ['16 Contrast Therapy sessions', '2 Bring-a-Friend guest passes', 'Priority booking', 'Best per-session value'], href: waBase + encodeURIComponent("Hi! I'd like to join the 3-Month Membership plan."), featured: true },
+  { id: 'monthly', label: '1 Month', sessions: 5, type: 'Recovery Stack', price: 8999, mrpPrice: 17998, perSession: Math.round(8999 / 5), savingsNote: '50% off — save ₹8,999', perks: ['5 Full Circuit sessions', '1 Bring-a-Friend guest pass', 'Priority booking', 'All 6 services included'], href: waBase + encodeURIComponent("Hi! I'd like to join the 1-Month Membership plan."), featured: false },
+  { id: 'quarterly', label: '3 Month', sessions: 16, type: 'Contrast Only', price: 23999, mrpPrice: 47998, perSession: Math.round(23999 / 16), savingsNote: '50% off — save ₹23,999', perks: ['16 Contrast Therapy sessions', '2 Bring-a-Friend guest passes', 'Priority booking', 'Best per-session value'], href: waBase + encodeURIComponent("Hi! I'd like to join the 3-Month Membership plan."), featured: true },
   { id: 'biannual', label: '6 Month', sessions: null, type: 'Custom', price: null, mrpPrice: null, perSession: null, savingsNote: 'Maximum savings — talk to us', perks: ['Flexible session bundle', 'Maximum savings', 'Priority booking', 'Dedicated coaching slot'], href: waBase + encodeURIComponent("Hi! I'd like to know more about the 6-Month Membership plan."), featured: false },
 ]
 
 const tabs = ['Single Sessions', 'Couple Sessions', 'Memberships']
 
-function PriceRow({ item, index }: { item: typeof singleSessions[0]; index: number }) {
-  const savings = item.mrpPrice ? item.mrpPrice - item.price : 0
-  const savingsPct = item.mrpPrice ? Math.round((savings / item.mrpPrice) * 100) : 0
+const SALE_END = new Date('2026-08-31T23:59:59+05:30')
+function useCountdown(target: Date) {
+  const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0 })
+  useEffect(() => {
+    function tick() {
+      const diff = target.getTime() - Date.now()
+      if (diff <= 0) return
+      setT({ d: Math.floor(diff / 86400000), h: Math.floor((diff % 86400000) / 3600000), m: Math.floor((diff % 3600000) / 60000), s: Math.floor((diff % 60000) / 1000) })
+    }
+    tick(); const id = setInterval(tick, 1000); return () => clearInterval(id)
+  }, [target])
+  return t
+}
 
+function PriceRow({ item, index }: { item: typeof singleSessions[0]; index: number }) {
   return (
     <a href={item.href} target="_blank" rel="noopener noreferrer"
       className="group flex items-center justify-between py-5 border-b px-4 -mx-4 rounded-xl transition-all duration-300 hover:scale-[1.005]"
       style={{ borderColor: 'rgba(196,193,196,0.10)', backgroundColor: 'transparent' }}
       onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(86,84,86,0.20)' }}
       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent' }}>
-      <div className="flex items-center gap-4">
-        <span className="font-display font-light text-3xl md:text-4xl w-8 shrink-0" style={{ letterSpacing: '-0.04em', color: 'rgba(196,193,196,0.20)' }}>
+      <div className="flex items-center gap-5">
+        <span className="font-display font-light text-3xl md:text-4xl w-9 shrink-0" style={{ letterSpacing: '-0.04em', color: 'rgba(196,193,196,0.18)' }}>
           {String(index + 1).padStart(2, '0')}
         </span>
         <div>
           <div className="flex items-center gap-2 mb-1 flex-wrap">
             <span className="font-display font-semibold text-base md:text-lg" style={{ color: '#f5f0eb' }}>{item.name}</span>
             {item.featured && <span className="text-[9px] font-bold uppercase tracking-[0.2em] px-2 py-0.5 rounded-full" style={{ background: '#d9d1cc', color: '#3d3b3d' }}>Best Value</span>}
-            {savingsPct > 0 && <span className="text-[9px] font-bold uppercase tracking-[0.12em] px-2 py-0.5 rounded-full" style={{ background: 'rgba(52,211,153,0.12)', border: '1px solid rgba(52,211,153,0.20)', color: '#6ee7b7' }}>{savingsPct}% off</span>}
+            {/* 50% OFF sale tag */}
+            <span className="text-[9px] font-black uppercase tracking-[0.12em] px-2.5 py-0.5 rounded-full" style={{ background: 'linear-gradient(90deg,#dc2626,#ea580c)', color: '#fff', boxShadow: '0 0 10px rgba(220,38,38,0.35)' }}>50% OFF</span>
           </div>
           <p className="text-sm md:text-base" style={{ color: '#dddadd' }}>{item.desc}</p>
+          {'duration' in item && item.duration && <p className="text-[10px] mt-0.5" style={{ color: 'rgba(196,193,196,0.55)' }}>⏱ {item.duration}</p>}
           {item.note && <p className="text-[10px] mt-0.5 italic" style={{ color: '#dddadd' }}>{item.note}</p>}
         </div>
       </div>
       <div className="flex items-center gap-3 shrink-0 ml-4">
         <div className="text-right">
-          {item.mrpPrice && <span className="block text-xs line-through leading-tight" style={{ color: '#c4c1c4', letterSpacing: '-0.02em' }}>₹{item.mrpPrice.toLocaleString()}</span>}
+          {item.mrpPrice && (
+            <span className="block text-sm md:text-base font-medium line-through leading-tight" style={{ color: 'rgba(245,240,235,0.52)', letterSpacing: '-0.02em' }}>
+              ₹{item.mrpPrice.toLocaleString()}
+            </span>
+          )}
           <span className="font-display font-light" style={{ fontSize: 'clamp(20px, 3vw, 30px)', letterSpacing: '-0.04em', lineHeight: 1.1, color: '#f5f0eb' }}>
             ₹{item.price.toLocaleString()}
           </span>
@@ -68,6 +86,34 @@ function PriceRow({ item, index }: { item: typeof singleSessions[0]; index: numb
         </span>
       </div>
     </a>
+  )
+}
+
+function SaleHeaderBadge() {
+  const { d, h, m, s } = useCountdown(SALE_END)
+  const pad = (n: number) => String(n).padStart(2, '0')
+  return (
+    <div className="mb-8 p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3" style={{ background: 'linear-gradient(135deg,rgba(127,29,29,0.55),rgba(154,52,18,0.45))', border: '1px solid rgba(220,38,38,0.30)' }}>
+      <div className="flex items-center gap-3">
+        <span className="text-xl">🔥</span>
+        <div>
+          <p className="font-black text-sm uppercase tracking-wider" style={{ color: '#fca5a5' }}>Launch Sale — 50% Off Everything</p>
+          <p className="text-xs mt-0.5" style={{ color: 'rgba(252,165,165,0.70)' }}>First-time visitors · Limited period · ICN Athletes: always 50% off on registration</p>
+        </div>
+      </div>
+      <div className="flex items-center gap-1 shrink-0">
+        <span className="text-xs font-medium mr-1" style={{ color: 'rgba(252,165,165,0.70)' }}>Ends in</span>
+        {[{ v: d, l: 'd' }, { v: h, l: 'h' }, { v: m, l: 'm' }, { v: s, l: 's' }].map(({ v, l }, i) => (
+          <div key={l} className="flex items-center gap-0.5">
+            {i > 0 && <span style={{ color: 'rgba(252,165,165,0.50)', fontSize: 10 }}>:</span>}
+            <div className="flex flex-col items-center w-8 py-1 rounded-lg" style={{ background: 'rgba(0,0,0,0.30)' }}>
+              <span className="font-mono font-black text-sm leading-none" style={{ color: '#fff' }}>{pad(v)}</span>
+              <span className="text-[8px] leading-none mt-0.5" style={{ color: 'rgba(252,165,165,0.60)' }}>{l}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -88,7 +134,6 @@ export default function PricingPage() {
           <p className="text-sm md:text-base max-w-md leading-relaxed mt-6" style={{ color: '#dddadd' }}>
             Private studio. Expert coaching available on request. No hidden fees — what you see is what you pay.
           </p>
-          {/* Value pills */}
           <div className="flex flex-wrap gap-2 mt-6">
             {['Open 10 AM – 10 PM', 'Walk-ins welcome', 'No booking fee', 'Private sessions'].map(p => (
               <span key={p} className="px-3 py-1.5 rounded-full text-xs font-medium" style={{ background: 'rgba(86,84,86,0.35)', border: '1px solid rgba(196,193,196,0.12)', color: '#dddadd' }}>{p}</span>
@@ -101,20 +146,19 @@ export default function PricingPage() {
           {tabs.map((tab, i) => (
             <button key={tab} onClick={() => setActiveTab(i)}
               className="px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
-              style={{
-                background: activeTab === i ? '#d9d1cc' : 'rgba(86,84,86,0.30)',
-                color: activeTab === i ? '#3d3b3d' : '#c4c1c4',
-                border: activeTab === i ? '1px solid transparent' : '1px solid rgba(196,193,196,0.12)',
-              }}>
+              style={{ background: activeTab === i ? '#d9d1cc' : 'rgba(86,84,86,0.30)', color: activeTab === i ? '#3d3b3d' : '#c4c1c4', border: activeTab === i ? '1px solid transparent' : '1px solid rgba(196,193,196,0.12)' }}>
               {tab}
             </button>
           ))}
         </div>
 
+        {/* Sale header badge on all tabs */}
+        <SaleHeaderBadge />
+
         {/* Single Sessions */}
         {activeTab === 0 && (
           <div>
-            <div className="flex items-center justify-between mb-2 px-4">
+            <div className="flex items-center justify-between mb-4 px-4">
               <p className="text-[10px] uppercase tracking-[0.25em]" style={{ color: '#dddadd' }}>Service</p>
               <p className="text-[10px] uppercase tracking-[0.25em]" style={{ color: '#dddadd' }}>Price</p>
             </div>
@@ -132,7 +176,7 @@ export default function PricingPage() {
         {/* Couple Sessions */}
         {activeTab === 1 && (
           <div>
-            <div className="flex items-center justify-between mb-2 px-4">
+            <div className="flex items-center justify-between mb-4 px-4">
               <p className="text-[10px] uppercase tracking-[0.25em]" style={{ color: '#dddadd' }}>Service (for 2 people)</p>
               <p className="text-[10px] uppercase tracking-[0.25em]" style={{ color: '#dddadd' }}>Couple Price</p>
             </div>
@@ -157,13 +201,20 @@ export default function PricingPage() {
                   {plan.featured && (
                     <span className="absolute -top-3.5 left-6 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.2em]" style={{ background: '#d9d1cc', color: '#3d3b3d' }}>Best Value</span>
                   )}
+                  {/* 50% badge */}
+                  <span className="absolute top-4 right-4 text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full" style={{ background: 'linear-gradient(90deg,#dc2626,#ea580c)', color: '#fff' }}>50% OFF</span>
+
                   <span className="text-[10px] font-bold uppercase tracking-[0.25em] mb-3 block" style={{ color: '#dddadd' }}>{plan.type}</span>
                   <h3 className="font-display font-light mb-1" style={{ fontSize: 'clamp(26px, 4vw, 40px)', letterSpacing: '-0.04em', lineHeight: 1, color: '#f5f0eb' }}>{plan.label}</h3>
                   {plan.sessions && <p className="text-sm mb-4" style={{ color: '#dddadd' }}>{plan.sessions} sessions included</p>}
 
                   {plan.price ? (
                     <div className="mb-1">
-                      {plan.mrpPrice && <span className="block text-sm line-through mb-0.5" style={{ color: '#dddadd' }}>₹{plan.mrpPrice.toLocaleString()}</span>}
+                      {plan.mrpPrice && (
+                        <span className="block text-base font-medium line-through mb-0.5" style={{ color: 'rgba(245,240,235,0.50)', letterSpacing: '-0.01em' }}>
+                          ₹{plan.mrpPrice.toLocaleString()}
+                        </span>
+                      )}
                       <span className="font-display font-light" style={{ fontSize: 'clamp(30px, 5vw, 48px)', letterSpacing: '-0.04em', lineHeight: 1, color: '#f5f0eb' }}>
                         ₹{plan.price.toLocaleString()}
                       </span>
@@ -176,7 +227,7 @@ export default function PricingPage() {
                   )}
 
                   {plan.perSession && <p className="text-xs mb-1" style={{ color: '#dddadd' }}>₹{plan.perSession.toLocaleString()} per session</p>}
-                  {plan.savingsNote && plan.price && <p className="text-[10px] mb-5 font-medium" style={{ color: '#6ee7b7' }}>{plan.savingsNote}</p>}
+                  {plan.savingsNote && plan.price && <p className="text-[10px] mb-5 font-medium" style={{ color: '#86efac' }}>{plan.savingsNote}</p>}
                   {!plan.price && <p className="text-xs mb-5" style={{ color: '#dddadd' }}>{plan.savingsNote}</p>}
 
                   <ul className="space-y-2.5 mb-8 flex-1">
@@ -204,6 +255,23 @@ export default function PricingPage() {
             </div>
           </div>
         )}
+
+        {/* ICN Athlete Callout */}
+        <div className="mt-10 p-6 rounded-2xl flex items-start gap-4" style={{ background: 'linear-gradient(135deg,rgba(120,83,7,0.35),rgba(146,64,14,0.30))', border: '1px solid rgba(234,179,8,0.28)' }}>
+          <span className="text-2xl shrink-0">🏆</span>
+          <div>
+            <p className="font-bold text-sm uppercase tracking-wider mb-1" style={{ color: '#fde68a' }}>ICN Athletes — 50% Off Every Visit</p>
+            <p className="text-sm leading-relaxed" style={{ color: 'rgba(253,230,138,0.75)' }}>
+              Registered ICN athletes receive 50% off on every single visit — just show your registration card or proof of registration at the studio. No time limit. Always active.
+            </p>
+            <a href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent('Hi! I am a registered ICN athlete and would like to claim my 50% discount at Bare Recovery Studio.')}`}
+              target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-3 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:opacity-90"
+              style={{ background: 'rgba(234,179,8,0.20)', border: '1px solid rgba(234,179,8,0.35)', color: '#fde68a' }}>
+              Claim ICN Discount →
+            </a>
+          </div>
+        </div>
 
         {/* CTA */}
         <div className="mt-16 text-center">

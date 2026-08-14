@@ -545,3 +545,7 @@ body {
   0%   { transform: translateY(100%); }
   100% { transform: translateY(-100%); }
 }
+@keyframes heroBadgePulse {
+  0%, 100% { box-shadow: 0 0 16px rgba(220,38,38,0.50); opacity: 1; }
+  50%       { box-shadow: 0 0 28px rgba(220,38,38,0.85); opacity: 0.88; }
+}
