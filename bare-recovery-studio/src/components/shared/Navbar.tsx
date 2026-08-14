@@ -59,17 +59,15 @@ export default function Navbar() {
     <>
       {/* ── Fixed Navbar ── */}
       <nav
-        className="fixed top-0 inset-x-0 z-50 transition-all duration-500"
+        className="fixed inset-x-0 z-50 transition-all duration-500"
         style={{
-          background: scrolled
-            ? 'rgba(42,40,41,0.92)'
-            : 'transparent',
+          top: 'var(--ann-bar-h, 44px)',
+          background: scrolled ? 'rgba(42,40,41,0.92)' : 'transparent',
           backdropFilter: scrolled ? 'blur(20px) saturate(160%)' : 'none',
-          borderBottom: scrolled
-            ? '1px solid rgba(196,193,196,0.08)'
-            : '1px solid transparent',
+          borderBottom: scrolled ? '1px solid rgba(196,193,196,0.08)' : '1px solid transparent',
           boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.25)' : 'none',
         }}
+
       >
         <div className="max-w-[1400px] mx-auto px-4 md:px-10 h-[60px] md:h-[70px] flex items-center justify-between">
 

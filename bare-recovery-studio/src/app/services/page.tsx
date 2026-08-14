@@ -1,13 +1,13 @@
-import SaleStrip from '@/components/shared/SaleStrip'
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
 import { services } from '@/data/services'
 import { CONTACT_INFO } from '@/lib/constants'
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  title: 'Services | Bare Recovery Studio',
-  description: 'Explore Bare Recovery Studio\'s 6 science-backed recovery services: Cold Plunge, Contrast Therapy, Traditional Sauna, Infrared Sauna, Red Light Therapy, and Compression Therapy in Kompally.',
-}
+const waBase = `https://wa.me/${CONTACT_INFO.whatsapp}?text=`
+const bookMsg = (name: string) => encodeURIComponent(`Hi! I want to book a ${name} session at the 50% launch sale rate.`)
 
 const serviceImages: Record<string, string> = {
   'compression-therapy': '/images/services/compression-therapy.PNG',
@@ -18,173 +18,154 @@ const serviceImages: Record<string, string> = {
   'contrast-therapy': '/images/services/contrast-therapy.PNG',
 }
 
-function priceLabel(svc: typeof services[0]) {
-  if (svc.pricing.upperBody) return `From ₹${svc.pricing.upperBody.toLocaleString()}`
-  if (svc.pricing.single) return `From ₹${svc.pricing.single.toLocaleString()}`
-  return ''
-}
+const serviceData = [
+  { id: 'contrast-therapy', emoji: '🌡️', tag: 'Signature', sale: '₹1,799', mrp: '₹3,598', dur: '20–40 min', tagline: 'Hot & Cold. The ultimate recovery stack.', desc: 'Sauna heat followed by cold plunge immersion. The most powerful recovery combination available — used by elite athletes worldwide.' },
+  { id: 'cold-plunge', emoji: '🧊', tag: 'Most Popular', sale: '₹1,199', mrp: '₹2,398', dur: '10–15 min', tagline: 'Full body cold at 10–15°C.', desc: 'Scientifically proven to reduce inflammation, boost dopamine 3x, and accelerate muscle recovery within 30 minutes post-training.' },
+  { id: 'traditional-sauna', emoji: '🌿', tag: '', sale: '₹999', mrp: '₹1,998', dur: '15–30 min', tagline: 'Dry heat at 70–80°C.', desc: 'Deep tissue heat stress that triggers growth hormone release, clears lactic acid buildup, and forces parasympathetic recovery mode.' },
+  { id: 'infrared-sauna', emoji: '☀️', tag: '', sale: '₹999', mrp: '₹1,998', dur: '15–30 min', tagline: 'Deep infrared penetration.', desc: 'Infrared light penetrates up to 4cm into tissue — deeper than traditional heat. Optimal for joint recovery and chronic soreness.' },
+  { id: 'red-light-therapy', emoji: '💡', tag: '', sale: '₹799', mrp: '₹1,598', dur: '30–40 min', tagline: '660nm & 850nm photobiomodulation.', desc: 'Red and near-infrared wavelengths stimulate mitochondrial activity, accelerate tissue repair, and reduce oxidative stress at a cellular level.' },
+  { id: 'compression-therapy', emoji: '🦵', tag: 'From', sale: '₹799', mrp: '₹1,598', dur: '30–40 min', tagline: 'Dynamic air compression.', desc: 'Sequential pneumatic compression of limbs enhances venous return, reduces oedema, and clears metabolic waste 2x faster than rest.' },
+]
 
-function coupleLabel(svc: typeof services[0]) {
-  if (svc.pricing.couple) return `Couple ₹${svc.pricing.couple.toLocaleString()}`
-  return null
+function ServiceCard({ svc, index }: { svc: typeof serviceData[0]; index: number }) {
+  const [hovered, setHovered] = useState(false)
+  const img = serviceImages[svc.id]
+
+  return (
+    <div
+      style={{ position: 'relative', borderRadius: 24, overflow: 'hidden', cursor: 'pointer', transition: 'transform 0.4s cubic-bezier(0.16,1,0.3,1)', transform: hovered ? 'translateY(-8px)' : 'translateY(0)', boxShadow: hovered ? '0 24px 60px rgba(0,0,0,0.50), 0 0 0 1px rgba(245,158,11,0.25)' : '0 4px 20px rgba(0,0,0,0.30)', height: 420 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Background image */}
+      {img && (
+        <img src={img} alt={svc.id} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s cubic-bezier(0.16,1,0.3,1)', transform: hovered ? 'scale(1.08)' : 'scale(1)' }} />
+      )}
+
+      {/* Base gradient overlay */}
+      <div style={{ position: 'absolute', inset: 0, background: hovered ? 'linear-gradient(to top, rgba(5,4,4,0.98) 0%, rgba(5,4,4,0.75) 40%, rgba(5,4,4,0.30) 100%)' : 'linear-gradient(to top, rgba(5,4,4,0.95) 0%, rgba(5,4,4,0.50) 60%, rgba(5,4,4,0.15) 100%)', transition: 'background 0.4s ease' }} />
+
+      {/* Tag + 50% badge */}
+      <div style={{ position: 'absolute', top: 16, left: 16, right: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        {svc.tag && (
+          <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', background: svc.tag === 'Signature' ? 'linear-gradient(135deg,#F59E0B,#FBBF24)' : 'rgba(245,240,235,0.15)', backdropFilter: 'blur(8px)', color: svc.tag === 'Signature' ? '#111' : '#f5f0eb', padding: '5px 12px', borderRadius: 9999, border: svc.tag === 'Signature' ? 'none' : '1px solid rgba(255,255,255,0.15)' }}>
+            {svc.tag}
+          </span>
+        )}
+        <span style={{ marginLeft: 'auto', fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111', padding: '5px 12px', borderRadius: 9999, boxShadow: '0 2px 12px rgba(245,158,11,0.40)' }}>
+          50% OFF
+        </span>
+      </div>
+
+      {/* Content — at bottom */}
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '20px 20px 20px' }}>
+        {/* Emoji */}
+        <div style={{ fontSize: 32, marginBottom: 8, transition: 'transform 0.3s ease', transform: hovered ? 'scale(1.1)' : 'scale(1)' }}>{svc.emoji}</div>
+
+        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(18px,2.5vw,24px)', fontWeight: 300, letterSpacing: '-0.02em', color: '#f5f0eb', marginBottom: 4, textTransform: 'capitalize' }}>
+          {svc.id.replace(/-/g, ' ')}
+        </h3>
+        <p style={{ fontSize: 11, color: 'rgba(245,240,235,0.50)', marginBottom: 12 }}>{svc.tagline}</p>
+
+        {/* Description — slides in on hover */}
+        <div style={{ overflow: 'hidden', maxHeight: hovered ? 80 : 0, transition: 'max-height 0.4s cubic-bezier(0.16,1,0.3,1)', opacity: hovered ? 1 : 0 }}>
+          <p style={{ fontSize: 12, color: 'rgba(245,240,235,0.55)', lineHeight: 1.65, marginBottom: 14 }}>{svc.desc}</p>
+        </div>
+
+        {/* Duration */}
+        <p style={{ fontSize: 10, color: 'rgba(245,240,235,0.35)', marginBottom: 10 }}>⏱ {svc.dur}</p>
+
+        {/* Price row */}
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 14 }}>
+          <span style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 400, letterSpacing: '-0.04em', color: '#FBBF24', lineHeight: 1 }}>{svc.sale}</span>
+          <span style={{ fontSize: 13, color: 'rgba(245,240,235,0.30)', textDecoration: 'line-through' }}>{svc.mrp}</span>
+          <span style={{ fontSize: 9, fontWeight: 700, color: '#F59E0B', letterSpacing: '0.12em', textTransform: 'uppercase' }}>FOUNDING RATE</span>
+        </div>
+
+        {/* CTA row — slides in on hover */}
+        <div style={{ display: 'flex', gap: 8, overflow: 'hidden', maxHeight: hovered ? 50 : 0, transition: 'max-height 0.35s cubic-bezier(0.16,1,0.3,1)', opacity: hovered ? 1 : 0 }}>
+          <a
+            href={waBase + bookMsg(svc.id.replace(/-/g, ' '))}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={e => e.stopPropagation()}
+            style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111', padding: '11px 16px', borderRadius: 12, fontSize: 12, fontWeight: 800, textDecoration: 'none', letterSpacing: '0.04em' }}
+          >
+            🔥 Book at 50% Off
+          </a>
+          <Link
+            href={`/services/${svc.id}`}
+            onClick={e => e.stopPropagation()}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '11px 14px', borderRadius: 12, border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(245,240,235,0.70)', fontSize: 12, fontWeight: 600, textDecoration: 'none' }}
+          >
+            Details →
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default function ServicesPage() {
-  const waLink = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent('Hi! I would like to book a session at Bare Recovery Studio.')}`
-
-  // Put contrast therapy first (signature), then rest
-  const ordered = [
-    services.find(s => s.id === 'contrast-therapy')!,
-    services.find(s => s.id === 'cold-plunge')!,
-    services.find(s => s.id === 'traditional-sauna')!,
-    services.find(s => s.id === 'infrared-sauna')!,
-    services.find(s => s.id === 'red-light-therapy')!,
-    services.find(s => s.id === 'compression-therapy')!,
-  ].filter(Boolean)
-
-  const featured = ordered[0]
-  const rest = ordered.slice(1)
-
   return (
-    <div className="min-h-screen">
-
-      {/* Sale strip */}
-      <SaleStrip />
+    <div style={{ minHeight: '100vh', background: '#0f0e0e' }}>
 
       {/* ── Header ── */}
-      <section className="pt-16 md:pt-20 pb-10 md:pb-16 px-4 md:px-12">
+      <section style={{ paddingTop: 'clamp(90px,12vw,140px)', paddingBottom: 48, paddingLeft: 20, paddingRight: 20 }}>
         <div className="max-w-[1320px] mx-auto">
-          <span
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] text-[#c9c6c5] mb-6"
-            style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#c9c6c5] animate-pulse" />
-            6 Recovery Modalities
-          </span>
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <h1
-              className="font-display font-light text-[#F5F5F2]"
-              style={{ fontSize: 'clamp(40px, 8vw, 100px)', letterSpacing: '-0.04em', lineHeight: 1.0 }}
+
+          {/* Sale badge */}
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 20, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', padding: '7px 18px', borderRadius: 9999, boxShadow: '0 4px 20px rgba(245,158,11,0.40)' }}>
+            <span style={{ fontSize: 14 }}>🔥</span>
+            <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#111' }}>All sessions 50% off — Ends Aug 31</span>
+          </div>
+
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between" style={{ gap: 24 }}>
+            <div>
+              <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(40px,8vw,88px)', fontWeight: 300, letterSpacing: '-0.04em', lineHeight: 0.92, color: '#f5f0eb', marginBottom: 16 }}>
+                6 Ways to<br />
+                <span style={{ color: 'rgba(245,240,235,0.22)' }}>Recover Better.</span>
+              </h1>
+              <p style={{ fontSize: 14, color: 'rgba(245,240,235,0.50)', maxWidth: 400, lineHeight: 1.7 }}>
+                Science-backed modalities. Private studio. Hover any card to explore and book in seconds.
+              </p>
+            </div>
+            <a
+              href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent('Hi! I want to book a session at the 50% launch sale rate.')}`}
+              target="_blank" rel="noopener noreferrer"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111', padding: '14px 28px', borderRadius: 9999, fontSize: 13, fontWeight: 800, textDecoration: 'none', boxShadow: '0 8px 28px rgba(245,158,11,0.45)', whiteSpace: 'nowrap', alignSelf: 'flex-end' }}
             >
-              Recovery<br /><span style={{ color: 'rgba(245,245,242,0.3)' }}>Services.</span>
-            </h1>
-            <p className="text-[#dddadd] text-sm md:text-base max-w-xs leading-relaxed md:pb-3">
-              Every service backed by science. Delivered in a private studio with guided coaching available on request.
-            </p>
+              Book at 50% Off →
+            </a>
           </div>
         </div>
       </section>
 
-      <div className="px-4 md:px-12 max-w-[1320px] mx-auto pb-16 md:pb-24">
+      {/* ── Interactive Card Grid ── */}
+      <section style={{ paddingBottom: 80, paddingLeft: 20, paddingRight: 20 }}>
+        <div className="max-w-[1320px] mx-auto">
 
-        {/* ── Services Cards Grid ── */}
-        <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
-          {ordered.map((svc) => (
-            <Link
-              key={svc.id}
-              href={`/services/${svc.slug}`}
-              className="group relative overflow-hidden rounded-[24px] transition-all duration-700 hover:scale-[1.01] bg-[#141414] h-[380px] md:h-[550px] w-full md:w-[calc(33.333%-16px)] flex flex-col justify-between p-5 md:p-7 border border-white/[0.07]"
-            >
-              {/* Background image */}
-              <div
-                className="absolute inset-0 transition-transform duration-[1200ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105"
-                style={{
-                  backgroundImage: `url('${serviceImages[svc.id]}')`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
-              />
-              {/* Gradient */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{ background: 'linear-gradient(to top, rgba(11,11,11,0.98) 0%, rgba(11,11,11,0.75) 45%, rgba(11,11,11,0.2) 80%, transparent 100%)' }}
-              />
+          {/* Instruction hint */}
+          <p style={{ fontSize: 11, color: 'rgba(245,240,235,0.30)', marginBottom: 20, letterSpacing: '0.10em', textTransform: 'uppercase', fontWeight: 600 }}>
+            ↗ Hover any card to see details + book instantly
+          </p>
 
-              {/* Content Top */}
-              <div className="relative z-10">
-                <span
-                  className="inline-block px-3 py-1 rounded-full text-[9px] font-semibold uppercase tracking-[0.18em] text-[#c9c6c5]"
-                  style={{ background: 'rgba(0,0,0,0.45)', border: '1px solid rgba(255,255,255,0.1)', backdropFilter: 'blur(8px)' }}
-                >
-                  {svc.duration}
-                </span>
-              </div>
-
-              {/* Content Bottom */}
-              <div className="relative z-10">
-                <h3
-                  className="font-display font-light text-[#F5F5F2] mb-2"
-                  style={{ fontSize: '28px', letterSpacing: '-0.03em', lineHeight: 1.1, textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}
-                >
-                  {svc.name}
-                </h3>
-                <p className="text-[#c9c6c5] text-xs mb-5 line-clamp-2 max-w-sm leading-relaxed opacity-80">
-                  {svc.tagline}
-                </p>
-                {/* Pricing row */}
-                <div className="flex items-center gap-3 flex-wrap">
-                  <span className="font-display font-semibold text-[#F5F5F2] text-lg" style={{ letterSpacing: '-0.03em' }}>
-                    {priceLabel(svc)}
-                  </span>
-                  {coupleLabel(svc) && (
-                    <span
-                      className="text-[#dddadd] text-xs px-2.5 py-1 rounded-full"
-                      style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}
-                    >
-                      {coupleLabel(svc)}
-                    </span>
-                  )}
-                  {/* Special compression pricing */}
-                  {svc.id === 'compression-therapy' && (
-                    <span
-                      className="text-[#dddadd] text-xs px-2.5 py-1 rounded-full"
-                      style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}
-                    >
-                      Full Body ₹1,399
-                    </span>
-                  )}
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        {/* ── Full Circuit CTA ── */}
-        <div
-          className="mt-6 md:mt-8 p-6 md:p-10 rounded-[24px] flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6"
-          style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
-        >
-          <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#dddadd] mb-2">Best Value</p>
-            <h3
-              className="font-display font-light text-[#F5F5F2] mb-1"
-              style={{ fontSize: 'clamp(24px, 3vw, 36px)', letterSpacing: '-0.04em', lineHeight: 1 }}
-            >
-              Full Circuit — All 6 Services
-            </h3>
-            <p className="text-[#dddadd] text-sm">Cold Plunge + Contrast + Sauna + Infrared Sauna + Red Light + Compression in one premium session</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 16 }}>
+            {serviceData.map((svc, i) => (
+              <ServiceCard key={svc.id} svc={svc} index={i} />
+            ))}
           </div>
-          <div className="flex items-center gap-6 shrink-0">
-            <div>
-              <p className="font-display font-light text-[#F5F5F2]" style={{ fontSize: 'clamp(32px, 4vw, 48px)', letterSpacing: '-0.04em', lineHeight: 1 }}>₹2,999</p>
-              <p className="text-[#dddadd] text-xs">Couple ₹4,799</p>
-            </div>
-            <a
-              href={waLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 bg-[#F5F5F2] text-[#0B0B0B] pl-6 pr-2 py-3 rounded-full font-bold text-sm hover:bg-white transition-all active:scale-[0.98] shrink-0"
-            >
-              Book Now
-              <span className="w-7 h-7 rounded-full bg-black/10 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0B0B0B" strokeWidth="2.5">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </span>
+
+          {/* Full pricing link */}
+          <div style={{ textAlign: 'center', marginTop: 40 }}>
+            <a href="/pricing" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 13, fontWeight: 600, color: 'rgba(245,240,235,0.45)', border: '1px solid rgba(255,255,255,0.10)', padding: '12px 24px', borderRadius: 9999, textDecoration: 'none', transition: 'all 0.2s' }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = '#FBBF24'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(245,158,11,0.30)' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'rgba(245,240,235,0.45)'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.10)' }}>
+              View Full Pricing →
             </a>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

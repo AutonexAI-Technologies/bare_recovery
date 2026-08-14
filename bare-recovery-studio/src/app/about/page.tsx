@@ -1,4 +1,3 @@
-import SaleStrip from '@/components/shared/SaleStrip'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { CONTACT_INFO, SOCIAL_LINKS } from '@/lib/constants'
@@ -21,9 +20,6 @@ export default function AboutPage() {
 
   return (
     <div>
-
-      {/* Sale strip */}
-      <SaleStrip />
 
       {/* ─── HERO ─── */}
       <section className="pt-20 md:pt-28 pb-20 px-5 md:px-12">

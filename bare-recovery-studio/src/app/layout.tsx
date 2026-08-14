@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Marcellus, Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/shared/Navbar'
+import TopAnnouncementBar from '@/components/shared/TopAnnouncementBar'
 import Footer from '@/components/shared/Footer'
 import FloatingWhatsApp from '@/components/shared/FloatingWhatsApp'
 import FloatingSaleCTA from '@/components/shared/FloatingSaleCTA'
@@ -63,6 +64,7 @@ export default function RootLayout({
       className={`${marcellus.variable} ${inter.variable} min-h-full antialiased`}
     >
       <body className={`${marcellus.variable} ${inter.variable} min-h-screen flex flex-col text-[#F5F5F2]`}>
+        <TopAnnouncementBar />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
