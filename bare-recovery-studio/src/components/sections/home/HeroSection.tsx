@@ -96,6 +96,32 @@ export default function HeroSection() {
           }}
         >
 
+
+          {/* ════ SALE ANNOUNCEMENT — always first thing seen ════ */}
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 10,
+              marginBottom: 20,
+              background: 'linear-gradient(135deg, #F59E0B, #FBBF24)',
+              padding: '9px 18px',
+              borderRadius: 9999,
+              boxShadow: '0 4px 20px rgba(245,158,11,0.45)',
+              opacity: mounted ? 1 : 0,
+              transform: mounted ? 'translateY(0)' : 'translateY(-10px)',
+              transition: 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s',
+            }}
+          >
+            <span style={{ fontSize: 15 }}>🔥</span>
+            <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#111010', whiteSpace: 'nowrap' }}>
+              Launch Sale — 50% Off All Sessions
+            </span>
+            <span style={{ fontSize: 10, fontWeight: 600, color: 'rgba(17,16,16,0.60)', whiteSpace: 'nowrap' }}>
+              · Ends Aug 31
+            </span>
+          </div>
+
           {/* Headline — massive */}
           <div className="mb-2 overflow-hidden">
             <h1
@@ -130,36 +156,8 @@ export default function HeroSection() {
           </div>
 
 
-          {/* Sale urgency badge */}
-          <div
-            className="flex items-center gap-2 mb-4"
-            style={{
-              opacity: mounted ? 1 : 0,
-              transition: 'opacity 0.7s ease 0.65s',
-            }}
-          >
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 6,
-                fontSize: 10,
-                fontWeight: 800,
-                letterSpacing: '0.16em',
-                textTransform: 'uppercase',
-                color: '#fff',
-                background: 'linear-gradient(90deg,#dc2626,#ea580c)',
-                padding: '5px 12px',
-                borderRadius: 9999,
-                boxShadow: '0 0 16px rgba(220,38,38,0.50)',
-                animation: 'heroBadgePulse 2.5s infinite ease-in-out',
-              }}
-            >
-              🔥 Launch Sale — 50% Off
-            </span>
-            <span style={{ fontSize: 10, color: 'rgba(196,193,196,0.70)', letterSpacing: '0.04em' }}>Limited period</span>
-          </div>
           {/* CTAs row */}
+
           <div
             className="flex items-center gap-3 mb-5"
             style={{
@@ -174,12 +172,12 @@ export default function HeroSection() {
               id="hero-book-cta-mobile"
               className="flex-1 inline-flex items-center justify-center gap-2 py-3.5 rounded-full font-semibold text-sm tracking-wide active:scale-[0.97] transition-all duration-200"
               style={{
-                background: '#d9d1cc',
-                color: '#3d3b3d',
-                boxShadow: '0 8px 32px rgba(217,209,204,0.28)',
+                background: 'linear-gradient(135deg, #F59E0B, #FBBF24)',
+                color: '#111010',
+                boxShadow: '0 8px 32px rgba(245,158,11,0.40)',
               }}
             >
-              Book a Session
+              Book at 50% Off →
             </a>
             <Link
               href="/services"
@@ -238,6 +236,32 @@ export default function HeroSection() {
             transition: 'opacity 0.6s ease 0.2s',
           }}
         >
+
+          {/* ════ SALE ANNOUNCEMENT — always first thing seen ════ */}
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 10,
+              marginBottom: 20,
+              background: 'linear-gradient(135deg, #F59E0B, #FBBF24)',
+              padding: '9px 18px',
+              borderRadius: 9999,
+              boxShadow: '0 4px 20px rgba(245,158,11,0.45)',
+              opacity: mounted ? 1 : 0,
+              transform: mounted ? 'translateY(0)' : 'translateY(-10px)',
+              transition: 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s',
+            }}
+          >
+            <span style={{ fontSize: 15 }}>🔥</span>
+            <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#111010', whiteSpace: 'nowrap' }}>
+              Launch Sale — 50% Off All Sessions
+            </span>
+            <span style={{ fontSize: 10, fontWeight: 600, color: 'rgba(17,16,16,0.60)', whiteSpace: 'nowrap' }}>
+              · Ends Aug 31
+            </span>
+          </div>
+
           {/* Headline */}
           <div className="overflow-hidden mb-1">
             <h1
@@ -271,35 +295,30 @@ export default function HeroSection() {
             </h1>
           </div>
 
-
-          {/* Sale urgency badge */}
+          {/* Launch offer label — desktop */}
           <div
-            className="flex items-center gap-2 mb-4"
             style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              marginBottom: 16,
               opacity: mounted ? 1 : 0,
               transition: 'opacity 0.7s ease 0.65s',
             }}
           >
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 6,
-                fontSize: 10,
-                fontWeight: 800,
-                letterSpacing: '0.16em',
-                textTransform: 'uppercase',
-                color: '#fff',
-                background: 'linear-gradient(90deg,#dc2626,#ea580c)',
-                padding: '5px 12px',
-                borderRadius: 9999,
-                boxShadow: '0 0 16px rgba(220,38,38,0.50)',
-                animation: 'heroBadgePulse 2.5s infinite ease-in-out',
-              }}
-            >
-              🔥 Launch Sale — 50% Off
+            <span style={{
+              fontSize: 9,
+              fontWeight: 700,
+              letterSpacing: '0.28em',
+              textTransform: 'uppercase',
+              color: 'rgba(188,163,134,0.85)',
+              border: '1px solid rgba(188,163,134,0.22)',
+              padding: '4px 12px',
+              borderRadius: 9999,
+              background: 'rgba(188,163,134,0.06)',
+              backdropFilter: 'blur(8px)',
+            }}>
+              Launch Offer · 50% Off
             </span>
-            <span style={{ fontSize: 10, color: 'rgba(196,193,196,0.70)', letterSpacing: '0.04em' }}>Limited period</span>
           </div>
           <div
             className="flex items-center gap-3 mb-10"
@@ -315,14 +334,14 @@ export default function HeroSection() {
               id="hero-book-cta"
               className="group inline-flex items-center justify-center gap-3 pl-7 pr-3 py-3.5 rounded-full font-semibold text-sm tracking-wide transition-all duration-300 active:scale-[0.97]"
               style={{
-                background: '#d9d1cc',
-                color: '#3d3b3d',
-                boxShadow: '0 8px 40px rgba(217,209,204,0.22)',
+                background: 'linear-gradient(135deg, #F59E0B, #FBBF24)',
+                color: '#111010',
+                boxShadow: '0 8px 40px rgba(245,158,11,0.40)',
               }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#c4c1c4' }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = '#d9d1cc' }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'linear-gradient(135deg, #D97706, #F59E0B)' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'linear-gradient(135deg, #F59E0B, #FBBF24)' }}
             >
-              Book a Session
+              Book at 50% Off
               <span className="w-8 h-8 rounded-full flex items-center justify-center group-hover:translate-x-0.5 transition-transform duration-300" style={{ background: 'rgba(61,59,61,0.16)' }}>
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#3d3b3d" strokeWidth="2.5">
                   <path d="M5 12h14M12 5l7 7-7 7" />

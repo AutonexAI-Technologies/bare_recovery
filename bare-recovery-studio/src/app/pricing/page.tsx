@@ -63,7 +63,7 @@ function PriceRow({ item, index }: { item: typeof singleSessions[0]; index: numb
             <span className="font-display font-semibold text-base md:text-lg" style={{ color: '#f5f0eb' }}>{item.name}</span>
             {item.featured && <span className="text-[9px] font-bold uppercase tracking-[0.2em] px-2 py-0.5 rounded-full" style={{ background: '#d9d1cc', color: '#3d3b3d' }}>Best Value</span>}
             {/* 50% OFF sale tag */}
-            <span className="text-[9px] font-black uppercase tracking-[0.12em] px-2.5 py-0.5 rounded-full" style={{ background: 'linear-gradient(90deg,#dc2626,#ea580c)', color: '#fff', boxShadow: '0 0 10px rgba(220,38,38,0.35)' }}>50% OFF</span>
+            <span className="text-[9px] font-black uppercase tracking-[0.12em] px-2.5 py-0.5 rounded-full" style={{ background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111010', boxShadow: '0 0 14px rgba(245,158,11,0.35)' }}>50% OFF</span>
           </div>
           <p className="text-sm md:text-base" style={{ color: '#dddadd' }}>{item.desc}</p>
           {'duration' in item && item.duration && <p className="text-[10px] mt-0.5" style={{ color: 'rgba(196,193,196,0.55)' }}>⏱ {item.duration}</p>}
@@ -93,16 +93,16 @@ function SaleHeaderBadge() {
   const { d, h, m, s } = useCountdown(SALE_END)
   const pad = (n: number) => String(n).padStart(2, '0')
   return (
-    <div className="mb-8 p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3" style={{ background: 'linear-gradient(135deg,rgba(127,29,29,0.55),rgba(154,52,18,0.45))', border: '1px solid rgba(220,38,38,0.30)' }}>
+    <div className="mb-8 p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3" style={{ background: 'linear-gradient(135deg,rgba(120,53,15,0.50),rgba(245,158,11,0.15))', border: '1px solid rgba(245,158,11,0.30)' }}>
       <div className="flex items-center gap-3">
         <span className="text-xl">🔥</span>
         <div>
-          <p className="font-black text-sm uppercase tracking-wider" style={{ color: '#fca5a5' }}>Launch Sale — 50% Off Everything</p>
-          <p className="text-xs mt-0.5" style={{ color: 'rgba(252,165,165,0.70)' }}>First-time visitors · Limited period · ICN Athletes: always 50% off on registration</p>
+          <p className="font-black text-sm uppercase tracking-wider" style={{ color: '#FBBF24' }}>Launch Sale — 50% Off Everything</p>
+          <p className="text-xs mt-0.5" style={{ color: 'rgba(251,191,36,0.65)' }}>First-time visitors · Limited period · ICN Athletes: always 50% off on registration</p>
         </div>
       </div>
       <div className="flex items-center gap-1 shrink-0">
-        <span className="text-xs font-medium mr-1" style={{ color: 'rgba(252,165,165,0.70)' }}>Ends in</span>
+        <span className="text-xs font-medium mr-1" style={{ color: 'rgba(251,191,36,0.65)' }}>Ends in</span>
         {[{ v: d, l: 'd' }, { v: h, l: 'h' }, { v: m, l: 'm' }, { v: s, l: 's' }].map(({ v, l }, i) => (
           <div key={l} className="flex items-center gap-0.5">
             {i > 0 && <span style={{ color: 'rgba(252,165,165,0.50)', fontSize: 10 }}>:</span>}
@@ -202,7 +202,7 @@ export default function PricingPage() {
                     <span className="absolute -top-3.5 left-6 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.2em]" style={{ background: '#d9d1cc', color: '#3d3b3d' }}>Best Value</span>
                   )}
                   {/* 50% badge */}
-                  <span className="absolute top-4 right-4 text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full" style={{ background: 'linear-gradient(90deg,#dc2626,#ea580c)', color: '#fff' }}>50% OFF</span>
+                  <span className="absolute top-4 right-4 text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full" style={{ background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111010' }}>50% OFF</span>
 
                   <span className="text-[10px] font-bold uppercase tracking-[0.25em] mb-3 block" style={{ color: '#dddadd' }}>{plan.type}</span>
                   <h3 className="font-display font-light mb-1" style={{ fontSize: 'clamp(26px, 4vw, 40px)', letterSpacing: '-0.04em', lineHeight: 1, color: '#f5f0eb' }}>{plan.label}</h3>

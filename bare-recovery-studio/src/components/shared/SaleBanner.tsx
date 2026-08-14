@@ -1,27 +1,23 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 
 const SALE_END = new Date('2026-08-31T23:59:59+05:30')
-const STORAGE_KEY = 'br_sale_banner_dismissed'
+const BANNER_H = 38
 
 function useCountdown(target: Date) {
-  const [timeLeft, setTimeLeft] = useState({ d: 0, h: 0, m: 0, s: 0 })
+  const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0 })
   useEffect(() => {
     function tick() {
       const diff = target.getTime() - Date.now()
-      if (diff <= 0) { setTimeLeft({ d: 0, h: 0, m: 0, s: 0 }); return }
-      const d = Math.floor(diff / 86400000)
-      const h = Math.floor((diff % 86400000) / 3600000)
-      const m = Math.floor((diff % 3600000) / 60000)
-      const s = Math.floor((diff % 60000) / 1000)
-      setTimeLeft({ d, h, m, s })
+      if (diff <= 0) return
+      setT({ d: Math.floor(diff / 86400000), h: Math.floor((diff % 86400000) / 3600000), m: Math.floor((diff % 3600000) / 60000), s: Math.floor((diff % 60000) / 1000) })
     }
     tick()
     const id = setInterval(tick, 1000)
     return () => clearInterval(id)
   }, [target])
-  return timeLeft
+  return t
 }
 
 export default function SaleBanner() {
@@ -31,84 +27,118 @@ export default function SaleBanner() {
 
   useEffect(() => {
     setMounted(true)
-    const dismissed = sessionStorage.getItem(STORAGE_KEY)
-    if (!dismissed) setVisible(true)
+    const dismissed = sessionStorage.getItem('br_banner_v2')
+    if (!dismissed) {
+      setVisible(true)
+      document.documentElement.style.setProperty('--sale-banner-h', `${BANNER_H}px`)
+    }
   }, [])
 
   function dismiss() {
-    sessionStorage.setItem(STORAGE_KEY, '1')
+    sessionStorage.setItem('br_banner_v2', '1')
     setVisible(false)
+    document.documentElement.style.setProperty('--sale-banner-h', '0px')
   }
 
   if (!mounted || !visible) return null
 
   const pad = (n: number) => String(n).padStart(2, '0')
 
-  const tickerItems = [
-    '🔥 LAUNCH SALE — 50% OFF ALL SESSIONS',
-    '✦ INTRODUCTORY OFFER FOR FIRST-TIME VISITORS',
-    '🏆 ICN ATHLETES: 50% OFF EVERY VISIT ON REGISTRATION',
-    '⚡ LIMITED PERIOD ONLY — ENDS 31 AUG 2026',
-    '🔥 LAUNCH SALE — 50% OFF ALL SESSIONS',
-    '✦ INTRODUCTORY OFFER FOR FIRST-TIME VISITORS',
-    '🏆 ICN ATHLETES: 50% OFF EVERY VISIT ON REGISTRATION',
-    '⚡ LIMITED PERIOD ONLY — ENDS 31 AUG 2026',
-  ]
-
   return (
     <div
-      id="sale-banner"
       style={{
-        position: 'relative',
-        width: '100%',
-        zIndex: 100,
-        background: 'linear-gradient(90deg, #7f1d1d 0%, #991b1b 20%, #b91c1c 50%, #c2410c 80%, #9a3412 100%)',
-        overflow: 'hidden',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: BANNER_H,
+        zIndex: 60,
+        background: '#0f0e0e',
+        borderBottom: '1px solid rgba(188,163,134,0.18)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingLeft: 16,
+        paddingRight: 8,
+        gap: 8,
       }}
     >
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.07) 50%, transparent 60%)',
-          animation: 'bannerShimmer 3s infinite linear',
-          pointerEvents: 'none',
-        }}
-      />
-      <div style={{ display: 'flex', alignItems: 'center', height: '40px', position: 'relative' }}>
-        <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', paddingLeft: 12, paddingRight: 10, borderRight: '1px solid rgba(255,255,255,0.18)', height: '100%' }}>
-          <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: '0.14em', color: '#fff', background: 'rgba(0,0,0,0.30)', padding: '3px 9px', borderRadius: 9999, whiteSpace: 'nowrap', textTransform: 'uppercase', animation: 'bannerPulse 2s infinite ease-in-out' }}>
-            50% OFF
-          </span>
-        </div>
-        <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
-          <div style={{ display: 'flex', gap: '60px', animation: 'tickerScroll 28s linear infinite', whiteSpace: 'nowrap', willChange: 'transform' }}>
-            {tickerItems.map((item, i) => (
-              <span key={i} style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', color: 'rgba(255,255,255,0.92)', textTransform: 'uppercase', flexShrink: 0 }}>
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
-        <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: 4, paddingLeft: 10, paddingRight: 10, borderLeft: '1px solid rgba(255,255,255,0.18)', height: '100%' }}>
-          {[{ val: d, label: 'd' }, { val: h, label: 'h' }, { val: m, label: 'm' }, { val: s, label: 's' }].map(({ val, label }, i) => (
-            <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              {i > 0 && <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.50)', marginRight: 2 }}>:</span>}
-              <span style={{ fontSize: 11, fontWeight: 800, color: '#fff', fontVariantNumeric: 'tabular-nums', letterSpacing: '0.04em', minWidth: 16, textAlign: 'center' }}>
-                {pad(val)}
-              </span>
-              <span style={{ fontSize: 8, color: 'rgba(255,255,255,0.55)', letterSpacing: '0.08em' }}>{label}</span>
-            </div>
+      {/* Left: launch label */}
+      <span style={{
+        fontSize: 9,
+        fontWeight: 700,
+        letterSpacing: '0.26em',
+        textTransform: 'uppercase',
+        color: 'rgba(188,163,134,0.70)',
+        flexShrink: 0,
+        whiteSpace: 'nowrap',
+      }}>
+        Launch Offer
+      </span>
+
+      {/* Centre: scrolling message */}
+      <div style={{ flex: 1, overflow: 'hidden', position: 'relative', margin: '0 12px' }}>
+        <div style={{
+          display: 'flex',
+          gap: '80px',
+          animation: 'brTickerScroll 24s linear infinite',
+          whiteSpace: 'nowrap',
+          willChange: 'transform',
+        }}>
+          {[
+            '50% Off All Sessions · First-Visit Introductory Rate',
+            '✦ ICN Athletes: 50% Off Every Visit on Registration',
+            '50% Off All Sessions · First-Visit Introductory Rate',
+            '✦ ICN Athletes: 50% Off Every Visit on Registration',
+          ].map((item, i) => (
+            <span key={i} style={{
+              fontSize: 10,
+              fontWeight: 500,
+              letterSpacing: '0.14em',
+              color: 'rgba(245,240,235,0.80)',
+              textTransform: 'uppercase',
+              flexShrink: 0,
+            }}>
+              {item}
+            </span>
           ))}
         </div>
-        <button onClick={dismiss} aria-label="Close sale banner" style={{ flexShrink: 0, width: 28, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.65)', borderLeft: '1px solid rgba(255,255,255,0.14)' }}>
-          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 6 6 18M6 6l12 12" /></svg>
+      </div>
+
+      {/* Right: countdown + close */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+          {[{ v: d, l: 'd' }, { v: h, l: 'h' }, { v: m, l: 'm' }, { v: s, l: 's' }].map(({ v, l }, i) => (
+            <span key={l} style={{ display: 'flex', alignItems: 'baseline', gap: 1 }}>
+              {i > 0 && <span style={{ fontSize: 9, color: 'rgba(188,163,134,0.35)', marginRight: 1 }}>:</span>}
+              <span style={{ fontFamily: 'monospace', fontSize: 11, fontWeight: 700, color: '#f5f0eb', letterSpacing: '0.05em' }}>{pad(v)}</span>
+              <span style={{ fontSize: 8, color: 'rgba(188,163,134,0.55)', letterSpacing: '0.06em' }}>{l}</span>
+            </span>
+          ))}
+        </div>
+        <button
+          onClick={dismiss}
+          aria-label="Close"
+          style={{
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: 'rgba(196,193,196,0.45)', padding: '4px 6px',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            transition: 'color 0.2s',
+          }}
+          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = '#f5f0eb' }}
+          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'rgba(196,193,196,0.45)' }}
+        >
+          <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
         </button>
       </div>
+
       <style>{`
-        @keyframes tickerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        @keyframes bannerPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.75; } }
-        @keyframes bannerShimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
+        @keyframes brTickerScroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
       `}</style>
     </div>
   )

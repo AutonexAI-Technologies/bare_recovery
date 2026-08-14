@@ -112,7 +112,7 @@ export default function PricingPreview() {
 
         {/* Sale Hero Banner */}
         <FadeIn direction="up" delay={60}>
-          <div className="relative mb-10 p-6 md:p-8 rounded-[24px] overflow-hidden" style={{ background: 'linear-gradient(135deg,rgba(127,29,29,0.70) 0%,rgba(154,52,18,0.65) 50%,rgba(120,53,15,0.60) 100%)', border: '1px solid rgba(220,38,38,0.35)' }}>
+          <div className="relative mb-10 p-6 md:p-8 rounded-[24px] overflow-hidden" style={{ background: 'linear-gradient(135deg,rgba(120,53,15,0.50) 0%,rgba(245,158,11,0.18) 50%,rgba(251,191,36,0.12) 100%)', border: '1px solid rgba(245,158,11,0.35)' }}>
             {/* Shimmer */}
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.05) 50%,transparent 60%)', animation: 'bannerShimmer 4s infinite linear', pointerEvents: 'none' }} />
             <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -120,7 +120,7 @@ export default function PricingPreview() {
                 <div className="flex items-center gap-3 mb-2">
                   <span className="text-2xl">🔥</span>
                   <span className="font-black text-2xl md:text-3xl uppercase tracking-tight" style={{ color: '#fff', letterSpacing: '-0.02em' }}>50% OFF</span>
-                  <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest" style={{ background: 'rgba(255,255,255,0.12)', color: '#fca5a5', border: '1px solid rgba(252,165,165,0.25)' }}>Launch Sale</span>
+                  <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest" style={{ background: 'rgba(255,255,255,0.12)', color: '#FBBF24', border: '1px solid rgba(252,165,165,0.25)' }}>Launch Sale</span>
                 </div>
                 <p className="text-sm md:text-base font-medium" style={{ color: 'rgba(252,165,165,0.85)' }}>
                   Introductory offer for first-time visitors · ICN Athletes get 50% off <em>every</em> visit
@@ -144,7 +144,7 @@ export default function PricingPreview() {
                   </span>
                 )}
                 {/* 50% OFF ribbon top-right */}
-                <span className="absolute top-4 right-4 text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full" style={{ background: 'linear-gradient(90deg,#dc2626,#ea580c)', color: '#fff', boxShadow: '0 0 10px rgba(220,38,38,0.40)' }}>
+                <span className="absolute top-4 right-4 text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full" style={{ background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111010', boxShadow: '0 0 14px rgba(245,158,11,0.35)' }}>
                   50% OFF
                 </span>
 

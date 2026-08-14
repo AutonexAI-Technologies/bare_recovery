@@ -203,11 +203,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           >
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#dddadd]">At A Glance</p>
             {/* Sale callout */}
-            <div className="rounded-xl p-3 flex items-center gap-3" style={{ background: 'linear-gradient(135deg,rgba(127,29,29,0.50),rgba(154,52,18,0.40))', border: '1px solid rgba(220,38,38,0.28)' }}>
-              <span className="text-base shrink-0">🔥</span>
+            <div className="rounded-xl p-4 flex items-center gap-3" style={{ background: 'linear-gradient(135deg,rgba(245,158,11,0.18),rgba(251,191,36,0.10))', border: '1px solid rgba(245,158,11,0.35)' }}>
+              <span className="text-xl shrink-0">🔥</span>
               <div>
-                <p className="text-xs font-black uppercase tracking-wider" style={{ color: '#fca5a5' }}>50% Off — Launch Sale</p>
-                <p className="text-[10px] mt-0.5" style={{ color: 'rgba(252,165,165,0.70)' }}>ICN Athletes: 50% off every visit on registration</p>
+                <p className="text-xs font-black uppercase tracking-wider" style={{ color: '#FBBF24' }}>50% Off — Launch Sale</p>
+                <p className="text-[10px] mt-0.5" style={{ color: 'rgba(251,191,36,0.65)' }}>ICN Athletes: 50% off every visit on registration</p>
               </div>
             </div>
             <div className="space-y-4">

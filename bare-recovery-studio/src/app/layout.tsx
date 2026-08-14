@@ -4,7 +4,7 @@ import './globals.css'
 import Navbar from '@/components/shared/Navbar'
 import Footer from '@/components/shared/Footer'
 import FloatingWhatsApp from '@/components/shared/FloatingWhatsApp'
-import SaleBanner from '@/components/shared/SaleBanner'
+import FloatingSaleCTA from '@/components/shared/FloatingSaleCTA'
 import { SITE_CONFIG } from '@/lib/constants'
 
 const marcellus = Marcellus({
@@ -63,11 +63,11 @@ export default function RootLayout({
       className={`${marcellus.variable} ${inter.variable} min-h-full antialiased`}
     >
       <body className={`${marcellus.variable} ${inter.variable} min-h-screen flex flex-col text-[#F5F5F2]`}>
-        <SaleBanner />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
         <FloatingWhatsApp />
+        <FloatingSaleCTA />
       </body>
     </html>
   )
