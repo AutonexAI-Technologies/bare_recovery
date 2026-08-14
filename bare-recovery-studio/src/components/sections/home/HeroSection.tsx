@@ -101,13 +101,12 @@ export default function HeroSection() {
             <h1
               className="font-display uppercase leading-[0.88] block"
               style={{
-                fontSize: 'clamp(58px, 17vw, 88px)',
+                fontSize: 'clamp(40px, 12vw, 64px)',
                 fontWeight: 300,
                 letterSpacing: '-0.04em',
                 color: '#f5f0eb',
                 transform: mounted ? 'translateY(0) skewY(0)' : 'translateY(110px) skewY(4deg)',
                 transition: 'transform 1.1s cubic-bezier(0.16,1,0.3,1) 0.38s',
-                textShadow: '0 6px 40px rgba(0,0,0,0.70)',
               }}
             >
               Recover
@@ -117,13 +116,12 @@ export default function HeroSection() {
             <h1
               className="font-display uppercase leading-[0.88] block"
               style={{
-                fontSize: 'clamp(58px, 17vw, 88px)',
+                fontSize: 'clamp(40px, 12vw, 64px)',
                 fontWeight: 300,
                 letterSpacing: '-0.04em',
                 color: 'rgba(245,240,235,0.35)',
                 transform: mounted ? 'translateY(0) skewY(0)' : 'translateY(110px) skewY(4deg)',
                 transition: 'transform 1.1s cubic-bezier(0.16,1,0.3,1) 0.52s',
-                textShadow: '0 4px 24px rgba(0,0,0,0.55)',
                 background: 'transparent',
               }}
             >
@@ -215,13 +213,12 @@ export default function HeroSection() {
             <h1
               className="font-display uppercase leading-[0.90]"
               style={{
-                fontSize: 'clamp(64px, 9vw, 130px)',
+                fontSize: 'clamp(48px, 6.5vw, 96px)',
                 fontWeight: 300,
                 letterSpacing: '-0.04em',
                 color: '#f5f0eb',
                 transform: mounted ? 'translateY(0) skewY(0)' : 'translateY(100px) skewY(3deg)',
                 transition: 'transform 1.1s cubic-bezier(0.16,1,0.3,1) 0.32s',
-                textShadow: '0 4px 30px rgba(0,0,0,0.55)',
               }}
             >
               Recover
@@ -231,7 +228,7 @@ export default function HeroSection() {
             <h1
               className="font-display uppercase leading-[0.90]"
               style={{
-                fontSize: 'clamp(64px, 9vw, 130px)',
+                fontSize: 'clamp(48px, 6.5vw, 96px)',
                 fontWeight: 300,
                 letterSpacing: '-0.04em',
                 color: 'rgba(245,240,235,0.35)',
