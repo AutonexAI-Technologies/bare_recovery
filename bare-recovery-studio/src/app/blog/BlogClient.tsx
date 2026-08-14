@@ -3,263 +3,158 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import type { BlogPost } from '@/lib/blog'
+import { CONTACT_INFO } from '@/lib/constants'
 
-interface BlogClientProps {
-  posts: BlogPost[]
-}
+interface BlogClientProps { posts: BlogPost[] }
 
-const authorPhotos: Record<string, string> = {
-  Abhinav: '/images/founder/photo-7.png',
-  'Team Bare': '/images/founder/photo-7.png',
-}
+const waLink = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent('Hi! I want to book a session at the 50% launch rate.')}`
 
-function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
+function formatDate(d: string) {
+  return new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
 export default function BlogClient({ posts }: BlogClientProps) {
-  const allSubjects = Array.from(new Set(posts.map((p) => p.subject)))
-  const [activeFilter, setActiveFilter] = useState<string>('All')
+  const allSubjects = ['All', ...Array.from(new Set(posts.map(p => p.subject)))]
+  const [active, setActive] = useState('All')
 
-  const featuredPost = posts[0]
-  const filteredPosts = posts.slice(1).filter((p) =>
-    activeFilter === 'All' || p.subject === activeFilter
-  )
+  const featured = posts[0]
+  const rest = posts.slice(1).filter(p => active === 'All' || p.subject === active)
+  const filtered = posts.slice(1)
 
   return (
-    <div className="min-h-screen">
+    <div style={{ background: '#0f0e0e', minHeight: '100vh' }}>
 
-      {/* ── Header ── */}
-      <div className="pt-32 pb-16 px-5 md:px-12 max-w-[1320px] mx-auto">
-        <span
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] text-[#c9c6c5] mb-6"
-          style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#c9c6c5] animate-pulse" />
-          Recovery Intelligence
-        </span>
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <h1
-            className="font-display font-black text-[52px] md:text-[80px] text-[#F5F5F2] leading-none"
-            style={{ letterSpacing: '-0.04em' }}
-          >
-            The Recovery<br />
-            <span style={{ color: 'rgba(245,245,242,0.35)' }}>Blog.</span>
-          </h1>
-          <p className="text-[#dddadd] text-base max-w-xs leading-relaxed">
-            Science-backed insights on recovery, performance, and the discipline of feeling better.
-          </p>
-        </div>
-      </div>
-
-      {posts.length === 0 ? (
-        <div className="px-5 md:px-12 max-w-[1320px] mx-auto text-center py-20 text-[#dddadd]">
-          <p className="text-lg mb-3">No posts yet.</p>
-          <p className="text-sm">Add <code className="bg-white/5 px-2 py-0.5 rounded text-[#c9c6c5]">.md</code> files to the <code className="bg-white/5 px-2 py-0.5 rounded text-[#c9c6c5]">content/blog/</code> directory.</p>
-        </div>
-      ) : (
-        <div className="px-5 md:px-12 max-w-[1320px] mx-auto pb-24">
-
-          {/* ── Cinematic Featured Post ── */}
-          {featuredPost && (
-            <Link
-              href={`/blog/${featuredPost.slug}`}
-              className="group relative block w-full overflow-hidden rounded-[28px] mb-8"
-              style={{
-                height: 'clamp(420px, 52vw, 600px)',
-                border: '1px solid rgba(255,255,255,0.07)',
-              }}
-            >
-              {featuredPost.image ? (
-                <img
-                  src={featuredPost.image}
-                  alt={featuredPost.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105"
-                  style={{ objectPosition: 'center center' }}
-                />
-              ) : (
-                <div className="absolute inset-0 bg-[#111]" />
-              )}
-              {/* Gradient */}
-              <div
-                className="absolute inset-0"
-                style={{ background: 'linear-gradient(to bottom, rgba(11,11,11,0.2) 0%, transparent 30%, transparent 40%, rgba(11,11,11,0.85) 80%, rgba(11,11,11,0.97) 100%)' }}
-              />
-              {/* Content */}
-              <div className="absolute inset-0 flex flex-col justify-between p-8 md:p-12">
-                <div className="flex items-center justify-between">
-                  <span
-                    className="inline-block px-3 py-1 rounded-full text-xs font-semibold text-[#c9c6c5] uppercase tracking-wider"
-                    style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.14)' }}
-                  >
-                    {featuredPost.subject}
-                  </span>
-                  <span
-                    className="px-3 py-1 rounded-full text-xs font-semibold text-[#dddadd] uppercase tracking-wider"
-                    style={{ background: 'rgba(255,255,255,0.06)' }}
-                  >
-                    Featured
-                  </span>
-                </div>
-                <div>
-                  <h2
-                    className="font-display font-black text-[28px] md:text-[44px] text-[#F5F5F2] mb-4 max-w-3xl"
-                    style={{ letterSpacing: '-0.03em', lineHeight: 1.05 }}
-                  >
-                    {featuredPost.title}
-                  </h2>
-                  <p className="text-[#c4c7c7] text-sm md:text-base line-clamp-2 max-w-2xl mb-6 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-400">
-                    {featuredPost.excerpt}
-                  </p>
-                  <div className="flex items-center gap-4 flex-wrap">
-                    <div className="flex items-center gap-2">
-                      {authorPhotos[featuredPost.author] && (
-                        <img src={authorPhotos[featuredPost.author]} alt={featuredPost.author} className="w-7 h-7 rounded-full object-cover object-top" style={{ border: '1px solid rgba(255,255,255,0.15)' }} />
-                      )}
-                      <span className="text-[#c4c7c7] text-xs font-semibold">{featuredPost.author}</span>
-                    </div>
-                    <span className="text-[#dddadd] text-xs">·</span>
-                    <span className="text-[#dddadd] text-xs">{formatDate(featuredPost.date)}</span>
-                    <span className="text-[#dddadd] text-xs">·</span>
-                    <span className="text-[#dddadd] text-xs">{featuredPost.readTime}</span>
-                    <span
-                      className="ml-auto inline-flex items-center gap-2 bg-[#F5F5F2] text-[#0B0B0B] pl-5 pr-2 py-2 rounded-full font-bold text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0"
-                    >
-                      Read Story
-                      <span className="w-6 h-6 rounded-full bg-black/10 flex items-center justify-center">
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                          <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          )}
-
-          {/* ── Filter tabs ── */}
-          {posts.length > 1 && (
-            <>
-              <div className="flex items-center gap-2 flex-wrap mb-8">
-                {['All', ...allSubjects].map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setActiveFilter(cat)}
-                    className="px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300"
-                    style={{
-                      background: activeFilter === cat ? '#F5F5F2' : 'rgba(255,255,255,0.05)',
-                      color: activeFilter === cat ? '#0B0B0B' : '#c4c1c4',
-                      border: activeFilter === cat ? '1px solid transparent' : '1px solid rgba(255,255,255,0.08)',
-                    }}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </div>
-
-              {/* ── Magazine grid ── */}
-              {filteredPosts.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                  {filteredPosts.map((post) => (
-                    <Link
-                      key={post.slug}
-                      href={`/blog/${post.slug}`}
-                      className="group flex flex-col rounded-[24px] overflow-hidden transition-all duration-300 hover:scale-[1.015] hover:-translate-y-1"
-                      style={{
-                        background: 'rgba(16,16,16,0.9)',
-                        border: '1px solid rgba(255,255,255,0.06)',
-                      }}
-                    >
-                      {/* Image */}
-                      <div className="relative h-[200px] overflow-hidden flex-shrink-0">
-                        {post.image ? (
-                          <img
-                            src={post.image}
-                            alt={post.title}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            style={{ objectPosition: 'center center' }}
-                          />
-                        ) : (
-                          <div className="w-full h-full bg-[#1a1a1a] flex items-center justify-center">
-                            <span className="text-4xl opacity-20">📖</span>
-                          </div>
-                        )}
-                        <div
-                          className="absolute inset-0"
-                          style={{ background: 'linear-gradient(to bottom, transparent 50%, rgba(16,16,16,0.8) 100%)' }}
-                        />
-                        {/* Category badge */}
-                        <span
-                          className="absolute top-4 left-4 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.15em] text-[#c9c6c5]"
-                          style={{ background: 'rgba(16,16,16,0.85)', border: '1px solid rgba(255,255,255,0.1)', backdropFilter: 'blur(8px)' }}
-                        >
-                          {post.subject}
-                        </span>
-                      </div>
-
-                      {/* Content */}
-                      <div className="p-6 flex flex-col flex-1">
-                        <h3 className="font-display font-bold text-lg text-[#F5F5F2] mb-2 leading-tight group-hover:text-white transition-colors line-clamp-2 flex-1">
-                          {post.title}
-                        </h3>
-                        <p className="text-[#dddadd] text-sm line-clamp-2 leading-relaxed mb-5">{post.excerpt}</p>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            {authorPhotos[post.author] && (
-                              <img src={authorPhotos[post.author]} alt={post.author} className="w-6 h-6 rounded-full object-cover object-top" />
-                            )}
-                            <span className="text-[#dddadd] text-xs">{post.author}</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-xs text-[#dddadd]">
-                            <span>{formatDate(post.date)}</span>
-                            <span>·</span>
-                            <span>{post.readTime}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-20 text-[#dddadd]">
-                  <p>No posts in this category yet.</p>
-                </div>
-              )}
-            </>
-          )}
-
-          {/* ── Subscribe / CTA Banner ── */}
-          <div
-            className="mt-16 rounded-[28px] p-8 md:p-12 text-center"
-            style={{ background: 'rgba(20,20,20,0.8)', border: '1px solid rgba(255,255,255,0.06)' }}
-          >
-            <p className="text-[#dddadd] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Put the Science to Work</p>
-            <h2
-              className="font-display font-black text-[28px] md:text-[36px] text-[#F5F5F2] mb-3"
-              style={{ letterSpacing: '-0.02em' }}
-            >
-              Ready to recover smarter?
-            </h2>
-            <p className="text-[#dddadd] text-sm mb-8 max-w-sm mx-auto leading-relaxed">
-              Book a session at Bare Recovery Studio, Kompally. Starting from ₹800.
-            </p>
-            <a
-              href="https://wa.me/917670861496?text=Hi!%20I%20would%20like%20to%20book%20a%20session%20at%20Bare%20Recovery%20Studio."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 bg-[#F5F5F2] text-[#0B0B0B] pl-7 pr-2.5 py-3 rounded-full font-bold text-sm hover:bg-white transition-all active:scale-[0.98]"
-            >
-              Book a Session
-              <span className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-px">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0B0B0B" strokeWidth="2.5">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </span>
+      {/* ── Hero header ── */}
+      <div style={{ background: 'linear-gradient(to bottom, rgba(245,158,11,0.06) 0%, transparent 100%)', borderBottom: '1px solid rgba(245,158,11,0.10)', paddingTop: 100, paddingBottom: 60, paddingLeft: 20, paddingRight: 20 }}>
+        <div className="max-w-[1320px] mx-auto">
+          {/* Sale badge */}
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 20, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', padding: '6px 16px', borderRadius: 9999, boxShadow: '0 4px 16px rgba(245,158,11,0.40)' }}>
+            <span style={{ fontSize: 12 }}>🔥</span>
+            <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#111' }}>50% Off All Sessions — Ends Aug 31</span>
+          </div>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between" style={{ gap: 24 }}>
+            <div>
+              <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(44px,8vw,88px)', fontWeight: 300, letterSpacing: '-0.04em', lineHeight: 0.92, color: '#f5f0eb', marginBottom: 16 }}>
+                The Recovery<br />
+                <span style={{ color: 'rgba(245,240,235,0.22)' }}>Blog.</span>
+              </h1>
+              <p style={{ fontSize: 14, color: 'rgba(245,240,235,0.50)', maxWidth: 380, lineHeight: 1.7 }}>
+                Science-backed protocols, performance insights, and the discipline of feeling better — by Abhinav and Team Bare.
+              </p>
+            </div>
+            <a href={waLink} target="_blank" rel="noopener noreferrer"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111', padding: '14px 28px', borderRadius: 9999, fontSize: 13, fontWeight: 700, textDecoration: 'none', boxShadow: '0 8px 24px rgba(245,158,11,0.40)', whiteSpace: 'nowrap', alignSelf: 'flex-end' }}>
+              Book at 50% Off →
             </a>
           </div>
         </div>
-      )}
+      </div>
+
+      <div className="max-w-[1320px] mx-auto px-5 md:px-12 py-12 md:py-16">
+
+        {/* Category filters */}
+        {posts.length > 1 && (
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 36 }}>
+            {allSubjects.map(s => (
+              <button key={s} onClick={() => setActive(s)}
+                style={{ padding: '8px 18px', borderRadius: 9999, fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', cursor: 'pointer', border: `1px solid ${active === s ? 'rgba(245,158,11,0.45)' : 'rgba(255,255,255,0.09)'}`, background: active === s ? 'rgba(245,158,11,0.12)' : 'rgba(255,255,255,0.03)', color: active === s ? '#FBBF24' : 'rgba(245,240,235,0.45)', transition: 'all 0.2s' }}>
+                {s}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {posts.length === 0 && (
+          <p style={{ color: 'rgba(245,240,235,0.40)', textAlign: 'center', padding: '80px 0' }}>No posts yet. Add .md files to content/blog/</p>
+        )}
+
+        {/* ── Featured post ── */}
+        {featured && (active === 'All' || featured.subject === active) && (
+          <Link href={`/blog/${featured.slug}`} className="group" style={{ display: 'block', textDecoration: 'none', position: 'relative', borderRadius: 24, overflow: 'hidden', height: 'clamp(380px,50vw,560px)', border: '1px solid rgba(255,255,255,0.07)', marginBottom: 16 }}>
+            {featured.image ? (
+              <img src={featured.image} alt={featured.title} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 700ms cubic-bezier(0.32,0.72,0,1)' }} className="group-hover:scale-[1.03]" />
+            ) : (
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg,rgba(245,158,11,0.15),rgba(120,53,15,0.30))' }} />
+            )}
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(8,8,8,0.96) 0%, rgba(8,8,8,0.55) 45%, transparent 80%)' }} />
+            {/* Featured badge */}
+            <span style={{ position: 'absolute', top: 20, left: 20, padding: '5px 14px', borderRadius: 9999, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111', fontSize: 10, fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase', boxShadow: '0 4px 14px rgba(245,158,11,0.45)' }}>
+              Featured
+            </span>
+            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '0 28px 28px' }}>
+              <span style={{ display: 'inline-block', padding: '3px 10px', borderRadius: 9999, fontSize: 9, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#FBBF24', border: '1px solid rgba(245,158,11,0.30)', marginBottom: 10 }}>
+                {featured.subject}
+              </span>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px,3.5vw,38px)', fontWeight: 300, letterSpacing: '-0.03em', lineHeight: 1.15, color: '#f5f0eb', marginBottom: 12 }}>
+                {featured.title}
+              </h2>
+              <p style={{ fontSize: 13, color: 'rgba(245,240,235,0.55)', lineHeight: 1.6, maxWidth: 520, marginBottom: 16 }}>{featured.excerpt}</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 11, color: 'rgba(245,240,235,0.40)' }}>
+                <span>{featured.author}</span>
+                <span>·</span>
+                <span>{formatDate(featured.date)}</span>
+                <span>·</span>
+                <span>{featured.readTime}</span>
+                <span style={{ marginLeft: 8, display: 'inline-flex', alignItems: 'center', gap: 5, color: 'rgba(245,240,235,0.65)', fontSize: 12, fontWeight: 600, transition: 'color 0.2s' }} className="group-hover:text-amber-400">
+                  Read →
+                </span>
+              </div>
+            </div>
+          </Link>
+        )}
+
+        {/* ── Article grid ── */}
+        {(active === 'All' ? filtered : rest).length > 0 && (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 14, marginTop: 14 }}>
+            {(active === 'All' ? filtered : rest).map(post => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="group" style={{ display: 'block', textDecoration: 'none', borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(255,255,255,0.07)', background: 'rgba(255,255,255,0.025)', transition: 'all 0.25s ease' }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(245,158,11,0.22)'; (e.currentTarget as HTMLElement).style.background = 'rgba(245,158,11,0.04)' }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.07)'; (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.025)' }}>
+                {/* Image */}
+                <div style={{ position: 'relative', height: 200, overflow: 'hidden' }}>
+                  {post.image ? (
+                    <img src={post.image} alt={post.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 600ms cubic-bezier(0.32,0.72,0,1)' }} className="group-hover:scale-[1.04]" />
+                  ) : (
+                    <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg,rgba(245,158,11,0.12),rgba(120,53,15,0.20))' }} />
+                  )}
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(8,8,8,0.60) 0%, transparent 60%)' }} />
+                  <span style={{ position: 'absolute', bottom: 12, left: 14, padding: '3px 10px', borderRadius: 9999, fontSize: 9, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#FBBF24', border: '1px solid rgba(245,158,11,0.28)', background: 'rgba(8,8,8,0.60)', backdropFilter: 'blur(8px)' }}>
+                    {post.subject}
+                  </span>
+                </div>
+                {/* Content */}
+                <div style={{ padding: '18px 18px 20px' }}>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 400, letterSpacing: '-0.02em', lineHeight: 1.3, color: '#f5f0eb', marginBottom: 8 }}>
+                    {post.title}
+                  </h3>
+                  <p style={{ fontSize: 12, color: 'rgba(245,240,235,0.48)', lineHeight: 1.6, marginBottom: 14 }}>
+                    {post.excerpt}
+                  </p>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 11, color: 'rgba(245,240,235,0.35)' }}>
+                    <span>{formatDate(post.date)}</span>
+                    <span style={{ padding: '3px 10px', borderRadius: 9999, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>{post.readTime}</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+
+        {/* ── Newsletter CTA ── */}
+        <div style={{ marginTop: 64, padding: '40px 32px', borderRadius: 24, background: 'rgba(245,158,11,0.06)', border: '1px solid rgba(245,158,11,0.18)', display: 'flex', gap: 24, alignItems: 'center', flexWrap: 'wrap' }}>
+          <div style={{ flex: 1, minWidth: 240 }}>
+            <p style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#FBBF24', marginBottom: 8 }}>📬 Recovery Intelligence</p>
+            <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(20px,3vw,28px)', fontWeight: 300, letterSpacing: '-0.03em', color: '#f5f0eb', marginBottom: 4 }}>Get the insights first.</p>
+            <p style={{ fontSize: 13, color: 'rgba(245,240,235,0.45)', lineHeight: 1.6 }}>Weekly protocols, science, and studio updates. No spam.</p>
+          </div>
+          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+            <input type="email" placeholder="your@email.com" style={{ padding: '12px 18px', borderRadius: 12, border: '1px solid rgba(245,158,11,0.22)', background: 'rgba(0,0,0,0.30)', color: '#f5f0eb', fontSize: 13, outline: 'none', minWidth: 200 }} />
+            <button style={{ padding: '12px 22px', borderRadius: 12, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111', fontSize: 13, fontWeight: 700, border: 'none', cursor: 'pointer', whiteSpace: 'nowrap' }}>
+              Subscribe Free →
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

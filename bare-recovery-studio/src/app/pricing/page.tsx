@@ -1,5 +1,6 @@
 'use client'
 
+import SaleStrip from '@/components/shared/SaleStrip'
 import { useState, useEffect } from 'react'
 import { CONTACT_INFO } from '@/lib/constants'
 
@@ -94,6 +95,10 @@ function SaleHeaderBadge() {
   const pad = (n: number) => String(n).padStart(2, '0')
   return (
     <div className="mb-8 p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3" style={{ background: 'linear-gradient(135deg,rgba(120,53,15,0.50),rgba(245,158,11,0.15))', border: '1px solid rgba(245,158,11,0.30)' }}>
+
+      {/* Sale strip */}
+      <SaleStrip />
+
       <div className="flex items-center gap-3">
         <span className="text-xl">🔥</span>
         <div>

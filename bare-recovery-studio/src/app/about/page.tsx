@@ -1,3 +1,4 @@
+import SaleStrip from '@/components/shared/SaleStrip'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { CONTACT_INFO, SOCIAL_LINKS } from '@/lib/constants'
@@ -21,8 +22,11 @@ export default function AboutPage() {
   return (
     <div>
 
+      {/* Sale strip */}
+      <SaleStrip />
+
       {/* ─── HERO ─── */}
-      <section className="pt-36 md:pt-52 pb-20 px-5 md:px-12">
+      <section className="pt-20 md:pt-28 pb-20 px-5 md:px-12">
         <div className="max-w-[1320px] mx-auto">
           <span className="text-[11px] font-semibold uppercase tracking-[0.28em] block mb-6" style={{ color: '#dddadd' }}>
             Bare Recovery Studio

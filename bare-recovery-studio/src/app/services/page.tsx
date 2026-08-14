@@ -1,3 +1,4 @@
+import SaleStrip from '@/components/shared/SaleStrip'
 import Link from 'next/link'
 import { services } from '@/data/services'
 import { CONTACT_INFO } from '@/lib/constants'
@@ -47,8 +48,11 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen">
 
+      {/* Sale strip */}
+      <SaleStrip />
+
       {/* ── Header ── */}
-      <section className="pt-28 md:pt-36 pb-10 md:pb-16 px-4 md:px-12">
+      <section className="pt-16 md:pt-20 pb-10 md:pb-16 px-4 md:px-12">
         <div className="max-w-[1320px] mx-auto">
           <span
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] text-[#c9c6c5] mb-6"

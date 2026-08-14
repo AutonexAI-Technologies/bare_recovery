@@ -1,3 +1,4 @@
+import SaleStrip from '@/components/shared/SaleStrip'
 import HeroSection from '@/components/sections/home/HeroSection'
 import TrustBadges from '@/components/sections/home/TrustBadges'
 import ServicesGrid from '@/components/sections/home/ServicesGrid'
@@ -27,6 +28,9 @@ export default function HomePage() {
 
       {/* 2. Scrolling trust/equipment strip */}
       <TrustBadges />
+
+      {/* Sale strip */}
+      <SaleStrip />
 
       {/* 3. All 6 recovery services — asymmetric bento grid */}
       <ServicesGrid />

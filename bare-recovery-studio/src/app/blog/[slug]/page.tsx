@@ -1,22 +1,22 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { getAllSlugs, getPostBySlug } from '@/lib/blog'
+import { getAllSlugs, getPostBySlug, getAllPosts } from '@/lib/blog'
 import { CONTACT_INFO } from '@/lib/constants'
+import {
+  ReadingProgress, TableOfContents, ShareBar,
+  StarRating, NewsletterSignup, SaleCallout, RelatedPosts,
+} from './BlogArticleClient'
 import type { Metadata } from 'next'
 
 export async function generateStaticParams() {
-  const slugs = getAllSlugs()
-  return slugs.map((slug) => ({ slug }))
+  return getAllSlugs().map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const post = getPostBySlug(slug)
   if (!post) return {}
-  return {
-    title: `${post.title} | Bare Recovery Blog`,
-    description: post.excerpt,
-  }
+  return { title: `${post.title} | Bare Recovery Blog`, description: post.excerpt }
 }
 
 const authorPhotos: Record<string, string> = {
@@ -24,38 +24,60 @@ const authorPhotos: Record<string, string> = {
   'Team Bare': '/images/founder/photo-7.png',
 }
 
+function slugify(text: string) {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+}
+
+interface Heading { id: string; text: string; level: number }
+
+function parseHeadings(content: string): Heading[] {
+  const headings: Heading[] = []
+  content.split('\n').forEach(line => {
+    if (line.startsWith('## ')) headings.push({ id: slugify(line.slice(3)), text: line.slice(3), level: 2 })
+    else if (line.startsWith('### ')) headings.push({ id: slugify(line.slice(4)), text: line.slice(4), level: 3 })
+  })
+  return headings
+}
+
 function renderMarkdown(content: string) {
   const lines = content.split('\n')
   const elements: React.ReactNode[] = []
   let i = 0
+  let saleInjected = false
 
   while (i < lines.length) {
     const line = lines[i]
 
     if (line.startsWith('## ')) {
+      const id = slugify(line.slice(3))
+      // Inject sale callout after 2nd heading
+      if (!saleInjected && elements.length > 8) {
+        elements.push(<SaleCallout key="sale-mid" />)
+        saleInjected = true
+      }
       elements.push(
-        <h2 key={i} className="font-display font-bold text-[24px] md:text-[28px] text-[#F5F5F2] mt-12 mb-5" style={{ letterSpacing: '-0.02em' }}>
+        <h2 key={i} id={id} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px,4vw,30px)', fontWeight: 400, letterSpacing: '-0.025em', color: '#f5f0eb', marginTop: 52, marginBottom: 18, paddingTop: 8, borderTop: '1px solid rgba(255,255,255,0.06)', scrollMarginTop: 100 }}>
           {line.slice(3)}
         </h2>
       )
     } else if (line.startsWith('### ')) {
+      const id = slugify(line.slice(4))
       elements.push(
-        <h3 key={i} className="font-display font-semibold text-[19px] text-[#F5F5F2] mt-8 mb-3">
+        <h3 key={i} id={id} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(17px,3vw,22px)', fontWeight: 400, letterSpacing: '-0.02em', color: '#f5f0eb', marginTop: 32, marginBottom: 12, scrollMarginTop: 100 }}>
           {line.slice(4)}
         </h3>
       )
     } else if (line.startsWith('- ')) {
       const listItems: string[] = []
       while (i < lines.length && lines[i].startsWith('- ')) {
-        listItems.push(lines[i].slice(2))
-        i++
+        listItems.push(lines[i].slice(2)); i++
       }
       elements.push(
-        <ul key={`list-${i}`} className="space-y-2.5 my-6 pl-0">
+        <ul key={`ul-${i}`} style={{ listStyle: 'none', padding: 0, margin: '18px 0', display: 'flex', flexDirection: 'column', gap: 10 }}>
           {listItems.map((item, j) => (
-            <li key={j} className="flex items-start gap-3 text-[#c4c7c7] text-base leading-relaxed">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#c9c6c5] flex-shrink-0 mt-[10px]" />
-              <span dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.+?)\*\*/g, '<strong class="text-[#F5F5F2] font-semibold">$1</strong>') }} />
+            <li key={j} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, color: 'rgba(245,240,235,0.70)', fontSize: 16, lineHeight: 1.75 }}>
+              <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#FBBF24', flexShrink: 0, marginTop: 10 }} />
+              <span dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.+?)\*\*/g, '<strong style="color:#f5f0eb;font-weight:600">$1</strong>') }} />
             </li>
           ))}
         </ul>
@@ -63,34 +85,34 @@ function renderMarkdown(content: string) {
       continue
     } else if (/^\d+\. /.test(line)) {
       const listItems: string[] = []
+      let idx = 1
       while (i < lines.length && /^\d+\. /.test(lines[i])) {
-        listItems.push(lines[i].replace(/^\d+\. /, ''))
-        i++
+        listItems.push(lines[i].replace(/^\d+\. /, '')); i++
       }
       elements.push(
-        <ol key={`ol-${i}`} className="space-y-3 my-6 pl-0">
+        <ol key={`ol-${i}`} style={{ listStyle: 'none', padding: 0, margin: '18px 0', display: 'flex', flexDirection: 'column', gap: 10 }}>
           {listItems.map((item, j) => (
-            <li key={j} className="flex items-start gap-3 text-[#c4c7c7] text-base leading-relaxed">
-              <span className="font-display font-bold text-[#dddadd] text-sm w-6 flex-shrink-0 pt-0.5">{j + 1}.</span>
-              <span dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.+?)\*\*/g, '<strong class="text-[#F5F5F2] font-semibold">$1</strong>') }} />
+            <li key={j} style={{ display: 'flex', alignItems: 'flex-start', gap: 14, color: 'rgba(245,240,235,0.70)', fontSize: 16, lineHeight: 1.75 }}>
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 700, color: '#FBBF24', background: 'rgba(245,158,11,0.10)', border: '1px solid rgba(245,158,11,0.22)', width: 26, height: 26, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>{idx++}</span>
+              <span dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.+?)\*\*/g, '<strong style="color:#f5f0eb;font-weight:600">$1</strong>') }} />
             </li>
           ))}
         </ol>
       )
       continue
     } else if (line.trim().length > 0) {
-      const html = line.replace(/\*\*(.+?)\*\*/g, '<strong class="text-[#F5F5F2] font-semibold">$1</strong>')
+      const html = line
+        .replace(/\*\*(.+?)\*\*/g, '<strong style="color:#f5f0eb;font-weight:600">$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
       elements.push(
-        <p key={i} className="text-[#c4c7c7] text-base md:text-lg leading-[1.85] mb-0"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <p key={i} style={{ color: 'rgba(245,240,235,0.68)', fontSize: 17, lineHeight: 1.85, marginBottom: 0 }}
+          dangerouslySetInnerHTML={{ __html: html }} />
       )
     } else {
-      elements.push(<div key={i} className="h-4" />)
+      elements.push(<div key={i} style={{ height: 16 }} />)
     }
     i++
   }
-
   return elements
 }
 
@@ -99,125 +121,125 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const post = getPostBySlug(slug)
   if (!post) notFound()
 
-  return (
-    <div>
+  const allPosts = getAllPosts()
+  const related = allPosts.filter(p => p.slug !== slug).slice(0, 3).map(p => ({
+    slug: p.slug, title: p.title, subject: p.subject, readTime: p.readTime, image: p.image,
+  }))
+  const headings = parseHeadings(post.content)
+  const waLink = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent('Hi! I read the blog and want to book at the 50% launch rate.')}`
 
-      {/* ── Hero Image — full bleed, sits UNDER navbar ── */}
+  return (
+    <div style={{ background: '#0f0e0e', minHeight: '100vh' }}>
+      <ReadingProgress />
+
+      {/* ── Hero Image ── */}
       {post.image && (
-        <div className="relative w-full overflow-hidden" style={{ minHeight: 'clamp(520px, 68vh, 780px)' }}>
-          {/* The actual image — full cover, shows entire image */}
-          <img
-            src={post.image}
-            alt={post.title}
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ objectPosition: 'center center' }}
-          />
-          {/* Subtle overlay — mostly transparent in the middle so image shows fully */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background: 'linear-gradient(to bottom, rgba(11,11,11,0.35) 0%, transparent 18%, transparent 55%, rgba(11,11,11,0.75) 85%, #0B0B0B 100%)',
-            }}
-          />
-          {/* Breadcrumb overlay on the image */}
-          <div className="absolute bottom-0 inset-x-0 px-5 md:px-12 pb-8 max-w-[800px] mx-auto">
-            <div className="flex items-center gap-2 text-xs text-[#c4c7c7]">
-              <Link href="/blog" className="hover:text-[#F5F5F2] transition-colors">Blog</Link>
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M9 18l6-6-6-6"/>
-              </svg>
-              <span
-                className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-[0.15em] text-[#c9c6c5]"
-                style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.12)' }}
-              >
-                {post.subject}
-              </span>
+        <div style={{ position: 'relative', width: '100%', overflow: 'hidden', minHeight: 'clamp(420px,58vh,700px)' }}>
+          <img src={post.image} alt={post.title} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(8,8,8,0.45) 0%, transparent 25%, transparent 50%, rgba(8,8,8,0.80) 80%, #0f0e0e 100%)' }} />
+          {/* Sale badge on image */}
+          <div style={{ position: 'absolute', top: 80, right: 20 }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '7px 16px', borderRadius: 9999, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111', fontSize: 11, fontWeight: 800, letterSpacing: '0.08em', boxShadow: '0 4px 20px rgba(245,158,11,0.50)' }}>
+              🔥 50% Off — Book Now
+            </span>
+          </div>
+          {/* Breadcrumb */}
+          <div style={{ position: 'absolute', bottom: 32, left: 0, right: 0, padding: '0 20px' }} className="max-w-[900px] mx-auto">
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, color: 'rgba(245,240,235,0.60)' }}>
+              <Link href="/blog" style={{ color: 'inherit', textDecoration: 'none' }} className="hover:text-white transition-colors">Blog</Link>
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M9 18l6-6-6-6"/></svg>
+              <span style={{ padding: '3px 10px', borderRadius: 9999, background: 'rgba(245,158,11,0.15)', border: '1px solid rgba(245,158,11,0.25)', color: '#FBBF24', fontSize: 10, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase' }}>{post.subject}</span>
             </div>
           </div>
         </div>
       )}
 
-      {/* ── Content ── */}
-      <div className={`px-5 md:px-12 max-w-[800px] mx-auto pb-24 ${post.image ? 'pt-10' : 'pt-32'}`}>
+      {/* ── Main content ── */}
+      <div className="max-w-[1100px] mx-auto px-5 md:px-12" style={{ paddingTop: post.image ? 36 : 120, paddingBottom: 80 }}>
 
-        {/* If no image, show breadcrumb here */}
+        {/* If no image: breadcrumb here */}
         {!post.image && (
-          <div className="flex items-center gap-2 mb-8 text-xs text-[#dddadd]">
-            <Link href="/blog" className="hover:text-[#F5F5F2] transition-colors">Blog</Link>
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M9 18l6-6-6-6"/>
-            </svg>
-            <span className="text-[#c9c6c5]">{post.subject}</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, color: 'rgba(245,240,235,0.50)', marginBottom: 32 }}>
+            <Link href="/blog" style={{ color: 'inherit', textDecoration: 'none' }}>Blog</Link>
+            <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M9 18l6-6-6-6"/></svg>
+            <span style={{ color: '#FBBF24', fontSize: 10, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase' }}>{post.subject}</span>
           </div>
         )}
 
         {/* Title */}
-        <h1
-          className="font-display font-black text-[32px] md:text-[48px] text-[#F5F5F2] mb-6"
-          style={{ letterSpacing: '-0.035em', lineHeight: 1.1 }}
-        >
+        <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px,5.5vw,56px)', fontWeight: 300, letterSpacing: '-0.04em', lineHeight: 1.1, color: '#f5f0eb', marginBottom: 24 }}>
           {post.title}
         </h1>
 
         {/* Meta bar */}
-        <div
-          className="flex flex-wrap items-center gap-4 mb-10 pb-8"
-          style={{ borderBottom: '1px solid rgba(255,255,255,0.07)' }}
-        >
-          <div className="flex items-center gap-2.5">
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 16, paddingBottom: 24, borderBottom: '1px solid rgba(255,255,255,0.07)', marginBottom: 32 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             {authorPhotos[post.author] && (
-              <img
-                src={authorPhotos[post.author]}
-                alt={post.author}
-                className="w-8 h-8 rounded-full object-cover object-top"
-                style={{ border: '1px solid rgba(255,255,255,0.1)' }}
-              />
+              <img src={authorPhotos[post.author]} alt={post.author} style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', border: '2px solid rgba(245,158,11,0.30)' }} />
             )}
-            <span className="text-[#c4c7c7] text-sm font-semibold">{post.author}</span>
+            <div>
+              <p style={{ fontSize: 13, fontWeight: 700, color: '#f5f0eb', lineHeight: 1 }}>{post.author}</p>
+              <p style={{ fontSize: 11, color: 'rgba(245,240,235,0.45)', marginTop: 2 }}>Bare Recovery Studio</p>
+            </div>
           </div>
-          <span className="text-[#dddadd] text-xs">
+          <span style={{ fontSize: 12, color: 'rgba(245,240,235,0.40)' }}>
             {new Date(post.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
           </span>
-          <span
-            className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.18em] text-[#c9c6c5]"
-            style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)' }}
-          >
+          <span style={{ padding: '4px 12px', borderRadius: 9999, fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.09)', color: 'rgba(245,240,235,0.55)' }}>
             {post.readTime}
           </span>
         </div>
 
-        {/* Body */}
-        <article className="space-y-1">
-          {renderMarkdown(post.content)}
-        </article>
+        {/* Mobile TOC */}
+        <TableOfContents headings={headings} />
 
-        {/* Bottom CTA */}
-        <div
-          className="mt-16 p-8 md:p-12 rounded-[24px] text-center"
-          style={{
-            background: 'rgba(16,16,16,0.9)',
-            border: '1px solid rgba(255,255,255,0.06)',
-          }}
-        >
-          <p className="font-display font-bold text-[20px] md:text-[24px] text-[#F5F5F2] mb-3" style={{ letterSpacing: '-0.02em' }}>
-            Ready to put this into practice?
-          </p>
-          <p className="text-[#dddadd] text-sm mb-7 max-w-xs mx-auto leading-relaxed">
-            Book your session at Bare Recovery Studio, Kompally.
-          </p>
-          <a
-            href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=Hi!%20I'd%20like%20to%20book%20a%20session%20at%20Bare%20Recovery%20Studio.`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 bg-[#F5F5F2] text-[#0B0B0B] pl-7 pr-2.5 py-2.5 rounded-full font-bold text-sm hover:bg-white transition-all active:scale-[0.98]"
-          >
-            Book on WhatsApp
-            <span className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-px">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0B0B0B" strokeWidth="2.5">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </span>
-          </a>
+        {/* Desktop: two-column (TOC sidebar + article) */}
+        <div className="lg:flex" style={{ gap: 64, alignItems: 'flex-start' }}>
+
+          {/* Article body */}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <article style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+              {renderMarkdown(post.content)}
+            </article>
+
+            {/* Bottom sale callout */}
+            <SaleCallout />
+
+            {/* Rating */}
+            <StarRating slug={slug} />
+
+            {/* Share */}
+            <ShareBar title={post.title} slug={slug} />
+
+            {/* Newsletter */}
+            <NewsletterSignup />
+
+            {/* Related posts */}
+            <RelatedPosts posts={related} />
+
+            {/* Final CTA */}
+            <div style={{ marginTop: 64, padding: '36px 32px', borderRadius: 24, background: 'linear-gradient(135deg,rgba(120,53,15,0.45),rgba(245,158,11,0.08))', border: '1px solid rgba(245,158,11,0.25)', textAlign: 'center' }}>
+              <p style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#FBBF24', marginBottom: 12 }}>🔥 50% Off — Launch Sale</p>
+              <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px,4vw,32px)', fontWeight: 300, letterSpacing: '-0.03em', color: '#f5f0eb', marginBottom: 8 }}>
+                Ready to experience it yourself?
+              </p>
+              <p style={{ fontSize: 13, color: 'rgba(245,240,235,0.50)', marginBottom: 24, maxWidth: 380, margin: '0 auto 24px' }}>
+                Every session is 50% off for founding members. Book now before August rates reset permanently.
+              </p>
+              <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+                <a href={waLink} target="_blank" rel="noopener noreferrer"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111', padding: '14px 28px', borderRadius: 9999, fontSize: 13, fontWeight: 700, textDecoration: 'none', boxShadow: '0 8px 24px rgba(245,158,11,0.35)' }}>
+                  Book at 50% Off →
+                </a>
+                <Link href="/pricing" style={{ display: 'inline-flex', alignItems: 'center', padding: '14px 22px', borderRadius: 9999, fontSize: 13, fontWeight: 500, color: 'rgba(245,240,235,0.50)', border: '1px solid rgba(255,255,255,0.10)', textDecoration: 'none' }}>
+                  View Pricing
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop TOC sidebar */}
+          <TableOfContents headings={headings} />
         </div>
       </div>
     </div>
