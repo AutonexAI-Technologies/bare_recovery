@@ -8,7 +8,7 @@ const services = [
     id: 'cold-plunge',
     name: 'Cold Plunge',
     tagline: 'Full-body immersion at 10–15°C. Sharpen the mind, kill inflammation.',
-    duration: '10–15 min',
+    duration: '2–5 min',
     price: 'From ₹1,199',
     image: '/images/services/cold-plunge.PNG',
     label: 'HIGH INTENSITY',
@@ -137,7 +137,8 @@ function ServiceCard({
           className="group-hover:bg-black/10"
         />
 
-        {/* 50% OFF sale ribbon — top right */}
+
+        {/* 50% OFF sale ribbon */}
         <span
           style={{
             position: 'absolute',

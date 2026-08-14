@@ -129,6 +129,7 @@ export default function HeroSection() {
             </h1>
           </div>
 
+
           {/* Sale urgency badge */}
           <div
             className="flex items-center gap-2 mb-4"
@@ -158,7 +159,6 @@ export default function HeroSection() {
             </span>
             <span style={{ fontSize: 10, color: 'rgba(196,193,196,0.70)', letterSpacing: '0.04em' }}>Limited period</span>
           </div>
-
           {/* CTAs row */}
           <div
             className="flex items-center gap-3 mb-5"
@@ -271,9 +271,10 @@ export default function HeroSection() {
             </h1>
           </div>
 
-          {/* Sale urgency badge — desktop */}
+
+          {/* Sale urgency badge */}
           <div
-            className="flex items-center gap-2 mb-5"
+            className="flex items-center gap-2 mb-4"
             style={{
               opacity: mounted ? 1 : 0,
               transition: 'opacity 0.7s ease 0.65s',
@@ -300,7 +301,6 @@ export default function HeroSection() {
             </span>
             <span style={{ fontSize: 10, color: 'rgba(196,193,196,0.70)', letterSpacing: '0.04em' }}>Limited period</span>
           </div>
-
           <div
             className="flex items-center gap-3 mb-10"
             style={{
@@ -421,12 +421,12 @@ export default function HeroSection() {
             style={{ animation: 'marquee-left 34s linear infinite', width: 'max-content' }}
           >
             {[
-              'COLD PLUNGE','CONTRAST THERAPY','TRADITIONAL SAUNA',
-              'INFRARED SAUNA','RED LIGHT THERAPY','COMPRESSION THERAPY',
-              'FULL CIRCUIT','OPEN 10AM–10:30PM',
-              'COLD PLUNGE','CONTRAST THERAPY','TRADITIONAL SAUNA',
-              'INFRARED SAUNA','RED LIGHT THERAPY','COMPRESSION THERAPY',
-              'FULL CIRCUIT','OPEN 10AM–10:30PM',
+              'COLD PLUNGE', 'CONTRAST THERAPY', 'TRADITIONAL SAUNA',
+              'INFRARED SAUNA', 'RED LIGHT THERAPY', 'COMPRESSION THERAPY',
+              'FULL CIRCUIT', 'OPEN 10AM–10:30PM',
+              'COLD PLUNGE', 'CONTRAST THERAPY', 'TRADITIONAL SAUNA',
+              'INFRARED SAUNA', 'RED LIGHT THERAPY', 'COMPRESSION THERAPY',
+              'FULL CIRCUIT', 'OPEN 10AM–10:30PM',
             ].map((item, i) => (
               <span
                 key={i}

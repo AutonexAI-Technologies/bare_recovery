@@ -103,7 +103,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       */}
       <div className="relative w-full pt-32 pb-16 md:py-24 bg-[#0B0B0B]">
         <div className="px-5 md:px-12 max-w-[1320px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
+
           {/* Left: Service Details and Metadata */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             {/* Breadcrumb */}
@@ -112,7 +112,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 Services
               </Link>
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#c4c1c4" strokeWidth="2.5">
-                <path d="M9 18l6-6-6-6"/>
+                <path d="M9 18l6-6-6-6" />
               </svg>
               <span className="text-xs text-[#c9c6c5] font-medium">{svc.name}</span>
             </div>
@@ -158,7 +158,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               >
                 Book This Session
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                  <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </a>
             </div>
@@ -282,7 +282,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 <div className="flex items-start gap-3 mb-3">
                   <div className="w-5 h-5 rounded-full bg-[#c9c6c5]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#c9c6c5" strokeWidth="3">
-                      <polyline points="20 6 9 17 4 12"/>
+                      <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </div>
                   <span className="font-semibold text-[#F5F5F2] text-sm">{b.text}</span>
