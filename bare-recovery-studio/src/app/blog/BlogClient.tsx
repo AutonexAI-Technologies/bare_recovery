@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, FormEvent } from 'react'
 import type { BlogPost } from '@/lib/blog'
 import { CONTACT_INFO } from '@/lib/constants'
 
@@ -11,6 +11,30 @@ const waLink = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent
 
 function formatDate(d: string) {
   return new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
+}
+
+
+function BlogNewsletterForm() {
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState<'idle'|'sending'|'done'|'error'>('idle')
+  async function submit(e: FormEvent) {
+    e.preventDefault()
+    if (!email) return
+    setStatus('sending')
+    try {
+      const res = await fetch('/api/newsletter/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, source: 'blog-listing' }) })
+      setStatus(res.ok ? 'done' : 'error')
+    } catch { setStatus('error') }
+  }
+  if (status === 'done') return <div style={{ padding: '13px 18px', borderRadius: 12, background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.25)', color: '#FBBF24', fontSize: 13, fontWeight: 600 }}>✓ Subscribed! Check your inbox.</div>
+  return (
+    <form onSubmit={submit} style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+      <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="your@email.com" required style={{ padding: '12px 18px', borderRadius: 12, border: '1px solid rgba(245,158,11,0.22)', background: 'rgba(0,0,0,0.30)', color: '#f5f0eb', fontSize: 13, outline: 'none', minWidth: 200, flex: 1 }} />
+      <button type="submit" disabled={status === 'sending'} style={{ padding: '12px 22px', borderRadius: 12, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111', fontSize: 13, fontWeight: 700, border: 'none', cursor: 'pointer', whiteSpace: 'nowrap', opacity: status === 'sending' ? 0.7 : 1 }}>
+        {status === 'sending' ? 'Subscribing…' : 'Subscribe Free →'}
+      </button>
+    </form>
+  )
 }
 
 export default function BlogClient({ posts }: BlogClientProps) {
@@ -147,12 +171,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
             <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(20px,3vw,28px)', fontWeight: 300, letterSpacing: '-0.03em', color: '#f5f0eb', marginBottom: 4 }}>Get the insights first.</p>
             <p style={{ fontSize: 13, color: 'rgba(245,240,235,0.45)', lineHeight: 1.6 }}>Weekly protocols, science, and studio updates. No spam.</p>
           </div>
-          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-            <input type="email" placeholder="your@email.com" style={{ padding: '12px 18px', borderRadius: 12, border: '1px solid rgba(245,158,11,0.22)', background: 'rgba(0,0,0,0.30)', color: '#f5f0eb', fontSize: 13, outline: 'none', minWidth: 200 }} />
-            <button style={{ padding: '12px 22px', borderRadius: 12, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111', fontSize: 13, fontWeight: 700, border: 'none', cursor: 'pointer', whiteSpace: 'nowrap' }}>
-              Subscribe Free →
-            </button>
-          </div>
+          <BlogNewsletterForm />
         </div>
       </div>
     </div>

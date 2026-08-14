@@ -209,10 +209,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <StarRating slug={slug} />
 
             {/* Share */}
-            <ShareBar title={post.title} slug={slug} />
+            <ShareBar title={post.title} slug={slug} image={post.image} />
 
             {/* Newsletter */}
-            <NewsletterSignup />
+            <NewsletterSignup source="blog-article" />
 
             {/* Related posts */}
             <RelatedPosts posts={related} />
