@@ -21,7 +21,7 @@ export default function LocationSection() {
           </h2>
           <p
             className="text-[15px] leading-[1.75] mb-8 max-w-sm"
-            style={{ color: '#c4c1c4' }}
+            style={{ color: '#f5f0eb' }}
           >
             Bare Recovery Studio is located at Raichandani, Jeedimetla, Hyderabad — easy access from the surrounding localities. Free parking available.
           </p>
@@ -72,16 +72,16 @@ export default function LocationSection() {
                   style={{
                     background: 'rgba(61,59,61,0.80)',
                     border: '1px solid rgba(196,193,196,0.10)',
-                    color: '#c4c1c4',
+                    color: '#f5f0eb',
                   }}
                 >
                   {item.icon}
                 </div>
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.18em] font-medium mb-0.5" style={{ color: '#dddadd' }}>
+                  <p className="text-[10px] uppercase tracking-[0.18em] font-bold mb-0.5" style={{ color: '#f5f0eb' }}>
                     {item.label}
                   </p>
-                  <p className="text-sm leading-relaxed" style={{ color: '#dddadd' }}>
+                  <p className="text-sm leading-relaxed font-medium" style={{ color: 'rgba(245,240,235,0.90)' }}>
                     {item.value}
                   </p>
                 </div>

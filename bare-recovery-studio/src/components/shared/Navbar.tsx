@@ -265,7 +265,7 @@ export default function Navbar() {
           pointerEvents: open ? 'auto' : 'none',
         }}
       >
-        <div className="h-full flex flex-col px-6 pt-20 pb-10 overflow-y-auto">
+        <div className="h-full flex flex-col px-6 pt-28 pb-10 overflow-y-auto">
           <nav className="flex-1">
             {mainLinks.map((link, i) => (
               <Link

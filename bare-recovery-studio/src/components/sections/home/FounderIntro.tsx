@@ -163,34 +163,30 @@ export default function FounderIntro() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold text-sm transition-all duration-300"
-              style={{ border: '1px solid rgba(196,193,196,0.16)', color: '#c4c1c4' }}
+              style={{ background: 'linear-gradient(135deg, #833AB4, #E1306C, #F77737)', color: '#fff', boxShadow: '0 4px 16px rgba(225,48,108,0.35)' }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.color = '#f5f0eb'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,193,196,0.32)'
+                (e.currentTarget as HTMLElement).style.opacity = '0.85'
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.color = '#c4c1c4'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,193,196,0.16)'
+                (e.currentTarget as HTMLElement).style.opacity = '1'
               }}
             >
-              Instagram
+              📸 Instagram
             </a>
             <a
               href="https://youtube.com/@abhinavliftsvlogs"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold text-sm transition-all duration-300"
-              style={{ border: '1px solid rgba(196,193,196,0.16)', color: '#c4c1c4' }}
+              style={{ background: '#FF0000', color: '#fff', boxShadow: '0 4px 16px rgba(255,0,0,0.30)' }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.color = '#f5f0eb'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,193,196,0.32)'
+                (e.currentTarget as HTMLElement).style.opacity = '0.85'
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.color = '#c4c1c4'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(196,193,196,0.16)'
+                (e.currentTarget as HTMLElement).style.opacity = '1'
               }}
             >
-              YouTube
+              ▶ YouTube
             </a>
           </div>
         </FadeIn>

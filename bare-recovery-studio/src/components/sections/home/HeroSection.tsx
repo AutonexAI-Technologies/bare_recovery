@@ -264,25 +264,6 @@ export default function HeroSection() {
               transition: 'opacity 0.8s ease 0.60s',
               marginBottom: 32,
             }}
-          >
-            <p style={{
-              fontSize: 15,
-              lineHeight: 1.75,
-              color: 'rgba(221,218,221,0.65)',
-              maxWidth: 460,
-            }}>
-              Hyderabad&apos;s first dedicated recovery studio. Six science-backed protocols — designed for athletes, performers, and recovery-first individuals.
-            </p>
-            <p style={{
-              fontSize: 13,
-              lineHeight: 1.65,
-              color: 'rgba(188,163,134,0.60)',
-              maxWidth: 440,
-              marginTop: 10,
-              fontStyle: 'italic',
-            }}>
-              Private sessions · Open 10 AM – 10:30 PM · Kompally, Secunderabad
-            </p>
           </div>
 
           <div
