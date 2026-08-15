@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import FadeIn from '@/components/animations/FadeIn'
 
 const steps = [
@@ -5,7 +8,7 @@ const steps = [
     num: '01',
     title: 'Book',
     headline: 'Zero friction booking',
-    desc: 'Message us on WhatsApp or walk in. No app, no waitlist — pick your slot and you&apos;re confirmed in under 2 minutes.',
+    desc: 'Message us on WhatsApp or walk in. No app, no waitlist — pick your slot and you\'re confirmed in under 2 minutes.',
     icon: '📲',
     duration: '2 minutes',
   },
@@ -36,6 +39,8 @@ const steps = [
 ]
 
 export default function HowItWorks() {
+  const [hovered, setHovered] = useState<number | null>(null)
+
   return (
     <section className="py-16 md:py-[120px] px-4 md:px-12 max-w-[1320px] mx-auto overflow-hidden">
 
@@ -51,64 +56,82 @@ export default function HowItWorks() {
         </div>
       </FadeIn>
 
-      {/* Steps — horizontal on desktop */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-0 relative">
+      {/* Steps grid — equal height cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 relative">
 
         {/* Connector line — desktop only */}
         <div
-          className="absolute top-[52px] left-[12.5%] right-[12.5%] h-px hidden md:block"
-          style={{ background: 'linear-gradient(90deg, transparent, rgba(196,193,196,0.18) 20%, rgba(196,193,196,0.18) 80%, transparent)' }}
+          className="absolute top-[44px] left-[12.5%] right-[12.5%] h-px hidden lg:block z-0"
+          style={{ background: 'linear-gradient(90deg, transparent, rgba(245,240,235,0.12) 20%, rgba(245,240,235,0.12) 80%, transparent)' }}
         />
 
         {steps.map((step, i) => (
           <FadeIn key={step.num} direction="up" delay={i * 80}>
-            <div className="flex flex-col items-center md:items-start px-4 pb-8 md:pb-0 text-center md:text-left">
+            <div
+              className="relative flex flex-col p-6 md:p-7 rounded-2xl transition-all duration-400 cursor-default"
+              style={{
+                background: hovered === i ? 'rgba(86,84,86,0.45)' : 'rgba(42,40,41,0.60)',
+                border: hovered === i ? '1px solid rgba(245,240,235,0.18)' : '1px solid rgba(196,193,196,0.08)',
+                boxShadow: hovered === i ? '0 8px 32px rgba(0,0,0,0.30)' : 'none',
+                transform: hovered === i ? 'translateY(-4px)' : 'translateY(0)',
+                minHeight: 280,
+              }}
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
+            >
 
-              {/* Step circle */}
-              <div className="relative mb-6">
+              {/* Top row: icon + step label */}
+              <div className="flex items-center justify-between mb-5">
                 <div
-                  className="w-[52px] h-[52px] rounded-full flex items-center justify-center relative z-10 text-xl"
+                  className="w-12 h-12 rounded-xl flex items-center justify-center text-xl"
                   style={{
                     background: 'rgba(61,59,61,0.90)',
                     border: '1px solid rgba(196,193,196,0.16)',
-                    boxShadow: '0 0 0 6px rgba(86,84,86,0.20)',
+                    boxShadow: hovered === i ? '0 0 16px rgba(245,158,11,0.15)' : 'none',
+                    transition: 'box-shadow 0.3s ease',
                   }}
                 >
                   {step.icon}
                 </div>
+                <span
+                  className="text-xs font-bold uppercase tracking-[0.2em]"
+                  style={{ color: hovered === i ? '#FBBF24' : 'rgba(245,240,235,0.50)', transition: 'color 0.3s ease' }}
+                >
+                  Step {step.num}
+                </span>
               </div>
 
-              {/* Content */}
-              <span
-                className="text-[10px] font-bold uppercase tracking-[0.25em] mb-2"
-                style={{ color: '#565456' }}
-              >
-                Step {step.num}
-              </span>
+              {/* Headline */}
               <h3
-                className="font-display text-xl mb-2"
-                style={{ color: '#f5f0eb', letterSpacing: '-0.01em' }}
+                className="font-display text-lg md:text-xl mb-3"
+                style={{ color: '#f5f0eb', letterSpacing: '-0.01em', lineHeight: 1.25 }}
               >
                 {step.headline}
               </h3>
+
+              {/* Description — bright and readable */}
               <p
-                className="text-sm leading-[1.75] mb-4"
-                style={{ color: '#c4c1c4' }}
-                dangerouslySetInnerHTML={{ __html: step.desc }}
-              />
-              <span
-                className="inline-flex items-center gap-1.5 text-[11px] font-medium px-3 py-1.5 rounded-full"
+                className="text-sm leading-[1.8] flex-1 mb-5"
+                style={{ color: 'rgba(245,240,235,0.78)' }}
+              >
+                {step.desc}
+              </p>
+
+              {/* Duration pill — always at bottom */}
+              <div
+                className="inline-flex items-center gap-2 text-xs font-semibold px-3.5 py-2 rounded-full self-start"
                 style={{
-                  background: 'rgba(86,84,86,0.40)',
-                  border: '1px solid rgba(196,193,196,0.10)',
-                  color: '#c4c1c4',
+                  background: hovered === i ? 'rgba(245,158,11,0.12)' : 'rgba(86,84,86,0.50)',
+                  border: hovered === i ? '1px solid rgba(245,158,11,0.25)' : '1px solid rgba(196,193,196,0.10)',
+                  color: hovered === i ? '#FBBF24' : 'rgba(245,240,235,0.70)',
+                  transition: 'all 0.3s ease',
                 }}
               >
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
                 </svg>
                 {step.duration}
-              </span>
+              </div>
             </div>
           </FadeIn>
         ))}
