@@ -1,43 +1,31 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { CONTACT_INFO } from '@/lib/constants'
 
-const SALE_END = new Date('2026-08-31T23:59:59+05:30')
 const waLink = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent('Hi! I want to book at the 50% introductory launch rate.')}`
 
-function useCountdown(target: Date) {
-  const [t, setT] = useState({ d: 17, h: 0, m: 0, s: 0 })
-  useEffect(() => {
-    function tick() {
-      const diff = target.getTime() - Date.now()
-      if (diff <= 0) return
-      setT({ d: Math.floor(diff / 86400000), h: Math.floor((diff % 86400000) / 3600000), m: Math.floor((diff % 3600000) / 60000), s: Math.floor((diff % 60000) / 1000) })
-    }
-    tick(); const id = setInterval(tick, 1000); return () => clearInterval(id)
-  }, [target])
-  return t
-}
+const messages = [
+  '🔥 FOUNDING LAUNCH SALE — 50% OFF ALL SESSIONS',
+  '◆ First-time visitors get 50% off every service',
+  '🏆 ICN Hyderabad Deccan Uprising 2026 — 29 & 30 August 2026',
+  '✔ ICN Athletes: 50% off every single visit on registration — valid through 7th Sep 2026. No expiry. No time limit.',
+  '◆ Cold Plunge · Sauna · Red Light · Compression · Contrast Therapy · Full Circuit',
+  '🔥 Bare Recovery Studio · Kompally, Secunderabad · Open 10 AM – 10:30 PM',
+  '✦ Private Sessions · Walk-ins Welcome · Book via WhatsApp',
+]
 
 export default function TopAnnouncementBar() {
-  const [visible, setVisible] = useState(true)
-  const [mounted, setMounted] = useState(false)
-  const { d, h, m, s } = useCountdown(SALE_END)
-  const pad = (n: number) => String(n).padStart(2, '0')
+  const [clientMounted, setClientMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
-    if (sessionStorage.getItem('br_ann_v2')) setVisible(false)
+    setClientMounted(true)
+    document.documentElement.style.setProperty('--ann-bar-h', '56px')
   }, [])
 
-  // Emit a custom event so Navbar can adjust its top position
-  useEffect(() => {
-    if (mounted) {
-      document.documentElement.style.setProperty('--ann-bar-h', visible ? '44px' : '0px')
-    }
-  }, [visible, mounted])
+  if (!clientMounted) return null
 
-  if (!mounted || !visible) return null
+  const ticker = [...messages, ...messages]
 
   return (
     <div
@@ -46,57 +34,96 @@ export default function TopAnnouncementBar() {
         top: 0,
         left: 0,
         right: 0,
-        height: 44,
+        height: 56,
         zIndex: 200,
-        background: 'linear-gradient(90deg, #92400e 0%, #b45309 25%, #d97706 55%, #F59E0B 80%, #FCD34D 100%)',
+        background: 'linear-gradient(90deg, #78350f 0%, #92400e 15%, #b45309 35%, #d97706 60%, #F59E0B 82%, #FCD34D 100%)',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
-        gap: 0,
         overflow: 'hidden',
       }}
     >
-      {/* Shimmer */}
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.12) 50%, transparent 70%)', animation: 'annShimmer 2.5s infinite' }} />
+      {/* Shimmer overlay */}
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.12) 50%, transparent 70%)', animation: 'annShimmer 2.8s infinite', pointerEvents: 'none' }} />
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, position: 'relative', paddingRight: 32 }}>
-        <span style={{ fontSize: 16 }}>🔥</span>
-        <span style={{ fontSize: 12, fontWeight: 800, color: '#111010', letterSpacing: '0.02em', whiteSpace: 'nowrap' }}>
-          LAUNCH SALE — 50% OFF ALL SESSIONS
-        </span>
-
-        {/* Countdown chips */}
-        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 1, fontSize: 12, fontWeight: 800, fontFamily: 'monospace', color: '#111010', background: 'rgba(17,16,16,0.18)', borderRadius: 8, padding: '2px 10px' }}>
-          {pad(d)}d {pad(h)}h {pad(m)}m {pad(s)}s
-        </span>
-
-        {/* Price pills - hidden on small mobile */}
-        <span className="hidden md:flex items-center gap-1.5">
-          {['₹1,199', '₹2,999', '₹799'].map((p, i) => (
-            <span key={i} style={{ fontSize: 10, fontWeight: 700, color: '#111010', background: 'rgba(17,16,16,0.15)', borderRadius: 6, padding: '2px 8px', border: '1px solid rgba(17,16,16,0.12)' }}>{p}</span>
+      {/* Infinite marquee — full width, no left pin */}
+      <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+        <div
+          style={{
+            display: 'flex',
+            whiteSpace: 'nowrap',
+            animation: 'annMarquee 40s linear infinite',
+            willChange: 'transform',
+          }}
+        >
+          {ticker.map((msg, i) => (
+            <span
+              key={i}
+              style={{
+                fontSize: 13,
+                fontWeight: 800,
+                letterSpacing: '0.06em',
+                color: '#111010',
+                padding: '0 48px',
+                flexShrink: 0,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 10,
+              }}
+            >
+              {msg}
+              <span style={{ display: 'inline-block', width: 5, height: 5, borderRadius: '50%', background: 'rgba(17,16,16,0.28)', marginLeft: 10 }} />
+            </span>
           ))}
-        </span>
+        </div>
+      </div>
 
+      {/* Right pin: Book Now — hidden on mobile */}
+      <div
+        className="ann-book-btn"
+        style={{
+          flexShrink: 0,
+          padding: '0 16px',
+          borderLeft: '1px solid rgba(17,16,16,0.18)',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          background: 'rgba(17,16,16,0.06)',
+          position: 'relative',
+          zIndex: 1,
+        }}
+      >
         <a
           href={waLink}
           target="_blank"
           rel="noopener noreferrer"
-          style={{ fontSize: 11, fontWeight: 800, color: '#FBBF24', background: '#111010', padding: '5px 14px', borderRadius: 9999, textDecoration: 'none', letterSpacing: '0.04em', whiteSpace: 'nowrap', boxShadow: '0 2px 10px rgba(0,0,0,0.25)' }}
+          style={{
+            fontSize: 12,
+            fontWeight: 800,
+            color: '#FBBF24',
+            background: '#111010',
+            padding: '7px 16px',
+            borderRadius: 9999,
+            textDecoration: 'none',
+            letterSpacing: '0.05em',
+            whiteSpace: 'nowrap',
+            boxShadow: '0 2px 12px rgba(0,0,0,0.35)',
+          }}
         >
           Book Now →
         </a>
       </div>
 
-      {/* Dismiss */}
-      <button
-        onClick={() => { sessionStorage.setItem('br_ann_v2', '1'); setVisible(false) }}
-        style={{ position: 'absolute', right: 12, background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(17,16,16,0.55)', fontSize: 16, lineHeight: 1, padding: 4 }}
-      >×</button>
-
       <style>{`
         @keyframes annShimmer {
           0% { transform: translateX(-100%); }
           100% { transform: translateX(100%); }
+        }
+        @keyframes annMarquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        @media (max-width: 520px) {
+          .ann-book-btn { display: none !important; }
         }
       `}</style>
     </div>

@@ -49,7 +49,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
     <div style={{ background: '#0f0e0e', minHeight: '100vh' }}>
 
       {/* ── Hero header ── */}
-      <div style={{ background: 'linear-gradient(to bottom, rgba(245,158,11,0.06) 0%, transparent 100%)', borderBottom: '1px solid rgba(245,158,11,0.10)', paddingTop: 100, paddingBottom: 60, paddingLeft: 20, paddingRight: 20 }}>
+      <div style={{ background: 'linear-gradient(to bottom, rgba(245,158,11,0.06) 0%, transparent 100%)', borderBottom: '1px solid rgba(245,158,11,0.10)', paddingTop: 128, paddingBottom: 60, paddingLeft: 20, paddingRight: 20 }}>
         <div className="max-w-[1320px] mx-auto">
           {/* Sale badge */}
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 20, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', padding: '6px 16px', borderRadius: 9999, boxShadow: '0 4px 16px rgba(245,158,11,0.40)' }}>

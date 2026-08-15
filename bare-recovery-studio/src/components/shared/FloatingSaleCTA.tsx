@@ -3,38 +3,43 @@
 import { useState, useEffect } from 'react'
 import { CONTACT_INFO } from '@/lib/constants'
 
-const SALE_END = new Date('2026-08-31T23:59:59+05:30')
+const SALE_END = new Date('2026-09-07T23:59:59+05:30')
 
 function useCountdown(target: Date) {
   const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0 })
+  const [mounted, setMounted] = useState(false)
+
   useEffect(() => {
+    setMounted(true)
     function tick() {
       const diff = target.getTime() - Date.now()
       if (diff <= 0) return
-      setT({ d: Math.floor(diff / 86400000), h: Math.floor((diff % 86400000) / 3600000), m: Math.floor((diff % 3600000) / 60000), s: Math.floor((diff % 60000) / 1000) })
+      setT({
+        d: Math.floor(diff / 86400000),
+        h: Math.floor((diff % 86400000) / 3600000),
+        m: Math.floor((diff % 3600000) / 60000),
+        s: Math.floor((diff % 60000) / 1000),
+      })
     }
     tick()
     const id = setInterval(tick, 1000)
     return () => clearInterval(id)
   }, [target])
-  return t
+  return { ...t, mounted }
 }
 
 const waLink = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent('Hi! I want to book a session at the 50% launch sale price. Please confirm my slot.')}`
 
 export default function FloatingSaleCTA() {
-  const [mounted, setMounted] = useState(false)
-  const [visible, setVisible] = useState(true)
+  const [clientMounted, setClientMounted] = useState(false)
   const [expanded, setExpanded] = useState(false)
-  const { d, h, m, s } = useCountdown(SALE_END)
+  const { d, h, m, s, mounted: countdownMounted } = useCountdown(SALE_END)
 
   useEffect(() => {
-    setMounted(true)
-    const dismissed = sessionStorage.getItem('br_float_v1')
-    if (dismissed) setVisible(false)
+    setClientMounted(true)
   }, [])
 
-  if (!mounted || !visible) return null
+  if (!clientMounted) return null
   const pad = (n: number) => String(n).padStart(2, '0')
 
   return (
@@ -42,12 +47,13 @@ export default function FloatingSaleCTA() {
       style={{
         position: 'fixed',
         bottom: 24,
-        right: 20,
+        right: 16,
         zIndex: 999,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-end',
-        gap: 8,
+        gap: 10,
+        maxWidth: 'calc(100vw - 32px)',
       }}
     >
       {/* Expanded card */}
@@ -56,35 +62,36 @@ export default function FloatingSaleCTA() {
           style={{
             background: '#111010',
             border: '1px solid rgba(251,191,36,0.35)',
-            borderRadius: 20,
-            padding: '20px',
-            width: 260,
-            boxShadow: '0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(251,191,36,0.12)',
+            borderRadius: 24,
+            padding: '24px 20px',
+            width: 'min(300px, calc(100vw - 40px))',
+            boxShadow: '0 24px 60px rgba(0,0,0,0.65), 0 0 0 1px rgba(251,191,36,0.12)',
             animation: 'floatCardIn 0.25s cubic-bezier(0.16,1,0.3,1)',
+            position: 'relative',
           }}
         >
-          {/* Close */}
-          <button
-            onClick={() => { sessionStorage.setItem('br_float_v1', '1'); setVisible(false) }}
-            style={{ position: 'absolute', top: 12, right: 12, background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.35)', fontSize: 16, lineHeight: 1 }}
-          >×</button>
-
-          <p style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.28em', textTransform: 'uppercase', color: '#FBBF24', marginBottom: 6 }}>
-            🔥 Launch Sale
+          <p style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.28em', textTransform: 'uppercase', color: '#FBBF24', marginBottom: 8 }}>
+            🔥 Launch Sale — 50% Off
           </p>
-          <p style={{ fontFamily: 'var(--font-display)', fontSize: 38, fontWeight: 300, letterSpacing: '-0.04em', color: '#fff', lineHeight: 1, marginBottom: 4 }}>
+          <p style={{ fontFamily: 'var(--font-display)', fontSize: 44, fontWeight: 300, letterSpacing: '-0.04em', color: '#fff', lineHeight: 1, marginBottom: 6 }}>
             50% Off
           </p>
-          <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)', lineHeight: 1.5, marginBottom: 16 }}>
-            Every session. First-time visitors.<br />ICN athletes: always 50% off.
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.50)', lineHeight: 1.6, marginBottom: 20 }}>
+            Every session. First-time visitors get 50% off.<br />
+            <span style={{ color: 'rgba(251,191,36,0.70)', fontWeight: 600 }}>ICN Athletes:</span> Always 50% off through Sep 7.
           </p>
 
-          {/* Countdown */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 5, marginBottom: 16 }}>
-            {[{ v: d, l: 'D' }, { v: h, l: 'H' }, { v: m, l: 'M' }, { v: s, l: 'S' }].map(({ v, l }) => (
-              <div key={l} style={{ textAlign: 'center', background: 'rgba(251,191,36,0.08)', borderRadius: 10, padding: '8px 4px', border: '1px solid rgba(251,191,36,0.15)' }}>
-                <div style={{ fontSize: 18, fontWeight: 700, color: '#FBBF24', lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>{pad(v)}</div>
-                <div style={{ fontSize: 8, color: 'rgba(251,191,36,0.50)', letterSpacing: '0.12em', marginTop: 3 }}>{l}</div>
+          {/* Full countdown D:H:M:S */}
+          <p style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(251,191,36,0.50)', marginBottom: 10 }}>
+            Sale Ends In
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 6, marginBottom: 20 }}>
+            {[{ v: d, l: 'Days' }, { v: h, l: 'Hrs' }, { v: m, l: 'Min' }, { v: s, l: 'Sec' }].map(({ v, l }) => (
+              <div key={l} style={{ textAlign: 'center', background: 'rgba(251,191,36,0.08)', borderRadius: 12, padding: '10px 4px', border: '1px solid rgba(251,191,36,0.18)' }}>
+                <div style={{ fontSize: 22, fontWeight: 700, color: '#FBBF24', lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>
+                  {countdownMounted ? pad(v) : '--'}
+                </div>
+                <div style={{ fontSize: 8, color: 'rgba(251,191,36,0.50)', letterSpacing: '0.10em', marginTop: 4, textTransform: 'uppercase' }}>{l}</div>
               </div>
             ))}
           </div>
@@ -96,55 +103,53 @@ export default function FloatingSaleCTA() {
             style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
               background: 'linear-gradient(135deg, #F59E0B, #FBBF24)',
-              color: '#111010', borderRadius: 12,
-              padding: '12px 16px',
-              fontSize: 12, fontWeight: 800, letterSpacing: '0.06em',
+              color: '#111010', borderRadius: 14,
+              padding: '14px 16px',
+              fontSize: 13, fontWeight: 800, letterSpacing: '0.06em',
               textDecoration: 'none', width: '100%',
-              boxShadow: '0 8px 24px rgba(245,158,11,0.35)',
+              boxShadow: '0 8px 24px rgba(245,158,11,0.40)',
               transition: 'transform 0.15s ease',
             }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.02)' }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }}
           >
             Book at 50% Off
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
           </a>
         </div>
       )}
 
-      {/* Toggle pill */}
+      {/* Toggle pill — bigger */}
       <button
         onClick={() => setExpanded(v => !v)}
         style={{
-          display: 'flex', alignItems: 'center', gap: 10,
+          display: 'flex', alignItems: 'center', gap: 12,
           background: 'linear-gradient(135deg, #F59E0B 0%, #FBBF24 60%, #FCD34D 100%)',
           border: 'none', borderRadius: 9999,
-          padding: expanded ? '10px 18px' : '12px 20px',
+          padding: expanded ? '13px 22px' : '15px 24px',
           cursor: 'pointer',
-          boxShadow: '0 8px 32px rgba(245,158,11,0.50), 0 2px 8px rgba(0,0,0,0.30)',
+          boxShadow: '0 8px 36px rgba(245,158,11,0.55), 0 2px 8px rgba(0,0,0,0.30)',
           animation: 'floatPulse 3s infinite ease-in-out',
           transition: 'all 0.2s ease',
         }}
       >
-        <span style={{ fontSize: expanded ? 14 : 16 }}>🔥</span>
-        <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: '0.08em', color: '#111010', whiteSpace: 'nowrap' }}>
+        <span style={{ fontSize: expanded ? 16 : 18 }}>🔥</span>
+        <span style={{ fontSize: 13, fontWeight: 800, letterSpacing: '0.08em', color: '#111010', whiteSpace: 'nowrap' }}>
           {expanded ? 'Close' : '50% OFF — Book Now'}
         </span>
-        {!expanded && (
-          <div style={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-            {[d, h, m].map((v, i) => (
-              <span key={i} style={{ fontSize: 11, fontWeight: 700, color: 'rgba(17,16,16,0.65)', fontVariantNumeric: 'tabular-nums' }}>
-                {pad(v)}{i < 2 ? ':' : ''}
-              </span>
-            ))}
+        {!expanded && countdownMounted && (
+          <div style={{ display: 'flex', gap: 1, alignItems: 'center', background: 'rgba(17,16,16,0.12)', borderRadius: 8, padding: '3px 10px' }}>
+            <span style={{ fontSize: 12, fontWeight: 800, color: '#111010', fontVariantNumeric: 'tabular-nums' }}>
+              {pad(h)}:{pad(m)}:{pad(s)}
+            </span>
           </div>
         )}
       </button>
 
       <style>{`
         @keyframes floatPulse {
-          0%, 100% { box-shadow: 0 8px 32px rgba(245,158,11,0.50), 0 2px 8px rgba(0,0,0,0.30); }
-          50% { box-shadow: 0 12px 40px rgba(245,158,11,0.70), 0 2px 8px rgba(0,0,0,0.30); }
+          0%, 100% { box-shadow: 0 8px 36px rgba(245,158,11,0.55), 0 2px 8px rgba(0,0,0,0.30); }
+          50% { box-shadow: 0 12px 48px rgba(245,158,11,0.75), 0 2px 8px rgba(0,0,0,0.30); }
         }
         @keyframes floatCardIn {
           from { opacity: 0; transform: translateY(12px) scale(0.97); }

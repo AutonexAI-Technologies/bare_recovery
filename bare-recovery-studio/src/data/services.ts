@@ -56,7 +56,7 @@ Unlike traditional static compression (squeezing), our systems use dynamic compr
 
         coachInsight: 'Compression therapy is excellent for post-workout recovery. I use it after every heavy leg day. The difference in next-day soreness is dramatic. Consistent use makes a real difference.',
 
-        relatedServices: ['red-light-therapy', 'cold-plunge'],
+        relatedServices: ['red-light-therapy', 'cold-plunge', 'traditional-sauna'],
 
         faqs: [
             {
@@ -148,7 +148,7 @@ This non-invasive therapy has been clinically shown to reduce inflammation, supp
 
         coachInsight: 'Red light therapy has been a game-changer for my recovery and sleep quality. I use it 4-5 times per week. The science behind cellular repair is solid, and the results speak for themselves.',
 
-        relatedServices: ['compression-therapy', 'sauna'],
+        relatedServices: ['compression-therapy', 'cold-plunge', 'traditional-sauna'],
 
         faqs: [
             {
@@ -245,7 +245,7 @@ Regular sauna use has been linked to improved cardiovascular function, reduced s
 
         coachInsight: 'I recommend sauna sessions for both physical recovery and mental clarity. The deep heat penetration aids muscle repair significantly. Post-sauna, you feel completely reset.',
 
-        relatedServices: ['cold-plunge', 'contrast-therapy'],
+        relatedServices: ['cold-plunge', 'red-light-therapy', 'compression-therapy'],
 
         faqs: [
             {
@@ -341,7 +341,7 @@ This means you sweat more, detoxify deeper, and recover faster while experiencin
 
         coachInsight: 'Infrared sauna is my preferred recovery tool after long training blocks. The deep penetrating heat targets muscle fatigue at a cellular level. It\'s gentler than a traditional sauna, so you can stay in longer and get more out of each session.',
 
-        relatedServices: ['traditional-sauna', 'red-light-therapy'],
+        relatedServices: ['cold-plunge', 'red-light-therapy', 'compression-therapy'],
 
         faqs: [
             {
@@ -429,7 +429,7 @@ Regular cold exposure has been shown to increase norepinephrine levels, improve 
 
         coachInsight: 'Cold plunge is my go-to for mental resilience training and inflammation reduction. Start with 2 minutes and work your way up. Consistency is key—the benefits compound over time.',
 
-        relatedServices: ['sauna', 'contrast-therapy'],
+        relatedServices: ['traditional-sauna', 'contrast-therapy', 'compression-therapy', 'red-light-therapy'],
 
         faqs: [
             {
@@ -522,7 +522,7 @@ The rapid vasodilation (heat) and vasoconstriction (cold) creates a "pumping" ef
 
         coachInsight: 'The combination of heat and cold creates the ultimate recovery protocol. This is what elite athletes have been using for decades. Contrast therapy is our signature experience—nothing compares.',
 
-        relatedServices: ['sauna', 'cold-plunge'],
+        relatedServices: ['red-light-therapy', 'compression-therapy', 'traditional-sauna'],
 
         faqs: [
             {

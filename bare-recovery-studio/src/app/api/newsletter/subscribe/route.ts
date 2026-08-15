@@ -35,7 +35,7 @@ function saveSubscriber(email: string, source: string) {
   }
 }
 
-// ── Subscriber welcome email HTML ────────────────────────────────────────────
+// ── Subscriber welcome email HTML (personal tone = avoids spam) ─────────────
 function buildWelcomeEmail(email: string, source: string): string {
   return `<!DOCTYPE html>
 <html lang="en">
@@ -44,91 +44,77 @@ function buildWelcomeEmail(email: string, source: string): string {
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Welcome to Bare Recovery</title>
 </head>
-<body style="margin:0;padding:0;background:#0f0e0e;font-family:-apple-system,BlinkMacSystemFont,'Inter',Helvetica,sans-serif;">
-<div style="max-width:580px;margin:0 auto;">
+<body style="margin:0;padding:0;background:#ffffff;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:15px;line-height:1.6;color:#1a1a1a;">
+<div style="max-width:520px;margin:0 auto;padding:40px 24px;">
 
-  <!-- AMBER HERO BANNER -->
-  <div style="background:linear-gradient(135deg,#78350f 0%,#b45309 40%,#d97706 70%,#F59E0B 90%,#FCD34D 100%);padding:28px 32px 24px;">
-    <p style="font-size:9px;font-weight:800;letter-spacing:0.30em;text-transform:uppercase;color:rgba(17,16,16,0.55);margin:0 0 6px 0;">Bare Recovery Studio · Kompally, Hyderabad</p>
-    <h1 style="font-size:30px;font-weight:800;letter-spacing:-0.03em;color:#111010;margin:0 0 4px 0;line-height:1.1;">🔥 You're In.</h1>
-    <p style="font-size:13px;color:rgba(17,16,16,0.65);margin:0;">Welcome to the Bare Recovery community</p>
+  <!-- Personal header — looks like a real email, not a newsletter -->
+  <div style="margin-bottom:28px;padding-bottom:20px;border-bottom:2px solid #F59E0B;">
+    <p style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#F59E0B;margin:0 0 4px;">Bare Recovery Studio</p>
+    <p style="font-size:12px;color:#888;margin:0;">Kompally · Secunderabad · Hyderabad</p>
   </div>
 
-  <!-- BODY -->
-  <div style="background:#0f0e0e;padding:36px 32px 0 32px;">
+  <!-- Personal greeting -->
+  <p style="font-size:16px;color:#1a1a1a;margin:0 0 16px;">Hey,</p>
 
-    <h2 style="font-size:24px;font-weight:300;letter-spacing:-0.03em;color:#f5f0eb;margin:0 0 12px 0;line-height:1.25;">
-      Welcome to Recovery Intelligence.
-    </h2>
-    <p style="font-size:14px;color:rgba(245,240,235,0.55);line-height:1.80;margin:0 0 28px 0;">
-      You've just joined Hyderabad's first dedicated recovery community.
-      Every time we publish new science-backed protocols, training insights,
-      or studio updates — you'll be the first to know, straight from Abhinav at Bare Recovery.
+  <p style="color:#333;margin:0 0 16px;">
+    Thanks for subscribing to <strong>Bare Recovery</strong> — I'm Abhinav, the founder.
+    Really glad to have you here.
+  </p>
+
+  <p style="color:#333;margin:0 0 16px;">
+    You'll be the first to get new articles, recovery protocols, and studio updates
+    straight to your inbox — no spam, just genuine content I write myself.
+  </p>
+
+  <!-- What's coming -->
+  <div style="background:#f9f9f9;border-left:3px solid #F59E0B;padding:16px 18px;margin:20px 0;border-radius:0 8px 8px 0;">
+    <p style="font-weight:700;color:#1a1a1a;margin:0 0 10px;">What you'll receive:</p>
+    <p style="color:#555;margin:0;line-height:1.75;">
+      ✓ Science-backed cold plunge &amp; sauna protocols<br>
+      ✓ Red light therapy &amp; compression guides<br>
+      ✓ New articles as soon as they're published<br>
+      ✓ Studio updates &amp; member-only offers
     </p>
-
-    <!-- WHAT YOU GET BOX -->
-    <div style="border:1px solid rgba(245,158,11,0.25);border-radius:18px;padding:22px 24px;margin-bottom:28px;background:rgba(245,158,11,0.05);">
-      <p style="font-size:9px;font-weight:800;letter-spacing:0.28em;text-transform:uppercase;color:#FBBF24;margin:0 0 18px 0;">What's Coming Your Way</p>
-
-      <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;">
-        <span style="font-size:16px;flex-shrink:0;">📬</span>
-        <span style="font-size:13px;color:rgba(245,240,235,0.60);line-height:1.55;">Weekly science-backed recovery protocols</span>
-      </div>
-      <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;">
-        <span style="font-size:16px;flex-shrink:0;">🧊</span>
-        <span style="font-size:13px;color:rgba(245,240,235,0.60);line-height:1.55;">Cold plunge, sauna &amp; red light best practices</span>
-      </div>
-      <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;">
-        <span style="font-size:16px;flex-shrink:0;">📖</span>
-        <span style="font-size:13px;color:rgba(245,240,235,0.60);line-height:1.55;">First access to every new article we publish</span>
-      </div>
-      <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;">
-        <span style="font-size:16px;flex-shrink:0;">🔥</span>
-        <span style="font-size:13px;color:rgba(245,240,235,0.60);line-height:1.55;">Exclusive member offers &amp; early access deals</span>
-      </div>
-      <div style="display:flex;align-items:flex-start;gap:12px;">
-        <span style="font-size:16px;flex-shrink:0;">🏆</span>
-        <span style="font-size:13px;color:rgba(245,240,235,0.60);line-height:1.55;">ICN athlete updates &amp; performance tips</span>
-      </div>
-    </div>
-
-    <!-- SALE CALLOUT -->
-    <div style="background:linear-gradient(135deg,rgba(120,53,15,0.55) 0%,rgba(245,158,11,0.14) 100%);border:1px solid rgba(245,158,11,0.30);border-radius:18px;padding:22px 24px;margin-bottom:32px;">
-      <p style="font-size:9px;font-weight:800;letter-spacing:0.24em;text-transform:uppercase;color:#FBBF24;margin:0 0 8px 0;">🔥 Founding Member Rate — Active Now</p>
-      <p style="font-size:13px;color:rgba(245,240,235,0.60);line-height:1.70;margin:0 0 18px 0;">
-        Every session is <strong style="color:#FBBF24;font-weight:700;">50% off</strong> until August 31, 2026.
-        Cold Plunge <strong style="color:#f5f0eb;">₹1,199</strong> ·
-        Full Circuit <strong style="color:#f5f0eb;">₹2,999</strong> ·
-        Red Light <strong style="color:#f5f0eb;">₹799</strong>.
-        When August ends, these rates reset permanently — no exceptions.
-      </p>
-      <a href="https://wa.me/917670861496?text=Hi%21%20I%20subscribed%20to%20the%20newsletter%20and%20want%20to%20book%20a%20session%20at%20the%2050%25%20founding%20rate."
-         style="display:inline-block;background:linear-gradient(135deg,#F59E0B,#FBBF24);color:#111010;padding:14px 30px;border-radius:9999px;font-size:12px;font-weight:800;text-decoration:none;letter-spacing:0.06em;box-shadow:0 4px 18px rgba(245,158,11,0.40);">
-        Book at 50% Off →
-      </a>
-    </div>
-
-    <!-- STUDIO INFO -->
-    <div style="border-top:1px solid rgba(255,255,255,0.06);padding:22px 0;margin-bottom:0;">
-      <p style="font-size:12px;color:rgba(245,240,235,0.40);line-height:1.80;margin:0;">
-        📍 Bare Recovery Studio, Kompally, Secunderabad, Hyderabad<br>
-        📱 +91 7670 861 496 &nbsp;·&nbsp; Open daily 10AM–10PM<br>
-        📸
-        <a href="https://instagram.com/bare.recovery" style="color:#FBBF24;text-decoration:none;">@bare.recovery</a>
-        &nbsp;·&nbsp;
-        <a href="https://instagram.com/abhinav._lifts" style="color:#FBBF24;text-decoration:none;">@abhinav._lifts</a>
-      </p>
-    </div>
-
-    <!-- FOOTER -->
-    <div style="border-top:1px solid rgba(255,255,255,0.05);padding:18px 0 36px;">
-      <p style="font-size:10px;color:rgba(245,240,235,0.20);line-height:1.65;margin:0;">
-        You subscribed via barerecovery.in${source ? ` (${source})` : ''}.<br>
-        Reply to this email with "unsubscribe" to stop receiving updates. No spam, ever.
-      </p>
-    </div>
-
   </div>
+
+  <!-- Sale mention — casual, not promotional -->
+  <p style="color:#333;margin:0 0 16px;">
+    One thing — we're currently running our <strong>founding member offer</strong> where
+    every session is <strong style="color:#d97706;">50% off</strong> until August 31, 2026.
+    Cold Plunge from ₹1,199 · Full Circuit ₹2,999 · Red Light ₹799.
+  </p>
+
+  <p style="color:#333;margin:0 0 24px;">
+    If you'd like to book, just
+    <a href="https://wa.me/917670861496?text=Hi%21%20I%20subscribed%20and%20want%20to%20book%20at%20the%20founding%20rate."
+       style="color:#d97706;font-weight:600;">message us on WhatsApp</a>
+    and we'll set it up for you.
+  </p>
+
+  <!-- CTA button — simple, not flashy -->
+  <div style="margin:24px 0;">
+    <a href="https://wa.me/917670861496?text=Hi%21%20I%20subscribed%20and%20want%20to%20book%20at%20the%20founding%20rate."
+       style="display:inline-block;background:#1a1a1a;color:#F59E0B;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;">
+      Book a Session →
+    </a>
+  </div>
+
+  <!-- Personal sign-off -->
+  <p style="color:#333;margin:24px 0 8px;">Talk soon,</p>
+  <p style="color:#1a1a1a;font-weight:700;margin:0 0 4px;">Abhinav</p>
+  <p style="color:#888;font-size:13px;margin:0;">Bare Recovery Studio, Kompally</p>
+  <p style="color:#888;font-size:13px;margin:2px 0 0;">
+    <a href="https://instagram.com/abhinav._lifts" style="color:#d97706;text-decoration:none;">@abhinav._lifts</a>
+    &nbsp;·&nbsp;
+    <a href="https://instagram.com/bare.recovery" style="color:#d97706;text-decoration:none;">@bare.recovery</a>
+  </p>
+
+  <hr style="border:none;border-top:1px solid #eee;margin:28px 0 16px;">
+  <p style="font-size:11px;color:#bbb;margin:0;">
+    You subscribed at barerecovery.in${source ? ` via ${source}` : ''}.
+    Reply with "unsubscribe" to stop — no hard feelings.
+  </p>
+
 </div>
 </body>
 </html>`
@@ -197,9 +183,16 @@ export async function POST(req: NextRequest) {
     // Send both emails in parallel
     const [subscriberResult, studioResult] = await Promise.allSettled([
       transporter.sendMail({
-        from: `"Bare Recovery Studio" <${process.env.SMTP_USER}>`,
+        from: `"Abhinav (Bare Recovery)" <${process.env.SMTP_USER}>`,
         to: cleanEmail,
-        subject: "🔥 You're In — Welcome to the Bare Recovery Community",
+        subject: 'Your Bare Recovery subscription is confirmed',
+        headers: {
+          'List-Unsubscribe': `<mailto:${process.env.SMTP_USER}?subject=unsubscribe>`,
+          'X-Priority': '1',
+          'Importance': 'high',
+          'Precedence': 'bulk',
+        },
+        text: `Hi!\n\nThank you for subscribing to Bare Recovery Studio.\n\nYou'll get science-backed recovery protocols, studio updates, and first access to every article we publish.\n\nWe currently have a 50% Launch Sale on all sessions — Cold Plunge from Rs.1,199, Full Circuit Rs.2,999, Red Light Rs.799. Ends August 31, 2026.\n\nBook on WhatsApp: https://wa.me/917670861496\n\nBare Recovery Studio\nKompally, Secunderabad, Hyderabad\n+91 7670 861 496 | 10AM–10PM daily\nInstagram: @bare.recovery | @abhinav._lifts\n\n---\nYou subscribed at barerecovery.in. Reply "unsubscribe" to stop.`,
         html: buildWelcomeEmail(cleanEmail, cleanSource),
       }),
       transporter.sendMail({

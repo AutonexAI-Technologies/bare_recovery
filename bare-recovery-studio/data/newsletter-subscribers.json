@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "email": "junaiid0104@gmail.com",
+    "source": "blog-listing",
+    "subscribedAt": "2026-08-14T09:24:52.061Z"
+  },
+  {
+    "email": "barerecovery@gmail.com",
+    "source": "live-test",
+    "subscribedAt": "2026-08-14T09:25:29.246Z"
+  },
+  {
+    "email": "junaiid7275@gmail.com",
+    "source": "blog-listing",
+    "subscribedAt": "2026-08-14T10:18:13.548Z"
+  }
+]

@@ -97,32 +97,6 @@ export default function HeroSection() {
         >
 
 
-          {/* ════ SALE ANNOUNCEMENT — always first thing seen ════ */}
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 10,
-              marginBottom: 20,
-              background: 'linear-gradient(135deg, #F59E0B, #FBBF24)',
-              padding: '9px 18px',
-              borderRadius: 9999,
-              boxShadow: '0 4px 20px rgba(245,158,11,0.45)',
-              opacity: mounted ? 1 : 0,
-              transform: mounted ? 'translateY(0)' : 'translateY(-10px)',
-              transition: 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s',
-            }}
-          >
-            <span style={{ fontSize: 15 }}>🔥</span>
-            <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#111010', whiteSpace: 'nowrap' }}>
-              Launch Sale — 50% Off All Sessions
-            </span>
-            <span style={{ fontSize: 10, fontWeight: 600, color: 'rgba(17,16,16,0.60)', whiteSpace: 'nowrap' }}>
-              · Ends Aug 31
-            </span>
-          </div>
-
-          {/* Headline — massive */}
           <div className="mb-2 overflow-hidden">
             <h1
               className="font-display uppercase leading-[0.88] block"
@@ -138,7 +112,7 @@ export default function HeroSection() {
               Recover
             </h1>
           </div>
-          <div className="mb-8 overflow-hidden" style={{ background: 'transparent' }}>
+          <div className="mb-2 overflow-hidden" style={{ background: 'transparent' }}>
             <h1
               className="font-display uppercase leading-[0.88] block"
               style={{
@@ -154,6 +128,19 @@ export default function HeroSection() {
               Perform
             </h1>
           </div>
+          <p
+            className="mb-6"
+            style={{
+              fontSize: 13,
+              lineHeight: 1.7,
+              color: 'rgba(221,218,221,0.70)',
+              maxWidth: 320,
+              opacity: mounted ? 1 : 0,
+              transition: 'opacity 0.8s ease 0.65s',
+            }}
+          >
+            Hyderabad&apos;s first dedicated recovery studio. Science-backed protocols — Cold Plunge, Sauna, Red Light Therapy, Compression &amp; Contrast Therapy. Private sessions. Open 10 AM – 10:30 PM.
+          </p>
 
 
           {/* CTAs row */}
@@ -206,8 +193,8 @@ export default function HeroSection() {
             {[
               { icon: '⚡', value: '6 Services' },
               { icon: '🔒', value: 'Private Sessions' },
-              { icon: '🕐', value: '10 AM – 10 PM' },
-              { icon: '₹', value: 'From ₹799' },
+              { icon: '🕐', value: '10 AM – 10:30 PM' },
+              { icon: '📍', value: 'Kompally, Hyd' },
             ].map((stat) => (
               <div
                 key={stat.value}
@@ -237,31 +224,6 @@ export default function HeroSection() {
           }}
         >
 
-          {/* ════ SALE ANNOUNCEMENT — always first thing seen ════ */}
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 10,
-              marginBottom: 20,
-              background: 'linear-gradient(135deg, #F59E0B, #FBBF24)',
-              padding: '9px 18px',
-              borderRadius: 9999,
-              boxShadow: '0 4px 20px rgba(245,158,11,0.45)',
-              opacity: mounted ? 1 : 0,
-              transform: mounted ? 'translateY(0)' : 'translateY(-10px)',
-              transition: 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s',
-            }}
-          >
-            <span style={{ fontSize: 15 }}>🔥</span>
-            <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#111010', whiteSpace: 'nowrap' }}>
-              Launch Sale — 50% Off All Sessions
-            </span>
-            <span style={{ fontSize: 10, fontWeight: 600, color: 'rgba(17,16,16,0.60)', whiteSpace: 'nowrap' }}>
-              · Ends Aug 31
-            </span>
-          </div>
-
           {/* Headline */}
           <div className="overflow-hidden mb-1">
             <h1
@@ -278,7 +240,7 @@ export default function HeroSection() {
               Recover
             </h1>
           </div>
-          <div className="overflow-hidden mb-10" style={{ background: 'transparent' }}>
+          <div className="overflow-hidden mb-6" style={{ background: 'transparent' }}>
             <h1
               className="font-display uppercase leading-[0.90]"
               style={{
@@ -295,31 +257,34 @@ export default function HeroSection() {
             </h1>
           </div>
 
-          {/* Launch offer label — desktop */}
+          {/* Premium sub-headline — desktop */}
           <div
             style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              marginBottom: 16,
               opacity: mounted ? 1 : 0,
-              transition: 'opacity 0.7s ease 0.65s',
+              transition: 'opacity 0.8s ease 0.60s',
+              marginBottom: 32,
             }}
           >
-            <span style={{
-              fontSize: 9,
-              fontWeight: 700,
-              letterSpacing: '0.28em',
-              textTransform: 'uppercase',
-              color: 'rgba(188,163,134,0.85)',
-              border: '1px solid rgba(188,163,134,0.22)',
-              padding: '4px 12px',
-              borderRadius: 9999,
-              background: 'rgba(188,163,134,0.06)',
-              backdropFilter: 'blur(8px)',
+            <p style={{
+              fontSize: 15,
+              lineHeight: 1.75,
+              color: 'rgba(221,218,221,0.65)',
+              maxWidth: 460,
             }}>
-              Launch Offer · 50% Off
-            </span>
+              Hyderabad&apos;s first dedicated recovery studio. Six science-backed protocols — designed for athletes, performers, and recovery-first individuals.
+            </p>
+            <p style={{
+              fontSize: 13,
+              lineHeight: 1.65,
+              color: 'rgba(188,163,134,0.60)',
+              maxWidth: 440,
+              marginTop: 10,
+              fontStyle: 'italic',
+            }}>
+              Private sessions · Open 10 AM – 10:30 PM · Kompally, Secunderabad
+            </p>
           </div>
+
           <div
             className="flex items-center gap-3 mb-10"
             style={{
@@ -384,8 +349,8 @@ export default function HeroSection() {
             {[
               { icon: '⚡', value: '6 Services' },
               { icon: '🔒', value: 'Private Sessions' },
-              { icon: '🕐', value: '10 AM – 10 PM' },
-              { icon: '₹', value: 'From ₹799' },
+              { icon: '🕐', value: '10 AM – 10:30 PM' },
+              { icon: '📍', value: 'Kompally, Hyderabad' },
             ].map((stat) => (
               <div
                 key={stat.value}
@@ -404,22 +369,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* ══ Scroll indicator (desktop only) ══ */}
-      <div
-        className="hidden md:flex absolute bottom-7 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-2"
-        style={{ opacity: mounted ? 0.55 : 0, transition: 'opacity 1s ease 1.3s' }}
-      >
-        <span className="text-[9px] uppercase tracking-[0.35em]" style={{ color: '#dddadd' }}>Scroll</span>
-        <div className="w-px h-8 overflow-hidden relative">
-          <div
-            className="absolute inset-x-0 h-1/2 rounded-full"
-            style={{
-              background: 'linear-gradient(to bottom, rgba(196,193,196,0.50), transparent)',
-              animation: 'slide-up-bar 1.6s ease-in-out infinite',
-            }}
-          />
-        </div>
-      </div>
 
       {/* ══ Service ticker ══ */}
       <div

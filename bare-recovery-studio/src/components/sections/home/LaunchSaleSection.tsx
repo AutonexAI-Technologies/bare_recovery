@@ -46,12 +46,12 @@ const waLink = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent
 )}`
 
 const priceItems = [
-  { name: 'Cold Plunge', was: '₹2,398', now: '₹1,199', duration: '10–15 min' },
-  { name: 'Full Circuit', was: '₹5,998', now: '₹2,999', duration: '60–90 min' },
-  { name: 'Red Light Therapy', was: '₹1,598', now: '₹799', duration: '30–40 min' },
-  { name: 'Sauna', was: '₹1,998', now: '₹999', duration: '15–30 min' },
-  { name: 'Contrast Therapy', was: '₹3,598', now: '₹1,799', duration: '20–40 min' },
-  { name: 'Compression', was: '₹1,598', now: '₹799', duration: '30–40 min' },
+  { name: 'Full Circuit', was: '₹5,998', now: '₹2,999', duration: '60–90 min', emoji: '⚡' },
+  { name: 'Contrast Therapy', was: '₹3,598', now: '₹1,799', duration: '20–40 min', emoji: '🔥' },
+  { name: 'Cold Plunge', was: '₹2,398', now: '₹1,199', duration: '10–15 min', emoji: '🧂' },
+  { name: 'Sauna', was: '₹1,998', now: '₹999', duration: '15–30 min', emoji: '🌡️' },
+  { name: 'Red Light Therapy', was: '₹1,598', now: '₹799', duration: '30–40 min', emoji: '💡' },
+  { name: 'Compression', was: '₹1,598', now: '₹799', duration: '30–40 min', emoji: '🦵' },
 ]
 
 export default function LaunchSaleSection() {
@@ -158,7 +158,7 @@ export default function LaunchSaleSection() {
 
             {/* Tags */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 36 }}>
-              {['Cold Plunge · ₹1,199', 'Full Circuit · ₹2,999', 'Sauna · ₹999', 'Red Light · ₹799'].map(t => (
+              {['Full Circuit', 'Contrast Therapy', 'Cold Plunge', 'Sauna', 'Red Light', 'Compression'].map(t => (
                 <span key={t} style={{
                   fontSize: 10, fontWeight: 600,
                   letterSpacing: '0.10em',
@@ -274,14 +274,16 @@ export default function LaunchSaleSection() {
                   border: '1px solid rgba(188,163,134,0.09)',
                   borderRadius: 16,
                 }}>
-                  <p style={{
-                    fontSize: 9, fontWeight: 700, letterSpacing: '0.18em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(188,163,134,0.50)',
-                    marginBottom: 10,
-                  }}>
-                    {item.name}
-                  </p>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
+                    <span style={{ fontSize: 14 }}>{item.emoji}</span>
+                    <p style={{
+                      fontSize: 9, fontWeight: 700, letterSpacing: '0.18em',
+                      textTransform: 'uppercase',
+                      color: 'rgba(188,163,134,0.50)',
+                    }}>
+                      {item.name}
+                    </p>
+                  </div>
                   <p style={{
                     fontSize: 12, fontWeight: 500,
                     color: 'rgba(245,240,235,0.28)',
@@ -314,16 +316,21 @@ export default function LaunchSaleSection() {
             {/* ICN note */}
             <div style={{
               marginTop: 10,
-              padding: '14px 16px',
-              background: 'rgba(188,163,134,0.05)',
-              border: '1px solid rgba(188,163,134,0.14)',
+              padding: '16px 18px',
+              background: 'rgba(188,163,134,0.06)',
+              border: '1px solid rgba(188,163,134,0.20)',
               borderRadius: 14,
-              display: 'flex', alignItems: 'center', gap: 10,
             }}>
-              <span style={{ fontSize: 16 }}>🏆</span>
-              <p style={{ fontSize: 11, color: 'rgba(245,240,235,0.45)', lineHeight: 1.5 }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: 8 }}>
+                <span style={{ fontSize: 16, flexShrink: 0, marginTop: 1 }}>🏆</span>
+                <p style={{ fontSize: 11, color: 'rgba(245,240,235,0.55)', lineHeight: 1.6 }}>
+                  <span style={{ color: 'rgba(188,163,134,0.90)', fontWeight: 700 }}>ICN Hyderabad Deccan Uprising 2026</span> —
+                  29 &amp; 30 August 2026 · Hyderabad.
+                </p>
+              </div>
+              <p style={{ fontSize: 11, color: 'rgba(245,240,235,0.45)', lineHeight: 1.6, paddingLeft: 26 }}>
                 <span style={{ color: 'rgba(188,163,134,0.80)', fontWeight: 600 }}>ICN Athletes:</span>{' '}
-                50% off every single visit on registration. No expiry, no time limit.
+                <span style={{ color: '#FBBF24', fontWeight: 700 }}>50% off every single visit on registration — valid through 7th Sep 2026. No expiry. No time limit.</span>
               </p>
             </div>
           </div>

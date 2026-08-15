@@ -61,7 +61,7 @@ export default function Navbar() {
       <nav
         className="fixed inset-x-0 z-50 transition-all duration-500"
         style={{
-          top: 'var(--ann-bar-h, 44px)',
+          top: 'var(--ann-bar-h, 56px)',
           background: scrolled ? 'rgba(42,40,41,0.92)' : 'transparent',
           backdropFilter: scrolled ? 'blur(20px) saturate(160%)' : 'none',
           borderBottom: scrolled ? '1px solid rgba(196,193,196,0.08)' : '1px solid transparent',

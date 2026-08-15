@@ -127,14 +127,17 @@ export default function RecoveryScience() {
           </div>
         </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5" style={{ alignItems: 'stretch' }}>
           {scienceCards.map((card, i) => (
-            <FadeIn key={card.id} direction="up" delay={i * 80}>
+            <FadeIn key={card.id} direction="up" delay={i * 80} className="h-full">
               <div
-                className="science-card p-5 md:p-10 group cursor-default"
+                className="science-card p-5 md:p-10 group cursor-default h-full"
                 style={{
                   background: `rgba(86, 84, 86, 0.50)`,
                   border: `1px solid ${card.borderColor}`,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  minHeight: 340,
                 }}
               >
                 {/* Top row */}
@@ -168,7 +171,7 @@ export default function RecoveryScience() {
                 </div>
 
                 {/* Description */}
-                <p className="text-sm leading-[1.75] mb-6" style={{ color: '#dddadd' }}>
+                <p className="text-sm leading-[1.75] mb-6" style={{ color: '#dddadd', flexGrow: 1 }}>
                   {card.description}
                 </p>
 

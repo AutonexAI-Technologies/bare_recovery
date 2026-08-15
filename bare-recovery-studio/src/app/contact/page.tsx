@@ -112,7 +112,7 @@ export default function ContactPage() {
     focus:border-white/25 focus:bg-[#161616] focus:shadow-[0_0_0_3px_rgba(255,255,255,0.04)]`
 
   return (
-    <div className="min-h-screen pt-24 pb-24">
+    <div className="min-h-screen pt-32 pb-24">
       <div className="max-w-[1320px] mx-auto px-5 md:px-12">
 
         {/* Header */}

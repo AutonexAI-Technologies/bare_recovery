@@ -1,3 +1,4 @@
+import InstagramFollowerCount from '@/components/shared/InstagramFollowerCount'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { CONTACT_INFO, SOCIAL_LINKS } from '@/lib/constants'
@@ -22,7 +23,7 @@ export default function AboutPage() {
     <div>
 
       {/* ─── HERO ─── */}
-      <section className="pt-20 md:pt-28 pb-20 px-5 md:px-12">
+      <section className="pt-32 md:pt-36 pb-20 px-5 md:px-12">
         <div className="max-w-[1320px] mx-auto">
           <span className="text-[11px] font-semibold uppercase tracking-[0.28em] block mb-6" style={{ color: '#dddadd' }}>
             Bare Recovery Studio
@@ -194,7 +195,7 @@ export default function AboutPage() {
               <div className="absolute -bottom-5 -left-5 p-5 rounded-2xl"
                 style={{ background: 'rgba(20,19,19,0.97)', border: '1px solid rgba(196,193,196,0.18)', backdropFilter: 'blur(12px)' }}>
                 <p className="text-xs uppercase tracking-[0.15em] mb-1" style={{ color: '#dddadd' }}>Instagram</p>
-                <p className="font-display font-light text-2xl" style={{ letterSpacing: '-0.04em', color: '#f5f0eb' }}>85.3K</p>
+                <p className="font-display font-light text-2xl" style={{ letterSpacing: '-0.04em', color: '#f5f0eb' }}><InstagramFollowerCount fallback="85.3K" /></p>
                 <p className="text-xs" style={{ color: '#dddadd' }}>Followers</p>
               </div>
             </div>

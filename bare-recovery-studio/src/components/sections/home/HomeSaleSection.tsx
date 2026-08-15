@@ -20,9 +20,9 @@ function useCountdown(target: Date) {
 }
 
 const deals = [
-  { name: 'Cold Plunge', was: '₹2,398', now: '₹1,199', tag: 'Most Popular', emoji: '🧊', dur: '10–15 min' },
   { name: 'Full Circuit', was: '₹5,998', now: '₹2,999', tag: 'Best Value', emoji: '⚡', dur: '60–90 min' },
   { name: 'Contrast Therapy', was: '₹3,598', now: '₹1,799', tag: 'Signature', emoji: '🔥', dur: '20–40 min' },
+  { name: 'Cold Plunge', was: '₹2,398', now: '₹1,199', tag: 'Most Popular', emoji: '🧊', dur: '10–15 min' },
   { name: 'Sauna', was: '₹1,998', now: '₹999', tag: '', emoji: '🌡️', dur: '15–30 min' },
   { name: 'Red Light', was: '₹1,598', now: '₹799', tag: '', emoji: '💡', dur: '30–40 min' },
   { name: 'Compression', was: '₹1,598', now: '₹799', tag: '', emoji: '🦵', dur: '30–40 min' },
@@ -113,7 +113,8 @@ export default function HomeSaleSection() {
         {/* ICN Athlete note */}
         <div style={{ textAlign: 'center', padding: '24px', borderRadius: 16, background: 'rgba(245,158,11,0.05)', border: '1px solid rgba(245,158,11,0.18)', marginBottom: 40 }}>
           <p style={{ fontSize: 14, color: 'rgba(245,240,235,0.65)' }}>
-            <span style={{ fontWeight: 800, color: '#FBBF24' }}>🏆 ICN Athletes:</span> 50% off every single visit on registration. No expiry. No time limit.
+            <span style={{ fontWeight: 800, color: '#FBBF24' }}>🏆 ICN Athletes:</span>{' '}
+            50% off every single visit on registration — valid through 7th Sep 2026. No expiry. No time limit.
           </p>
         </div>
 

@@ -1,3 +1,4 @@
+import InstagramFollowerCount from '@/components/shared/InstagramFollowerCount'
 'use client'
 
 import { founderInfo } from '@/data/founder'
@@ -122,7 +123,7 @@ export default function FounderStory() {
                   </div>
                   <div>
                     <p className="font-display font-bold text-2xl" style={{ color: '#f5f0eb', letterSpacing: '-0.03em' }}>
-                      85.3K
+                      <InstagramFollowerCount fallback="85.3K" />
                     </p>
                     <p className="text-[10px] uppercase tracking-[0.15em]" style={{ color: '#dddadd' }}>
                       Instagram Followers

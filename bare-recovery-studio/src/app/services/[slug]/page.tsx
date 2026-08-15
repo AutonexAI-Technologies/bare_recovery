@@ -57,6 +57,47 @@ const howItWorks: Record<string, { step: string; title: string; desc: string }[]
   ],
 }
 
+// Why each service pairs well with another — science-based, non-redundant pairings
+const pairingReasons: Record<string, Record<string, string>> = {
+  // COMPRESSION: pairs with Red Light, Cold Plunge, Traditional Sauna
+  'compression-therapy': {
+    'red-light-therapy': 'The #1 science-backed stack. Red light stimulates mitochondrial ATP production and primes cells for repair — compression then flushes the metabolites and drives fresh oxygenated blood through those same tissues.',
+    'cold-plunge': 'Cold plunge triggers vasoconstriction and clears inflammation; compression post-plunge sustains lymphatic drainage as vessels re-dilate, accelerating the recovery cascade.',
+    'traditional-sauna': 'Heat from sauna maximally dilates blood vessels. Compression immediately after takes full advantage of that open vascular state to flush lactate and metabolic waste faster than either modality alone.',
+  },
+  // RED LIGHT: pairs with Compression, Cold Plunge, Traditional Sauna
+  'red-light-therapy': {
+    'compression-therapy': 'The #1 recovery double-stack. Red light primes cellular repair at the mitochondrial level; compression delivers the fresh blood flow needed to capitalise on that repair signal.',
+    'cold-plunge': 'Red light reduces baseline inflammation before the cold plunge intensifies the anti-inflammatory cascade via norepinephrine release — the two mechanisms stack without overlap.',
+    'traditional-sauna': 'Sauna increases circulation and opens capillary beds, making red light photons penetrate deeper and more effectively into muscle tissue for enhanced photobiomodulation.',
+  },
+  // TRADITIONAL SAUNA: pairs with Cold Plunge, Red Light, Compression
+  'traditional-sauna': {
+    'cold-plunge': 'The gold standard contrast therapy pair. Alternating 70–80°C heat and 8–12°C cold creates powerful vascular pump cycles — clinically proven to reduce DOMS, improve circulation, and spike norepinephrine up to 300%.',
+    'red-light-therapy': 'Sauna-driven heat stress activates heat shock proteins; red light simultaneously stimulates ATP production — two distinct cellular recovery pathways activated in one session.',
+    'compression-therapy': 'After sauna, blood vessels are maximally dilated. Adding compression capitalises on this state to actively move metabolic waste and reduce next-day soreness significantly.',
+  },
+  // INFRARED SAUNA: pairs with Cold Plunge, Red Light, Compression
+  'infrared-sauna': {
+    'cold-plunge': 'Infrared heat raises core temperature deeply at the tissue level; transitioning to cold plunge creates the same contrast therapy vascular pump effect with the added benefit of deeper pre-heated muscle tissue.',
+    'red-light-therapy': 'Both modalities operate at the cellular-energy level — infrared light warms tissue and increases blood flow while red light (660–850nm) directly stimulates mitochondrial ATP production. Complementary, not redundant.',
+    'compression-therapy': 'Infrared heat drives deep vasodilation across muscle groups; compression immediately after channels that dilated vascular state to actively drain metabolic waste and reduce swelling.',
+  },
+  // COLD PLUNGE: pairs with Traditional Sauna, Contrast Therapy, Compression, Red Light
+  'cold-plunge': {
+    'traditional-sauna': 'The classic thermal contrast pair. Heat → Cold cycling is the most evidence-based recovery protocol in sport science — alternating rounds dramatically reduce DOMS and recovery time.',
+    'contrast-therapy': 'Contrast Therapy IS the structured protocol for sauna + cold plunge cycling. Book contrast for a guided multi-round experience with optimal heat-cold timing built in.',
+    'compression-therapy': 'Post-plunge, vessels re-dilate rapidly — compression during this window sustains lymphatic drainage and maintains the anti-inflammatory effect for longer.',
+    'red-light-therapy': 'Red light before the plunge pre-activates cellular repair mechanisms; cold then locks in the anti-inflammatory effect by suppressing inflammatory cytokines at peak potency.',
+  },
+  // CONTRAST THERAPY: pairs with Red Light, Compression, Traditional Sauna
+  'contrast-therapy': {
+    'red-light-therapy': 'After contrast cycling, tissues are maximally perfused with fresh blood. Red light at this point drives cellular repair and ATP synthesis when the tissue is most receptive to photobiomodulation.',
+    'compression-therapy': 'Add compression as a finisher after contrast rounds. The vascular pump from contrast creates the ideal circulatory state for compression to drive the final metabolic waste flush.',
+    'traditional-sauna': 'Already the cornerstone of contrast therapy — if you want extended heat exposure beyond the contrast protocol, a standalone sauna session before or after adds additional heat shock protein activation.',
+  },
+}
+
 export async function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }))
 }
@@ -89,7 +130,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   if (svc.pricing.fullBody) pricingRows.push({ label: 'Full Body (Upper + Lower)', price: svc.pricing.fullBody })
   if (svc.pricing.couple) pricingRows.push({ label: 'Couple Session', price: svc.pricing.couple })
 
-  const relatedSvcs = services.filter((s) => svc.relatedServices.includes(s.id)).slice(0, 2)
+  const relatedSvcs = services.filter((s) => svc.relatedServices.includes(s.id))
+  const pairings = pairingReasons[svc.id] ?? {}
 
   return (
     <div>
@@ -207,7 +249,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               <span className="text-xl shrink-0">🔥</span>
               <div>
                 <p className="text-xs font-black uppercase tracking-wider" style={{ color: '#FBBF24' }}>50% Off — Launch Sale</p>
-                <p className="text-[10px] mt-0.5" style={{ color: 'rgba(251,191,36,0.65)' }}>ICN Athletes: 50% off every visit on registration</p>
+                <p className="text-[10px] mt-0.5" style={{ color: 'rgba(251,191,36,0.65)' }}>ICN Athletes: 50% off every visit on registration — valid through 7th Sep 2026. No expiry.</p>
               </div>
             </div>
             <div className="space-y-4">
@@ -328,30 +370,49 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </div>
         </section>
 
-        {/* ── Related Services ── */}
+        {/* ── Pairs Well With ── */}
         {relatedSvcs.length > 0 && (
           <section>
-            <h2 className="font-display font-bold text-[24px] text-[#F5F5F2] mb-8" style={{ letterSpacing: '-0.02em' }}>
-              Pair With
-            </h2>
+            <div style={{ marginBottom: 32 }}>
+              <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.24em', textTransform: 'uppercase', color: 'rgba(188,163,134,0.70)', display: 'block', marginBottom: 10 }}>Recovery Stack</span>
+              <h2 className="font-display font-light text-[#F5F5F2]" style={{ fontSize: 'clamp(26px,3.5vw,36px)', letterSpacing: '-0.02em' }}>
+                Pairs Well With
+              </h2>
+              <p style={{ fontSize: 15, color: 'rgba(221,218,221,0.60)', marginTop: 8, lineHeight: 1.7, maxWidth: 480 }}>
+                Combine services in one session to compound your recovery benefits. Our staff will guide your optimal sequence.
+              </p>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {relatedSvcs.map((r) => (
                 <Link
                   key={r.id}
                   href={`/services/${r.slug}`}
-                  className="group flex gap-5 p-5 rounded-[20px] transition-all hover:scale-[1.01]"
-                  style={{ background: 'rgba(20,20,20,0.6)', border: '1px solid rgba(255,255,255,0.06)' }}
+                  className="group block rounded-[20px] overflow-hidden transition-all duration-300 hover:scale-[1.015]"
+                  style={{ background: 'rgba(16,15,15,0.85)', border: '1px solid rgba(255,255,255,0.07)' }}
                 >
-                  <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
+                  {/* Image */}
+                  <div style={{ height: 160, overflow: 'hidden', position: 'relative' }}>
                     <img
                       src={serviceThumbs[r.id] ?? serviceImages[r.id]}
                       alt={r.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
+                      className="group-hover:scale-105"
                     />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 40%, rgba(16,15,15,0.85) 100%)' }} />
                   </div>
-                  <div>
-                    <h3 className="font-display font-semibold text-[#F5F5F2] mb-1">{r.name}</h3>
-                    <p className="text-[#dddadd] text-xs">{r.duration}</p>
+                  {/* Content */}
+                  <div style={{ padding: '18px 20px 20px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                      <h3 className="font-display font-semibold text-[#F5F5F2]" style={{ fontSize: 17 }}>{r.name}</h3>
+                      <span style={{ fontSize: 11, color: 'rgba(188,163,134,0.65)', background: 'rgba(188,163,134,0.08)', border: '1px solid rgba(188,163,134,0.15)', padding: '3px 10px', borderRadius: 9999, whiteSpace: 'nowrap', flexShrink: 0, marginLeft: 8 }}>{r.duration}</span>
+                    </div>
+                    {pairings[r.id] && (
+                      <p style={{ fontSize: 13, color: 'rgba(221,218,221,0.60)', lineHeight: 1.7 }}>{pairings[r.id]}</p>
+                    )}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 14 }}>
+                      <span style={{ fontSize: 12, fontWeight: 600, color: 'rgba(188,163,134,0.70)' }}>Add to session</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(188,163,134,0.70)" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                    </div>
                   </div>
                 </Link>
               ))}

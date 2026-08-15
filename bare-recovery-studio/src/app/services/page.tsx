@@ -111,14 +111,9 @@ export default function ServicesPage() {
     <div style={{ minHeight: '100vh', background: '#0f0e0e' }}>
 
       {/* ── Header ── */}
-      <section style={{ paddingTop: 'clamp(90px,12vw,140px)', paddingBottom: 48, paddingLeft: 20, paddingRight: 20 }}>
+      <section style={{ paddingTop: 'clamp(128px,12vw,160px)', paddingBottom: 48, paddingLeft: 20, paddingRight: 20 }}>
         <div className="max-w-[1320px] mx-auto">
 
-          {/* Sale badge */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 20, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', padding: '7px 18px', borderRadius: 9999, boxShadow: '0 4px 20px rgba(245,158,11,0.40)' }}>
-            <span style={{ fontSize: 14 }}>🔥</span>
-            <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#111' }}>All sessions 50% off — Ends Aug 31</span>
-          </div>
 
           <div className="flex flex-col md:flex-row md:items-end md:justify-between" style={{ gap: 24 }}>
             <div>

@@ -55,7 +55,7 @@ function PriceRow({ item, index }: { item: typeof singleSessions[0]; index: numb
       onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(86,84,86,0.20)' }}
       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent' }}>
       <div className="flex items-center gap-5">
-        <span className="font-display font-light text-3xl md:text-4xl w-9 shrink-0" style={{ letterSpacing: '-0.04em', color: 'rgba(196,193,196,0.18)' }}>
+        <span className="font-display font-light text-3xl md:text-4xl w-9 shrink-0" style={{ letterSpacing: '-0.04em', color: 'rgba(245,240,235,0.45)' }}>
           {String(index + 1).padStart(2, '0')}
         </span>
         <div>
@@ -66,14 +66,14 @@ function PriceRow({ item, index }: { item: typeof singleSessions[0]; index: numb
             <span className="text-[9px] font-black uppercase tracking-[0.12em] px-2.5 py-0.5 rounded-full" style={{ background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111010', boxShadow: '0 0 14px rgba(245,158,11,0.35)' }}>50% OFF</span>
           </div>
           <p className="text-sm md:text-base" style={{ color: '#dddadd' }}>{item.desc}</p>
-          {'duration' in item && item.duration && <p className="text-[10px] mt-0.5" style={{ color: 'rgba(196,193,196,0.55)' }}>⏱ {item.duration}</p>}
-          {item.note && <p className="text-[10px] mt-0.5 italic" style={{ color: '#dddadd' }}>{item.note}</p>}
+          {'duration' in item && item.duration && <p className="text-xs mt-1 font-medium" style={{ color: 'rgba(245,240,235,0.75)' }}>⏱ {item.duration}</p>}
+          {item.note && <p className="text-xs mt-1 font-semibold" style={{ color: 'rgba(221,218,221,0.90)' }}>{item.note}</p>}
         </div>
       </div>
       <div className="flex items-center gap-3 shrink-0 ml-4">
         <div className="text-right">
           {item.mrpPrice && (
-            <span className="block text-sm md:text-base font-medium line-through leading-tight" style={{ color: 'rgba(245,240,235,0.52)', letterSpacing: '-0.02em' }}>
+            <span className="block text-sm md:text-base font-semibold line-through leading-tight" style={{ color: 'rgba(245,240,235,0.70)', letterSpacing: '-0.02em' }}>
               ₹{item.mrpPrice.toLocaleString()}
             </span>
           )}
@@ -123,7 +123,7 @@ export default function PricingPage() {
 
   return (
     <div className="min-h-screen">
-      <div className="pt-28 md:pt-36 pb-16 md:pb-24 px-4 md:px-12 max-w-[1100px] mx-auto">
+      <div className="pt-32 md:pt-40 pb-16 md:pb-24 px-4 md:px-12 max-w-[1100px] mx-auto">
 
         {/* Header */}
         <div className="mb-12 md:mb-16">
@@ -212,7 +212,7 @@ export default function PricingPage() {
                   {plan.price ? (
                     <div className="mb-1">
                       {plan.mrpPrice && (
-                        <span className="block text-base font-medium line-through mb-0.5" style={{ color: 'rgba(245,240,235,0.50)', letterSpacing: '-0.01em' }}>
+                        <span className="block text-base font-semibold line-through mb-0.5" style={{ color: 'rgba(245,240,235,0.72)', letterSpacing: '-0.01em' }}>
                           ₹{plan.mrpPrice.toLocaleString()}
                         </span>
                       )}
@@ -227,14 +227,14 @@ export default function PricingPage() {
                     </div>
                   )}
 
-                  {plan.perSession && <p className="text-xs mb-1" style={{ color: '#dddadd' }}>₹{plan.perSession.toLocaleString()} per session</p>}
-                  {plan.savingsNote && plan.price && <p className="text-[10px] mb-5 font-medium" style={{ color: '#86efac' }}>{plan.savingsNote}</p>}
-                  {!plan.price && <p className="text-xs mb-5" style={{ color: '#dddadd' }}>{plan.savingsNote}</p>}
+                  {plan.perSession && <p className="text-sm mb-1 font-semibold" style={{ color: 'rgba(245,240,235,0.85)' }}>₹{plan.perSession.toLocaleString()} per session</p>}
+                  {plan.savingsNote && plan.price && <p className="text-xs mb-5 font-semibold" style={{ color: '#86efac' }}>{plan.savingsNote}</p>}
+                  {!plan.price && <p className="text-sm mb-5 font-medium" style={{ color: 'rgba(245,240,235,0.80)' }}>{plan.savingsNote}</p>}
 
                   <ul className="space-y-2.5 mb-8 flex-1">
                     {plan.perks.map((perk) => (
-                      <li key={perk} className="flex items-start gap-2.5 text-sm" style={{ color: '#dddadd' }}>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c4c1c4" strokeWidth="2.5" className="shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12" /></svg>
+                      <li key={perk} className="flex items-start gap-2.5 text-sm font-medium" style={{ color: '#f5f0eb' }}>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d9d1cc" strokeWidth="2.5" className="shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12" /></svg>
                         {perk}
                       </li>
                     ))}
@@ -263,7 +263,7 @@ export default function PricingPage() {
           <div>
             <p className="font-bold text-sm uppercase tracking-wider mb-1" style={{ color: '#fde68a' }}>ICN Athletes — 50% Off Every Visit</p>
             <p className="text-sm leading-relaxed" style={{ color: 'rgba(253,230,138,0.75)' }}>
-              Registered ICN athletes receive 50% off on every single visit — just show your registration card or proof of registration at the studio. No time limit. Always active.
+              Registered ICN athletes receive 50% off every single visit on registration — valid through 7th Sep 2026. No expiry. No time limit. Show your registration card or proof at the studio.
             </p>
             <a href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent('Hi! I am a registered ICN athlete and would like to claim my 50% discount at Bare Recovery Studio.')}`}
               target="_blank" rel="noopener noreferrer"
