@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import type React from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions | Bare Recovery Studio',
@@ -7,13 +7,13 @@ export const metadata: Metadata = {
 }
 
 const S = {
-  h2: { fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 600, color: '#f5f0eb', marginBottom: 16, paddingBottom: 12, borderBottom: '1px solid rgba(255,255,255,0.08)' } as React.CSSProperties,
-  p: { fontSize: 16, color: 'rgba(245,240,235,0.75)', lineHeight: 1.85 } as React.CSSProperties,
-  dot: { width: 6, height: 6, borderRadius: '50%', background: 'rgba(188,163,134,0.60)', flexShrink: 0, marginTop: 9 } as React.CSSProperties,
-  li: { fontSize: 16, color: 'rgba(245,240,235,0.72)', lineHeight: 1.8 } as React.CSSProperties,
+  h2: { fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 600, color: '#f5f0eb', marginBottom: 16, paddingBottom: 12, borderBottom: '1px solid rgba(255,255,255,0.08)' } as CSSProperties,
+  p: { fontSize: 16, color: 'rgba(245,240,235,0.75)', lineHeight: 1.85 } as CSSProperties,
+  dot: { width: 6, height: 6, borderRadius: '50%', background: 'rgba(188,163,134,0.60)', flexShrink: 0, marginTop: 9 } as CSSProperties,
+  li: { fontSize: 16, color: 'rgba(245,240,235,0.72)', lineHeight: 1.8 } as CSSProperties,
 }
 
-function Section({ children }: { children: React.ReactNode }) {
+function Section({ children }: { children: ReactNode }) {
   return <section style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>{children}</section>
 }
 
