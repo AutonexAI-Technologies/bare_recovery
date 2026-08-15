@@ -110,7 +110,7 @@ const faqData = [
       },
       {
         q: 'What are your operating hours?',
-        a: 'We are open 10 AM – 10:30 PM, every day. We offer morning and evening slots to fit around your training schedule. Booking in advance is recommended for peak hours.',
+        a: 'We are open 10 AM – 10 PM, every day. We offer morning and evening slots to fit around your training schedule. Booking in advance is recommended for peak hours.',
       },
       {
         q: 'Is the studio private or shared?',

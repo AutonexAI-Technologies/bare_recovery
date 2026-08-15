@@ -11,7 +11,7 @@ const messages = [
   '🏆 ICN Hyderabad Deccan Uprising 2026 — 29 & 30 August 2026',
   '✔ ICN Athletes: 50% off every single visit on registration — valid through 7th Sep 2026. No expiry. No time limit.',
   '◆ Cold Plunge · Sauna · Red Light · Compression · Contrast Therapy · Full Circuit',
-  '🔥 Bare Recovery Studio · Kompally, Secunderabad · Open 10 AM – 10:30 PM',
+  '🔥 Bare Recovery Studio · Kompally, Secunderabad · Open 10 AM – 10 PM',
   '✦ Private Sessions · Walk-ins Welcome · Book via WhatsApp',
 ]
 

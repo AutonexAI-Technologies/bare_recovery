@@ -128,19 +128,6 @@ export default function HeroSection() {
               Perform
             </h1>
           </div>
-          <p
-            className="mb-6"
-            style={{
-              fontSize: 13,
-              lineHeight: 1.7,
-              color: 'rgba(221,218,221,0.70)',
-              maxWidth: 320,
-              opacity: mounted ? 1 : 0,
-              transition: 'opacity 0.8s ease 0.65s',
-            }}
-          >
-            Hyderabad&apos;s first dedicated recovery studio. Science-backed protocols — Cold Plunge, Sauna, Red Light Therapy, Compression &amp; Contrast Therapy. Private sessions. Open 10 AM – 10:30 PM.
-          </p>
 
 
           {/* CTAs row */}
@@ -193,7 +180,7 @@ export default function HeroSection() {
             {[
               { icon: '⚡', value: '6 Services' },
               { icon: '🔒', value: 'Private Sessions' },
-              { icon: '🕐', value: '10 AM – 10:30 PM' },
+              { icon: '🕐', value: '10 AM – 10 PM' },
               { icon: '📍', value: 'Kompally, Hyd' },
             ].map((stat) => (
               <div
@@ -322,7 +309,7 @@ export default function HeroSection() {
             {[
               { icon: '⚡', value: '6 Services' },
               { icon: '🔒', value: 'Private Sessions' },
-              { icon: '🕐', value: '10 AM – 10:30 PM' },
+              { icon: '🕐', value: '10 AM – 10 PM' },
               { icon: '📍', value: 'Kompally, Hyderabad' },
             ].map((stat) => (
               <div
@@ -364,10 +351,10 @@ export default function HeroSection() {
             {[
               'COLD PLUNGE', 'CONTRAST THERAPY', 'TRADITIONAL SAUNA',
               'INFRARED SAUNA', 'RED LIGHT THERAPY', 'COMPRESSION THERAPY',
-              'FULL CIRCUIT', 'OPEN 10AM–10:30PM',
+              'FULL CIRCUIT', 'OPEN 10AM–10PM',
               'COLD PLUNGE', 'CONTRAST THERAPY', 'TRADITIONAL SAUNA',
               'INFRARED SAUNA', 'RED LIGHT THERAPY', 'COMPRESSION THERAPY',
-              'FULL CIRCUIT', 'OPEN 10AM–10:30PM',
+              'FULL CIRCUIT', 'OPEN 10AM–10PM',
             ].map((item, i) => (
               <span
                 key={i}

@@ -334,7 +334,7 @@ export default function Navbar() {
               Book on WhatsApp
             </a>
             <p className="text-center text-xs mt-4" style={{ color: '#565456' }}>
-              Open 10 AM – 10:30 PM · Everyday
+              Open 10 AM – 10 PM · Everyday
             </p>
           </div>
         </div>
