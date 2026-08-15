@@ -59,22 +59,62 @@ export default function HowItWorks() {
       {/* Steps grid — equal height cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 relative">
 
-        {/* Connector line — desktop only */}
+        {/* Connector line — desktop only — bright gold accent with pulse */}
         <div
-          className="absolute top-[44px] left-[12.5%] right-[12.5%] h-px hidden lg:block z-0"
-          style={{ background: 'linear-gradient(90deg, transparent, rgba(245,240,235,0.12) 20%, rgba(245,240,235,0.12) 80%, transparent)' }}
-        />
+          className="absolute top-[44px] left-[12.5%] right-[12.5%] hidden lg:block z-0"
+          style={{ height: 2 }}
+        >
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              background: 'linear-gradient(90deg, rgba(251,191,36,0.15), rgba(251,191,36,0.40) 30%, rgba(251,191,36,0.40) 70%, rgba(251,191,36,0.15))',
+              borderRadius: 2,
+              position: 'relative',
+            }}
+          >
+            {/* Animated shimmer overlay */}
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(90deg, transparent 0%, rgba(251,191,36,0.6) 50%, transparent 100%)',
+                backgroundSize: '200% 100%',
+                animation: 'shimmer 3s ease-in-out infinite',
+                borderRadius: 2,
+              }}
+            />
+          </div>
+          {/* Step dots on the line */}
+          {[0, 1, 2, 3].map(dot => (
+            <div
+              key={dot}
+              style={{
+                position: 'absolute',
+                top: -3,
+                left: `${dot * 33.33}%`,
+                width: 8,
+                height: 8,
+                borderRadius: '50%',
+                background: '#FBBF24',
+                boxShadow: '0 0 8px rgba(251,191,36,0.50)',
+                transform: 'translateX(-50%)',
+              }}
+            />
+          ))}
+        </div>
+        <style>{`@keyframes shimmer { 0%,100% { background-position: 200% 0 } 50% { background-position: -200% 0 } }`}</style>
 
         {steps.map((step, i) => (
           <FadeIn key={step.num} direction="up" delay={i * 80}>
             <div
-              className="relative flex flex-col p-6 md:p-7 rounded-2xl transition-all duration-400 cursor-default"
+              className="relative flex flex-col p-6 md:p-7 rounded-2xl transition-all duration-400 cursor-default h-full"
               style={{
                 background: hovered === i ? 'rgba(86,84,86,0.45)' : 'rgba(42,40,41,0.60)',
                 border: hovered === i ? '1px solid rgba(245,240,235,0.18)' : '1px solid rgba(196,193,196,0.08)',
                 boxShadow: hovered === i ? '0 8px 32px rgba(0,0,0,0.30)' : 'none',
                 transform: hovered === i ? 'translateY(-4px)' : 'translateY(0)',
-                minHeight: 280,
+                minHeight: 300,
               }}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
