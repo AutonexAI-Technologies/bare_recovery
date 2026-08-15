@@ -257,14 +257,6 @@ export default function HeroSection() {
             </h1>
           </div>
 
-          {/* Premium sub-headline — desktop */}
-          <div
-            style={{
-              opacity: mounted ? 1 : 0,
-              transition: 'opacity 0.8s ease 0.60s',
-              marginBottom: 32,
-            }}
-          </div>
 
           <div
             className="flex items-center gap-3 mb-10"
