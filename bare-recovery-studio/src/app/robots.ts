@@ -24,7 +24,7 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: 'https://barerecovery.studio/sitemap.xml',
-    host: 'https://barerecovery.studio',
+    sitemap: 'https://www.barerecovery.in/sitemap.xml',
+    host: 'https://www.barerecovery.in',
   }
 }

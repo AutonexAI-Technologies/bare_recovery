@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://barerecovery.studio'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.barerecovery.in'
   const now = new Date()
 
   // Static pages with priority weights
