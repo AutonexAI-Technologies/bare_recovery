@@ -1,0 +1,319 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+
+// ─── Types (mirrors API response shape) ──────────────────────────────────────
+export interface PricingSession {
+  name: string
+  desc: string
+  price: number
+  mrpPrice: number
+  featured?: boolean
+  note?: string
+  duration?: string
+  href: string
+  tag?: string
+}
+
+export interface PricingMembership {
+  id: string
+  label: string
+  sessions: number | null
+  type: string
+  price: number | null
+  mrpPrice: number | null
+  perSession: number | null
+  savingsNote: string
+  perks: string[]
+  href: string
+  featured: boolean
+}
+
+export interface PricingData {
+  singleSessions: PricingSession[]
+  coupleSessions: PricingSession[]
+  memberships: PricingMembership[]
+}
+
+// ─── Countdown Timer ──────────────────────────────────────────────────────────
+const SALE_END = new Date('2026-08-31T23:59:59+05:30')
+
+function useCountdown(target: Date) {
+  const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0 })
+  useEffect(() => {
+    function tick() {
+      const diff = target.getTime() - Date.now()
+      if (diff <= 0) return
+      setT({
+        d: Math.floor(diff / 86400000),
+        h: Math.floor((diff % 86400000) / 3600000),
+        m: Math.floor((diff % 3600000) / 60000),
+        s: Math.floor((diff % 60000) / 1000),
+      })
+    }
+    tick()
+    const id = setInterval(tick, 1000)
+    return () => clearInterval(id)
+  }, [target])
+  return t
+}
+
+function SaleCountdown() {
+  const { d, h, m, s } = useCountdown(SALE_END)
+  const pad = (n: number) => String(n).padStart(2, '0')
+  return (
+    <div className="flex items-center gap-1 shrink-0">
+      <span className="text-xs font-medium mr-1" style={{ color: 'rgba(251,191,36,0.65)' }}>Ends in</span>
+      {[{ v: d, l: 'd' }, { v: h, l: 'h' }, { v: m, l: 'm' }, { v: s, l: 's' }].map(({ v, l }, i) => (
+        <div key={l} className="flex items-center gap-0.5">
+          {i > 0 && <span style={{ color: 'rgba(252,165,165,0.50)', fontSize: 10 }}>:</span>}
+          <div className="flex flex-col items-center w-8 py-1 rounded-lg" style={{ background: 'rgba(0,0,0,0.30)' }}>
+            <span className="font-mono font-black text-sm leading-none" style={{ color: '#fff' }}>{pad(v)}</span>
+            <span className="text-[8px] leading-none mt-0.5" style={{ color: 'rgba(252,165,165,0.60)' }}>{l}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// ─── Price Row ────────────────────────────────────────────────────────────────
+function PriceRow({ item, index }: { item: PricingSession; index: number }) {
+  return (
+    <a
+      href={item.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex items-center justify-between py-5 border-b px-4 -mx-4 rounded-xl transition-all duration-300 hover:scale-[1.005]"
+      style={{ borderColor: 'rgba(196,193,196,0.10)', backgroundColor: 'transparent' }}
+      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(86,84,86,0.20)' }}
+      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent' }}
+    >
+      <div className="flex items-center gap-5">
+        <span className="font-display font-light text-3xl md:text-4xl w-9 shrink-0" style={{ letterSpacing: '-0.04em', color: 'rgba(245,240,235,0.45)' }}>
+          {String(index + 1).padStart(2, '0')}
+        </span>
+        <div>
+          <div className="flex items-center gap-2 mb-1 flex-wrap">
+            <span className="font-display font-semibold text-base md:text-lg" style={{ color: '#f5f0eb' }}>{item.name}</span>
+            {item.featured && (
+              <span className="text-[9px] font-bold uppercase tracking-[0.2em] px-2 py-0.5 rounded-full" style={{ background: '#d9d1cc', color: '#3d3b3d' }}>Best Value</span>
+            )}
+            <span className="text-[9px] font-black uppercase tracking-[0.12em] px-2.5 py-0.5 rounded-full" style={{ background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111010', boxShadow: '0 0 14px rgba(245,158,11,0.35)' }}>50% OFF</span>
+          </div>
+          <p className="text-sm md:text-base" style={{ color: '#dddadd' }}>{item.desc}</p>
+          {item.duration && <p className="text-xs mt-1 font-medium" style={{ color: 'rgba(245,240,235,0.75)' }}>⏱ {item.duration}</p>}
+          {item.note && <p className="text-xs mt-1 font-semibold" style={{ color: 'rgba(221,218,221,0.90)' }}>{item.note}</p>}
+        </div>
+      </div>
+      <div className="flex items-center gap-3 shrink-0 ml-4">
+        <div className="text-right">
+          {item.mrpPrice && (
+            <span className="block text-sm md:text-base font-semibold line-through leading-tight" style={{ color: 'rgba(245,240,235,0.70)', letterSpacing: '-0.02em' }}>
+              ₹{item.mrpPrice.toLocaleString()}
+            </span>
+          )}
+          <span className="font-display font-light" style={{ fontSize: 'clamp(20px, 3vw, 30px)', letterSpacing: '-0.04em', lineHeight: 1.1, color: '#f5f0eb' }}>
+            ₹{item.price.toLocaleString()}
+          </span>
+        </div>
+        <span className="w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300" style={{ background: 'rgba(196,193,196,0.15)' }}>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#f5f0eb" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+        </span>
+      </div>
+    </a>
+  )
+}
+
+// ─── Tabs + Content (client-interactive part only) ───────────────────────────
+const TABS = ['Single Sessions', 'Couple Sessions', 'Memberships']
+
+export function PricingClient({ data }: { data: PricingData }) {
+  const [activeTab, setActiveTab] = useState(0)
+  const whatsapp = '917670861496'
+
+  return (
+    <>
+      {/* Sale Header Badge */}
+      <div className="mb-8 p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3" style={{ background: 'linear-gradient(135deg,rgba(120,53,15,0.50),rgba(245,158,11,0.15))', border: '1px solid rgba(245,158,11,0.30)' }}>
+        <div className="flex items-center gap-3">
+          <span className="text-xl">🔥</span>
+          <div>
+            <p className="font-black text-sm uppercase tracking-wider" style={{ color: '#FBBF24' }}>Launch Sale — 50% Off Everything</p>
+            <p className="text-xs mt-0.5" style={{ color: 'rgba(251,191,36,0.65)' }}>First-time visitors · Limited period · ICN Athletes: always 50% off on registration</p>
+          </div>
+        </div>
+        <SaleCountdown />
+      </div>
+
+      {/* Tabs */}
+      <div className="flex gap-2 flex-wrap mb-10">
+        {TABS.map((tab, i) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(i)}
+            className="px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
+            style={{
+              background: activeTab === i ? '#d9d1cc' : 'rgba(86,84,86,0.30)',
+              color: activeTab === i ? '#3d3b3d' : '#c4c1c4',
+              border: activeTab === i ? '1px solid transparent' : '1px solid rgba(196,193,196,0.12)',
+            }}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
+
+      {/* Single Sessions */}
+      {activeTab === 0 && (
+        <div>
+          <div className="flex items-center justify-between mb-4 px-4">
+            <p className="text-[10px] uppercase tracking-[0.25em]" style={{ color: '#dddadd' }}>Service</p>
+            <p className="text-[10px] uppercase tracking-[0.25em]" style={{ color: '#dddadd' }}>Price</p>
+          </div>
+          <div className="mb-8">
+            {data.singleSessions.map((item, i) => <PriceRow key={item.name} item={item} index={i} />)}
+          </div>
+          <div className="p-5 rounded-2xl" style={{ background: 'rgba(42,40,41,0.70)', border: '1px solid rgba(196,193,196,0.10)' }}>
+            <p className="text-sm leading-relaxed" style={{ color: '#dddadd' }}>
+              <span className="font-semibold" style={{ color: '#f5f0eb' }}>Walk-ins welcome</span> — or book via WhatsApp for guaranteed slots. All sessions in a private studio with expert coaching available on request.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Couple Sessions */}
+      {activeTab === 1 && (
+        <div>
+          <div className="flex items-center justify-between mb-4 px-4">
+            <p className="text-[10px] uppercase tracking-[0.25em]" style={{ color: '#dddadd' }}>Service (for 2 people)</p>
+            <p className="text-[10px] uppercase tracking-[0.25em]" style={{ color: '#dddadd' }}>Couple Price</p>
+          </div>
+          <div className="mb-8">
+            {data.coupleSessions.map((item, i) => <PriceRow key={item.name} item={item} index={i} />)}
+          </div>
+          <div className="p-5 rounded-2xl" style={{ background: 'rgba(42,40,41,0.70)', border: '1px solid rgba(196,193,196,0.10)' }}>
+            <p className="text-sm leading-relaxed" style={{ color: '#dddadd' }}>
+              <span className="font-semibold" style={{ color: '#f5f0eb' }}>Couple sessions</span> are for 2 people sharing the same session. Perfect for training partners, couples, or friends.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Memberships */}
+      {activeTab === 2 && (
+        <div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+            {data.memberships.map((plan) => (
+              <div
+                key={plan.id}
+                className="relative flex flex-col p-7 rounded-[24px] transition-all duration-300 hover:scale-[1.01]"
+                style={{
+                  background: plan.featured ? 'rgba(56,52,48,0.95)' : 'rgba(42,40,41,0.80)',
+                  border: plan.featured ? '1px solid rgba(217,209,204,0.30)' : '1px solid rgba(196,193,196,0.12)',
+                }}
+              >
+                {plan.featured && (
+                  <span className="absolute -top-3.5 left-6 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.2em]" style={{ background: '#d9d1cc', color: '#3d3b3d' }}>Best Value</span>
+                )}
+                <span className="absolute top-4 right-4 text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full" style={{ background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111010' }}>50% OFF</span>
+
+                <span className="text-[10px] font-bold uppercase tracking-[0.25em] mb-3 block" style={{ color: '#dddadd' }}>{plan.type}</span>
+                <h3 className="font-display font-light mb-1" style={{ fontSize: 'clamp(26px, 4vw, 40px)', letterSpacing: '-0.04em', lineHeight: 1, color: '#f5f0eb' }}>{plan.label}</h3>
+                {plan.sessions && <p className="text-sm mb-4" style={{ color: '#dddadd' }}>{plan.sessions} sessions included</p>}
+
+                {plan.price ? (
+                  <div className="mb-1">
+                    {plan.mrpPrice && (
+                      <span className="block text-base font-semibold line-through mb-0.5" style={{ color: 'rgba(245,240,235,0.72)', letterSpacing: '-0.01em' }}>
+                        ₹{plan.mrpPrice.toLocaleString()}
+                      </span>
+                    )}
+                    <span className="font-display font-light" style={{ fontSize: 'clamp(30px, 5vw, 48px)', letterSpacing: '-0.04em', lineHeight: 1, color: '#f5f0eb' }}>
+                      ₹{plan.price.toLocaleString()}
+                    </span>
+                    <span className="text-sm ml-1" style={{ color: '#dddadd' }}>/{plan.label.toLowerCase()}</span>
+                  </div>
+                ) : (
+                  <div className="mb-1">
+                    <span className="font-display font-light" style={{ fontSize: 'clamp(26px, 4vw, 40px)', letterSpacing: '-0.04em', lineHeight: 1, color: '#dddadd' }}>Custom</span>
+                  </div>
+                )}
+
+                {plan.perSession && <p className="text-sm mb-1 font-semibold" style={{ color: 'rgba(245,240,235,0.85)' }}>₹{plan.perSession.toLocaleString()} per session</p>}
+                {plan.savingsNote && plan.price && <p className="text-xs mb-5 font-semibold" style={{ color: '#86efac' }}>{plan.savingsNote}</p>}
+                {!plan.price && <p className="text-sm mb-5 font-medium" style={{ color: 'rgba(245,240,235,0.80)' }}>{plan.savingsNote}</p>}
+
+                <ul className="space-y-2.5 mb-8 flex-1">
+                  {plan.perks.map((perk) => (
+                    <li key={perk} className="flex items-start gap-2.5 text-sm font-medium" style={{ color: '#f5f0eb' }}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d9d1cc" strokeWidth="2.5" className="shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12" /></svg>
+                      {perk}
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href={plan.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-full font-bold text-sm transition-all duration-300 hover:opacity-90 active:scale-[0.98]"
+                  style={{
+                    background: plan.featured ? '#d9d1cc' : 'rgba(196,193,196,0.12)',
+                    color: plan.featured ? '#3d3b3d' : '#f5f0eb',
+                    border: plan.featured ? 'none' : '1px solid rgba(196,193,196,0.18)',
+                  }}
+                >
+                  {plan.price ? 'Join Now' : 'Enquire'}
+                </a>
+              </div>
+            ))}
+          </div>
+          <div className="p-5 rounded-2xl" style={{ background: 'rgba(42,40,41,0.70)', border: '1px solid rgba(196,193,196,0.10)' }}>
+            <p className="text-sm leading-relaxed" style={{ color: '#dddadd' }}>
+              <span className="font-semibold" style={{ color: '#f5f0eb' }}>Membership benefits:</span> Sessions must be used within the membership period. 5 days&apos; notice required to cancel.{' '}
+              Contact us at <a href="mailto:barerecovery@gmail.com" className="transition-colors" style={{ color: '#d9d1cc' }}>barerecovery@gmail.com</a> for any changes.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* ICN Athlete Callout */}
+      <div className="mt-10 p-6 rounded-2xl flex items-start gap-4" style={{ background: 'linear-gradient(135deg,rgba(120,83,7,0.35),rgba(146,64,14,0.30))', border: '1px solid rgba(234,179,8,0.28)' }}>
+        <span className="text-2xl shrink-0">🏆</span>
+        <div>
+          <p className="font-bold text-sm uppercase tracking-wider mb-1" style={{ color: '#fde68a' }}>ICN Athletes — 50% Off Every Visit</p>
+          <p className="text-sm leading-relaxed" style={{ color: 'rgba(253,230,138,0.75)' }}>
+            Registered ICN athletes receive 50% off every single visit on registration — valid through 7th Sep 2026. No expiry. No time limit. Show your registration card or proof at the studio.
+          </p>
+          <a
+            href={`https://wa.me/${whatsapp}?text=${encodeURIComponent('Hi! I am a registered ICN athlete and would like to claim my 50% discount at Bare Recovery Studio.')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 mt-3 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all hover:opacity-90"
+            style={{ background: 'rgba(234,179,8,0.20)', border: '1px solid rgba(234,179,8,0.35)', color: '#fde68a' }}
+          >
+            Claim ICN Discount →
+          </a>
+        </div>
+      </div>
+
+      {/* CTA */}
+      <div className="mt-16 text-center">
+        <p className="text-sm mb-6" style={{ color: '#dddadd' }}>Still have questions about pricing or plans?</p>
+        <a
+          href={`https://wa.me/${whatsapp}?text=${encodeURIComponent('Hi! I have a question about Bare Recovery Studio pricing.')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group inline-flex items-center gap-3 pl-7 pr-2.5 py-4 rounded-full font-bold hover:opacity-90 transition-all active:scale-[0.98]"
+          style={{ background: '#d9d1cc', color: '#3d3b3d' }}
+        >
+          Ask on WhatsApp
+          <span className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 group-hover:translate-x-0.5" style={{ background: 'rgba(61,59,61,0.16)' }}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#3d3b3d" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </span>
+        </a>
+      </div>
+    </>
+  )
+}

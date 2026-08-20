@@ -2,6 +2,13 @@ import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 import fs from 'fs'
 import path from 'path'
+import {
+  getClientIp,
+  checkRateLimit,
+  isJsonContentType,
+  validateEmail,
+  sanitizeHtml,
+} from '@/lib/security'
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -11,10 +18,21 @@ const transporter = nodemailer.createTransport({
   },
 })
 
+// Method guards
+function methodNotAllowed() {
+  return NextResponse.json(
+    { error: 'Method not allowed' },
+    { status: 405, headers: { Allow: 'POST', 'X-Content-Type-Options': 'nosniff' } }
+  )
+}
+export async function GET()    { return methodNotAllowed() }
+export async function PUT()    { return methodNotAllowed() }
+export async function DELETE() { return methodNotAllowed() }
+export async function PATCH()  { return methodNotAllowed() }
+
 // ── Save email to JSON file ──────────────────────────────────────────────────
 function saveSubscriber(email: string, source: string) {
   try {
-    // Try project data dir first (works in local dev and Vercel Build)
     const projectPath = path.join(process.cwd(), 'data', 'newsletter-subscribers.json')
     let list: { email: string; source: string; subscribedAt: string }[] = []
 
@@ -30,13 +48,14 @@ function saveSubscriber(email: string, source: string) {
     fs.writeFileSync(projectPath, JSON.stringify(list, null, 2))
     console.log(`[newsletter] Saved subscriber: ${email} → data/newsletter-subscribers.json`)
   } catch (err) {
-    // On Vercel, filesystem is read-only — not a critical failure, studio gets email notification
+    // On Vercel, filesystem is read-only — not a critical failure
     console.warn('[newsletter] Could not write to JSON file (expected on Vercel):', (err as Error).message)
   }
 }
 
-// ── Subscriber welcome email HTML (personal tone = avoids spam) ─────────────
+// ── Welcome email HTML ───────────────────────────────────────────────────────
 function buildWelcomeEmail(email: string, source: string): string {
+  // NOTE: email and source are pre-sanitized before being passed here
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,13 +66,12 @@ function buildWelcomeEmail(email: string, source: string): string {
 <body style="margin:0;padding:0;background:#ffffff;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:15px;line-height:1.6;color:#1a1a1a;">
 <div style="max-width:520px;margin:0 auto;padding:40px 24px;">
 
-  <!-- Personal header — looks like a real email, not a newsletter -->
+  <!-- Personal header -->
   <div style="margin-bottom:28px;padding-bottom:20px;border-bottom:2px solid #F59E0B;">
     <p style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#F59E0B;margin:0 0 4px;">Bare Recovery Studio</p>
     <p style="font-size:12px;color:#888;margin:0;">Kompally · Secunderabad · Hyderabad</p>
   </div>
 
-  <!-- Personal greeting -->
   <p style="font-size:16px;color:#1a1a1a;margin:0 0 16px;">Hey,</p>
 
   <p style="color:#333;margin:0 0 16px;">
@@ -77,7 +95,6 @@ function buildWelcomeEmail(email: string, source: string): string {
     </p>
   </div>
 
-  <!-- Sale mention — casual, not promotional -->
   <p style="color:#333;margin:0 0 16px;">
     One thing — we're currently running our <strong>founding member offer</strong> where
     every session is <strong style="color:#d97706;">50% off</strong> until August 31, 2026.
@@ -91,7 +108,7 @@ function buildWelcomeEmail(email: string, source: string): string {
     and we'll set it up for you.
   </p>
 
-  <!-- CTA button — simple, not flashy -->
+  <!-- CTA button -->
   <div style="margin:24px 0;">
     <a href="https://wa.me/917670861496?text=Hi%21%20I%20subscribed%20and%20want%20to%20book%20at%20the%20founding%20rate."
        style="display:inline-block;background:#1a1a1a;color:#F59E0B;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;">
@@ -99,7 +116,6 @@ function buildWelcomeEmail(email: string, source: string): string {
     </a>
   </div>
 
-  <!-- Personal sign-off -->
   <p style="color:#333;margin:24px 0 8px;">Talk soon,</p>
   <p style="color:#1a1a1a;font-weight:700;margin:0 0 4px;">Abhinav</p>
   <p style="color:#888;font-size:13px;margin:0;">Bare Recovery Studio, Kompally</p>
@@ -111,7 +127,7 @@ function buildWelcomeEmail(email: string, source: string): string {
 
   <hr style="border:none;border-top:1px solid #eee;margin:28px 0 16px;">
   <p style="font-size:11px;color:#bbb;margin:0;">
-    You subscribed at barerecovery.in${source ? ` via ${source}` : ''}.
+    You subscribed at barerecovery.in${source ? ` via ${sanitizeHtml(source)}` : ''}.
     Reply with "unsubscribe" to stop — no hard feelings.
   </p>
 
@@ -140,11 +156,11 @@ function buildStudioNotification(email: string, source: string): string {
     <table style="width:100%;border-collapse:collapse;">
       <tr>
         <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:12px;font-weight:600;color:#888;width:100px;">Email</td>
-        <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:14px;font-weight:700;color:#111;">${email}</td>
+        <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:14px;font-weight:700;color:#111;">${sanitizeHtml(email)}</td>
       </tr>
       <tr>
         <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:12px;font-weight:600;color:#888;">Source</td>
-        <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:13px;color:#444;">${source || 'website'}</td>
+        <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:13px;color:#444;">${sanitizeHtml(source) || 'website'}</td>
       </tr>
       <tr>
         <td style="padding:10px 0;font-size:12px;font-weight:600;color:#888;">Time (IST)</td>
@@ -155,10 +171,8 @@ function buildStudioNotification(email: string, source: string): string {
     <div style="background:#fffbeb;border:1px solid #fcd34d;border-radius:10px;padding:14px 16px;margin-top:20px;">
       <p style="font-size:12px;font-weight:700;color:#92400e;margin:0 0 6px 0;">Action</p>
       <p style="font-size:12px;color:#78350f;line-height:1.6;margin:0;">
-        Add <strong>${email}</strong> to <code style="background:#fef3c7;padding:1px 4px;border-radius:4px;font-size:11px;">data/newsletter-subscribers.json</code>
-        for future article broadcasts.<br><br>
-        To send a new article to all subscribers:<br>
-        <code style="font-size:10px;background:#f5f5f5;padding:4px 8px;border-radius:6px;display:inline-block;margin-top:4px;">POST /api/newsletter/broadcast</code>
+        Add <strong>${sanitizeHtml(email)}</strong> to <code style="background:#fef3c7;padding:1px 4px;border-radius:4px;font-size:11px;">data/newsletter-subscribers.json</code>
+        for future article broadcasts.
       </p>
     </div>
   </div>
@@ -169,18 +183,65 @@ function buildStudioNotification(email: string, source: string): string {
 
 // ── Main handler ─────────────────────────────────────────────────────────────
 export async function POST(req: NextRequest) {
-  try {
-    const body = await req.json()
-    const { email, source } = body
+  // ── Guard: Content-Type ──────────────────────────────────────────────────
+  if (!isJsonContentType(req)) {
+    return NextResponse.json(
+      { error: 'Content-Type must be application/json' },
+      { status: 415, headers: { 'X-Content-Type-Options': 'nosniff' } }
+    )
+  }
 
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email))) {
-      return NextResponse.json({ error: 'Please enter a valid email address.' }, { status: 400 })
+  // ── Rate limiting (3 subscribe attempts per IP per 10 minutes) ───────────
+  const ip = getClientIp(req)
+  const rl = checkRateLimit(`${ip}:newsletter-subscribe`, 3, 10 * 60 * 1000)
+
+  if (!rl.allowed) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please try again in a few minutes.' },
+      {
+        status: 429,
+        headers: {
+          'Retry-After': String(rl.retryAfterSec),
+          'X-Content-Type-Options': 'nosniff',
+        },
+      }
+    )
+  }
+
+  try {
+    // ── Parse body ───────────────────────────────────────────────────────────
+    let body: Record<string, unknown>
+    try {
+      body = await req.json()
+    } catch {
+      return NextResponse.json(
+        { error: 'Invalid JSON body' },
+        { status: 400, headers: { 'X-Content-Type-Options': 'nosniff' } }
+      )
     }
 
-    const cleanEmail = String(email).toLowerCase().trim()
-    const cleanSource = String(source || 'website')
+    const { email, source, website } = body as Record<string, unknown>
 
-    // Send both emails in parallel
+    // ── Honeypot ─────────────────────────────────────────────────────────────
+    if (typeof website === 'string' && website.trim() !== '') {
+      return NextResponse.json({ success: true })
+    }
+
+    // ── 3-layer email validation (format + disposable blocklist + MX DNS) ───
+    const emailCheck = await validateEmail(email)
+    if (!emailCheck.valid) {
+      return NextResponse.json(
+        { error: emailCheck.error },
+        { status: 400, headers: { 'X-Content-Type-Options': 'nosniff' } }
+      )
+    }
+
+    // ── Sanitise source (alphanumeric + common chars only, max 50 chars) ─────
+    const rawSource = typeof source === 'string' ? source : 'website'
+    const cleanSource = rawSource.replace(/[^a-zA-Z0-9\s\-_\/\.]/g, '').trim().slice(0, 50) || 'website'
+    const cleanEmail = String(email).trim().toLowerCase()
+
+    // ── Send both emails in parallel ─────────────────────────────────────────
     const [subscriberResult, studioResult] = await Promise.allSettled([
       transporter.sendMail({
         from: `"Abhinav (Bare Recovery)" <${process.env.SMTP_USER}>`,
@@ -188,8 +249,7 @@ export async function POST(req: NextRequest) {
         subject: 'Your Bare Recovery subscription is confirmed',
         headers: {
           'List-Unsubscribe': `<mailto:${process.env.SMTP_USER}?subject=unsubscribe>`,
-          'X-Priority': '1',
-          'Importance': 'high',
+          'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
           'Precedence': 'bulk',
         },
         text: `Hi!\n\nThank you for subscribing to Bare Recovery Studio.\n\nYou'll get science-backed recovery protocols, studio updates, and first access to every article we publish.\n\nWe currently have a 50% Launch Sale on all sessions — Cold Plunge from Rs.1,199, Full Circuit Rs.2,999, Red Light Rs.799. Ends August 31, 2026.\n\nBook on WhatsApp: https://wa.me/917670861496\n\nBare Recovery Studio\nKompally, Secunderabad, Hyderabad\n+91 7670 861 496 | 10AM–10PM daily\nInstagram: @bare.recovery | @abhinav._lifts\n\n---\nYou subscribed at barerecovery.in. Reply "unsubscribe" to stop.`,
@@ -204,7 +264,6 @@ export async function POST(req: NextRequest) {
       }),
     ])
 
-    // Log results
     if (subscriberResult.status === 'rejected') {
       console.error('[newsletter] Welcome email failed:', subscriberResult.reason)
     }
@@ -215,17 +274,22 @@ export async function POST(req: NextRequest) {
     // Save to JSON (works locally; gracefully skips on Vercel read-only FS)
     saveSubscriber(cleanEmail, cleanSource)
 
-    // Return success if at least the welcome email sent
     if (subscriberResult.status === 'fulfilled') {
-      return NextResponse.json({
-        success: true,
-        message: 'Subscribed! A welcome email is on its way to your inbox.',
-      })
+      return NextResponse.json(
+        { success: true, message: 'Subscribed! A welcome email is on its way to your inbox.' },
+        { headers: { 'X-Content-Type-Options': 'nosniff' } }
+      )
     }
 
-    return NextResponse.json({ error: 'Could not send confirmation email. Please try again.' }, { status: 500 })
+    return NextResponse.json(
+      { error: 'Could not send confirmation email. Please try again.' },
+      { status: 500, headers: { 'X-Content-Type-Options': 'nosniff' } }
+    )
   } catch (err) {
     console.error('[newsletter] Unexpected error:', err)
-    return NextResponse.json({ error: 'Something went wrong. Please try again.' }, { status: 500 })
+    return NextResponse.json(
+      { error: 'Something went wrong. Please try again.' },
+      { status: 500, headers: { 'X-Content-Type-Options': 'nosniff' } }
+    )
   }
 }

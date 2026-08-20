@@ -1,73 +1,136 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
+import {
+  sanitizeHtml,
+  sanitizeText,
+  getClientIp,
+  checkRateLimit,
+  isJsonContentType,
+  validateEmail,
+  ALLOWED_SERVICES,
+} from '@/lib/security'
 
-const ipCache = new Map<string, { count: number; lastReset: number }>()
-
-const sanitize = (val: string): string => {
-  if (typeof val !== 'string') return ''
-  return val
-    .trim()
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#x27;')
-    .replace(/\//g, '&#x2F;')
+// Rejects any method other than POST
+function methodNotAllowed() {
+  return NextResponse.json(
+    { error: 'Method not allowed' },
+    {
+      status: 405,
+      headers: {
+        Allow: 'POST',
+        'X-Content-Type-Options': 'nosniff',
+      },
+    }
+  )
 }
 
+export async function GET()    { return methodNotAllowed() }
+export async function PUT()    { return methodNotAllowed() }
+export async function DELETE() { return methodNotAllowed() }
+export async function PATCH()  { return methodNotAllowed() }
+
 export async function POST(req: NextRequest) {
-  try {
-    const ip = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'anonymous'
-    const now = Date.now()
-    const windowTime = 10 * 60 * 1000
-    const limit = 5
+  // ── Guard: Content-Type must be application/json ─────────────────────────
+  if (!isJsonContentType(req)) {
+    return NextResponse.json(
+      { error: 'Content-Type must be application/json' },
+      { status: 415, headers: { 'X-Content-Type-Options': 'nosniff' } }
+    )
+  }
 
-    const record = ipCache.get(ip)
-    if (record) {
-      if (now - record.lastReset < windowTime) {
-        if (record.count >= limit) {
-          return NextResponse.json({ error: 'Rate limit exceeded. Please wait a few minutes or WhatsApp us.' }, { status: 429 })
-        }
-        record.count += 1
-      } else {
-        ipCache.set(ip, { count: 1, lastReset: now })
+  // ── Rate limiting (5 attempts per IP per 10 minutes) ─────────────────────
+  const ip = getClientIp(req)
+  const rl = checkRateLimit(`${ip}:contact`, 5, 10 * 60 * 1000)
+
+  if (!rl.allowed) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please wait a few minutes or reach us on WhatsApp.' },
+      {
+        status: 429,
+        headers: {
+          'Retry-After': String(rl.retryAfterSec),
+          'X-Content-Type-Options': 'nosniff',
+        },
       }
-    } else {
-      ipCache.set(ip, { count: 1, lastReset: now })
+    )
+  }
+
+  try {
+    // ── Parse body ─────────────────────────────────────────────────────────
+    let body: Record<string, unknown>
+    try {
+      body = await req.json()
+    } catch {
+      return NextResponse.json(
+        { error: 'Invalid JSON body' },
+        { status: 400, headers: { 'X-Content-Type-Options': 'nosniff' } }
+      )
     }
 
-    const body = await req.json()
-    const { name, email, phone, service, message, website } = body
+    const { name, email, phone, service, message, website } = body as Record<string, unknown>
 
-    if (website && website.trim() !== '') {
-      console.log('Spam bot caught in honeypot trap.')
-      return NextResponse.json({ success: true, status: 'honeypotted' })
+    // ── Honeypot: bots fill the hidden "website" field, humans don't ────────
+    if (typeof website === 'string' && website.trim() !== '') {
+      // Silently accept to not tip off bots
+      return NextResponse.json({ success: true })
     }
 
+    // ── Required field presence ────────────────────────────────────────────
     if (!name || !email || !message) {
-      return NextResponse.json({ error: 'Required fields missing' }, { status: 400 })
+      return NextResponse.json(
+        { error: 'Name, email, and message are required.' },
+        { status: 400, headers: { 'X-Content-Type-Options': 'nosniff' } }
+      )
     }
 
+    // ── Field length limits (prevent oversized payloads) ──────────────────
     if (
-      name.length > 100 ||
-      email.length > 100 ||
-      (phone && phone.length > 30) ||
-      (service && service.length > 100) ||
-      message.length > 3000
+      String(name).length > 100 ||
+      String(email).length > 254 ||
+      (phone && String(phone).length > 20) ||
+      (service && String(service).length > 100) ||
+      String(message).length > 3000
     ) {
-      return NextResponse.json({ error: 'Payload exceeds size parameters.' }, { status: 400 })
+      return NextResponse.json(
+        { error: 'One or more fields exceed the maximum allowed length.' },
+        { status: 400, headers: { 'X-Content-Type-Options': 'nosniff' } }
+      )
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
-      return NextResponse.json({ error: 'Invalid email address format' }, { status: 400 })
+    // ── 3-layer email validation (format + disposable blocklist + MX DNS) ──
+    const emailCheck = await validateEmail(email)
+    if (!emailCheck.valid) {
+      return NextResponse.json(
+        { error: emailCheck.error },
+        { status: 400, headers: { 'X-Content-Type-Options': 'nosniff' } }
+      )
     }
 
-    const cleanName    = sanitize(name).replace(/[\r\n]/g, '')
-    const cleanEmail   = sanitize(email).replace(/[\r\n]/g, '')
-    const cleanPhone   = phone   ? sanitize(phone).replace(/[\r\n]/g, '')   : ''
-    const cleanService = service ? sanitize(service).replace(/[\r\n]/g, '') : ''
-    const cleanMessage = sanitize(message)
+    // ── Phone format: digits, spaces, +, -, () only ────────────────────────
+    if (phone) {
+      const phoneStr = String(phone).trim()
+      if (!/^[\d\s\+\-\(\)]{7,20}$/.test(phoneStr)) {
+        return NextResponse.json(
+          { error: 'Please enter a valid phone number.' },
+          { status: 400, headers: { 'X-Content-Type-Options': 'nosniff' } }
+        )
+      }
+    }
+
+    // ── Service allowlist (prevents arbitrary string injection) ───────────
+    if (service && !ALLOWED_SERVICES.has(String(service))) {
+      return NextResponse.json(
+        { error: 'Invalid service selection.' },
+        { status: 400, headers: { 'X-Content-Type-Options': 'nosniff' } }
+      )
+    }
+
+    // ── Sanitise all fields before use in email HTML ───────────────────────
+    const cleanName    = sanitizeText(sanitizeHtml(name))
+    const cleanEmail   = String(email).trim().toLowerCase()
+    const cleanPhone   = phone   ? sanitizeText(sanitizeHtml(phone))   : ''
+    const cleanService = service ? sanitizeText(sanitizeHtml(service)) : ''
+    const cleanMessage = sanitizeHtml(message)
 
     const submittedAt = new Date().toLocaleString('en-IN', {
       timeZone: 'Asia/Kolkata',
@@ -75,10 +138,11 @@ export async function POST(req: NextRequest) {
       hour: '2-digit', minute: '2-digit', hour12: true,
     })
 
+    // ── Send email ─────────────────────────────────────────────────────────
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.SMTP_USER ?? 'barerecovery@gmail.com',
+        user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
     })
@@ -196,16 +260,22 @@ export async function POST(req: NextRequest) {
 </html>`
 
     await transporter.sendMail({
-      from: `"Bare Recovery Website" <${process.env.SMTP_USER ?? 'barerecovery@gmail.com'}>`,
-      to: 'barerecovery@gmail.com',
+      from: `"Bare Recovery Website" <${process.env.SMTP_USER}>`,
+      to: process.env.SMTP_USER,
       replyTo: cleanEmail,
       subject: `New enquiry from ${cleanName}${cleanService ? ` - ${cleanService}` : ''}`,
       html,
     })
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json(
+      { success: true },
+      { headers: { 'X-Content-Type-Options': 'nosniff' } }
+    )
   } catch (err) {
-    console.error('Secure contact form error:', err)
-    return NextResponse.json({ error: 'Failed to send. Please try WhatsApp instead.' }, { status: 500 })
+    console.error('[contact] Error:', err)
+    return NextResponse.json(
+      { error: 'Failed to send. Please try WhatsApp instead.' },
+      { status: 500, headers: { 'X-Content-Type-Options': 'nosniff' } }
+    )
   }
 }

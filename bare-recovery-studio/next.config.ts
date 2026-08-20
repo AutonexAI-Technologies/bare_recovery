@@ -16,33 +16,74 @@ const nextConfig: NextConfig = {
       {
         source: '/(.*)',
         headers: [
+          // ── Transport Security ───────────────────────────────────────────
           {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on',
-          },
-          {
+            // Force HTTPS for 2 years, include subdomains, submit to preload list
             key: 'Strict-Transport-Security',
             value: 'max-age=63072000; includeSubDomains; preload',
           },
+          // ── Framing & Content Type ───────────────────────────────────────
           {
+            // Deny all framing to prevent clickjacking
             key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
+            value: 'DENY',
           },
           {
+            // Prevent MIME-type sniffing
             key: 'X-Content-Type-Options',
             value: 'nosniff',
           },
+          // ── Referrer & Permissions ───────────────────────────────────────
           {
+            // Only send origin on cross-origin requests (no full URL path)
             key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
+            value: 'strict-origin-when-cross-origin',
           },
           {
+            // Deny camera, mic, geo, payment APIs — not needed on this site
             key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()',
+            value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()',
           },
+          // ── Cross-Origin Isolation (prevents Spectre-class side channels) ─
+          {
+            // Prevents this page from being opened in a cross-origin context
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin',
+          },
+          {
+            // Prevents other sites from reading this site's resources
+            key: 'Cross-Origin-Resource-Policy',
+            value: 'same-site',
+          },
+          // ── Adobe Flash / PDF cross-domain ──────────────────────────────
+          {
+            key: 'X-Permitted-Cross-Domain-Policies',
+            value: 'none',
+          },
+          // ── Content Security Policy ──────────────────────────────────────
+          // NOTE: 'unsafe-inline' on script-src is required by Next.js inline
+          // hydration scripts. 'unsafe-eval' has been removed — not needed in prod.
+          // ws://localhost:3000 removed — was a dev artifact leaking into prod.
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://lh3.googleusercontent.com https://images.unsplash.com https://plus.unsplash.com https://img.youtube.com https://i.ytimg.com; frame-src 'self' https://www.google.com https://maps.google.com https://www.youtube.com https://youtube.com; connect-src 'self' https://vitals.vercel-insights.com ws://localhost:3000;",
+            value: [
+              "default-src 'self'",
+              // Next.js requires 'unsafe-inline' for hydration; 'unsafe-eval' removed
+              "script-src 'self' 'unsafe-inline'",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+              "font-src 'self' https://fonts.gstatic.com data:",
+              // Allow images from approved CDNs + data URIs for inline images
+              "img-src 'self' data: blob: https://lh3.googleusercontent.com https://images.unsplash.com https://plus.unsplash.com https://img.youtube.com https://i.ytimg.com",
+              // Allow YouTube, Google Maps iframes
+              "frame-src 'self' https://www.google.com https://maps.google.com https://www.youtube.com https://youtube.com",
+              // API calls: self + Vercel Analytics only (no localhost leak)
+              "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com",
+              "worker-src 'none'",
+              "object-src 'none'",
+              "base-uri 'self'",
+              "form-action 'self'",
+              "upgrade-insecure-requests",
+            ].join('; '),
           },
         ],
       },
