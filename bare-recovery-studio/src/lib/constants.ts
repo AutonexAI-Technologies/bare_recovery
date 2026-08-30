@@ -41,10 +41,10 @@ export const SITE_CONFIG = {
 }
 
 export const CONTACT_INFO = {
-    phone: '7670861496',
-    phoneFormatted: '+91 76708 61496',
-    whatsapp: '917670861496',
-    whatsappUrl: 'https://wa.me/917670861496',
+    phone: '8096407555',
+    phoneFormatted: '+91 80964 07555',
+    whatsapp: '918096407555',
+    whatsappUrl: 'https://wa.me/918096407555',
     email: 'barerecovery@gmail.com',
 }
 

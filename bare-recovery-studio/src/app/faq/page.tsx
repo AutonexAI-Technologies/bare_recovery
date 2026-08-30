@@ -62,7 +62,7 @@ const faqData = [
     questions: [
       {
         q: 'How do I book a session?',
-        a: 'The easiest way is via WhatsApp at +91 76708 61496. You can also reach us via our website contact form or DM us on Instagram @bare.recovery. We confirm all bookings explicitly — if you haven\'t received a confirmation, your session is not yet booked.',
+        a: 'The easiest way is via WhatsApp at +91 80964 07555. You can also reach us via our website contact form or DM us on Instagram @bare.recovery. We confirm all bookings explicitly — if you haven\'t received a confirmation, your session is not yet booked.',
       },
       {
         q: 'What is your cancellation and late arrival policy?',
@@ -264,7 +264,7 @@ export default function FAQPage() {
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'center' }}>
             <a
-              href="https://wa.me/917670861496?text=Hi!%20I%20have%20a%20question%20about%20Bare%20Recovery%20Studio."
+              href="https://wa.me/918096407555?text=Hi!%20I%20have%20a%20question%20about%20Bare%20Recovery%20Studio."
               target="_blank"
               rel="noopener noreferrer"
               style={{

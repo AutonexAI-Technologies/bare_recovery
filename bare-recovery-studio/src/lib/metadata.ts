@@ -86,7 +86,7 @@ export function generateStructuredData(type: 'organization' | 'localBusiness') {
                 postalCode: '500067',
                 addressCountry: 'IN',
             },
-            telephone: '+917670861496',
+            telephone: '+918096407555',
             email: 'barerecovery@gmail.com',
             priceRange: '₹₹₹',
             openingHours: ['Mo-Fr 06:00-22:00', 'Sa 08:00-20:00', 'Su 08:00-16:00'],

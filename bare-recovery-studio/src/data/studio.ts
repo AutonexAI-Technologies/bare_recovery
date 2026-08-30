@@ -14,8 +14,8 @@ export const studioInfo: StudioInfo = {
     },
 
     contact: {
-        phone: '7670861496',
-        whatsapp: '917670861496',
+        phone: '8096407555',
+        whatsapp: '918096407555',
         email: 'barerecovery@gmail.com',
     },
 

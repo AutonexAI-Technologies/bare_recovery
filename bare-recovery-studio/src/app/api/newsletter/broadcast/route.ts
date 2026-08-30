@@ -158,7 +158,7 @@ export async function POST(req: NextRequest) {
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://barerecovery.studio'
     const articleUrl = `${siteUrl}/blog/${safeSlug}`
-    const waLink = `https://wa.me/917670861496?text=${encodeURIComponent('Hi! I read your article and want to book a session.')}`
+    const waLink = `https://wa.me/918096407555?text=${encodeURIComponent('Hi! I read your article and want to book a session.')}`
 
     let sent = 0
     const errors: string[] = []

@@ -80,11 +80,13 @@ export const metadata: Metadata = {
   // ── Icons / Favicon ──────────────────────────────────────────────────────────
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/images/logo/nav-logo.png', type: 'image/png', sizes: '32x32' },
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/icon.png', type: 'image/png', sizes: '96x96' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
     ],
     apple: [
-      { url: '/images/logo/nav-logo.png', sizes: '180x180', type: 'image/png' },
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
     ],
     shortcut: '/favicon.ico',
   },
@@ -127,7 +129,7 @@ const jsonLd = {
       alternateName: ['Bare Recovery', 'Bare Recovery Kompally', 'Bare Recovery Hyderabad'],
       url: SITE_CONFIG.url,
       description: "Hyderabad's first dedicated recovery studio offering Cold Plunge, Traditional Sauna, Infrared Sauna, Red Light Therapy, Compression Therapy, Contrast Therapy, and Full Circuit sessions. Located in Kompally, Secunderabad.",
-      telephone: '+91-7670861496',
+      telephone: '+91-8096407555',
       email: 'barerecovery@gmail.com',
       priceRange: '₹799–₹2,999',
       currenciesAccepted: 'INR',
@@ -159,12 +161,12 @@ const jsonLd = {
       sameAs: [
         'https://www.instagram.com/bare.recovery',
         'https://youtube.com/@abhinavliftsvlogs',
-        'https://wa.me/917670861496',
+        'https://wa.me/918096407555',
       ],
       aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue: '5',
-        reviewCount: '12',
+        reviewCount: '3',
         bestRating: '5',
         worstRating: '1',
       },

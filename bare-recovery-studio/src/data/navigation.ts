@@ -78,7 +78,7 @@ export const footerNavigation = {
     ],
     connect: [
         { name: 'Instagram', href: 'https://www.instagram.com/bare.recovery' },
-        { name: 'WhatsApp', href: 'https://wa.me/917670861496' },
+        { name: 'WhatsApp', href: 'https://wa.me/918096407555' },
         { name: 'Email', href: 'mailto:barerecovery@gmail.com' },
     ],
 }

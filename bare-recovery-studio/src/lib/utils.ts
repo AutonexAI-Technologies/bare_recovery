@@ -19,8 +19,8 @@ export function formatPrice(price: number): string {
  * Format phone number
  */
 export function formatPhoneNumber(phone: string): string {
-  // Input: "7670861496"
-  // Output: "+91 76708 61496"
+  // Input: "8096407555"
+  // Output: "+91 80964 07555"
   if (phone.startsWith('91')) {
     phone = phone.substring(2)
   }

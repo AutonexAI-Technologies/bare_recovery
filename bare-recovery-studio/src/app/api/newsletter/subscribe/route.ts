@@ -103,14 +103,14 @@ function buildWelcomeEmail(email: string, source: string): string {
 
   <p style="color:#333;margin:0 0 24px;">
     If you'd like to book, just
-    <a href="https://wa.me/917670861496?text=Hi%21%20I%20subscribed%20and%20want%20to%20book%20at%20the%20founding%20rate."
+    <a href="https://wa.me/918096407555?text=Hi%21%20I%20subscribed%20and%20want%20to%20book%20at%20the%20founding%20rate."
        style="color:#d97706;font-weight:600;">message us on WhatsApp</a>
     and we'll set it up for you.
   </p>
 
   <!-- CTA button -->
   <div style="margin:24px 0;">
-    <a href="https://wa.me/917670861496?text=Hi%21%20I%20subscribed%20and%20want%20to%20book%20at%20the%20founding%20rate."
+    <a href="https://wa.me/918096407555?text=Hi%21%20I%20subscribed%20and%20want%20to%20book%20at%20the%20founding%20rate."
        style="display:inline-block;background:#1a1a1a;color:#F59E0B;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;">
       Book a Session →
     </a>
@@ -252,7 +252,7 @@ export async function POST(req: NextRequest) {
           'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
           'Precedence': 'bulk',
         },
-        text: `Hi!\n\nThank you for subscribing to Bare Recovery Studio.\n\nYou'll get science-backed recovery protocols, studio updates, and first access to every article we publish.\n\nWe currently have a 50% Launch Sale on all sessions — Cold Plunge from Rs.1,199, Full Circuit Rs.2,999, Red Light Rs.799. Ends August 31, 2026.\n\nBook on WhatsApp: https://wa.me/917670861496\n\nBare Recovery Studio\nKompally, Secunderabad, Hyderabad\n+91 7670 861 496 | 10AM–10PM daily\nInstagram: @bare.recovery | @abhinav._lifts\n\n---\nYou subscribed at barerecovery.in. Reply "unsubscribe" to stop.`,
+        text: `Hi!\n\nThank you for subscribing to Bare Recovery Studio.\n\nYou'll get science-backed recovery protocols, studio updates, and first access to every article we publish.\n\nWe currently have a 50% Launch Sale on all sessions — Cold Plunge from Rs.1,199, Full Circuit Rs.2,999, Red Light Rs.799. Ends August 31, 2026.\n\nBook on WhatsApp: https://wa.me/918096407555\n\nBare Recovery Studio\nKompally, Secunderabad, Hyderabad\n+91 8096 407 555 | 10AM–10PM daily\nInstagram: @bare.recovery | @abhinav._lifts\n\n---\nYou subscribed at barerecovery.in. Reply "unsubscribe" to stop.`,
         html: buildWelcomeEmail(cleanEmail, cleanSource),
       }),
       transporter.sendMail({

@@ -1,7 +1,7 @@
 ---
 title: "Cold Plunge in 2025: What the Latest Science Actually Says"
 subject: "Cold Therapy"
-date: "2025-08-05"
+date: "2026-07-01"
 author: "Abhinav"
 image: "/images/services/cold-plunge.PNG"
 readTime: "6 min read"

@@ -36,7 +36,7 @@ export const faqCategories: FAQCategory[] = [
             },
             {
                 question: 'How do I book a session?',
-                answer: 'WhatsApp us at 7670861496, call directly, or use our online booking form. We\'ll help you choose the right protocol and schedule.',
+                answer: 'WhatsApp us at 8096407555, call directly, or use our online booking form. We\'ll help you choose the right protocol and schedule.',
             },
         ],
     },
@@ -47,7 +47,7 @@ export const faqCategories: FAQCategory[] = [
         questions: [
             {
                 question: 'How do I book a session?',
-                answer: 'WhatsApp 7670861496, call directly, or submit our online contact form. We respond within 4 business hours and will help you schedule.',
+                answer: 'WhatsApp 8096407555, call directly, or submit our online contact form. We respond within 4 business hours and will help you schedule.',
             },
             {
                 question: 'What are your prices?',
@@ -71,7 +71,7 @@ export const faqCategories: FAQCategory[] = [
             },
             {
                 question: 'Can I buy sessions as a gift?',
-                answer: 'Yes! Contact us on WhatsApp (7670861496) to purchase gift sessions or gift memberships. Perfect for wellness-minded friends and family.',
+                answer: 'Yes! Contact us on WhatsApp (8096407555) to purchase gift sessions or gift memberships. Perfect for wellness-minded friends and family.',
             },
             {
                 question: 'Do membership sessions expire?',

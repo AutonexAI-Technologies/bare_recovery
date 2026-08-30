@@ -204,7 +204,7 @@ export default function RecoveryScience() {
         {/* Bottom bar */}
         <FadeIn direction="up" delay={320}>
           <a
-            href="https://wa.me/917670861496?text=Hi!%20I'd%20like%20to%20book%20the%20Full%20Circuit%20session%20at%20Bare%20Recovery%20Studio."
+            href="https://wa.me/918096407555?text=Hi!%20I'd%20like%20to%20book%20the%20Full%20Circuit%20session%20at%20Bare%20Recovery%20Studio."
             target="_blank"
             rel="noopener noreferrer"
             className="group mt-6 p-6 md:p-8 rounded-[24px] flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-300"

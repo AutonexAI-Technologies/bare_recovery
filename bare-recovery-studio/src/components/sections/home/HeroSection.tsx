@@ -21,8 +21,10 @@ export default function HeroSection() {
       {/* ══ DESKTOP background image ══ */}
       <img
         src="/images/background/hero-section-br.png"
-        alt=""
+        alt="Bare Recovery Studio"
         aria-hidden="true"
+        fetchPriority="high"
+        decoding="async"
         className="hidden md:block"
         style={{
           position: 'absolute',
@@ -37,8 +39,10 @@ export default function HeroSection() {
       {/* ══ MOBILE background image — portrait photo, fills phone perfectly ══ */}
       <img
         src="/images/background/mobile-responsive.png"
-        alt=""
+        alt="Bare Recovery Studio"
         aria-hidden="true"
+        fetchPriority="high"
+        decoding="async"
         className="md:hidden"
         style={{
           position: 'absolute',
@@ -89,15 +93,8 @@ export default function HeroSection() {
 
       {/* ══ MOBILE layout: content bottom-anchored ══ */}
       <div className="md:hidden flex-1 flex flex-col justify-end relative z-10 px-5 pb-5">
-        <div
-          style={{
-            opacity: mounted ? 1 : 0,
-            transition: 'opacity 0.7s ease 0.2s',
-          }}
-        >
-
-
-          <div className="mb-2 overflow-hidden">
+        <div>
+          <div className="mb-2">
             <h1
               className="font-display uppercase leading-[0.88] block"
               style={{
@@ -105,14 +102,12 @@ export default function HeroSection() {
                 fontWeight: 300,
                 letterSpacing: '-0.04em',
                 color: '#f5f0eb',
-                transform: mounted ? 'translateY(0) skewY(0)' : 'translateY(110px) skewY(4deg)',
-                transition: 'transform 1.1s cubic-bezier(0.16,1,0.3,1) 0.38s',
               }}
             >
               Recover
             </h1>
           </div>
-          <div className="mb-2 overflow-hidden" style={{ background: 'transparent' }}>
+          <div className="mb-2" style={{ background: 'transparent' }}>
             <h1
               className="font-display uppercase leading-[0.88] block"
               style={{
@@ -120,8 +115,6 @@ export default function HeroSection() {
                 fontWeight: 300,
                 letterSpacing: '-0.04em',
                 color: 'rgba(245,240,235,0.35)',
-                transform: mounted ? 'translateY(0) skewY(0)' : 'translateY(110px) skewY(4deg)',
-                transition: 'transform 1.1s cubic-bezier(0.16,1,0.3,1) 0.52s',
                 background: 'transparent',
               }}
             >
@@ -203,16 +196,9 @@ export default function HeroSection() {
 
       {/* ══ DESKTOP layout: left-column center-aligned ══ */}
       <div className="hidden md:flex flex-1 items-center relative z-10 px-12 pb-20">
-        <div
-          className="max-w-[50vw]"
-          style={{
-            opacity: mounted ? 1 : 0,
-            transition: 'opacity 0.6s ease 0.2s',
-          }}
-        >
-
+        <div className="max-w-[50vw]">
           {/* Headline */}
-          <div className="overflow-hidden mb-1">
+          <div className="mb-1">
             <h1
               className="font-display uppercase leading-[0.90]"
               style={{
@@ -220,14 +206,12 @@ export default function HeroSection() {
                 fontWeight: 300,
                 letterSpacing: '-0.04em',
                 color: '#f5f0eb',
-                transform: mounted ? 'translateY(0) skewY(0)' : 'translateY(100px) skewY(3deg)',
-                transition: 'transform 1.1s cubic-bezier(0.16,1,0.3,1) 0.32s',
               }}
             >
               Recover
             </h1>
           </div>
-          <div className="overflow-hidden mb-6" style={{ background: 'transparent' }}>
+          <div className="mb-6" style={{ background: 'transparent' }}>
             <h1
               className="font-display uppercase leading-[0.90]"
               style={{
@@ -235,8 +219,6 @@ export default function HeroSection() {
                 fontWeight: 300,
                 letterSpacing: '-0.04em',
                 color: 'rgba(245,240,235,0.35)',
-                transform: mounted ? 'translateY(0) skewY(0)' : 'translateY(100px) skewY(3deg)',
-                transition: 'transform 1.1s cubic-bezier(0.16,1,0.3,1) 0.46s',
                 background: 'transparent',
               }}
             >

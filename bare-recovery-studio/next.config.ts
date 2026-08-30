@@ -68,16 +68,16 @@ const nextConfig: NextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              // Next.js requires 'unsafe-inline' for hydration; 'unsafe-eval' removed
-              "script-src 'self' 'unsafe-inline'",
+              // Allow Next.js inline scripts + Google Tag Manager / Google Analytics + Vercel
+              "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com https://*.google-analytics.com https://va.vercel-scripts.com",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com data:",
-              // Allow images from approved CDNs + data URIs for inline images
-              "img-src 'self' data: blob: https://lh3.googleusercontent.com https://images.unsplash.com https://plus.unsplash.com https://img.youtube.com https://i.ytimg.com",
+              // Allow images from approved CDNs + data URIs + Google Analytics
+              "img-src 'self' data: blob: https://lh3.googleusercontent.com https://images.unsplash.com https://plus.unsplash.com https://img.youtube.com https://i.ytimg.com https://*.google-analytics.com https://*.googletagmanager.com",
               // Allow YouTube, Google Maps iframes
               "frame-src 'self' https://www.google.com https://maps.google.com https://www.youtube.com https://youtube.com",
-              // API calls: self + Vercel Analytics only (no localhost leak)
-              "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com",
+              // API calls: self + Vercel Analytics + Google Analytics
+              "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
               "worker-src 'none'",
               "object-src 'none'",
               "base-uri 'self'",

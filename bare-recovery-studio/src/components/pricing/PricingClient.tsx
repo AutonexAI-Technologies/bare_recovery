@@ -130,7 +130,7 @@ const TABS = ['Single Sessions', 'Couple Sessions', 'Memberships']
 
 export function PricingClient({ data }: { data: PricingData }) {
   const [activeTab, setActiveTab] = useState(0)
-  const whatsapp = '917670861496'
+  const whatsapp = '918096407555'
 
   return (
     <>

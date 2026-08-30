@@ -242,7 +242,7 @@ export async function POST(req: NextRequest) {
                 <tr><td style="border-top:1px solid rgba(255,255,255,0.06);padding-bottom:24px;font-size:0;">&nbsp;</td></tr>
                 <tr>
                   <td>
-                    <p style="margin:0;font-size:12px;color:#555;line-height:1.7;"><strong style="color:#666;">Bare Recovery Studio</strong><br>3rd Floor, Raichandani Orion &middot; NH44, Kompally, Secunderabad<br><a href="https://wa.me/917670861496" style="color:#25D366;text-decoration:none;">WhatsApp: +91 76708 61496</a></p>
+                    <p style="margin:0;font-size:12px;color:#555;line-height:1.7;"><strong style="color:#666;">Bare Recovery Studio</strong><br>3rd Floor, Raichandani Orion &middot; NH44, Kompally, Secunderabad<br><a href="https://wa.me/918096407555" style="color:#25D366;text-decoration:none;">WhatsApp: +91 80964 07555</a></p>
                   </td>
                   <td align="right" valign="bottom">
                     <p style="margin:0;font-size:11px;color:#444;">barerecovery.studio</p>

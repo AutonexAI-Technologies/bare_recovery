@@ -83,7 +83,7 @@ export default function TermsPage() {
 
           <Section>
             <h2 style={S.h2}>3. Bookings</h2>
-            <p style={{ ...S.p, marginBottom: 16 }}>All session bookings are made via WhatsApp (+91 76708 61496) or our contact form.</p>
+            <p style={{ ...S.p, marginBottom: 16 }}>All session bookings are made via WhatsApp (+91 80964 07555) or our contact form.</p>
             <BulletList items={[
               'Bookings are confirmed only upon receiving explicit confirmation from Bare Recovery Studio.',
               'Sessions are subject to availability and may be rescheduled by us with reasonable notice.',
@@ -173,7 +173,7 @@ export default function TermsPage() {
               </p>
               <p style={{ fontSize: 15, color: 'rgba(245,240,235,0.70)', lineHeight: 1.6 }}>
                 <strong style={{ color: '#f5f0eb', fontWeight: 600 }}>WhatsApp:</strong>{' '}
-                <a href="https://wa.me/917670861496" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(188,163,134,0.80)', textDecoration: 'underline' }}>+91 76708 61496</a>
+                <a href="https://wa.me/918096407555" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(188,163,134,0.80)', textDecoration: 'underline' }}>+91 80964 07555</a>
               </p>
               <p style={{ fontSize: 15, color: 'rgba(245,240,235,0.70)', lineHeight: 1.6 }}>
                 <strong style={{ color: '#f5f0eb', fontWeight: 600 }}>Address:</strong> 3rd Floor, Raichandani Orion, NH44, Bashirabad, Kompally, Secunderabad, Telangana 500067

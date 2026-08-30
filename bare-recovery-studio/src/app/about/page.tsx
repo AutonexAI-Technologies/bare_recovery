@@ -1,4 +1,5 @@
 import InstagramFollowerCount from '@/components/shared/InstagramFollowerCount'
+import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { CONTACT_INFO, SOCIAL_LINKS } from '@/lib/constants'
@@ -189,8 +190,8 @@ export default function AboutPage() {
 
             {/* Right — photo */}
             <div className="relative">
-              <div className="rounded-[2rem] overflow-hidden aspect-[3/4] max-w-sm mx-auto md:max-w-none">
-                <img src="/images/founder/photo-7.png" alt={founderInfo.name} className="w-full h-full object-cover object-top" />
+              <div className="rounded-[2rem] overflow-hidden aspect-[3/4] max-w-sm mx-auto md:max-w-none relative">
+                <Image src="/images/founder/photo-7.png" alt={founderInfo.name} fill sizes="(max-width: 768px) 100vw, 450px" className="object-cover object-top" loading="lazy" />
               </div>
               <div className="absolute -bottom-5 -left-5 p-5 rounded-2xl"
                 style={{ background: 'rgba(20,19,19,0.97)', border: '1px solid rgba(196,193,196,0.18)', backdropFilter: 'blur(12px)' }}>

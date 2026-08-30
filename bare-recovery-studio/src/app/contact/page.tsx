@@ -20,7 +20,7 @@ const contactCards = [
   {
     id: 'wa',
     label: 'WhatsApp',
-    value: '+91 76708 61496',
+    value: '+91 80964 07555',
     sub: 'Chat with us — typically replies under 1 hour',
     href: `https://wa.me/${CONTACT_INFO.whatsapp}?text=Hi!%20I'd%20like%20to%20know%20more.`,
     external: true,
