@@ -50,8 +50,8 @@ const priceItems = [
   { name: 'Contrast Therapy', was: '₹3,598', now: '₹1,799', duration: '20–40 min', emoji: '🔥' },
   { name: 'Cold Plunge', was: '₹2,398', now: '₹1,199', duration: '10–15 min', emoji: '🧂' },
   { name: 'Sauna', was: '₹1,998', now: '₹999', duration: '15–30 min', emoji: '🌡️' },
-  { name: 'Red Light Therapy', was: '₹1,598', now: '₹799', duration: '30–40 min', emoji: '💡' },
-  { name: 'Compression', was: '₹1,598', now: '₹799', duration: '30–40 min', emoji: '🦵' },
+  { name: 'Red Light Therapy', was: '₹1,598', now: '₹799', duration: '10–20 min', emoji: '💡' },
+  { name: 'Compression', was: '₹1,598', now: '₹799', duration: '10–20 min', emoji: '🦵' },
 ]
 
 export default function LaunchSaleSection() {

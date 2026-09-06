@@ -10,7 +10,7 @@ export const services: Service[] = [
         description: `Our compression systems utilize a patented pulsing action that mimics the muscle pump of the legs and arms, greatly enhancing the movement of fluid and metabolites out of the limbs after an intense workout.
 
 Unlike traditional static compression (squeezing), our systems use dynamic compression (pulsing) to effectively transport fluid. This cycle of compression and release is the key to accelerating the body's natural recovery process.`,
-        duration: '30-40 minutes',
+        duration: '10-20 minutes',
 
         benefits: [
             {
@@ -102,7 +102,7 @@ Unlike traditional static compression (squeezing), our systems use dynamic compr
         description: `Photobiomodulation (red light therapy) uses specific wavelengths of light (660nm and 850nm) to penetrate deep into tissue, supporting cellular energy production and accelerating recovery at the mitochondrial level.
 
 This non-invasive therapy has been clinically shown to reduce inflammation, support collagen production, improve skin health, and enhance overall recovery when used consistently.`,
-        duration: '30-40 minutes',
+        duration: '10-20 minutes',
 
         benefits: [
             {

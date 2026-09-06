@@ -1,25 +1,11 @@
 import type { Metadata } from 'next'
-import { Marcellus, Inter } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import Navbar from '@/components/shared/Navbar'
-import TopAnnouncementBar from '@/components/shared/TopAnnouncementBar'
 import Footer from '@/components/shared/Footer'
 import FloatingWhatsApp from '@/components/shared/FloatingWhatsApp'
 import { SITE_CONFIG } from '@/lib/constants'
 
-const marcellus = Marcellus({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-})
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-body',
-  display: 'swap',
-})
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID
 const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION
@@ -219,9 +205,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${marcellus.variable} ${inter.variable} min-h-full antialiased`}
+      className="min-h-full antialiased"
     >
       <head>
+        {/* Google Fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Marcellus&display=swap"
+        />
+
         {/* JSON-LD Structured Data — critical for local SEO */}
         <script
           type="application/ld+json"
@@ -251,8 +245,7 @@ export default function RootLayout({
           </>
         )}
       </head>
-      <body className={`${marcellus.variable} ${inter.variable} min-h-screen flex flex-col text-[#F5F5F2]`}>
-        <TopAnnouncementBar />
+      <body className="min-h-screen flex flex-col text-[#F5F5F2]">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

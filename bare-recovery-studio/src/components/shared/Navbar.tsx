@@ -11,8 +11,8 @@ const serviceLinks = [
   { label: 'Contrast Therapy', href: '/services/contrast-therapy', sub: 'From ₹1,799 · 20–40 min' },
   { label: 'Traditional Sauna', href: '/services/traditional-sauna', sub: 'From ₹999 · 15–30 min' },
   { label: 'Infrared Sauna', href: '/services/infrared-sauna', sub: 'From ₹999 · 15–30 min' },
-  { label: 'Red Light Therapy', href: '/services/red-light-therapy', sub: 'From ₹799 · 30–40 min' },
-  { label: 'Compression Therapy', href: '/services/compression-therapy', sub: 'From ₹799 · 30–40 min' },
+  { label: 'Red Light Therapy', href: '/services/red-light-therapy', sub: 'From ₹799 · 10–20 min' },
+  { label: 'Compression Therapy', href: '/services/compression-therapy', sub: 'From ₹799 · 10–20 min' },
 ]
 
 const mainLinks = [

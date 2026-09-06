@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 // ─── Types (mirrors API response shape) ──────────────────────────────────────
 export interface PricingSession {
@@ -33,48 +33,6 @@ export interface PricingData {
   singleSessions: PricingSession[]
   coupleSessions: PricingSession[]
   memberships: PricingMembership[]
-}
-
-// ─── Countdown Timer ──────────────────────────────────────────────────────────
-const SALE_END = new Date('2026-08-31T23:59:59+05:30')
-
-function useCountdown(target: Date) {
-  const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0 })
-  useEffect(() => {
-    function tick() {
-      const diff = target.getTime() - Date.now()
-      if (diff <= 0) return
-      setT({
-        d: Math.floor(diff / 86400000),
-        h: Math.floor((diff % 86400000) / 3600000),
-        m: Math.floor((diff % 3600000) / 60000),
-        s: Math.floor((diff % 60000) / 1000),
-      })
-    }
-    tick()
-    const id = setInterval(tick, 1000)
-    return () => clearInterval(id)
-  }, [target])
-  return t
-}
-
-function SaleCountdown() {
-  const { d, h, m, s } = useCountdown(SALE_END)
-  const pad = (n: number) => String(n).padStart(2, '0')
-  return (
-    <div className="flex items-center gap-1 shrink-0">
-      <span className="text-xs font-medium mr-1" style={{ color: 'rgba(251,191,36,0.65)' }}>Ends in</span>
-      {[{ v: d, l: 'd' }, { v: h, l: 'h' }, { v: m, l: 'm' }, { v: s, l: 's' }].map(({ v, l }, i) => (
-        <div key={l} className="flex items-center gap-0.5">
-          {i > 0 && <span style={{ color: 'rgba(252,165,165,0.50)', fontSize: 10 }}>:</span>}
-          <div className="flex flex-col items-center w-8 py-1 rounded-lg" style={{ background: 'rgba(0,0,0,0.30)' }}>
-            <span className="font-mono font-black text-sm leading-none" style={{ color: '#fff' }}>{pad(v)}</span>
-            <span className="text-[8px] leading-none mt-0.5" style={{ color: 'rgba(252,165,165,0.60)' }}>{l}</span>
-          </div>
-        </div>
-      ))}
-    </div>
-  )
 }
 
 // ─── Price Row ────────────────────────────────────────────────────────────────
@@ -134,18 +92,6 @@ export function PricingClient({ data }: { data: PricingData }) {
 
   return (
     <>
-      {/* Sale Header Badge */}
-      <div className="mb-8 p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3" style={{ background: 'linear-gradient(135deg,rgba(120,53,15,0.50),rgba(245,158,11,0.15))', border: '1px solid rgba(245,158,11,0.30)' }}>
-        <div className="flex items-center gap-3">
-          <span className="text-xl">🔥</span>
-          <div>
-            <p className="font-black text-sm uppercase tracking-wider" style={{ color: '#FBBF24' }}>Launch Sale — 50% Off Everything</p>
-            <p className="text-xs mt-0.5" style={{ color: 'rgba(251,191,36,0.65)' }}>First-time visitors · Limited period · ICN Athletes: always 50% off on registration</p>
-          </div>
-        </div>
-        <SaleCountdown />
-      </div>
-
       {/* Tabs */}
       <div className="flex gap-2 flex-wrap mb-10">
         {TABS.map((tab, i) => (

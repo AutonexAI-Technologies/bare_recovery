@@ -24,8 +24,8 @@ const deals = [
   { name: 'Contrast Therapy', was: '₹3,598', now: '₹1,799', tag: 'Signature', emoji: '🔥', dur: '20–40 min' },
   { name: 'Cold Plunge', was: '₹2,398', now: '₹1,199', tag: 'Most Popular', emoji: '🧊', dur: '10–15 min' },
   { name: 'Sauna', was: '₹1,998', now: '₹999', tag: '', emoji: '🌡️', dur: '15–30 min' },
-  { name: 'Red Light', was: '₹1,598', now: '₹799', tag: '', emoji: '💡', dur: '30–40 min' },
-  { name: 'Compression', was: '₹1,598', now: '₹799', tag: '', emoji: '🦵', dur: '30–40 min' },
+  { name: 'Red Light', was: '₹1,598', now: '₹799', tag: '', emoji: '💡', dur: '10–20 min' },
+  { name: 'Compression', was: '₹1,598', now: '₹799', tag: '', emoji: '🦵', dur: '10–20 min' },
 ]
 
 export default function HomeSaleSection() {

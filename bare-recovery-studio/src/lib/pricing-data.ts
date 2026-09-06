@@ -19,10 +19,10 @@ export const singleSessions = [
   { name: 'Contrast Therapy',          desc: 'Sauna + Cold Plunge — the signature stack',      price: 1799,  mrpPrice: 3598,  note: 'introductory rate',               duration: '20–40 min', href: waBase + bookMsg('Contrast Therapy') },
   { name: 'Cold Plunge',               desc: 'Full body cold immersion at 10–15°C',            price: 1199,  mrpPrice: 2398,  note: 'introductory rate',               duration: '10–15 min', href: waBase + bookMsg('Cold Plunge') },
   { name: 'Traditional Sauna',         desc: 'Dry heat at 70–80°C for deep recovery',          price: 999,   mrpPrice: 1998,  note: 'introductory rate',               duration: '15–30 min', href: waBase + bookMsg('Traditional Sauna') },
-  { name: 'Red Light Therapy',         desc: '660nm & 850nm photobiomodulation',               price: 799,   mrpPrice: 1598,  note: 'introductory rate',               duration: '30–40 min', href: waBase + bookMsg('Red Light Therapy') },
-  { name: 'Compression — Upper Body',  desc: 'Dynamic air compression for upper limbs',        price: 799,   mrpPrice: 1598,  note: 'introductory rate',               duration: '30–40 min', href: waBase + bookMsg('Compression Therapy (Upper Body)') },
-  { name: 'Compression — Lower Body',  desc: 'Dynamic air compression for legs & hips',        price: 799,   mrpPrice: 1598,  note: 'introductory rate',               duration: '30–40 min', href: waBase + bookMsg('Compression Therapy (Lower Body)') },
-  { name: 'Compression — Full Body',   desc: 'Upper + Lower body compression together',        price: 1399,  mrpPrice: 2798,  note: 'introductory rate',               duration: '30–40 min', href: waBase + bookMsg('Compression Therapy (Full Body)') },
+  { name: 'Red Light Therapy',         desc: '660nm & 850nm photobiomodulation',               price: 799,   mrpPrice: 1598,  note: 'introductory rate',               duration: '10–20 min', href: waBase + bookMsg('Red Light Therapy') },
+  { name: 'Compression — Upper Body',  desc: 'Dynamic air compression for upper limbs',        price: 799,   mrpPrice: 1598,  note: 'introductory rate',               duration: '10–20 min', href: waBase + bookMsg('Compression Therapy (Upper Body)') },
+  { name: 'Compression — Lower Body',  desc: 'Dynamic air compression for legs & hips',        price: 799,   mrpPrice: 1598,  note: 'introductory rate',               duration: '10–20 min', href: waBase + bookMsg('Compression Therapy (Lower Body)') },
+  { name: 'Compression — Full Body',   desc: 'Upper + Lower body compression together',        price: 1399,  mrpPrice: 2798,  note: 'introductory rate',               duration: '10–20 min', href: waBase + bookMsg('Compression Therapy (Full Body)') },
 ]
 
 export const coupleSessions = [

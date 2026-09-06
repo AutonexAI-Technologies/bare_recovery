@@ -14,7 +14,7 @@ const faqData = [
       },
       {
         q: 'How long does each session take?',
-        a: 'Session durations: Cold Plunge is 10–15 minutes (₹1,199), Full Circuit is 60–90 minutes (₹2,999), Contrast Therapy is 20–40 minutes (₹1,799), Sauna is 15–30 minutes (₹999), Red Light Therapy is 30–40 minutes (₹799), and Compression is 30–40 minutes (₹799). All prices are at 50% launch sale rate.',
+        a: 'Session durations: Cold Plunge is 10–15 minutes (₹1,199), Full Circuit is 60–90 minutes (₹2,999), Contrast Therapy is 20–40 minutes (₹1,799), Sauna is 15–30 minutes (₹999), Red Light Therapy is 10–20 minutes (₹799), and Compression is 10–20 minutes (₹799). All prices are at 50% launch sale rate.',
       },
       {
         q: 'Do I need to bring anything for my session?',
@@ -92,7 +92,7 @@ const faqData = [
       },
       {
         q: 'What are the current session prices?',
-        a: 'At 50% launch rate: Full Circuit ₹2,999 (60–90 min) · Contrast Therapy ₹1,799 (20–40 min) · Cold Plunge ₹1,199 (10–15 min) · Sauna ₹999 (15–30 min) · Red Light Therapy ₹799 (30–40 min) · Compression ₹799 (30–40 min). Regular prices will be double once the launch sale ends.',
+        a: 'At 50% launch rate: Full Circuit ₹2,999 (60–90 min) · Contrast Therapy ₹1,799 (20–40 min) · Cold Plunge ₹1,199 (10–15 min) · Sauna ₹999 (15–30 min) · Red Light Therapy ₹799 (10–20 min) · Compression ₹799 (10–20 min). Regular prices will be double once the launch sale ends.',
       },
       {
         q: 'Do you provide GST invoices?',

@@ -68,17 +68,20 @@ const nextConfig: NextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              // Next.js requires 'unsafe-inline' for hydration; 'unsafe-eval' removed
-              // googletagmanager.com required for GA4 external script
-              "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
+              // Next.js requires 'unsafe-inline' for hydration; 'unsafe-eval' needed in development for React DevTools/source-maps
+              process.env.NODE_ENV === 'development'
+                ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com"
+                : "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com data:",
               // Allow images from approved CDNs + data URIs for inline images
               "img-src 'self' data: blob: https://lh3.googleusercontent.com https://images.unsplash.com https://plus.unsplash.com https://img.youtube.com https://i.ytimg.com https://www.googletagmanager.com https://www.google-analytics.com",
               // Allow YouTube, Google Maps iframes
               "frame-src 'self' https://www.google.com https://maps.google.com https://www.youtube.com https://youtube.com",
-              // API calls: self + Vercel Analytics + GA4 endpoints
-              "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://region1.google-analytics.com",
+              // API calls: self + Vercel Analytics + GA4 endpoints + localhost ws for dev HMR
+              process.env.NODE_ENV === 'development'
+                ? "connect-src 'self' ws://localhost:* http://localhost:* https://vitals.vercel-insights.com https://va.vercel-scripts.com https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://region1.google-analytics.com"
+                : "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://region1.google-analytics.com",
               "worker-src 'none'",
               "object-src 'none'",
               "base-uri 'self'",

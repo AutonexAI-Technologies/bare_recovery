@@ -23,8 +23,8 @@ const serviceData = [
   { id: 'cold-plunge', emoji: '🧊', tag: 'Most Popular', sale: '₹1,199', mrp: '₹2,398', dur: '10–15 min', tagline: 'Full body cold at 10–15°C.', desc: 'Scientifically proven to reduce inflammation, boost dopamine 3x, and accelerate muscle recovery within 30 minutes post-training.' },
   { id: 'traditional-sauna', emoji: '🌿', tag: '', sale: '₹999', mrp: '₹1,998', dur: '15–30 min', tagline: 'Dry heat at 70–80°C.', desc: 'Deep tissue heat stress that triggers growth hormone release, clears lactic acid buildup, and forces parasympathetic recovery mode.' },
   { id: 'infrared-sauna', emoji: '☀️', tag: '', sale: '₹999', mrp: '₹1,998', dur: '15–30 min', tagline: 'Deep infrared penetration.', desc: 'Infrared light penetrates up to 4cm into tissue — deeper than traditional heat. Optimal for joint recovery and chronic soreness.' },
-  { id: 'red-light-therapy', emoji: '💡', tag: '', sale: '₹799', mrp: '₹1,598', dur: '30–40 min', tagline: '660nm & 850nm photobiomodulation.', desc: 'Red and near-infrared wavelengths stimulate mitochondrial activity, accelerate tissue repair, and reduce oxidative stress at a cellular level.' },
-  { id: 'compression-therapy', emoji: '🦵', tag: 'From', sale: '₹799', mrp: '₹1,598', dur: '30–40 min', tagline: 'Dynamic air compression.', desc: 'Sequential pneumatic compression of limbs enhances venous return, reduces oedema, and clears metabolic waste 2x faster than rest.' },
+  { id: 'red-light-therapy', emoji: '💡', tag: '', sale: '₹799', mrp: '₹1,598', dur: '10–20 min', tagline: '660nm & 850nm photobiomodulation.', desc: 'Red and near-infrared wavelengths stimulate mitochondrial activity, accelerate tissue repair, and reduce oxidative stress at a cellular level.' },
+  { id: 'compression-therapy', emoji: '🦵', tag: 'From', sale: '₹799', mrp: '₹1,598', dur: '10–20 min', tagline: 'Dynamic air compression.', desc: 'Sequential pneumatic compression of limbs enhances venous return, reduces oedema, and clears metabolic waste 2x faster than rest.' },
 ]
 
 function ServiceCard({ svc, index }: { svc: typeof serviceData[0]; index: number }) {

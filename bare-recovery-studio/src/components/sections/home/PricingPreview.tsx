@@ -29,7 +29,7 @@ const highlights = [
     description: 'Perfect for first-timers. Pick any one service.',
     features: [
       '1 service of your choice',
-      'Guided 30–40 min session',
+      'Guided 10–20 min session',
       'Private access — no crowds',
       'Coach consultation included',
     ],
