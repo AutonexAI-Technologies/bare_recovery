@@ -41,9 +41,9 @@ Unlike traditional static compression (squeezing), our systems use dynamic compr
         ],
 
         pricing: {
-            upperBody: 799,
-            lowerBody: 799,
-            fullBody: 1399,
+            upperBody: 1119,
+            lowerBody: 1119,
+            fullBody: 1959,
         },
 
         images: {
@@ -138,7 +138,7 @@ This non-invasive therapy has been clinically shown to reduce inflammation, supp
         ],
 
         pricing: {
-            single: 799,
+            single: 1119,
         },
 
         images: {
@@ -230,8 +230,8 @@ Regular sauna use has been linked to improved cardiovascular function, reduced s
         ],
 
         pricing: {
-            single: 999,
-            couple: 1399,
+            single: 1399,
+            couple: 1959,
         },
 
         images: {
@@ -327,8 +327,8 @@ This means you sweat more, detoxify deeper, and recover faster while experiencin
         ],
 
         pricing: {
-            single: 999,
-            couple: 1399,
+            single: 1399,
+            couple: 1959,
         },
 
         images: {
@@ -418,8 +418,8 @@ Regular cold exposure has been shown to increase norepinephrine levels, improve 
         ],
 
         pricing: {
-            single: 1199,
-            couple: 1599,
+            single: 1679,
+            couple: 2239,
         },
 
         images: {
@@ -511,8 +511,8 @@ The rapid vasodilation (heat) and vasoconstriction (cold) creates a "pumping" ef
         ],
 
         pricing: {
-            single: 1799,
-            couple: 2199,
+            single: 2519,
+            couple: 3069,
         },
 
         images: {
