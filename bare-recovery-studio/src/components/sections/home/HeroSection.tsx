@@ -16,6 +16,7 @@ export default function HeroSection() {
   return (
     <header
       className="relative flex flex-col overflow-hidden hero-height"
+      style={{ marginTop: 'calc(-1 * var(--header-h, 116px))' }}
     >
 
       {/* ══ DESKTOP background image ══ */}
@@ -144,7 +145,7 @@ export default function HeroSection() {
                 boxShadow: '0 8px 32px rgba(245,158,11,0.40)',
               }}
             >
-              Book at 50% Off →
+              Book Now →
             </a>
             <Link
               href="/services"
@@ -248,7 +249,7 @@ export default function HeroSection() {
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'linear-gradient(135deg, #D97706, #F59E0B)' }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'linear-gradient(135deg, #F59E0B, #FBBF24)' }}
             >
-              Book at 50% Off
+              Book a Session
               <span className="w-8 h-8 rounded-full flex items-center justify-center group-hover:translate-x-0.5 transition-transform duration-300" style={{ background: 'rgba(61,59,61,0.16)' }}>
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#3d3b3d" strokeWidth="2.5">
                   <path d="M5 12h14M12 5l7 7-7 7" />

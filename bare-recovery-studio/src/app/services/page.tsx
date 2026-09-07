@@ -7,7 +7,7 @@ import { CONTACT_INFO } from '@/lib/constants'
 import type { Metadata } from 'next'
 
 const waBase = `https://wa.me/${CONTACT_INFO.whatsapp}?text=`
-const bookMsg = (name: string) => encodeURIComponent(`Hi! I want to book a ${name} session at the 50% launch sale rate.`)
+const bookMsg = (name: string) => encodeURIComponent(`Hi! I want to book a ${name} session at Bare Recovery Studio.`)
 
 const serviceImages: Record<string, string> = {
   'compression-therapy': '/images/services/compression-therapy.PNG',
@@ -19,12 +19,12 @@ const serviceImages: Record<string, string> = {
 }
 
 const serviceData = [
-  { id: 'contrast-therapy', emoji: '🌡️', tag: 'Signature', sale: '₹1,799', mrp: '₹3,598', dur: '20–40 min', tagline: 'Hot & Cold. The ultimate recovery stack.', desc: 'Sauna heat followed by cold plunge immersion. The most powerful recovery combination available — used by elite athletes worldwide.' },
-  { id: 'cold-plunge', emoji: '🧊', tag: 'Most Popular', sale: '₹1,199', mrp: '₹2,398', dur: '10–15 min', tagline: 'Full body cold at 10–15°C.', desc: 'Scientifically proven to reduce inflammation, boost dopamine 3x, and accelerate muscle recovery within 30 minutes post-training.' },
-  { id: 'traditional-sauna', emoji: '🌿', tag: '', sale: '₹999', mrp: '₹1,998', dur: '15–30 min', tagline: 'Dry heat at 70–80°C.', desc: 'Deep tissue heat stress that triggers growth hormone release, clears lactic acid buildup, and forces parasympathetic recovery mode.' },
-  { id: 'infrared-sauna', emoji: '☀️', tag: '', sale: '₹999', mrp: '₹1,998', dur: '15–30 min', tagline: 'Deep infrared penetration.', desc: 'Infrared light penetrates up to 4cm into tissue — deeper than traditional heat. Optimal for joint recovery and chronic soreness.' },
-  { id: 'red-light-therapy', emoji: '💡', tag: '', sale: '₹799', mrp: '₹1,598', dur: '10–20 min', tagline: '660nm & 850nm photobiomodulation.', desc: 'Red and near-infrared wavelengths stimulate mitochondrial activity, accelerate tissue repair, and reduce oxidative stress at a cellular level.' },
-  { id: 'compression-therapy', emoji: '🦵', tag: 'From', sale: '₹799', mrp: '₹1,598', dur: '10–20 min', tagline: 'Dynamic air compression.', desc: 'Sequential pneumatic compression of limbs enhances venous return, reduces oedema, and clears metabolic waste 2x faster than rest.' },
+  { id: 'contrast-therapy',    emoji: '🌡️', tag: 'Signature',    sale: '₹2,519', mrp: '₹3,598', dur: '20–40 min', tagline: 'Hot & Cold. The ultimate recovery stack.', desc: 'Sauna heat followed by cold plunge immersion. The most powerful recovery combination available — used by elite athletes worldwide.' },
+  { id: 'cold-plunge',         emoji: '🧊', tag: 'Most Popular', sale: '₹1,679', mrp: '₹2,398', dur: '10–15 min', tagline: 'Full body cold at 10–15°C.', desc: 'Scientifically proven to reduce inflammation, boost dopamine 3x, and accelerate muscle recovery within 30 minutes post-training.' },
+  { id: 'traditional-sauna',   emoji: '🌿', tag: '',            sale: '₹1,399', mrp: '₹1,998', dur: '15–30 min', tagline: 'Dry heat at 70–80°C.', desc: 'Deep tissue heat stress that triggers growth hormone release, clears lactic acid buildup, and forces parasympathetic recovery mode.' },
+  { id: 'infrared-sauna',      emoji: '☀️', tag: '',            sale: '₹1,399', mrp: '₹1,998', dur: '15–30 min', tagline: 'Deep infrared penetration.', desc: 'Infrared light penetrates up to 4cm into tissue — deeper than traditional heat. Optimal for joint recovery and chronic soreness.' },
+  { id: 'red-light-therapy',   emoji: '💡', tag: '',            sale: '₹1,119', mrp: '₹1,598', dur: '10–20 min', tagline: '660nm & 850nm photobiomodulation.', desc: 'Red and near-infrared wavelengths stimulate mitochondrial activity, accelerate tissue repair, and reduce oxidative stress at a cellular level.' },
+  { id: 'compression-therapy', emoji: '🦵', tag: 'From',        sale: '₹1,119', mrp: '₹1,598', dur: '10–20 min', tagline: 'Dynamic air compression.', desc: 'Sequential pneumatic compression of limbs enhances venous return, reduces oedema, and clears metabolic waste 2x faster than rest.' },
 ]
 
 function ServiceCard({ svc, index }: { svc: typeof serviceData[0]; index: number }) {
@@ -45,15 +45,15 @@ function ServiceCard({ svc, index }: { svc: typeof serviceData[0]; index: number
       {/* Base gradient overlay */}
       <div style={{ position: 'absolute', inset: 0, background: hovered ? 'linear-gradient(to top, rgba(5,4,4,0.98) 0%, rgba(5,4,4,0.75) 40%, rgba(5,4,4,0.30) 100%)' : 'linear-gradient(to top, rgba(5,4,4,0.95) 0%, rgba(5,4,4,0.50) 60%, rgba(5,4,4,0.15) 100%)', transition: 'background 0.4s ease' }} />
 
-      {/* Tag + 50% badge */}
+      {/* Tag + 30% badge */}
       <div style={{ position: 'absolute', top: 16, left: 16, right: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         {svc.tag && (
           <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', background: svc.tag === 'Signature' ? 'linear-gradient(135deg,#F59E0B,#FBBF24)' : 'rgba(245,240,235,0.15)', backdropFilter: 'blur(8px)', color: svc.tag === 'Signature' ? '#111' : '#f5f0eb', padding: '5px 12px', borderRadius: 9999, border: svc.tag === 'Signature' ? 'none' : '1px solid rgba(255,255,255,0.15)' }}>
             {svc.tag}
           </span>
         )}
-        <span style={{ marginLeft: 'auto', fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111', padding: '5px 12px', borderRadius: 9999, boxShadow: '0 2px 12px rgba(245,158,11,0.40)' }}>
-          50% OFF
+        <span style={{ marginLeft: 'auto', fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', background: 'rgba(196,193,196,0.15)', color: '#dddadd', padding: '5px 12px', borderRadius: 9999, border: '1px solid rgba(196,193,196,0.20)' }}>
+          30% Off
         </span>
       </div>
 
@@ -77,9 +77,9 @@ function ServiceCard({ svc, index }: { svc: typeof serviceData[0]; index: number
 
         {/* Price row */}
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 14 }}>
-          <span style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 400, letterSpacing: '-0.04em', color: '#FBBF24', lineHeight: 1 }}>{svc.sale}</span>
+          <span style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 400, letterSpacing: '-0.04em', color: '#f5f0eb', lineHeight: 1 }}>{svc.sale}</span>
           <span style={{ fontSize: 13, color: 'rgba(245,240,235,0.30)', textDecoration: 'line-through' }}>{svc.mrp}</span>
-          <span style={{ fontSize: 9, fontWeight: 700, color: '#F59E0B', letterSpacing: '0.12em', textTransform: 'uppercase' }}>FOUNDING RATE</span>
+          <span style={{ fontSize: 9, fontWeight: 700, color: 'rgba(196,193,196,0.70)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>30% OFF</span>
         </div>
 
         {/* CTA row — slides in on hover */}
@@ -89,9 +89,9 @@ function ServiceCard({ svc, index }: { svc: typeof serviceData[0]; index: number
             target="_blank"
             rel="noopener noreferrer"
             onClick={e => e.stopPropagation()}
-            style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111', padding: '11px 16px', borderRadius: 12, fontSize: 12, fontWeight: 800, textDecoration: 'none', letterSpacing: '0.04em' }}
+            style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, background: '#d9d1cc', color: '#1a1919', padding: '11px 16px', borderRadius: 12, fontSize: 12, fontWeight: 800, textDecoration: 'none', letterSpacing: '0.04em' }}
           >
-            🔥 Book at 50% Off
+            Book Now
           </a>
           <Link
             href={`/services/${svc.id}`}
@@ -126,11 +126,11 @@ export default function ServicesPage() {
               </p>
             </div>
             <a
-              href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent('Hi! I want to book a session at the 50% launch sale rate.')}`}
+              href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent('Hi! I\'d like to book a session at Bare Recovery Studio.')}`}
               target="_blank" rel="noopener noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111', padding: '14px 28px', borderRadius: 9999, fontSize: 13, fontWeight: 800, textDecoration: 'none', boxShadow: '0 8px 28px rgba(245,158,11,0.45)', whiteSpace: 'nowrap', alignSelf: 'flex-end' }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#d9d1cc', color: '#1a1919', padding: '14px 28px', borderRadius: 9999, fontSize: 13, fontWeight: 800, textDecoration: 'none', boxShadow: '0 8px 28px rgba(0,0,0,0.20)', whiteSpace: 'nowrap', alignSelf: 'flex-end' }}
             >
-              Book at 50% Off →
+              Book a Session →
             </a>
           </div>
         </div>

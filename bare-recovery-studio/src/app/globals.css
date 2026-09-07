@@ -487,14 +487,15 @@ body {
 }
 
 /* ─── Hero viewport height ─ cross-browser (iOS Safari, Chrome, Firefox) ─── */
+/* Extra header-h added because hero uses negative margin to bleed under navbar */
 .hero-height {
-  min-height: 100vh;
+  min-height: calc(100vh + var(--header-h, 116px));
   /* universal safe fallback */
 }
 
 @supports (min-height: 100svh) {
   .hero-height {
-    min-height: 100svh;
+    min-height: calc(100svh + var(--header-h, 116px));
     /* modern browsers: excludes retractable browser chrome */
   }
 }
@@ -972,4 +973,28 @@ body {
   100% {
     transform: translateY(-100%);
   }
+}
+
+/* ── Fixed header offset variables ─────────────────────────────────────────
+   --ann-bar-h : set by TopAnnouncementBar.tsx on mount (always 56px)
+   --navbar-h  : set by Navbar.tsx on mount (60px mobile / 70px desktop)
+   --header-h  : total fixed height; used as page padding-top baseline
+   Defaults here keep SSR flash-free before JS hydrates.
+────────────────────────────────────────────────────────────────────────── */
+:root {
+  --ann-bar-h: 56px;
+  --navbar-h: 60px;
+  --header-h: calc(var(--ann-bar-h) + var(--navbar-h)); /* 116px on mobile */
+}
+
+@media (min-width: 768px) {
+  :root {
+    --navbar-h: 70px;
+    /* --header-h resolves to 126px on md+ */
+  }
+}
+
+/* Anchor targets won't be hidden under the fixed navbar */
+[id] {
+  scroll-margin-top: var(--header-h, 116px);
 }

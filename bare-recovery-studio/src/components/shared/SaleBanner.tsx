@@ -86,10 +86,10 @@ export default function SaleBanner() {
           willChange: 'transform',
         }}>
           {[
-            '50% Off All Sessions · First-Visit Introductory Rate',
-            '✦ ICN Athletes: 50% Off Every Visit on Registration',
-            '50% Off All Sessions · First-Visit Introductory Rate',
-            '✦ ICN Athletes: 50% Off Every Visit on Registration',
+            '30% Off · Introductory Offer · All Sessions',
+            '❖ ICN Athletes: 50% Off Every Visit — Permanent Benefit',
+            '30% Off · Introductory Offer · All Sessions',
+            '❖ ICN Athletes: 50% Off Every Visit — Permanent Benefit',
           ].map((item, i) => (
             <span key={i} style={{
               fontSize: 10,

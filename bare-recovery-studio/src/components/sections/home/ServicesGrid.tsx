@@ -10,7 +10,7 @@ const services = [
     tagline: 'Full-body immersion at 10–15°C. Sharpen the mind, kill inflammation.',
     duration: '10–15 min',
     mrp: '₹2,398',
-    price: '₹1,199',
+    price: '₹1,679',
     image: '/images/services/cold-plunge.PNG',
     label: 'HIGH INTENSITY',
     href: '/services/cold-plunge',
@@ -22,7 +22,7 @@ const services = [
     tagline: 'Alternate heat and cold — the ultimate vascular pump.',
     duration: '20–40 min',
     mrp: '₹3,598',
-    price: '₹1,799',
+    price: '₹2,519',
     image: '/images/services/contrast-therapy.PNG',
     label: 'SIGNATURE',
     href: '/services/contrast-therapy',
@@ -34,7 +34,7 @@ const services = [
     tagline: 'Dry heat at 70–95°C for deep muscle relief and cardiovascular benefit.',
     duration: '15–30 min',
     mrp: '₹1,998',
-    price: '₹999',
+    price: '₹1,399',
     image: '/images/services/sauna.PNG',
     label: 'HEAT THERAPY',
     href: '/services/traditional-sauna',
@@ -46,7 +46,7 @@ const services = [
     tagline: 'Far-infrared waves penetrate deep into tissue for gentle, sustained heat.',
     duration: '15–30 min',
     mrp: '₹1,998',
-    price: '₹999',
+    price: '₹1,399',
     image: '/images/services/infrared-sauna.PNG',
     label: 'DEEP HEAT',
     href: '/services/infrared-sauna',
@@ -58,7 +58,7 @@ const services = [
     tagline: 'Cellular repair at 660nm & 850nm. Medical-grade photobiomodulation.',
     duration: '10–20 min',
     mrp: '₹1,598',
-    price: '₹799',
+    price: '₹1,119',
     image: '/images/services/redlight-therapy.PNG',
     label: 'CELLULAR',
     href: '/services/red-light-therapy',
@@ -70,7 +70,7 @@ const services = [
     tagline: 'Dynamic air pressure that flushes metabolic waste and restores circulation.',
     duration: '10–20 min',
     mrp: '₹1,598',
-    price: '₹799',
+    price: '₹1,119',
     image: '/images/services/compression-therapy.PNG',
     label: 'LYMPHATIC',
     href: '/services/compression-therapy',
@@ -141,17 +141,17 @@ function ServiceCard({
           {svc.label}
         </span>
 
-        {/* Top-right: FOUNDING RATE badge */}
+        {/* Top-right: 30% Off badge */}
         <span style={{
           position: 'absolute', top: 14, right: 14,
           fontSize: 8, fontWeight: 800, letterSpacing: '0.22em', textTransform: 'uppercase',
-          color: 'rgba(188,163,134,0.90)',
-          background: 'rgba(188,163,134,0.10)',
-          border: '1px solid rgba(188,163,134,0.25)',
+          color: 'rgba(196,193,196,0.90)',
+          background: 'rgba(86,84,86,0.60)',
+          border: '1px solid rgba(196,193,196,0.20)',
           backdropFilter: 'blur(8px)',
           padding: '5px 10px', borderRadius: 9999,
         }}>
-          Founding Rate
+          30% Off
         </span>
 
         {/* Bottom content */}
@@ -182,37 +182,27 @@ function ServiceCard({
             {svc.tagline}
           </p>
 
-          {/* Price row — the sale story lives here */}
+          {/* Price — MRP strikethrough + 30% off price */}
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
             <div>
-              {/* Strikethrough MRP — clearly visible */}
+              {/* Strikethrough MRP */}
               <div style={{
-                fontSize: 13, fontWeight: 500,
-                color: 'rgba(245,240,235,0.38)',
+                fontSize: 12, fontWeight: 500,
+                color: 'rgba(245,240,235,0.35)',
                 textDecoration: 'line-through',
                 letterSpacing: '-0.01em',
-                marginBottom: 1,
+                marginBottom: 2,
               }}>
                 {svc.mrp}
               </div>
-              {/* Sale price — large & proud */}
-              <div style={{
-                display: 'flex', alignItems: 'center', gap: 8,
-              }}>
+              {/* 30% off price */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span style={{
                   fontFamily: 'var(--font-display, serif)',
                   fontSize: 26, fontWeight: 300, letterSpacing: '-0.03em',
                   color: '#f5f0eb', lineHeight: 1,
                 }}>
                   {svc.price}
-                </span>
-                <span style={{
-                  fontSize: 9, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase',
-                  color: 'rgba(188,163,134,0.85)',
-                  border: '1px solid rgba(188,163,134,0.22)',
-                  padding: '3px 8px', borderRadius: 9999,
-                }}>
-                  50% off
                 </span>
               </div>
             </div>
@@ -256,10 +246,6 @@ export default function ServicesGrid() {
             >
               Recovery Services
             </h2>
-            {/* Sale note inline with section header */}
-            <p style={{ fontSize: 12, color: 'rgba(188,163,134,0.70)', marginTop: 8, letterSpacing: '0.04em' }}>
-              All sessions at founding rates — 50% off for a limited time.
-            </p>
           </div>
           <Link
             href="/services"

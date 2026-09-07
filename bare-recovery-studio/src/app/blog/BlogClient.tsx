@@ -7,7 +7,7 @@ import { CONTACT_INFO } from '@/lib/constants'
 
 interface BlogClientProps { posts: BlogPost[] }
 
-const waLink = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent('Hi! I want to book a session at the 50% launch rate.')}`
+const waLink = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent("Hi! I'd like to book a session at Bare Recovery Studio.")}`
 
 function formatDate(d: string) {
   return new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
@@ -49,12 +49,11 @@ export default function BlogClient({ posts }: BlogClientProps) {
     <div style={{ background: '#0f0e0e', minHeight: '100vh' }}>
 
       {/* ── Hero header ── */}
-      <div style={{ background: 'linear-gradient(to bottom, rgba(245,158,11,0.06) 0%, transparent 100%)', borderBottom: '1px solid rgba(245,158,11,0.10)', paddingTop: 128, paddingBottom: 60, paddingLeft: 20, paddingRight: 20 }}>
+      <div style={{ background: 'linear-gradient(to bottom, rgba(245,158,11,0.06) 0%, transparent 100%)', borderBottom: '1px solid rgba(245,158,11,0.10)', paddingTop: 32, paddingBottom: 60, paddingLeft: 20, paddingRight: 20 }}>
         <div className="max-w-[1320px] mx-auto">
           {/* Sale badge */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 20, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', padding: '6px 16px', borderRadius: 9999, boxShadow: '0 4px 16px rgba(245,158,11,0.40)' }}>
-            <span style={{ fontSize: 12 }}>🔥</span>
-            <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#111' }}>50% Off All Sessions — Ends Aug 31</span>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 20, background: 'rgba(86,84,86,0.40)', padding: '6px 16px', borderRadius: 9999, border: '1px solid rgba(196,193,196,0.15)' }}>
+            <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#dddadd' }}>30% Introductory Offer · ICN Athletes 50% Off</span>
           </div>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between" style={{ gap: 24 }}>
             <div>
@@ -67,8 +66,8 @@ export default function BlogClient({ posts }: BlogClientProps) {
               </p>
             </div>
             <a href={waLink} target="_blank" rel="noopener noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111', padding: '14px 28px', borderRadius: 9999, fontSize: 13, fontWeight: 700, textDecoration: 'none', boxShadow: '0 8px 24px rgba(245,158,11,0.40)', whiteSpace: 'nowrap', alignSelf: 'flex-end' }}>
-              Book at 50% Off →
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#d9d1cc', color: '#1a1919', padding: '14px 28px', borderRadius: 9999, fontSize: 13, fontWeight: 700, textDecoration: 'none', boxShadow: '0 8px 24px rgba(0,0,0,0.20)', whiteSpace: 'nowrap', alignSelf: 'flex-end' }}>
+              Book a Session →
             </a>
           </div>
         </div>

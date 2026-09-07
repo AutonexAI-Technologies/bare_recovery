@@ -42,16 +42,16 @@ function useIntersection(ref: React.RefObject<Element | null>) {
 }
 
 const waLink = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent(
-  'Hi! I want to book at the founding rate — 50% off. Please confirm availability.'
+  "Hi! I'd like to book a session at Bare Recovery Studio."
 )}`
 
 const priceItems = [
-  { name: 'Full Circuit', was: '₹5,998', now: '₹2,999', duration: '60–90 min', emoji: '⚡' },
-  { name: 'Contrast Therapy', was: '₹3,598', now: '₹1,799', duration: '20–40 min', emoji: '🔥' },
-  { name: 'Cold Plunge', was: '₹2,398', now: '₹1,199', duration: '10–15 min', emoji: '🧂' },
-  { name: 'Sauna', was: '₹1,998', now: '₹999', duration: '15–30 min', emoji: '🌡️' },
-  { name: 'Red Light Therapy', was: '₹1,598', now: '₹799', duration: '10–20 min', emoji: '💡' },
-  { name: 'Compression', was: '₹1,598', now: '₹799', duration: '10–20 min', emoji: '🦵' },
+  { name: 'Full Circuit',       was: '₹5,998', now: '₹4,199', duration: '60–90 min', emoji: '⚡' },
+  { name: 'Contrast Therapy',   was: '₹3,598', now: '₹2,519', duration: '20–40 min', emoji: '🔥' },
+  { name: 'Cold Plunge',        was: '₹2,398', now: '₹1,679', duration: '10–15 min', emoji: '🦪' },
+  { name: 'Sauna',              was: '₹1,998', now: '₹1,399', duration: '15–30 min', emoji: '🌡️' },
+  { name: 'Red Light Therapy',  was: '₹1,598', now: '₹1,119', duration: '10–20 min', emoji: '💡' },
+  { name: 'Compression',        was: '₹1,598', now: '₹1,119', duration: '10–20 min', emoji: '🦵' },
 ]
 
 export default function LaunchSaleSection() {
@@ -90,7 +90,7 @@ export default function LaunchSaleSection() {
               color: i % 3 === 0 ? 'rgba(188,163,134,0.60)' : 'rgba(245,240,235,0.25)',
               flexShrink: 0,
             }}>
-              {['✦ Founding Member Rate', '— 50% Off All Sessions', '◆ Limited to August 2026', '— Hyderabad\'s Recovery Studio'][i % 4]}
+              {['✦ Introductory Offer', '— 30% Off All Sessions', '◆ ICN Athletes 50% Off', '— Hyderabad\'s Recovery Studio'][i % 4]}
             </span>
           ))}
         </div>
@@ -119,7 +119,7 @@ export default function LaunchSaleSection() {
               Aug 2026 · Founding Member Offer
             </p>
 
-            {/* Giant 50% — the centrepiece */}
+            {/* Giant 30% — the centrepiece */}
             <div style={{ lineHeight: 0.88, marginBottom: 8 }}>
               <div style={{
                 fontFamily: 'var(--font-display)',
@@ -129,7 +129,7 @@ export default function LaunchSaleSection() {
                 color: '#f5f0eb',
                 display: 'block',
               }}>
-                50
+                30
               </div>
               <div style={{
                 fontFamily: 'var(--font-display)',
@@ -330,7 +330,7 @@ export default function LaunchSaleSection() {
               </div>
               <p style={{ fontSize: 11, color: 'rgba(245,240,235,0.45)', lineHeight: 1.6, paddingLeft: 26 }}>
                 <span style={{ color: 'rgba(188,163,134,0.80)', fontWeight: 600 }}>ICN Athletes:</span>{' '}
-                <span style={{ color: '#FBBF24', fontWeight: 700 }}>50% off every single visit on registration — valid through 7th Sep 2026. No expiry. No time limit.</span>
+                <span style={{ color: '#FBBF24', fontWeight: 700 }}>50% off every single visit — permanently, on registration. No expiry. No time limit.</span>
               </p>
             </div>
           </div>

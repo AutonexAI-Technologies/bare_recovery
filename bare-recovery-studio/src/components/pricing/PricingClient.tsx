@@ -57,7 +57,7 @@ function PriceRow({ item, index }: { item: PricingSession; index: number }) {
             {item.featured && (
               <span className="text-[9px] font-bold uppercase tracking-[0.2em] px-2 py-0.5 rounded-full" style={{ background: '#d9d1cc', color: '#3d3b3d' }}>Best Value</span>
             )}
-            <span className="text-[9px] font-black uppercase tracking-[0.12em] px-2.5 py-0.5 rounded-full" style={{ background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111010', boxShadow: '0 0 14px rgba(245,158,11,0.35)' }}>50% OFF</span>
+            <span className="text-[9px] font-black uppercase tracking-[0.12em] px-2.5 py-0.5 rounded-full" style={{ background: 'rgba(196,193,196,0.15)', color: '#dddadd', border: '1px solid rgba(196,193,196,0.20)' }}>30% Off · Intro</span>
           </div>
           <p className="text-sm md:text-base" style={{ color: '#dddadd' }}>{item.desc}</p>
           {item.duration && <p className="text-xs mt-1 font-medium" style={{ color: 'rgba(245,240,235,0.75)' }}>⏱ {item.duration}</p>}
@@ -162,7 +162,7 @@ export function PricingClient({ data }: { data: PricingData }) {
                 {plan.featured && (
                   <span className="absolute -top-3.5 left-6 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.2em]" style={{ background: '#d9d1cc', color: '#3d3b3d' }}>Best Value</span>
                 )}
-                <span className="absolute top-4 right-4 text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full" style={{ background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111010' }}>50% OFF</span>
+                <span className="absolute top-4 right-4 text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full" style={{ background: 'rgba(196,193,196,0.15)', color: '#dddadd', border: '1px solid rgba(196,193,196,0.20)' }}>30% Off</span>
 
                 <span className="text-[10px] font-bold uppercase tracking-[0.25em] mb-3 block" style={{ color: '#dddadd' }}>{plan.type}</span>
                 <h3 className="font-display font-light mb-1" style={{ fontSize: 'clamp(26px, 4vw, 40px)', letterSpacing: '-0.04em', lineHeight: 1, color: '#f5f0eb' }}>{plan.label}</h3>
@@ -230,7 +230,7 @@ export function PricingClient({ data }: { data: PricingData }) {
         <div>
           <p className="font-bold text-sm uppercase tracking-wider mb-1" style={{ color: '#fde68a' }}>ICN Athletes — 50% Off Every Visit</p>
           <p className="text-sm leading-relaxed" style={{ color: 'rgba(253,230,138,0.75)' }}>
-            Registered ICN athletes receive 50% off every single visit on registration — valid through 7th Sep 2026. No expiry. No time limit. Show your registration card or proof at the studio.
+            Registered ICN athletes receive <strong style={{ color: '#fde68a' }}>50% off every single visit</strong> — permanently, on registration. No expiry. No time limit. Show your registration card or proof at the studio.
           </p>
           <a
             href={`https://wa.me/${whatsapp}?text=${encodeURIComponent('Hi! I am a registered ICN athlete and would like to claim my 50% discount at Bare Recovery Studio.')}`}

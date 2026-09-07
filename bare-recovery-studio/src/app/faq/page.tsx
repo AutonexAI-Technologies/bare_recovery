@@ -14,7 +14,7 @@ const faqData = [
       },
       {
         q: 'How long does each session take?',
-        a: 'Session durations: Cold Plunge is 10–15 minutes (₹1,199), Full Circuit is 60–90 minutes (₹2,999), Contrast Therapy is 20–40 minutes (₹1,799), Sauna is 15–30 minutes (₹999), Red Light Therapy is 10–20 minutes (₹799), and Compression is 10–20 minutes (₹799). All prices are at 50% launch sale rate.',
+        a: 'Session durations: Cold Plunge is 10–15 minutes (₹1,679), Full Circuit is 60–90 minutes (₹4,199), Contrast Therapy is 20–40 minutes (₹2,519), Sauna is 15–30 minutes (₹1,399), Red Light Therapy is 10–20 minutes (₹1,119), and Compression is 10–20 minutes (₹1,119). All prices reflect the 30% introductory offer.',
       },
       {
         q: 'Do I need to bring anything for my session?',
@@ -22,7 +22,7 @@ const faqData = [
       },
       {
         q: 'Can I combine multiple services in one visit?',
-        a: 'Yes! Our most popular combination is Contrast Therapy — alternating rounds of sauna and cold plunge. The Full Circuit includes all six services in one optimised session (₹2,999 at launch rate). Our staff will help you design an optimal protocol.',
+        a: 'Yes! Our most popular combination is Contrast Therapy — alternating rounds of sauna and cold plunge. The Full Circuit includes all six services in one optimised session (₹4,199 introductory rate). Our staff will help you design an optimal protocol.',
       },
       {
         q: 'Is Contrast Therapy the same as booking sauna and cold plunge separately?',
@@ -79,20 +79,20 @@ const faqData = [
     ],
   },
   {
-    category: 'Pricing & Launch Sale',
-    icon: '🔥',
+    category: 'Pricing & Offers',
+    icon: '💰',
     questions: [
       {
-        q: 'What is the 50% Launch Sale?',
-        a: 'As Bare Recovery Studio\'s founding offer, every service is 50% off regular price during the launch period. For first-time clients, the 50% discount applies to any session. ICN Hyderabad Deccan Uprising 2026 athletes receive 50% off every single visit on registration — valid through 7th September 2026. No expiry. No time limit.',
+        q: 'What is the introductory offer?',
+        a: 'All first-time visitors receive a 30% introductory discount on any session. ICN Hyderabad Deccan Uprising 2026 athletes receive 50% off every single visit — permanently on registration. No expiry. No time limit.',
       },
       {
         q: 'What is the ICN athlete discount?',
-        a: 'ICN Hyderabad Deccan Uprising 2026 takes place on 29 & 30 August 2026. All registered ICN athletes receive 50% off every single visit on registration — valid through 7th September 2026. No expiry. No time limit. Simply show your registration card or mention you\'re an ICN athlete when booking via WhatsApp.',
+        a: 'ICN Hyderabad Deccan Uprising 2026 takes place on 29 & 30 August 2026. All registered ICN athletes receive <strong>50% off every single visit</strong> — permanently, on registration. No expiry. No time limit. Simply show your registration card or mention you\'re an ICN athlete when booking via WhatsApp.',
       },
       {
         q: 'What are the current session prices?',
-        a: 'At 50% launch rate: Full Circuit ₹2,999 (60–90 min) · Contrast Therapy ₹1,799 (20–40 min) · Cold Plunge ₹1,199 (10–15 min) · Sauna ₹999 (15–30 min) · Red Light Therapy ₹799 (10–20 min) · Compression ₹799 (10–20 min). Regular prices will be double once the launch sale ends.',
+        a: 'Introductory offer: Full Circuit ₹4,199 (60–90 min) · Contrast Therapy ₹2,519 (20–40 min) · Cold Plunge ₹1,679 (10–15 min) · Sauna ₹1,399 (15–30 min) · Red Light Therapy ₹1,119 (10–20 min) · Compression ₹1,119 (10–20 min). Regular prices (MRP) are 30% higher. ICN Athletes get 50% off the MRP permanently.',
       },
       {
         q: 'Do you provide GST invoices?',
@@ -179,7 +179,8 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen" style={{ background: '#0f0e0e' }}>
-      <div style={{ paddingTop: 144, paddingBottom: 112, paddingLeft: 'clamp(20px,5vw,64px)', paddingRight: 'clamp(20px,5vw,64px)', maxWidth: 920, margin: '0 auto' }}>
+      <div style={{ paddingTop: 48, paddingBottom: 112, paddingLeft: 'clamp(20px,5vw,64px)', paddingRight: 'clamp(20px,5vw,64px)', maxWidth: 920, margin: '0 auto' }}>
+
 
         {/* Header */}
         <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.28em', textTransform: 'uppercase', color: 'rgba(188,163,134,0.70)', display: 'block', marginBottom: 16 }}>Help Center</span>

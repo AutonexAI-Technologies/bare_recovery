@@ -1,7 +1,7 @@
 ---
 title: "Why Recovery Is the Missing Piece in Your Training Programme"
 subject: "Recovery Science"
-date: "2025-06-18"
+date: "2026-06-18"
 author: "Abhinav"
 image: "/images/blog/recovery-science.jpg"
 ---

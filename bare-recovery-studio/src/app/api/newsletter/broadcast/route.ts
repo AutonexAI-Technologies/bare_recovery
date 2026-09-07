@@ -209,14 +209,15 @@ export async function POST(req: NextRequest) {
       Read Full Article →
     </a>
 
-    <!-- Sale reminder -->
-    <div style="border:1px solid rgba(245,158,11,0.22);border-radius:14px;padding:18px 20px;margin-bottom:24px;background:rgba(245,158,11,0.04);">
-      <p style="font-size:10px;font-weight:800;letter-spacing:0.20em;text-transform:uppercase;color:#FBBF24;margin:0 0 6px;">🔥 Founding Rate Active</p>
+    <!-- Offer reminder -->
+    <div style="border:1px solid rgba(196,193,196,0.15);border-radius:14px;padding:18px 20px;margin-bottom:24px;background:rgba(86,84,86,0.20);">
+      <p style="font-size:10px;font-weight:800;letter-spacing:0.20em;text-transform:uppercase;color:#dddadd;margin:0 0 6px;">30% Introductory Offer</p>
       <p style="font-size:12px;color:rgba(245,240,235,0.55);line-height:1.6;margin:0 0 12px;">
-        Experience what you just read — every session 50% off until Aug 31.
-        Cold Plunge ₹1,199 · Full Circuit ₹2,999 · Red Light ₹799.
+        Experience what you just read — 30% off every session for first-time visitors.
+        Cold Plunge ₹1,679 · Full Circuit ₹4,199 · Red Light ₹1,119.
+        ICN Athletes: <strong style="color:#FBBF24;">50% off every visit</strong> — permanently.
       </p>
-      <a href="${waLink}" style="display:inline-block;background:#111010;color:#FBBF24;padding:10px 20px;border-radius:9999px;font-size:11px;font-weight:700;text-decoration:none;">Book at 50% Off →</a>
+      <a href="${waLink}" style="display:inline-block;background:#d9d1cc;color:#1a1919;padding:10px 20px;border-radius:9999px;font-size:11px;font-weight:700;text-decoration:none;">Book a Session →</a>
     </div>
 
     <hr style="border:none;border-top:1px solid rgba(255,255,255,0.05);margin-bottom:16px;">

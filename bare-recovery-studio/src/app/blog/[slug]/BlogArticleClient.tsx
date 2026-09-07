@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { CONTACT_INFO } from '@/lib/constants'
 
-const waLink = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent('Hi! I read your blog and want to book a session at the 50% launch rate.')}`
+const waLink = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent("Hi! I read your blog and want to book a session at Bare Recovery Studio.")}`
 
 interface Heading { id: string; text: string; level: number }
 interface RelatedPost { slug: string; title: string; subject: string; readTime: string; image?: string }
@@ -294,16 +294,16 @@ export function NewsletterSignup({ source }: { source?: string }) {
 /* ─── Sale Callout ─── */
 export function SaleCallout() {
   return (
-    <div style={{ margin: '40px 0', padding: '22px 24px', borderRadius: 20, background: 'linear-gradient(135deg,rgba(120,53,15,0.40),rgba(245,158,11,0.10))', border: '1px solid rgba(245,158,11,0.28)', display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
+    <div style={{ margin: '40px 0', padding: '22px 24px', borderRadius: 20, background: 'rgba(42,40,41,0.70)', border: '1px solid rgba(196,193,196,0.12)', display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
       <div style={{ flex: 1, minWidth: 180 }}>
-        <p style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.20em', textTransform: 'uppercase', color: '#FBBF24', marginBottom: 4 }}>🔥 Launch Sale — 50% Off All Sessions</p>
+        <p style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.20em', textTransform: 'uppercase', color: '#dddadd', marginBottom: 4 }}>30% Introductory Offer</p>
         <p style={{ fontSize: 12, color: 'rgba(245,240,235,0.60)', lineHeight: 1.5 }}>
-          Cold Plunge from ₹1,199 · Full Circuit ₹2,999 · Red Light ₹799. Founding rates — August 2026 only.
+          Cold Plunge ₹1,679 · Full Circuit ₹4,199 · Red Light ₹1,119. ICN Athletes: <strong style={{ color: '#FBBF24' }}>50% off every visit</strong> — permanent benefit.
         </p>
       </div>
       <a href={waLink} target="_blank" rel="noopener noreferrer"
-        style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111', padding: '11px 20px', borderRadius: 9999, fontSize: 12, fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
-        Book at 50% Off →
+        style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: '#d9d1cc', color: '#1a1919', padding: '11px 20px', borderRadius: 9999, fontSize: 12, fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+        Book a Session →
       </a>
     </div>
   )

@@ -96,14 +96,15 @@ function buildWelcomeEmail(email: string, source: string): string {
   </div>
 
   <p style="color:#333;margin:0 0 16px;">
-    One thing — we're currently running our <strong>founding member offer</strong> where
-    every session is <strong style="color:#d97706;">50% off</strong> until August 31, 2026.
-    Cold Plunge from ₹1,199 · Full Circuit ₹2,999 · Red Light ₹799.
+    One thing — we're currently offering an <strong>introductory offer</strong> where
+    first-time visitors get <strong style="color:#d97706;">30% off</strong> every service.
+    Cold Plunge from ₹1,679 · Full Circuit ₹4,199 · Red Light ₹1,119.
+    ICN Athletes get <strong style="color:#d97706;">50% off every visit</strong> — permanently on registration.
   </p>
 
   <p style="color:#333;margin:0 0 24px;">
     If you'd like to book, just
-    <a href="https://wa.me/918096407555?text=Hi%21%20I%20subscribed%20and%20want%20to%20book%20at%20the%20founding%20rate."
+    <a href="https://wa.me/918096407555?text=Hi%21%20I%20subscribed%20and%20want%20to%20book%20a%20session%20at%20Bare%20Recovery%20Studio."
        style="color:#d97706;font-weight:600;">message us on WhatsApp</a>
     and we'll set it up for you.
   </p>
@@ -252,7 +253,7 @@ export async function POST(req: NextRequest) {
           'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
           'Precedence': 'bulk',
         },
-        text: `Hi!\n\nThank you for subscribing to Bare Recovery Studio.\n\nYou'll get science-backed recovery protocols, studio updates, and first access to every article we publish.\n\nWe currently have a 50% Launch Sale on all sessions — Cold Plunge from Rs.1,199, Full Circuit Rs.2,999, Red Light Rs.799. Ends August 31, 2026.\n\nBook on WhatsApp: https://wa.me/918096407555\n\nBare Recovery Studio\nKompally, Secunderabad, Hyderabad\n+91 8096 407 555 | 10AM–10PM daily\nInstagram: @bare.recovery | @abhinav._lifts\n\n---\nYou subscribed at barerecovery.in. Reply "unsubscribe" to stop.`,
+        text: `Hi!\n\nThank you for subscribing to Bare Recovery Studio.\n\nYou'll get science-backed recovery protocols, studio updates, and first access to every article we publish.\n\nIntroductory Offer: 30% off all sessions for first-time visitors. Cold Plunge from ₹1,679, Full Circuit ₹4,199, Red Light ₹1,119.\n\nICN Athletes get 50% off every visit — permanently on registration.\n\nBook on WhatsApp: https://wa.me/918096407555\n\nBare Recovery Studio\nKompally, Secunderabad, Hyderabad\n+91 8096 407 555 | 10AM–10PM daily\nInstagram: @bare.recovery | @abhinav._lifts\n\n---\nYou subscribed at barerecovery.in. Reply "unsubscribe" to stop.`,
         html: buildWelcomeEmail(cleanEmail, cleanSource),
       }),
       transporter.sendMail({

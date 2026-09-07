@@ -4,6 +4,7 @@ import './globals.css'
 import Navbar from '@/components/shared/Navbar'
 import Footer from '@/components/shared/Footer'
 import FloatingWhatsApp from '@/components/shared/FloatingWhatsApp'
+import TopAnnouncementBar from '@/components/shared/TopAnnouncementBar'
 import { SITE_CONFIG } from '@/lib/constants'
 
 
@@ -246,8 +247,9 @@ export default function RootLayout({
         )}
       </head>
       <body className="min-h-screen flex flex-col text-[#F5F5F2]">
+        <TopAnnouncementBar />
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1" style={{ paddingTop: 'var(--header-h, 96px)' }}>{children}</main>
         <Footer />
         <FloatingWhatsApp />
       </body>

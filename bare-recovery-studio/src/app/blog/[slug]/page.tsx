@@ -126,7 +126,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     slug: p.slug, title: p.title, subject: p.subject, readTime: p.readTime, image: p.image,
   }))
   const headings = parseHeadings(post.content)
-  const waLink = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent('Hi! I read the blog and want to book at the 50% launch rate.')}`
+  const waLink = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent("Hi! I read the blog and want to book a session at Bare Recovery Studio.")}`
 
   return (
     <div style={{ background: '#0f0e0e', minHeight: '100vh' }}>
@@ -137,12 +137,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div style={{ position: 'relative', width: '100%', overflow: 'hidden', minHeight: 'clamp(420px,58vh,700px)' }}>
           <img src={post.image} alt={post.title} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center' }} />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(8,8,8,0.45) 0%, transparent 25%, transparent 50%, rgba(8,8,8,0.80) 80%, #0f0e0e 100%)' }} />
-          {/* Sale badge on image */}
-          <div style={{ position: 'absolute', top: 80, right: 20 }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '7px 16px', borderRadius: 9999, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111', fontSize: 11, fontWeight: 800, letterSpacing: '0.08em', boxShadow: '0 4px 20px rgba(245,158,11,0.50)' }}>
-              🔥 50% Off — Book Now
-            </span>
-          </div>
           {/* Breadcrumb */}
           <div style={{ position: 'absolute', bottom: 32, left: 0, right: 0, padding: '0 20px' }} className="max-w-[900px] mx-auto">
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, color: 'rgba(245,240,235,0.60)' }}>
@@ -218,18 +212,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <RelatedPosts posts={related} />
 
             {/* Final CTA */}
-            <div style={{ marginTop: 64, padding: '36px 32px', borderRadius: 24, background: 'linear-gradient(135deg,rgba(120,53,15,0.45),rgba(245,158,11,0.08))', border: '1px solid rgba(245,158,11,0.25)', textAlign: 'center' }}>
-              <p style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#FBBF24', marginBottom: 12 }}>🔥 50% Off — Launch Sale</p>
+            <div style={{ marginTop: 64, padding: '36px 32px', borderRadius: 24, background: 'rgba(42,40,41,0.70)', border: '1px solid rgba(196,193,196,0.12)', textAlign: 'center' }}>
+              <p style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#dddadd', marginBottom: 12 }}>30% Introductory Offer</p>
               <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px,4vw,32px)', fontWeight: 300, letterSpacing: '-0.03em', color: '#f5f0eb', marginBottom: 8 }}>
                 Ready to experience it yourself?
               </p>
               <p style={{ fontSize: 13, color: 'rgba(245,240,235,0.50)', marginBottom: 24, maxWidth: 380, margin: '0 auto 24px' }}>
-                Every session is 50% off for founding members. Book now before August rates reset permanently.
+                Get 30% off your first session. ICN athletes get 50% off every visit — permanently.
               </p>
               <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
                 <a href={waLink} target="_blank" rel="noopener noreferrer"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'linear-gradient(135deg,#F59E0B,#FBBF24)', color: '#111', padding: '14px 28px', borderRadius: 9999, fontSize: 13, fontWeight: 700, textDecoration: 'none', boxShadow: '0 8px 24px rgba(245,158,11,0.35)' }}>
-                  Book at 50% Off →
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#d9d1cc', color: '#1a1919', padding: '14px 28px', borderRadius: 9999, fontSize: 13, fontWeight: 700, textDecoration: 'none', boxShadow: '0 8px 24px rgba(0,0,0,0.20)' }}>
+                  Book a Session →
                 </a>
                 <Link href="/pricing" style={{ display: 'inline-flex', alignItems: 'center', padding: '14px 22px', borderRadius: 9999, fontSize: 13, fontWeight: 500, color: 'rgba(245,240,235,0.50)', border: '1px solid rgba(255,255,255,0.10)', textDecoration: 'none' }}>
                   View Pricing

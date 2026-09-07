@@ -35,7 +35,7 @@ import type React from 'react'
 export default function TermsPage() {
   return (
     <div className="min-h-screen" style={{ background: '#0f0e0e' }}>
-      <div style={{ paddingTop: 144, paddingBottom: 112, paddingLeft: 'clamp(20px,5vw,64px)', paddingRight: 'clamp(20px,5vw,64px)', maxWidth: 860, margin: '0 auto' }}>
+      <div style={{ paddingTop: 48, paddingBottom: 112, paddingLeft: 'clamp(20px,5vw,64px)', paddingRight: 'clamp(20px,5vw,64px)', maxWidth: 860, margin: '0 auto' }}>
 
         {/* Header */}
         <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.28em', textTransform: 'uppercase', color: 'rgba(188,163,134,0.70)', display: 'block', marginBottom: 16 }}>Legal Document</span>

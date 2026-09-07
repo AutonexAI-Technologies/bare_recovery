@@ -7,12 +7,12 @@ import { usePathname } from 'next/navigation'
 import { CONTACT_INFO } from '@/lib/constants'
 
 const serviceLinks = [
-  { label: 'Cold Plunge', href: '/services/cold-plunge', sub: 'From ₹1,199 · 10–15 min' },
-  { label: 'Contrast Therapy', href: '/services/contrast-therapy', sub: 'From ₹1,799 · 20–40 min' },
-  { label: 'Traditional Sauna', href: '/services/traditional-sauna', sub: 'From ₹999 · 15–30 min' },
-  { label: 'Infrared Sauna', href: '/services/infrared-sauna', sub: 'From ₹999 · 15–30 min' },
-  { label: 'Red Light Therapy', href: '/services/red-light-therapy', sub: 'From ₹799 · 10–20 min' },
-  { label: 'Compression Therapy', href: '/services/compression-therapy', sub: 'From ₹799 · 10–20 min' },
+  { label: 'Cold Plunge',          href: '/services/cold-plunge',          sub: 'From ₹1,679 · 10–15 min' },
+  { label: 'Contrast Therapy',     href: '/services/contrast-therapy',     sub: 'From ₹2,519 · 20–40 min' },
+  { label: 'Traditional Sauna',    href: '/services/traditional-sauna',    sub: 'From ₹1,399 · 15–30 min' },
+  { label: 'Infrared Sauna',       href: '/services/infrared-sauna',       sub: 'From ₹1,399 · 15–30 min' },
+  { label: 'Red Light Therapy',    href: '/services/red-light-therapy',    sub: 'From ₹1,119 · 10–20 min' },
+  { label: 'Compression Therapy',  href: '/services/compression-therapy',  sub: 'From ₹1,119 · 10–20 min' },
 ]
 
 const mainLinks = [
@@ -28,14 +28,48 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [dropOpen, setDropOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [navVisible, setNavVisible] = useState(true)
+  const lastScrollY = useRef(0)
   const dropRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30)
+    // Keep --navbar-h in sync so --header-h (= ann-bar + navbar) stays accurate
+    const setNavbarH = () => {
+      const h = window.innerWidth >= 768 ? '70px' : '60px'
+      document.documentElement.style.setProperty('--navbar-h', h)
+      // --header-h = ann bar + navbar — keeps main content paddingTop in sync
+      const annH = getComputedStyle(document.documentElement).getPropertyValue('--ann-bar-h').trim() || '0px'
+      const navH = window.innerWidth >= 768 ? 70 : 60
+      const ann = parseInt(annH) || 0
+      document.documentElement.style.setProperty('--header-h', `${ann + navH}px`)
+    }
+    setNavbarH()
+    window.addEventListener('resize', setNavbarH, { passive: true })
+
+    // Also recalc whenever the ann-bar-h var changes (bar dismissed)
+    const observer = new MutationObserver(setNavbarH)
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['style'] })
+
+    const onScroll = () => {
+      const currentY = window.scrollY
+      setScrolled(currentY > 30)
+      // Auto-hide: hide when scrolling down past 80px, show when scrolling up
+      if (currentY < 80) {
+        setNavVisible(true)
+      } else {
+        setNavVisible(currentY < lastScrollY.current)
+      }
+      lastScrollY.current = currentY
+    }
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', setNavbarH)
+      observer.disconnect()
+    }
   }, [])
+
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -59,15 +93,16 @@ export default function Navbar() {
     <>
       {/* ── Fixed Navbar ── */}
       <nav
-        className="fixed inset-x-0 z-50 transition-all duration-500"
+        className="fixed inset-x-0 z-50"
         style={{
-          top: 'var(--ann-bar-h, 56px)',
-          background: scrolled ? 'rgba(42,40,41,0.92)' : 'transparent',
+          top: 'var(--ann-bar-h, 48px)',
+          background: scrolled ? 'rgba(22,21,21,0.85)' : 'transparent',
           backdropFilter: scrolled ? 'blur(20px) saturate(160%)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(196,193,196,0.08)' : '1px solid transparent',
-          boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.25)' : 'none',
+          borderBottom: scrolled ? '1px solid rgba(196,193,196,0.07)' : '1px solid transparent',
+          boxShadow: scrolled ? '0 2px 16px rgba(0,0,0,0.20)' : 'none',
+          transform: navVisible ? 'translateY(0)' : 'translateY(-110%)',
+          transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1), background 0.4s ease, box-shadow 0.4s ease',
         }}
-
       >
         <div className="max-w-[1400px] mx-auto px-4 md:px-10 h-[60px] md:h-[70px] flex items-center justify-between">
 

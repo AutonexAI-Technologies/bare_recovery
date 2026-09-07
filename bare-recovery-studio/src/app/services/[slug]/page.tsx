@@ -244,12 +244,12 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             style={{ background: 'rgba(20,20,20,0.8)', border: '1px solid rgba(255,255,255,0.06)' }}
           >
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#dddadd]">At A Glance</p>
-            {/* Sale callout */}
-            <div className="rounded-xl p-4 flex items-center gap-3" style={{ background: 'linear-gradient(135deg,rgba(245,158,11,0.18),rgba(251,191,36,0.10))', border: '1px solid rgba(245,158,11,0.35)' }}>
-              <span className="text-xl shrink-0">🔥</span>
+            {/* Offer callout */}
+            <div className="rounded-xl p-4 flex items-center gap-3" style={{ background: 'rgba(86,84,86,0.25)', border: '1px solid rgba(196,193,196,0.15)' }}>
+              <span className="text-xl shrink-0">🌟</span>
               <div>
-                <p className="text-xs font-black uppercase tracking-wider" style={{ color: '#FBBF24' }}>50% Off — Launch Sale</p>
-                <p className="text-[10px] mt-0.5" style={{ color: 'rgba(251,191,36,0.65)' }}>ICN Athletes: 50% off every visit on registration — valid through 7th Sep 2026. No expiry.</p>
+                <p className="text-xs font-black uppercase tracking-wider" style={{ color: '#dddadd' }}>30% Introductory Offer</p>
+                <p className="text-[10px] mt-0.5" style={{ color: 'rgba(245,240,235,0.50)' }}>ICN Athletes: <strong style={{ color: '#FBBF24' }}>50% off every visit</strong> — permanent benefit on registration.</p>
               </div>
             </div>
             <div className="space-y-4">

@@ -1,31 +1,25 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { CONTACT_INFO } from '@/lib/constants'
 
-const waLink = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent('Hi! I want to book at the 50% introductory launch rate.')}`
+const BAR_H = 48
 
-const messages = [
-  '🔥 FOUNDING LAUNCH SALE — 50% OFF ALL SESSIONS',
-  '◆ First-time visitors get 50% off every service',
-  '🏆 ICN Hyderabad Deccan Uprising 2026 — 29 & 30 August 2026',
-  '✔ ICN Athletes: 50% off every single visit on registration — valid through 7th Sep 2026. No expiry. No time limit.',
-  '◆ Cold Plunge · Sauna · Red Light · Compression · Contrast Therapy · Full Circuit',
-  '🔥 Bare Recovery Studio · Kompally, Secunderabad · Open 10 AM – 10 PM',
-  '✦ Private Sessions · Walk-ins Welcome · Book via WhatsApp',
+const items = [
+  '✦ 30% Off · All Sessions · Introductory Offer for New Customers',
+  '◆ ICN Athletes: 50% Off Every Visit — Permanent Benefit on Registration',
+  '✦ 30% Off · All Sessions · Introductory Offer for New Customers',
+  '◆ ICN Athletes: 50% Off Every Visit — Permanent Benefit on Registration',
 ]
 
 export default function TopAnnouncementBar() {
-  const [clientMounted, setClientMounted] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setClientMounted(true)
-    document.documentElement.style.setProperty('--ann-bar-h', '56px')
+    setMounted(true)
+    document.documentElement.style.setProperty('--ann-bar-h', `${BAR_H}px`)
   }, [])
 
-  if (!clientMounted) return null
-
-  const ticker = [...messages, ...messages]
+  if (!mounted) return null
 
   return (
     <div
@@ -34,96 +28,52 @@ export default function TopAnnouncementBar() {
         top: 0,
         left: 0,
         right: 0,
-        height: 56,
+        height: BAR_H,
         zIndex: 200,
-        background: 'linear-gradient(90deg, #78350f 0%, #92400e 15%, #b45309 35%, #d97706 60%, #F59E0B 82%, #FCD34D 100%)',
+        background: '#111010',
+        borderBottom: '1px solid rgba(196,193,196,0.14)',
         display: 'flex',
         alignItems: 'center',
         overflow: 'hidden',
       }}
     >
-      {/* Shimmer overlay */}
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.12) 50%, transparent 70%)', animation: 'annShimmer 2.8s infinite', pointerEvents: 'none' }} />
-
-      {/* Infinite marquee — full width, no left pin */}
-      <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+      {/* Scrolling ticker — full width */}
+      <div style={{ width: '100%', overflow: 'hidden' }}>
         <div
           style={{
             display: 'flex',
             whiteSpace: 'nowrap',
-            animation: 'annMarquee 40s linear infinite',
+            animation: 'offerTicker 36s linear infinite',
             willChange: 'transform',
           }}
         >
-          {ticker.map((msg, i) => (
+          {items.map((msg, i) => (
             <span
               key={i}
               style={{
-                fontSize: 13,
-                fontWeight: 800,
-                letterSpacing: '0.06em',
-                color: '#111010',
-                padding: '0 48px',
+                fontSize: 'clamp(11px, 1.5vw, 13px)',
+                fontWeight: 700,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: i % 2 === 0
+                  ? 'rgba(245,240,235,0.80)'
+                  : '#FBBF24',
+                padding: '0 60px',
                 flexShrink: 0,
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 10,
+                display: 'inline-block',
+                lineHeight: `${BAR_H}px`,
               }}
             >
               {msg}
-              <span style={{ display: 'inline-block', width: 5, height: 5, borderRadius: '50%', background: 'rgba(17,16,16,0.28)', marginLeft: 10 }} />
             </span>
           ))}
         </div>
       </div>
 
-      {/* Right pin: Book Now — hidden on mobile */}
-      <div
-        className="ann-book-btn"
-        style={{
-          flexShrink: 0,
-          padding: '0 16px',
-          borderLeft: '1px solid rgba(17,16,16,0.18)',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          background: 'rgba(17,16,16,0.06)',
-          position: 'relative',
-          zIndex: 1,
-        }}
-      >
-        <a
-          href={waLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            fontSize: 12,
-            fontWeight: 800,
-            color: '#FBBF24',
-            background: '#111010',
-            padding: '7px 16px',
-            borderRadius: 9999,
-            textDecoration: 'none',
-            letterSpacing: '0.05em',
-            whiteSpace: 'nowrap',
-            boxShadow: '0 2px 12px rgba(0,0,0,0.35)',
-          }}
-        >
-          Book Now →
-        </a>
-      </div>
-
       <style>{`
-        @keyframes annShimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-        @keyframes annMarquee {
-          0% { transform: translateX(0); }
+        @keyframes offerTicker {
+          0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
-        }
-        @media (max-width: 520px) {
-          .ann-book-btn { display: none !important; }
         }
       `}</style>
     </div>
