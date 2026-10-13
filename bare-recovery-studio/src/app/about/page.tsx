@@ -196,7 +196,7 @@ export default function AboutPage() {
               <div className="absolute -bottom-5 -left-5 p-5 rounded-2xl"
                 style={{ background: 'rgba(20,19,19,0.97)', border: '1px solid rgba(196,193,196,0.18)', backdropFilter: 'blur(12px)' }}>
                 <p className="text-xs uppercase tracking-[0.15em] mb-1" style={{ color: '#dddadd' }}>Instagram</p>
-                <p className="font-display font-light text-2xl" style={{ letterSpacing: '-0.04em', color: '#f5f0eb' }}><InstagramFollowerCount fallback="83.6K" /></p>
+                <p className="font-display font-light text-2xl" style={{ letterSpacing: '-0.04em', color: '#f5f0eb' }}><InstagramFollowerCount /></p>
                 <p className="text-xs" style={{ color: '#dddadd' }}>Followers</p>
               </div>
             </div>
