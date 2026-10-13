@@ -215,7 +215,7 @@ export async function POST(req: NextRequest) {
       <p style="font-size:12px;color:rgba(245,240,235,0.55);line-height:1.6;margin:0 0 12px;">
         Experience what you just read — 30% off every session for first-time visitors.
         Cold Plunge ₹1,679 · Full Circuit ₹4,199 · Red Light ₹1,119.
-        ICN Athletes: <strong style="color:#FBBF24;">50% off every visit</strong> — permanently.
+        Athletes: <strong style="color:#FBBF24;">50% off every visit</strong> — permanently.
       </p>
       <a href="${waLink}" style="display:inline-block;background:#d9d1cc;color:#1a1919;padding:10px 20px;border-radius:9999px;font-size:11px;font-weight:700;text-decoration:none;">Book a Session →</a>
     </div>

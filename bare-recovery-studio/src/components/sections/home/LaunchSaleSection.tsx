@@ -4,27 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { CONTACT_INFO } from '@/lib/constants'
 
-const SALE_END = new Date('2026-08-31T23:59:59+05:30')
 
-function useCountdown(target: Date) {
-  const [t, setT] = useState({ d: 17, h: 0, m: 0, s: 0 })
-  useEffect(() => {
-    function tick() {
-      const diff = target.getTime() - Date.now()
-      if (diff <= 0) return
-      setT({
-        d: Math.floor(diff / 86400000),
-        h: Math.floor((diff % 86400000) / 3600000),
-        m: Math.floor((diff % 3600000) / 60000),
-        s: Math.floor((diff % 60000) / 1000),
-      })
-    }
-    tick()
-    const id = setInterval(tick, 1000)
-    return () => clearInterval(id)
-  }, [target])
-  return t
-}
 
 function useIntersection(ref: React.RefObject<Element | null>) {
   const [visible, setVisible] = useState(false)
@@ -46,19 +26,17 @@ const waLink = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent
 )}`
 
 const priceItems = [
-  { name: 'Full Circuit',       was: '₹5,998', now: '₹4,199', duration: '60–90 min', emoji: '⚡' },
-  { name: 'Contrast Therapy',   was: '₹3,598', now: '₹2,519', duration: '20–40 min', emoji: '🔥' },
-  { name: 'Cold Plunge',        was: '₹2,398', now: '₹1,679', duration: '10–15 min', emoji: '🦪' },
-  { name: 'Sauna',              was: '₹1,998', now: '₹1,399', duration: '15–30 min', emoji: '🌡️' },
-  { name: 'Red Light Therapy',  was: '₹1,598', now: '₹1,119', duration: '10–20 min', emoji: '💡' },
-  { name: 'Compression',        was: '₹1,598', now: '₹1,119', duration: '10–20 min', emoji: '🦵' },
+  { name: 'Full Circuit',       was: '₹4,299', now: '₹2,999', duration: '60–90 min', emoji: '⚡' },
+  { name: 'Contrast Therapy',   was: '₹2,715', now: '₹1,899', duration: '20–40 min', emoji: '🔥' },
+  { name: 'Cold Plunge',        was: '₹1,855', now: '₹1,299', duration: '10–15 min', emoji: '🦪' },
+  { name: 'Sauna',              was: '₹1,429', now: '₹999',   duration: '15–30 min', emoji: '🌡️' },
+  { name: 'Red Light Therapy',  was: '₹1,145', now: '₹799',   duration: '10–20 min', emoji: '💡' },
+  { name: 'Compression',        was: '₹1,285', now: '₹899',   duration: '20–30 min', emoji: '🦵' },
 ]
 
 export default function LaunchSaleSection() {
   const ref = useRef<HTMLDivElement>(null)
   const visible = useIntersection(ref)
-  const { d, h, m, s } = useCountdown(SALE_END)
-  const pad = (n: number) => String(n).padStart(2, '0')
 
   return (
     <section
@@ -90,7 +68,7 @@ export default function LaunchSaleSection() {
               color: i % 3 === 0 ? 'rgba(188,163,134,0.60)' : 'rgba(245,240,235,0.25)',
               flexShrink: 0,
             }}>
-              {['✦ Introductory Offer', '— 30% Off All Sessions', '◆ ICN Athletes 50% Off', '— Hyderabad\'s Recovery Studio'][i % 4]}
+              {['✦ Athlete Recovery Hub', '◆ Athletes 50% Off', '— Hyderabad\'s Recovery Studio', '✦ Private Sessions Only'][i % 4]}
             </span>
           ))}
         </div>
@@ -116,20 +94,20 @@ export default function LaunchSaleSection() {
               color: 'rgba(188,163,134,0.55)',
               marginBottom: 24,
             }}>
-              Aug 2026 · Founding Member Offer
+              Kompally, Secunderabad · Open 10AM–10PM
             </p>
 
-            {/* Giant 30% — the centrepiece */}
+            {/* Hero headline */}
             <div style={{ lineHeight: 0.88, marginBottom: 8 }}>
               <div style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(80px, 18vw, 160px)',
+                fontSize: 'clamp(56px, 12vw, 110px)',
                 fontWeight: 300,
                 letterSpacing: '-0.05em',
                 color: '#f5f0eb',
                 display: 'block',
               }}>
-                30
+                Recover
               </div>
               <div style={{
                 fontFamily: 'var(--font-display)',
@@ -140,7 +118,7 @@ export default function LaunchSaleSection() {
                 display: 'block',
                 marginTop: -4,
               }}>
-                percent off.
+                like an athlete.
               </div>
             </div>
 
@@ -151,9 +129,7 @@ export default function LaunchSaleSection() {
               marginTop: 28,
               marginBottom: 36,
             }}>
-              Bare Recovery is open — and for a limited time, every session is half the regular rate.
-              This is our founding offer to Hyderabad&apos;s athletes, performers, and recovery-first individuals.
-              When August ends, so do these rates. Permanently.
+              Hyderabad&apos;s first dedicated recovery studio. Cold Plunge, Traditional Sauna, Red Light Therapy, Compression, Contrast Therapy & Full Circuit — all under one private roof in Kompally.
             </p>
 
             {/* Tags */}
@@ -218,54 +194,7 @@ export default function LaunchSaleSection() {
               transition: 'opacity 1s cubic-bezier(0.16,1,0.3,1) 0.12s, transform 1s cubic-bezier(0.16,1,0.3,1) 0.12s',
             }}
           >
-            {/* Countdown */}
-            <div style={{
-              border: '1px solid rgba(188,163,134,0.14)',
-              borderRadius: 24, padding: '28px 24px',
-              background: 'rgba(245,240,235,0.02)',
-              marginBottom: 12,
-            }}>
-              <p style={{
-                fontSize: 9, fontWeight: 700, letterSpacing: '0.30em',
-                textTransform: 'uppercase',
-                color: 'rgba(188,163,134,0.45)',
-                marginBottom: 20,
-              }}>
-                Founding Rate Expires In
-              </p>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 8 }}>
-                {[{ v: d, l: 'Days' }, { v: h, l: 'Hrs' }, { v: m, l: 'Min' }, { v: s, l: 'Sec' }].map(({ v, l }) => (
-                  <div key={l} style={{
-                    textAlign: 'center',
-                    padding: '18px 8px',
-                    background: 'rgba(245,240,235,0.03)',
-                    borderRadius: 16,
-                    border: '1px solid rgba(188,163,134,0.09)',
-                  }}>
-                    <div style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: 'clamp(28px,4.5vw,42px)',
-                      fontWeight: 300,
-                      letterSpacing: '-0.04em',
-                      color: '#f5f0eb',
-                      lineHeight: 1,
-                    }}>
-                      {pad(v)}
-                    </div>
-                    <div style={{
-                      fontSize: 9, fontWeight: 600, letterSpacing: '0.20em',
-                      textTransform: 'uppercase',
-                      color: 'rgba(188,163,134,0.40)',
-                      marginTop: 6,
-                    }}>
-                      {l}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Price grid */}
+            {/* Session price grid - no countdown needed */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
               {priceItems.map(item => (
                 <div key={item.name} style={{
@@ -313,7 +242,7 @@ export default function LaunchSaleSection() {
               ))}
             </div>
 
-            {/* ICN note */}
+            {/* Athlete note */}
             <div style={{
               marginTop: 10,
               padding: '16px 18px',
@@ -324,12 +253,12 @@ export default function LaunchSaleSection() {
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: 8 }}>
                 <span style={{ fontSize: 16, flexShrink: 0, marginTop: 1 }}>🏆</span>
                 <p style={{ fontSize: 11, color: 'rgba(245,240,235,0.55)', lineHeight: 1.6 }}>
-                  <span style={{ color: 'rgba(188,163,134,0.90)', fontWeight: 700 }}>ICN Hyderabad Deccan Uprising 2026</span> —
+                  <span style={{ color: 'rgba(188,163,134,0.90)', fontWeight: 700 }}>The Deccan Uprising 2026</span> —
                   29 &amp; 30 August 2026 · Hyderabad.
                 </p>
               </div>
               <p style={{ fontSize: 11, color: 'rgba(245,240,235,0.45)', lineHeight: 1.6, paddingLeft: 26 }}>
-                <span style={{ color: 'rgba(188,163,134,0.80)', fontWeight: 600 }}>ICN Athletes:</span>{' '}
+                <span style={{ color: 'rgba(188,163,134,0.80)', fontWeight: 600 }}>Athletes:</span>{' '}
                 <span style={{ color: '#FBBF24', fontWeight: 700 }}>50% off every single visit — permanently, on registration. No expiry. No time limit.</span>
               </p>
             </div>

@@ -73,7 +73,7 @@ export default function SaleBanner() {
         flexShrink: 0,
         whiteSpace: 'nowrap',
       }}>
-        Launch Offer
+        Athlete Studio
       </span>
 
       {/* Centre: scrolling message */}
@@ -86,10 +86,10 @@ export default function SaleBanner() {
           willChange: 'transform',
         }}>
           {[
-            '30% Off · Introductory Offer · All Sessions',
-            '❖ ICN Athletes: 50% Off Every Visit — Permanent Benefit',
-            '30% Off · Introductory Offer · All Sessions',
-            '❖ ICN Athletes: 50% Off Every Visit — Permanent Benefit',
+            'Hyderabad\'s First Recovery Studio · Cold Plunge · Sauna · Red Light Therapy',
+            '❖ Athletes: 50% Off Every Visit — Permanent Benefit on Registration',
+            'Hyderabad\'s First Recovery Studio · Cold Plunge · Sauna · Red Light Therapy',
+            '❖ Athletes: 50% Off Every Visit — Permanent Benefit on Registration',
           ].map((item, i) => (
             <span key={i} style={{
               fontSize: 10,
@@ -105,17 +105,8 @@ export default function SaleBanner() {
         </div>
       </div>
 
-      {/* Right: countdown + close */}
+      {/* Right: close button */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-          {[{ v: d, l: 'd' }, { v: h, l: 'h' }, { v: m, l: 'm' }, { v: s, l: 's' }].map(({ v, l }, i) => (
-            <span key={l} style={{ display: 'flex', alignItems: 'baseline', gap: 1 }}>
-              {i > 0 && <span style={{ fontSize: 9, color: 'rgba(188,163,134,0.35)', marginRight: 1 }}>:</span>}
-              <span style={{ fontFamily: 'monospace', fontSize: 11, fontWeight: 700, color: '#f5f0eb', letterSpacing: '0.05em' }}>{pad(v)}</span>
-              <span style={{ fontSize: 8, color: 'rgba(188,163,134,0.55)', letterSpacing: '0.06em' }}>{l}</span>
-            </span>
-          ))}
-        </div>
         <button
           onClick={dismiss}
           aria-label="Close"
@@ -133,6 +124,7 @@ export default function SaleBanner() {
           </svg>
         </button>
       </div>
+
 
       <style>{`
         @keyframes brTickerScroll {

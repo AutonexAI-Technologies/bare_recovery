@@ -123,7 +123,7 @@ export default function FounderStory() {
                   </div>
                   <div>
                     <p className="font-display font-bold text-2xl" style={{ color: '#f5f0eb', letterSpacing: '-0.03em' }}>
-                      <InstagramFollowerCount fallback="85.3K" />
+                      <InstagramFollowerCount fallback="83.6K" />
                     </p>
                     <p className="text-[10px] uppercase tracking-[0.15em]" style={{ color: '#dddadd' }}>
                       Instagram Followers

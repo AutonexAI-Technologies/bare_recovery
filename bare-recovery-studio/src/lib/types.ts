@@ -24,10 +24,13 @@ export interface Benefit {
 
 export interface ServicePricing {
     single?: number
+    singleMrp?: number
     upperBody?: number
     lowerBody?: number
+    lowerBodyMrp?: number
     fullBody?: number
     couple?: number
+    coupleMrp?: number
 }
 
 export interface ServiceImages {

@@ -19,12 +19,12 @@ const serviceImages: Record<string, string> = {
 }
 
 const serviceData = [
-  { id: 'contrast-therapy',    emoji: '🌡️', tag: 'Signature',    sale: '₹2,519', mrp: '₹3,598', dur: '20–40 min', tagline: 'Hot & Cold. The ultimate recovery stack.', desc: 'Sauna heat followed by cold plunge immersion. The most powerful recovery combination available — used by elite athletes worldwide.' },
-  { id: 'cold-plunge',         emoji: '🧊', tag: 'Most Popular', sale: '₹1,679', mrp: '₹2,398', dur: '10–15 min', tagline: 'Full body cold at 10–15°C.', desc: 'Scientifically proven to reduce inflammation, boost dopamine 3x, and accelerate muscle recovery within 30 minutes post-training.' },
-  { id: 'traditional-sauna',   emoji: '🌿', tag: '',            sale: '₹1,399', mrp: '₹1,998', dur: '15–30 min', tagline: 'Dry heat at 70–80°C.', desc: 'Deep tissue heat stress that triggers growth hormone release, clears lactic acid buildup, and forces parasympathetic recovery mode.' },
-  { id: 'infrared-sauna',      emoji: '☀️', tag: '',            sale: '₹1,399', mrp: '₹1,998', dur: '15–30 min', tagline: 'Deep infrared penetration.', desc: 'Infrared light penetrates up to 4cm into tissue — deeper than traditional heat. Optimal for joint recovery and chronic soreness.' },
-  { id: 'red-light-therapy',   emoji: '💡', tag: '',            sale: '₹1,119', mrp: '₹1,598', dur: '10–20 min', tagline: '660nm & 850nm photobiomodulation.', desc: 'Red and near-infrared wavelengths stimulate mitochondrial activity, accelerate tissue repair, and reduce oxidative stress at a cellular level.' },
-  { id: 'compression-therapy', emoji: '🦵', tag: 'From',        sale: '₹1,119', mrp: '₹1,598', dur: '10–20 min', tagline: 'Dynamic air compression.', desc: 'Sequential pneumatic compression of limbs enhances venous return, reduces oedema, and clears metabolic waste 2x faster than rest.' },
+  { id: 'contrast-therapy',    emoji: '🌡️', tag: 'Signature',    sale: '₹1,899', mrp: '₹2,715', dur: '20–40 min', tagline: 'Hot & Cold. The ultimate recovery stack.', desc: 'Sauna heat followed by cold plunge immersion. The most powerful recovery combination available — used by elite athletes worldwide.' },
+  { id: 'cold-plunge',         emoji: '🧊', tag: 'Most Popular', sale: '₹1,299', mrp: '₹1,855', dur: '10–15 min', tagline: 'Full body cold at 10–15°C.', desc: 'Scientifically proven to reduce inflammation, boost dopamine 3x, and accelerate muscle recovery within 30 minutes post-training.' },
+  { id: 'traditional-sauna',   emoji: '🌿', tag: '',            sale: '₹999',   mrp: '₹1,429', dur: '15–30 min', tagline: 'Dry heat at 70–80°C.', desc: 'Deep tissue heat stress that triggers growth hormone release, clears lactic acid buildup, and forces parasympathetic recovery mode.' },
+  { id: 'infrared-sauna',      emoji: '☀️', tag: '',            sale: '₹999',   mrp: '₹1,429', dur: '15–30 min', tagline: 'Deep infrared penetration.', desc: 'Infrared light penetrates up to 4cm into tissue — deeper than traditional heat. Optimal for joint recovery and chronic soreness.' },
+  { id: 'red-light-therapy',   emoji: '💡', tag: '',            sale: '₹799',   mrp: '₹1,145', dur: '10–20 min', tagline: '660nm & 850nm photobiomodulation.', desc: 'Red and near-infrared wavelengths stimulate mitochondrial activity, accelerate tissue repair, and reduce oxidative stress at a cellular level.' },
+  { id: 'compression-therapy', emoji: '🦵', tag: '',            sale: '₹899',   mrp: '₹1,285', dur: '20–30 min', tagline: 'Dynamic air compression — lower body.', desc: 'Sequential pneumatic compression of legs and hips enhances venous return, reduces oedema, and clears metabolic waste 2x faster than rest.' },
 ]
 
 function ServiceCard({ svc, index }: { svc: typeof serviceData[0]; index: number }) {
@@ -45,16 +45,13 @@ function ServiceCard({ svc, index }: { svc: typeof serviceData[0]; index: number
       {/* Base gradient overlay */}
       <div style={{ position: 'absolute', inset: 0, background: hovered ? 'linear-gradient(to top, rgba(5,4,4,0.98) 0%, rgba(5,4,4,0.75) 40%, rgba(5,4,4,0.30) 100%)' : 'linear-gradient(to top, rgba(5,4,4,0.95) 0%, rgba(5,4,4,0.50) 60%, rgba(5,4,4,0.15) 100%)', transition: 'background 0.4s ease' }} />
 
-      {/* Tag + 30% badge */}
+      {/* Tag only top row */}
       <div style={{ position: 'absolute', top: 16, left: 16, right: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         {svc.tag && (
           <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', background: svc.tag === 'Signature' ? 'linear-gradient(135deg,#F59E0B,#FBBF24)' : 'rgba(245,240,235,0.15)', backdropFilter: 'blur(8px)', color: svc.tag === 'Signature' ? '#111' : '#f5f0eb', padding: '5px 12px', borderRadius: 9999, border: svc.tag === 'Signature' ? 'none' : '1px solid rgba(255,255,255,0.15)' }}>
             {svc.tag}
           </span>
         )}
-        <span style={{ marginLeft: 'auto', fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', background: 'rgba(196,193,196,0.15)', color: '#dddadd', padding: '5px 12px', borderRadius: 9999, border: '1px solid rgba(196,193,196,0.20)' }}>
-          30% Off
-        </span>
       </div>
 
       {/* Content — at bottom */}
@@ -79,7 +76,6 @@ function ServiceCard({ svc, index }: { svc: typeof serviceData[0]; index: number
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 14 }}>
           <span style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 400, letterSpacing: '-0.04em', color: '#f5f0eb', lineHeight: 1 }}>{svc.sale}</span>
           <span style={{ fontSize: 13, color: 'rgba(245,240,235,0.30)', textDecoration: 'line-through' }}>{svc.mrp}</span>
-          <span style={{ fontSize: 9, fontWeight: 700, color: 'rgba(196,193,196,0.70)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>30% OFF</span>
         </div>
 
         {/* CTA row — slides in on hover */}

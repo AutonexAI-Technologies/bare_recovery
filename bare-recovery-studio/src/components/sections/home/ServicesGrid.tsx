@@ -9,8 +9,8 @@ const services = [
     name: 'Cold Plunge',
     tagline: 'Full-body immersion at 10–15°C. Sharpen the mind, kill inflammation.',
     duration: '10–15 min',
-    mrp: '₹2,398',
-    price: '₹1,679',
+    mrp: '₹1,855',
+    price: '₹1,299',
     image: '/images/services/cold-plunge.PNG',
     label: 'HIGH INTENSITY',
     href: '/services/cold-plunge',
@@ -21,8 +21,8 @@ const services = [
     name: 'Contrast Therapy',
     tagline: 'Alternate heat and cold — the ultimate vascular pump.',
     duration: '20–40 min',
-    mrp: '₹3,598',
-    price: '₹2,519',
+    mrp: '₹2,715',
+    price: '₹1,899',
     image: '/images/services/contrast-therapy.PNG',
     label: 'SIGNATURE',
     href: '/services/contrast-therapy',
@@ -33,8 +33,8 @@ const services = [
     name: 'Traditional Sauna',
     tagline: 'Dry heat at 70–95°C for deep muscle relief and cardiovascular benefit.',
     duration: '15–30 min',
-    mrp: '₹1,998',
-    price: '₹1,399',
+    mrp: '₹1,429',
+    price: '₹999',
     image: '/images/services/sauna.PNG',
     label: 'HEAT THERAPY',
     href: '/services/traditional-sauna',
@@ -45,8 +45,8 @@ const services = [
     name: 'Infrared Sauna',
     tagline: 'Far-infrared waves penetrate deep into tissue for gentle, sustained heat.',
     duration: '15–30 min',
-    mrp: '₹1,998',
-    price: '₹1,399',
+    mrp: '₹1,429',
+    price: '₹999',
     image: '/images/services/infrared-sauna.PNG',
     label: 'DEEP HEAT',
     href: '/services/infrared-sauna',
@@ -57,8 +57,8 @@ const services = [
     name: 'Red Light Therapy',
     tagline: 'Cellular repair at 660nm & 850nm. Medical-grade photobiomodulation.',
     duration: '10–20 min',
-    mrp: '₹1,598',
-    price: '₹1,119',
+    mrp: '₹1,145',
+    price: '₹799',
     image: '/images/services/redlight-therapy.PNG',
     label: 'CELLULAR',
     href: '/services/red-light-therapy',
@@ -69,8 +69,8 @@ const services = [
     name: 'Compression Therapy',
     tagline: 'Dynamic air pressure that flushes metabolic waste and restores circulation.',
     duration: '10–20 min',
-    mrp: '₹1,598',
-    price: '₹1,119',
+    mrp: '₹1,285',
+    price: '₹899',
     image: '/images/services/compression-therapy.PNG',
     label: 'LYMPHATIC',
     href: '/services/compression-therapy',
@@ -141,7 +141,7 @@ function ServiceCard({
           {svc.label}
         </span>
 
-        {/* Top-right: 30% Off badge */}
+        {/* Top-right: session type label */}
         <span style={{
           position: 'absolute', top: 14, right: 14,
           fontSize: 8, fontWeight: 800, letterSpacing: '0.22em', textTransform: 'uppercase',
@@ -151,7 +151,7 @@ function ServiceCard({
           backdropFilter: 'blur(8px)',
           padding: '5px 10px', borderRadius: 9999,
         }}>
-          30% Off
+          Book Now
         </span>
 
         {/* Bottom content */}
@@ -182,7 +182,7 @@ function ServiceCard({
             {svc.tagline}
           </p>
 
-          {/* Price — MRP strikethrough + 30% off price */}
+              {/* Price */}
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
             <div>
               {/* Strikethrough MRP */}

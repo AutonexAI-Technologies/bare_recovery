@@ -10,7 +10,7 @@ export const services: Service[] = [
         description: `Our compression systems utilize a patented pulsing action that mimics the muscle pump of the legs and arms, greatly enhancing the movement of fluid and metabolites out of the limbs after an intense workout.
 
 Unlike traditional static compression (squeezing), our systems use dynamic compression (pulsing) to effectively transport fluid. This cycle of compression and release is the key to accelerating the body's natural recovery process.`,
-        duration: '10-20 minutes',
+        duration: '20-30 minutes',
 
         benefits: [
             {
@@ -41,9 +41,10 @@ Unlike traditional static compression (squeezing), our systems use dynamic compr
         ],
 
         pricing: {
-            upperBody: 1119,
-            lowerBody: 1119,
-            fullBody: 1959,
+            lowerBody: 899,
+            lowerBodyMrp: 1285,
+            couple: 1299,
+            coupleMrp: 1855,
         },
 
         images: {
@@ -61,7 +62,7 @@ Unlike traditional static compression (squeezing), our systems use dynamic compr
         faqs: [
             {
                 question: 'How long is a compression therapy session?',
-                answer: '20-30 minutes. You can choose upper body, lower body, or full body (upper + lower) compression.',
+                answer: '20-30 minutes. Lower body compression targets legs, calves, and hips for maximum recovery.',
             },
             {
                 question: 'What should I wear for compression therapy?',
@@ -87,7 +88,7 @@ Unlike traditional static compression (squeezing), our systems use dynamic compr
 
         metadata: {
             title: 'Compression Therapy | Bare Recovery Studio, Kompally',
-            description: 'Dynamic air compression therapy in Kompally. Reduce muscle soreness, improve circulation, and accelerate recovery. Upper body ₹800, Lower body ₹800, Full body ₹1,400.',
+            description: 'Dynamic air compression therapy in Kompally. Reduce muscle soreness, improve circulation, and accelerate recovery. Lower body compression — ₹899 (MRP ₹1,285).',
             keywords: ['compression therapy Kompally', 'normatec boots', 'lymphatic drainage', 'muscle recovery Hyderabad'],
             ogImage: '/images/services/compression-therapy.PNG',
         },
@@ -138,7 +139,10 @@ This non-invasive therapy has been clinically shown to reduce inflammation, supp
         ],
 
         pricing: {
-            single: 1119,
+            single: 799,
+            singleMrp: 1145,
+            couple: 1199,
+            coupleMrp: 1719,
         },
 
         images: {
@@ -179,7 +183,7 @@ This non-invasive therapy has been clinically shown to reduce inflammation, supp
 
         metadata: {
             title: 'Red Light Therapy | Photobiomodulation | Bare Recovery Studio',
-            description: 'Red light therapy (660nm & 850nm) for cellular repair, skin health, and recovery. 10-20 minute sessions. ₹800 per session in Kompally, Secunderabad.',
+            description: 'Red light therapy (660nm & 850nm) for cellular repair, skin health, and recovery. 10-20 minute sessions. ₹799 per session in Kompally, Secunderabad.',
             keywords: ['red light therapy Hyderabad', 'photobiomodulation', 'infrared therapy', 'skin rejuvenation Kompally'],
             ogImage: '/images/services/redlight-therapy.PNG',
         },
@@ -230,8 +234,10 @@ Regular sauna use has been linked to improved cardiovascular function, reduced s
         ],
 
         pricing: {
-            single: 1399,
-            couple: 1959,
+            single: 999,
+            singleMrp: 1429,
+            couple: 1499,
+            coupleMrp: 2145,
         },
 
         images: {
@@ -276,7 +282,7 @@ Regular sauna use has been linked to improved cardiovascular function, reduced s
 
         metadata: {
             title: 'Traditional Sauna | Dry Heat Therapy | Bare Recovery Studio',
-            description: 'Traditional dry sauna in Kompally. 15-30 minute sessions for relaxation, detoxification, and cardiovascular health. ₹1,000 single, ₹1,400 couple.',
+            description: 'Traditional dry sauna in Kompally. 15-30 minute sessions for relaxation, detoxification, and cardiovascular health. ₹999 single, ₹1,499 couple.',
             keywords: ['sauna Kompally', 'dry sauna Hyderabad', 'infrared sauna', 'detox sauna Secunderabad'],
             ogImage: '/images/services/sauna.PNG',
         },
@@ -327,8 +333,8 @@ This means you sweat more, detoxify deeper, and recover faster while experiencin
         ],
 
         pricing: {
-            single: 1399,
-            couple: 1959,
+            single: 999,
+            singleMrp: 1429,
         },
 
         images: {
@@ -372,7 +378,7 @@ This means you sweat more, detoxify deeper, and recover faster while experiencin
 
         metadata: {
             title: 'Infrared Sauna | Deep Heat Therapy | Bare Recovery Studio',
-            description: 'Infrared sauna therapy in Kompally. Deep-penetrating heat for detoxification, pain relief, and recovery. 15-30 minute sessions. ₹999 single, ₹1,399 couple.',
+            description: 'Infrared sauna therapy in Kompally. Deep-penetrating heat for detoxification, pain relief, and recovery. 15-30 minute sessions. ₹999 single.',
             keywords: ['infrared sauna Hyderabad', 'infrared sauna Kompally', 'far infrared therapy', 'detox sauna Secunderabad'],
             ogImage: '/images/services/infrared-sauna.PNG',
         },
@@ -418,8 +424,10 @@ Regular cold exposure has been shown to increase norepinephrine levels, improve 
         ],
 
         pricing: {
-            single: 1679,
-            couple: 2239,
+            single: 1299,
+            singleMrp: 1855,
+            couple: 1699,
+            coupleMrp: 2429,
         },
 
         images: {
@@ -460,7 +468,7 @@ Regular cold exposure has been shown to increase norepinephrine levels, improve 
 
         metadata: {
             title: 'Cold Plunge | Ice Bath Therapy | Bare Recovery Studio',
-            description: 'Cold plunge therapy in Kompally. Reduce inflammation, boost mental clarity, and enhance recovery. 2-5 minute sessions. ₹1,200 single, ₹1,600 couple.',
+            description: 'Cold plunge therapy in Kompally. Reduce inflammation, boost mental clarity, and enhance recovery. 2-5 minute sessions. ₹1,299 single, ₹1,699 couple.',
             keywords: ['cold plunge Hyderabad', 'ice bath Kompally', 'cryotherapy', 'cold water therapy Secunderabad'],
             ogImage: '/images/services/cold-plunge.PNG',
         },
@@ -511,8 +519,10 @@ The rapid vasodilation (heat) and vasoconstriction (cold) creates a "pumping" ef
         ],
 
         pricing: {
-            single: 2519,
-            couple: 3069,
+            single: 1899,
+            singleMrp: 2715,
+            couple: 2899,
+            coupleMrp: 4145,
         },
 
         images: {
@@ -553,7 +563,7 @@ The rapid vasodilation (heat) and vasoconstriction (cold) creates a "pumping" ef
 
         metadata: {
             title: 'Contrast Therapy | Sauna + Cold Plunge | Bare Recovery Studio',
-            description: 'Signature contrast therapy in Kompally: alternating sauna and cold plunge for ultimate recovery. 20-40 minute sessions, 2-3 rounds. ₹1,800 single, ₹2,200 couple.',
+            description: 'Signature contrast therapy in Kompally: alternating sauna and cold plunge for ultimate recovery. 20-40 minute sessions, 2-3 rounds. ₹1,899 single, ₹2,899 couple.',
             keywords: ['contrast therapy Hyderabad', 'hot cold therapy', 'recovery protocol Kompally', 'sauna cold plunge'],
             ogImage: '/images/services/contrast-therapy.PNG',
         },

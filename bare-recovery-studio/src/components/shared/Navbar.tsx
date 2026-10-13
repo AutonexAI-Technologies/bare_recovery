@@ -7,12 +7,12 @@ import { usePathname } from 'next/navigation'
 import { CONTACT_INFO } from '@/lib/constants'
 
 const serviceLinks = [
-  { label: 'Cold Plunge',          href: '/services/cold-plunge',          sub: 'From ₹1,679 · 10–15 min' },
-  { label: 'Contrast Therapy',     href: '/services/contrast-therapy',     sub: 'From ₹2,519 · 20–40 min' },
-  { label: 'Traditional Sauna',    href: '/services/traditional-sauna',    sub: 'From ₹1,399 · 15–30 min' },
-  { label: 'Infrared Sauna',       href: '/services/infrared-sauna',       sub: 'From ₹1,399 · 15–30 min' },
-  { label: 'Red Light Therapy',    href: '/services/red-light-therapy',    sub: 'From ₹1,119 · 10–20 min' },
-  { label: 'Compression Therapy',  href: '/services/compression-therapy',  sub: 'From ₹1,119 · 10–20 min' },
+  { label: 'Cold Plunge',          href: '/services/cold-plunge',          sub: 'From ₹1,299 · 10–15 min' },
+  { label: 'Contrast Therapy',     href: '/services/contrast-therapy',     sub: 'From ₹1,899 · 20–40 min' },
+  { label: 'Traditional Sauna',    href: '/services/traditional-sauna',    sub: 'From ₹999 · 15–30 min' },
+  { label: 'Infrared Sauna',       href: '/services/infrared-sauna',       sub: 'From ₹999 · 15–30 min' },
+  { label: 'Red Light Therapy',    href: '/services/red-light-therapy',    sub: 'From ₹799 · 10–20 min' },
+  { label: 'Compression Therapy',  href: '/services/compression-therapy',  sub: 'From ₹899 · 20–30 min' },
 ]
 
 const mainLinks = [

@@ -115,11 +115,25 @@ export default function HeroSection() {
                 fontSize: 'clamp(40px, 12vw, 64px)',
                 fontWeight: 300,
                 letterSpacing: '-0.04em',
-                color: 'rgba(245,240,235,0.35)',
+                color: 'rgba(245,240,235,0.50)',
                 background: 'transparent',
               }}
             >
-              Perform
+              Reset
+            </h1>
+          </div>
+          <div className="mb-2" style={{ background: 'transparent' }}>
+            <h1
+              className="font-display uppercase leading-[0.88] block"
+              style={{
+                fontSize: 'clamp(40px, 12vw, 64px)',
+                fontWeight: 300,
+                letterSpacing: '-0.04em',
+                color: 'rgba(245,240,235,0.25)',
+                background: 'transparent',
+              }}
+            >
+              Rejuvenate
             </h1>
           </div>
 
@@ -212,6 +226,20 @@ export default function HeroSection() {
               Recover
             </h1>
           </div>
+          <div className="mb-1" style={{ background: 'transparent' }}>
+            <h1
+              className="font-display uppercase leading-[0.90]"
+              style={{
+                fontSize: 'clamp(48px, 6.5vw, 96px)',
+                fontWeight: 300,
+                letterSpacing: '-0.04em',
+                color: 'rgba(245,240,235,0.50)',
+                background: 'transparent',
+              }}
+            >
+              Reset
+            </h1>
+          </div>
           <div className="mb-6" style={{ background: 'transparent' }}>
             <h1
               className="font-display uppercase leading-[0.90]"
@@ -219,11 +247,11 @@ export default function HeroSection() {
                 fontSize: 'clamp(48px, 6.5vw, 96px)',
                 fontWeight: 300,
                 letterSpacing: '-0.04em',
-                color: 'rgba(245,240,235,0.35)',
+                color: 'rgba(245,240,235,0.25)',
                 background: 'transparent',
               }}
             >
-              Perform
+              Rejuvenate
             </h1>
           </div>
 

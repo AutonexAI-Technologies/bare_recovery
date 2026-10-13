@@ -5,10 +5,10 @@ import { useEffect, useState } from 'react'
 const BAR_H = 48
 
 const items = [
-  '✦ 30% Off · All Sessions · Introductory Offer for New Customers',
-  '◆ ICN Athletes: 50% Off Every Visit — Permanent Benefit on Registration',
-  '✦ 30% Off · All Sessions · Introductory Offer for New Customers',
-  '◆ ICN Athletes: 50% Off Every Visit — Permanent Benefit on Registration',
+  '◆ Athletes: 50% Off Every Visit — Permanent Benefit on Registration',
+  '✦ Hyderabad\'s Premier Recovery Studio · Cold Plunge · Sauna · Red Light Therapy',
+  '◆ Athletes: 50% Off Every Visit — Permanent Benefit on Registration',
+  '✦ Walk-ins Welcome · Open 10 AM – 10 PM · Kompally, Secunderabad',
 ]
 
 export default function TopAnnouncementBar() {

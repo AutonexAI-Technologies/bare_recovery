@@ -26,7 +26,7 @@ const serviceThumbs: Record<string, string> = {
 
 const howItWorks: Record<string, { step: string; title: string; desc: string }[]> = {
   'compression-therapy': [
-    { step: '01', title: 'Arrive & Suit Up', desc: 'Slip into the compression sleeves — upper body, lower body, or both depending on your session.' },
+    { step: '01', title: 'Arrive & Suit Up', desc: 'Slip into the compression sleeves for your lower body session — legs, calves, and hips covered.' },
     { step: '02', title: 'Dynamic Pressure Cycles', desc: 'The system applies rhythmic pulsing pressure that mimics your body\'s natural muscle pump, moving fluid from distal to proximal.' },
     { step: '03', title: 'Flush & Recover', desc: 'Metabolic waste is driven out, fresh oxygenated blood floods the tissue. You step out lighter and recovered.' },
   ],
@@ -122,13 +122,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const steps = howItWorks[svc.id] ?? []
   const waMsg = encodeURIComponent(`Hi! I'd like to book a ${svc.name} session at Bare Recovery Studio.`)
 
-  // Build pricing rows
-  const pricingRows: { label: string; price: number }[] = []
-  if (svc.pricing.single) pricingRows.push({ label: 'Single Session', price: svc.pricing.single })
-  if (svc.pricing.upperBody) pricingRows.push({ label: 'Upper Body', price: svc.pricing.upperBody })
-  if (svc.pricing.lowerBody) pricingRows.push({ label: 'Lower Body', price: svc.pricing.lowerBody })
-  if (svc.pricing.fullBody) pricingRows.push({ label: 'Full Body (Upper + Lower)', price: svc.pricing.fullBody })
-  if (svc.pricing.couple) pricingRows.push({ label: 'Couple Session', price: svc.pricing.couple })
+  // Build pricing rows with offer price + MRP
+  const pricingRows: { label: string; price: number; mrp?: number }[] = []
+  if (svc.pricing.single) pricingRows.push({ label: 'Single Session', price: svc.pricing.single, mrp: svc.pricing.singleMrp })
+  if (svc.pricing.lowerBody) pricingRows.push({ label: 'Lower Body (Single)', price: svc.pricing.lowerBody, mrp: svc.pricing.lowerBodyMrp })
+  if (svc.pricing.couple) pricingRows.push({ label: 'Couple Session', price: svc.pricing.couple, mrp: svc.pricing.coupleMrp })
 
   const relatedSvcs = services.filter((s) => svc.relatedServices.includes(s.id))
   const pairings = pairingReasons[svc.id] ?? {}
@@ -249,7 +247,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               <span className="text-xl shrink-0">🌟</span>
               <div>
                 <p className="text-xs font-black uppercase tracking-wider" style={{ color: '#dddadd' }}>30% Introductory Offer</p>
-                <p className="text-[10px] mt-0.5" style={{ color: 'rgba(245,240,235,0.50)' }}>ICN Athletes: <strong style={{ color: '#FBBF24' }}>50% off every visit</strong> — permanent benefit on registration.</p>
+                <p className="text-[10px] mt-0.5" style={{ color: 'rgba(245,240,235,0.50)' }}>Athletes: <strong style={{ color: '#FBBF24' }}>50% off every visit</strong> — permanent benefit on registration.</p>
               </div>
             </div>
             <div className="space-y-4">
@@ -264,7 +262,10 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               {pricingRows.map((row) => (
                 <div key={row.label} className="flex justify-between items-center py-3 border-b border-white/[0.06]">
                   <span className="text-[#dddadd] text-sm">{row.label}</span>
-                  <span className="text-[#F5F5F2] font-semibold text-sm">₹{row.price.toLocaleString()}</span>
+                  <span className="flex items-baseline gap-2">
+                    <span className="text-[#F5F5F2] font-semibold text-sm">₹{row.price.toLocaleString()}</span>
+                    {row.mrp && <span className="text-[10px] text-[#dddadd]/40 line-through">₹{row.mrp.toLocaleString()}</span>}
+                  </span>
                 </div>
               ))}
             </div>
@@ -348,7 +349,10 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 style={i !== 0 ? { background: 'rgba(20,20,20,0.5)', border: '1px solid rgba(255,255,255,0.05)' } : {}}
               >
                 <span className="text-[#c4c7c7] text-sm">{row.label}</span>
-                <span className="font-display font-bold text-[#F5F5F2]">₹{row.price.toLocaleString()}</span>
+                <span className="flex items-baseline gap-3">
+                  <span className="font-display font-bold text-[#F5F5F2]">₹{row.price.toLocaleString()}</span>
+                  {row.mrp && <span className="text-sm text-[#dddadd]/35 line-through">₹{row.mrp.toLocaleString()}</span>}
+                </span>
               </div>
             ))}
           </div>

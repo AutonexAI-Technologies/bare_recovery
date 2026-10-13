@@ -296,9 +296,9 @@ export function SaleCallout() {
   return (
     <div style={{ margin: '40px 0', padding: '22px 24px', borderRadius: 20, background: 'rgba(42,40,41,0.70)', border: '1px solid rgba(196,193,196,0.12)', display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
       <div style={{ flex: 1, minWidth: 180 }}>
-        <p style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.20em', textTransform: 'uppercase', color: '#dddadd', marginBottom: 4 }}>30% Introductory Offer</p>
+        <p style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.20em', textTransform: 'uppercase', color: '#dddadd', marginBottom: 4 }}>Bare Recovery Studio</p>
         <p style={{ fontSize: 12, color: 'rgba(245,240,235,0.60)', lineHeight: 1.5 }}>
-          Cold Plunge ₹1,679 · Full Circuit ₹4,199 · Red Light ₹1,119. ICN Athletes: <strong style={{ color: '#FBBF24' }}>50% off every visit</strong> — permanent benefit.
+          Cold Plunge ₹1,299 · Full Circuit ₹2,999 · Red Light ₹799. Athletes: <strong style={{ color: '#FBBF24' }}>50% off every visit</strong> — permanent benefit.
         </p>
       </div>
       <a href={waLink} target="_blank" rel="noopener noreferrer"

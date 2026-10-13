@@ -213,12 +213,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
             {/* Final CTA */}
             <div style={{ marginTop: 64, padding: '36px 32px', borderRadius: 24, background: 'rgba(42,40,41,0.70)', border: '1px solid rgba(196,193,196,0.12)', textAlign: 'center' }}>
-              <p style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#dddadd', marginBottom: 12 }}>30% Introductory Offer</p>
+              <p style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#dddadd', marginBottom: 12 }}>Bare Recovery Studio</p>
               <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px,4vw,32px)', fontWeight: 300, letterSpacing: '-0.03em', color: '#f5f0eb', marginBottom: 8 }}>
                 Ready to experience it yourself?
               </p>
               <p style={{ fontSize: 13, color: 'rgba(245,240,235,0.50)', marginBottom: 24, maxWidth: 380, margin: '0 auto 24px' }}>
-                Get 30% off your first session. ICN athletes get 50% off every visit — permanently.
+                Book any service. athletes get 50% off every visit — permanently.
               </p>
               <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
                 <a href={waLink} target="_blank" rel="noopener noreferrer"

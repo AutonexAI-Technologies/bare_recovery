@@ -14,7 +14,7 @@ const faqData = [
       },
       {
         q: 'How long does each session take?',
-        a: 'Session durations: Cold Plunge is 10–15 minutes (₹1,679), Full Circuit is 60–90 minutes (₹4,199), Contrast Therapy is 20–40 minutes (₹2,519), Sauna is 15–30 minutes (₹1,399), Red Light Therapy is 10–20 minutes (₹1,119), and Compression is 10–20 minutes (₹1,119). All prices reflect the 30% introductory offer.',
+        a: 'Session durations: Cold Plunge is 10–15 minutes (₹1,299), Full Circuit is 60–90 minutes (₹2,999), Contrast Therapy is 20–40 minutes (₹1,899), Sauna is 15–30 minutes (₹999), Red Light Therapy is 10–20 minutes (₹799), and Compression is 20–30 minutes (₹899).',
       },
       {
         q: 'Do I need to bring anything for my session?',
@@ -83,16 +83,12 @@ const faqData = [
     icon: '💰',
     questions: [
       {
-        q: 'What is the introductory offer?',
-        a: 'All first-time visitors receive a 30% introductory discount on any session. ICN Hyderabad Deccan Uprising 2026 athletes receive 50% off every single visit — permanently on registration. No expiry. No time limit.',
-      },
-      {
-        q: 'What is the ICN athlete discount?',
-        a: 'ICN Hyderabad Deccan Uprising 2026 takes place on 29 & 30 August 2026. All registered ICN athletes receive <strong>50% off every single visit</strong> — permanently, on registration. No expiry. No time limit. Simply show your registration card or mention you\'re an ICN athlete when booking via WhatsApp.',
+        q: 'What is the athlete discount?',
+        a: 'The Deccan Uprising 2026 athletes receive <strong>50% off every single visit</strong> — permanently, on registration. No expiry. No time limit. Simply show your registration card or mention you\'re an athlete when booking via WhatsApp.',
       },
       {
         q: 'What are the current session prices?',
-        a: 'Introductory offer: Full Circuit ₹4,199 (60–90 min) · Contrast Therapy ₹2,519 (20–40 min) · Cold Plunge ₹1,679 (10–15 min) · Sauna ₹1,399 (15–30 min) · Red Light Therapy ₹1,119 (10–20 min) · Compression ₹1,119 (10–20 min). Regular prices (MRP) are 30% higher. ICN Athletes get 50% off the MRP permanently.',
+        a: 'Single sessions: Full Circuit ₹2,999 (60–90 min) · Contrast Therapy ₹1,899 (20–40 min) · Cold Plunge ₹1,299 (10–15 min) · Sauna ₹999 (15–30 min) · Red Light Therapy ₹799 (10–20 min) · Compression ₹899 (20–30 min). Memberships: 1-month (4 sessions) ₹8,999 · 3-month (16 sessions) ₹19,999. Athletes get 50% off every session permanently.',
       },
       {
         q: 'Do you provide GST invoices?',

@@ -51,9 +51,9 @@ export default function BlogClient({ posts }: BlogClientProps) {
       {/* ── Hero header ── */}
       <div style={{ background: 'linear-gradient(to bottom, rgba(245,158,11,0.06) 0%, transparent 100%)', borderBottom: '1px solid rgba(245,158,11,0.10)', paddingTop: 32, paddingBottom: 60, paddingLeft: 20, paddingRight: 20 }}>
         <div className="max-w-[1320px] mx-auto">
-          {/* Sale badge */}
+          {/* Studio badge */}
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 20, background: 'rgba(86,84,86,0.40)', padding: '6px 16px', borderRadius: 9999, border: '1px solid rgba(196,193,196,0.15)' }}>
-            <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#dddadd' }}>30% Introductory Offer · ICN Athletes 50% Off</span>
+            <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#dddadd' }}>Athletes 50% Off · Private Recovery Studio</span>
           </div>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between" style={{ gap: 24 }}>
             <div>

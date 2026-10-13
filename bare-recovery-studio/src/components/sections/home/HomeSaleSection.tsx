@@ -5,12 +5,12 @@ import { CONTACT_INFO } from '@/lib/constants'
 const waLink = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent("Hi! I'd like to book a session at Bare Recovery Studio.")}`
 
 const deals = [
-  { name: 'Full Circuit',     mrp: '₹5,998', price: '₹4,199', tag: 'Best Value',   emoji: '⚡', dur: '60–90 min' },
-  { name: 'Contrast Therapy', mrp: '₹3,598', price: '₹2,519', tag: 'Signature',    emoji: '🔥', dur: '20–40 min' },
-  { name: 'Cold Plunge',      mrp: '₹2,398', price: '₹1,679', tag: 'Most Popular', emoji: '🧊', dur: '10–15 min' },
-  { name: 'Sauna',            mrp: '₹1,998', price: '₹1,399', tag: '',            emoji: '🌡️', dur: '15–30 min' },
-  { name: 'Red Light',        mrp: '₹1,598', price: '₹1,119', tag: '',            emoji: '💡', dur: '10–20 min' },
-  { name: 'Compression',      mrp: '₹1,598', price: '₹1,119', tag: '',            emoji: '🦵', dur: '10–20 min' },
+  { name: 'Full Circuit',     mrp: '₹4,299', price: '₹2,999', tag: 'Best Value',   emoji: '⚡', dur: '60–90 min' },
+  { name: 'Contrast Therapy', mrp: '₹2,715', price: '₹1,899', tag: 'Signature',    emoji: '🔥', dur: '20–40 min' },
+  { name: 'Cold Plunge',      mrp: '₹1,855', price: '₹1,299', tag: 'Most Popular', emoji: '🧊', dur: '10–15 min' },
+  { name: 'Sauna',            mrp: '₹1,429', price: '₹999',   tag: '',             emoji: '🌡️', dur: '15–30 min' },
+  { name: 'Red Light',        mrp: '₹1,145', price: '₹799',   tag: '',             emoji: '💡', dur: '10–20 min' },
+  { name: 'Compression',      mrp: '₹1,285', price: '₹899',   tag: '',             emoji: '🦵', dur: '20–30 min' },
 ]
 
 export default function HomeSaleSection() {
@@ -38,16 +38,16 @@ export default function HomeSaleSection() {
         {/* Headline */}
         <div style={{ textAlign: 'center', marginBottom: 56 }}>
           <p style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.30em', textTransform: 'uppercase', color: 'rgba(196,193,196,0.60)', marginBottom: 16 }}>
-            Introductory Offer · Hyderabad’s First Recovery Studio
+            Kompally, Secunderabad · Private Recovery Studio
           </p>
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(52px, 10vw, 120px)', fontWeight: 300, letterSpacing: '-0.05em', lineHeight: 0.9, color: '#f5f0eb', marginBottom: 8 }}>
-            Every Session.
+            Recover Like
           </h2>
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(52px, 10vw, 120px)', fontWeight: 300, letterSpacing: '-0.05em', lineHeight: 0.9, marginBottom: 24 }}>
-            <span style={{ color: 'rgba(245,240,235,0.40)' }}>30% Off.</span>
+            <span style={{ color: 'rgba(245,240,235,0.40)' }}>an Athlete.</span>
           </h2>
           <p style={{ fontSize: 16, color: 'rgba(245,240,235,0.50)', maxWidth: 500, margin: '0 auto 40px', lineHeight: 1.7 }}>
-            Introductory rates for all first-time visitors. Walk in, recover, leave better.
+            Six world-class recovery modalities. Private sessions only. Walk in, recover, leave better.
           </p>
         </div>
 
@@ -70,16 +70,16 @@ export default function HomeSaleSection() {
                 <span style={{ fontSize: 13, color: 'rgba(245,240,235,0.30)', textDecoration: 'line-through' }}>{d.mrp}</span>
               </div>
               <div style={{ marginTop: 8, fontSize: 9, fontWeight: 800, color: 'rgba(196,193,196,0.55)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
-                30% Off
+                Book Now →
               </div>
             </a>
           ))}
         </div>
 
-        {/* ICN Athlete note — 50% off (permanent) */}
+        {/* Athlete note — 50% off (permanent) */}
         <div style={{ textAlign: 'center', padding: '24px', borderRadius: 16, background: 'rgba(245,158,11,0.05)', border: '1px solid rgba(245,158,11,0.18)', marginBottom: 40 }}>
           <p style={{ fontSize: 14, color: 'rgba(245,240,235,0.65)' }}>
-            <span style={{ fontWeight: 800, color: '#FBBF24' }}>🏆 ICN Athletes:</span>{' '}
+            <span style={{ fontWeight: 800, color: '#FBBF24' }}>🏆 Athletes:</span>{' '}
             <strong style={{ color: '#FBBF24' }}>50% off every single visit</strong> — permanently, on registration. No expiry. Show your card at the studio.
           </p>
         </div>

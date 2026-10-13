@@ -8,9 +8,9 @@
  * Prices are NEVER bundled into client JS — only server code imports this file.
  *
  * Pricing structure:
- *  - Regular price (mrpPrice): full rack rate
- *  - Introductory offer (price): 30% off for all regular customers
- *  - ICN Athletes: always 50% off on registration (shown separately)
+ *  - Regular price (mrpPrice): full rack rate (MRP)
+ *  - Offer price (price): actual price after offer
+ *  - Athletes: always 50% off on registration (shown separately)
  */
 
 import { CONTACT_INFO } from '@/lib/constants'
@@ -20,47 +20,47 @@ const bookMsg = (service: string) =>
   encodeURIComponent(`Hi! I'd like to book a ${service} session at Bare Recovery Studio.`)
 
 export const singleSessions = [
-  { name: 'Full Circuit',              desc: 'All 6 services in one premium session',          price: 4199,  mrpPrice: 5998,  tag: 'complete', featured: true,  note: '30% introductory offer',          duration: '60–90 min', href: waBase + bookMsg('Full Circuit') },
-  { name: 'Contrast Therapy',          desc: 'Sauna + Cold Plunge — the signature stack',      price: 2519,  mrpPrice: 3598,  note: '30% introductory offer',          duration: '20–40 min', href: waBase + bookMsg('Contrast Therapy') },
-  { name: 'Cold Plunge',               desc: 'Full body cold immersion at 10–15°C',            price: 1679,  mrpPrice: 2398,  note: '30% introductory offer',          duration: '10–15 min', href: waBase + bookMsg('Cold Plunge') },
-  { name: 'Traditional Sauna',         desc: 'Dry heat at 70–80°C for deep recovery',          price: 1399,  mrpPrice: 1998,  note: '30% introductory offer',          duration: '15–30 min', href: waBase + bookMsg('Traditional Sauna') },
-  { name: 'Infrared Sauna',            desc: 'Far-infrared penetration for deep tissue heat',  price: 1399,  mrpPrice: 1998,  note: '30% introductory offer',          duration: '15–30 min', href: waBase + bookMsg('Infrared Sauna') },
-  { name: 'Red Light Therapy',         desc: '660nm & 850nm photobiomodulation',               price: 1119,  mrpPrice: 1598,  note: '30% introductory offer',          duration: '10–20 min', href: waBase + bookMsg('Red Light Therapy') },
-  { name: 'Compression — Upper Body',  desc: 'Dynamic air compression for upper limbs',        price: 1119,  mrpPrice: 1598,  note: '30% introductory offer',          duration: '10–20 min', href: waBase + bookMsg('Compression Therapy (Upper Body)') },
-  { name: 'Compression — Lower Body',  desc: 'Dynamic air compression for legs & hips',        price: 1119,  mrpPrice: 1598,  note: '30% introductory offer',          duration: '10–20 min', href: waBase + bookMsg('Compression Therapy (Lower Body)') },
-  { name: 'Compression — Full Body',   desc: 'Upper + Lower body compression together',        price: 1959,  mrpPrice: 2798,  note: '30% introductory offer',          duration: '10–20 min', href: waBase + bookMsg('Compression Therapy (Full Body)') },
+  { name: 'Full Circuit',             desc: 'All 6 services in one premium session',         price: 2999, mrpPrice: 4299, tag: 'complete', featured: true,  duration: '60–90 min', href: waBase + bookMsg('Full Circuit') },
+  { name: 'Contrast (Sauna + Cold)',  desc: 'Sauna + Cold Plunge — the signature stack',     price: 1899, mrpPrice: 2715, duration: '20–40 min', href: waBase + bookMsg('Contrast Therapy') },
+  { name: 'Cold Plunge with Magnesium', desc: 'Cold immersion with magnesium recovery boost', price: 1599, mrpPrice: 2285, duration: '10–15 min', href: waBase + bookMsg('Cold Plunge with Magnesium') },
+  { name: 'Cold Plunge',              desc: 'Full body cold immersion at 10–15°C',           price: 1299, mrpPrice: 1855, duration: '10–15 min', href: waBase + bookMsg('Cold Plunge') },
+  { name: 'Sauna',                    desc: 'Dry heat at 70–80°C for deep recovery',         price: 999,  mrpPrice: 1429, duration: '15–30 min', href: waBase + bookMsg('Sauna') },
+  { name: 'Red Light Therapy',        desc: '660nm & 850nm photobiomodulation',              price: 799,  mrpPrice: 1145, duration: '10–20 min', href: waBase + bookMsg('Red Light Therapy') },
+  { name: 'Compression – Lower Body', desc: 'Dynamic air compression for legs & hips',       price: 899,  mrpPrice: 1285, duration: '20–30 min', href: waBase + bookMsg('Compression Therapy (Lower Body)') },
 ]
 
 export const coupleSessions = [
-  { name: 'Full Circuit',       desc: 'All 6 services — best shared experience', price: 6719, mrpPrice: 9598,  featured: true, note: 'save ₹2,879 vs 2 singles', duration: '60–90 min', href: waBase + bookMsg('Full Circuit Couple') },
-  { name: 'Contrast Therapy',   desc: 'Sauna + Cold Plunge for two',             price: 3069, mrpPrice: 4398,  note: 'save ₹1,329 vs 2 singles',               duration: '20–40 min', href: waBase + bookMsg('Contrast Therapy Couple') },
-  { name: 'Cold Plunge',        desc: 'Side-by-side cold immersion',             price: 2239, mrpPrice: 3198,  note: 'save ₹1,119 vs 2 singles',               duration: '10–15 min', href: waBase + bookMsg('Cold Plunge Couple') },
-  { name: 'Traditional Sauna',  desc: 'Shared heat session for two',             price: 1959, mrpPrice: 2798,  note: 'save ₹839 vs 2 singles',                 duration: '15–30 min', href: waBase + bookMsg('Traditional Sauna Couple') },
+  { name: 'Full Circuit',          desc: 'All services — best shared experience',      price: 4899, mrpPrice: 6999, featured: true, duration: '60–90 min', href: waBase + bookMsg('Full Circuit Couple') },
+  { name: 'Contrast (Sauna + Cold)', desc: 'Sauna + Cold Plunge for two',             price: 2899, mrpPrice: 4145, duration: '20–40 min', href: waBase + bookMsg('Contrast Therapy Couple') },
+  { name: 'Cold Plunge / Ice Bath', desc: 'Side-by-side cold immersion',              price: 1699, mrpPrice: 2429, duration: '10–15 min', href: waBase + bookMsg('Cold Plunge Couple') },
+  { name: 'Sauna',                 desc: 'Shared heat session for two',               price: 1499, mrpPrice: 2145, duration: '15–30 min', href: waBase + bookMsg('Sauna Couple') },
+  { name: 'Red Light Therapy',     desc: 'Shared red light session',                  price: 1199, mrpPrice: 1719, duration: '10–20 min', href: waBase + bookMsg('Red Light Therapy Couple') },
+  { name: 'Compression – Lower Body', desc: 'Lower body compression for two',        price: 1299, mrpPrice: 1855, duration: '20–30 min', href: waBase + bookMsg('Compression Therapy Couple') },
 ]
 
 export const memberships = [
   {
-    id: 'monthly',   label: '1 Month', sessions: 5,    type: 'Recovery Stack',
-    price: 12599, mrpPrice: 17998, perSession: Math.round(12599 / 5),
-    savingsNote: '30% off — save ₹5,399',
-    perks: ['5 Full Circuit sessions', '1 Bring-a-Friend guest pass', 'Priority booking', 'All 6 services included'],
-    href: waBase + encodeURIComponent("Hi! I'd like to join the 1-Month Membership plan."),
+    id: 'monthly',   label: '1 Month', sessions: 4,    type: 'Full Circuit',
+    price: 8999, mrpPrice: null, perSession: Math.round(8999 / 4),
+    savingsNote: '4 sessions + 1 Bring a Friend pass',
+    perks: ['4 Full Circuit sessions', '1 Bring-a-Friend guest pass', 'Priority booking', 'All services included'],
+    href: waBase + encodeURIComponent("Hi! I'd like to join the 1-Month Membership plan at Bare Recovery Studio."),
     featured: false,
   },
   {
-    id: 'quarterly', label: '3 Month', sessions: 16,   type: 'Contrast Only',
-    price: 33599, mrpPrice: 47998, perSession: Math.round(33599 / 16),
-    savingsNote: '30% off — save ₹14,399',
-    perks: ['16 Contrast Therapy sessions', '2 Bring-a-Friend guest passes', 'Priority booking', 'Best per-session value'],
-    href: waBase + encodeURIComponent("Hi! I'd like to join the 3-Month Membership plan."),
+    id: 'quarterly', label: '3 Month', sessions: 16,   type: 'Full Circuit',
+    price: 19999, mrpPrice: null, perSession: Math.round(19999 / 16),
+    savingsNote: '16 sessions + 1-month pause option',
+    perks: ['16 Full Circuit sessions', '1-month pause option', 'Priority booking', 'Best per-session value'],
+    href: waBase + encodeURIComponent("Hi! I'd like to join the 3-Month Membership plan at Bare Recovery Studio."),
     featured: true,
   },
   {
-    id: 'biannual',  label: '6 Month', sessions: null, type: 'Custom',
+    id: 'individual', label: 'Individual Services', sessions: null, type: 'Monthly',
     price: null, mrpPrice: null, perSession: null,
-    savingsNote: 'Maximum savings — talk to us',
-    perks: ['Flexible session bundle', 'Maximum savings', 'Priority booking', 'Dedicated coaching slot'],
-    href: waBase + encodeURIComponent("Hi! I'd like to know more about the 6-Month Membership plan."),
+    savingsNote: 'Sauna ₹2,999 · Cold Plunge ₹3,499 · Red Light ₹1,999 · Compression ₹1,999 · Contrast ₹4,999',
+    perks: ['Sauna monthly — ₹2,999', 'Cold Plunge monthly — ₹3,499', 'Red Light monthly — ₹1,999', 'Compression monthly — ₹1,999', 'Contrast monthly — ₹4,999'],
+    href: waBase + encodeURIComponent("Hi! I'd like to know about individual monthly memberships at Bare Recovery Studio."),
     featured: false,
   },
 ]

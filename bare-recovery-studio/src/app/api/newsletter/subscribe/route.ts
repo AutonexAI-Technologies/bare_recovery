@@ -99,7 +99,7 @@ function buildWelcomeEmail(email: string, source: string): string {
     One thing — we're currently offering an <strong>introductory offer</strong> where
     first-time visitors get <strong style="color:#d97706;">30% off</strong> every service.
     Cold Plunge from ₹1,679 · Full Circuit ₹4,199 · Red Light ₹1,119.
-    ICN Athletes get <strong style="color:#d97706;">50% off every visit</strong> — permanently on registration.
+    Athletes get <strong style="color:#d97706;">50% off every visit</strong> — permanently on registration.
   </p>
 
   <p style="color:#333;margin:0 0 24px;">
@@ -253,7 +253,7 @@ export async function POST(req: NextRequest) {
           'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
           'Precedence': 'bulk',
         },
-        text: `Hi!\n\nThank you for subscribing to Bare Recovery Studio.\n\nYou'll get science-backed recovery protocols, studio updates, and first access to every article we publish.\n\nIntroductory Offer: 30% off all sessions for first-time visitors. Cold Plunge from ₹1,679, Full Circuit ₹4,199, Red Light ₹1,119.\n\nICN Athletes get 50% off every visit — permanently on registration.\n\nBook on WhatsApp: https://wa.me/917670861496\n\nBare Recovery Studio\nKompally, Secunderabad, Hyderabad\n+91 76708 61496 | 10AM–10PM daily\nInstagram: @bare.recovery | @abhinav._lifts\n\n---\nYou subscribed at barerecovery.in. Reply "unsubscribe" to stop.`,
+        text: `Hi!\n\nThank you for subscribing to Bare Recovery Studio.\n\nYou'll get science-backed recovery protocols, studio updates, and first access to every article we publish.\n\nIntroductory Offer: 30% off all sessions for first-time visitors. Cold Plunge from ₹1,679, Full Circuit ₹4,199, Red Light ₹1,119.\n\nAthletes get 50% off every visit — permanently on registration.\n\nBook on WhatsApp: https://wa.me/917670861496\n\nBare Recovery Studio\nKompally, Secunderabad, Hyderabad\n+91 76708 61496 | 10AM–10PM daily\nInstagram: @bare.recovery | @abhinav._lifts\n\n---\nYou subscribed at barerecovery.in. Reply "unsubscribe" to stop.`,
         html: buildWelcomeEmail(cleanEmail, cleanSource),
       }),
       transporter.sendMail({

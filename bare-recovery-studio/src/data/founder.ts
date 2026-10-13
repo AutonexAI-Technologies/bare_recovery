@@ -7,8 +7,8 @@ export const founderInfo: FounderInfo = {
     instagram: {
         handle: '@abhinav._lifts',
         url: 'https://www.instagram.com/abhinav._lifts/',
-        followers: '85.3K',
-        followersRaw: 85300,
+        followers: '83.6K',
+        followersRaw: 83600,
         verified: true,
     },
 
@@ -26,7 +26,7 @@ My philosophy is simple: BE BORING. Consistency beats intensity every time. This
     stats: [
         {
             label: 'Instagram Community',
-            value: '85.3K',
+            value: '83.6K',
             icon: 'instagram',
         },
         {

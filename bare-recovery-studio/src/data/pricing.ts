@@ -68,23 +68,11 @@ export const singleSessions: PricingTier[] = [
         ],
     },
     {
-        id: 'compression-upper',
-        name: 'Compression (Upper Body)',
-        price: 800,
-        duration: '20-30 min',
-        description: 'Upper body compression',
-        includes: [
-            'Upper body compression',
-            'Lymphatic drainage',
-            'Circulation improvement',
-        ],
-    },
-    {
         id: 'compression-lower',
         name: 'Compression (Lower Body)',
-        price: 800,
+        price: 899,
         duration: '20-30 min',
-        description: 'Lower body compression',
+        description: 'Dynamic air compression for legs, calves, and hips',
         includes: [
             'Lower body compression',
             'Lymphatic drainage',

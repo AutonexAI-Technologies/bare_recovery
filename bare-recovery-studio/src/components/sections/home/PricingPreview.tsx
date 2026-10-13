@@ -23,13 +23,13 @@ const highlights = [
   {
     id: 'single',
     label: 'Single Session',
-    mrpFrom: '₹1,598',
-    priceFrom: '₹1,119',
+    mrpFrom: '₹1,145',
+    priceFrom: '₹799',
     period: '/ session',
     description: 'Perfect for first-timers. Pick any one service.',
     features: [
       '1 service of your choice',
-      'Guided 10–20 min session',
+      'Guided 10–30 min session',
       'Private access — no crowds',
       'Coach consultation included',
     ],
@@ -39,8 +39,8 @@ const highlights = [
   {
     id: 'full-circuit',
     label: 'Full Circuit',
-    mrpFrom: '₹5,998',
-    priceFrom: '₹4,199',
+    mrpFrom: '₹4,299',
+    priceFrom: '₹2,999',
     period: '/ session',
     description: 'All 6 recovery services. The complete stack. Maximum results.',
     features: [
@@ -57,12 +57,12 @@ const highlights = [
   {
     id: 'membership',
     label: 'Monthly Membership',
-    mrpFrom: '₹17,998',
-    priceFrom: '₹12,599',
+    mrpFrom: '',
+    priceFrom: '₹8,999',
     period: '/ month',
     description: 'Built for serious athletes and consistent performers.',
     features: [
-      '5 Full Circuit sessions',
+      '4 Full Circuit sessions',
       'Priority booking every week',
       '1 Bring-a-Friend guest pass',
       'Member-only recovery plans',
@@ -110,17 +110,17 @@ export default function PricingPreview() {
           </div>
         </FadeIn>
 
-        {/* Intro offer note */}
+        {/* Athlete & Recovery Callout */}
         <FadeIn direction="up" delay={60}>
           <div className="relative mb-10 p-5 md:p-6 rounded-[20px] overflow-hidden" style={{ background: 'rgba(86,84,86,0.30)', border: '1px solid rgba(196,193,196,0.12)' }}>
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
               <div>
                 <div className="flex items-center gap-3 mb-1">
-                  <span className="font-bold text-base md:text-lg" style={{ color: '#f5f0eb', letterSpacing: '-0.01em' }}>30% Introductory Offer</span>
-                  <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest" style={{ background: 'rgba(196,193,196,0.12)', color: '#dddadd', border: '1px solid rgba(196,193,196,0.18)' }}>Regular Customers</span>
+                  <span className="font-bold text-base md:text-lg" style={{ color: '#f5f0eb', letterSpacing: '-0.01em' }}>Recover Smarter. Perform Better.</span>
+                  <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest" style={{ background: 'rgba(196,193,196,0.12)', color: '#dddadd', border: '1px solid rgba(196,193,196,0.18)' }}>Private Studio</span>
                 </div>
                 <p className="text-sm" style={{ color: 'rgba(245,240,235,0.55)' }}>
-                  All first-time visitors get 30% off every service · ICN Athletes get 50% off every visit
+                  Science-backed recovery modalities, private sessions, no hidden fees · Athletes get 50% off every visit
                 </p>
               </div>
             </div>
@@ -139,18 +139,16 @@ export default function PricingPreview() {
                     {plan.badge}
                   </span>
                 )}
-                {/* 30% Off badge top-right */}
-                <span className="absolute top-4 right-4 text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full" style={{ background: 'rgba(196,193,196,0.15)', color: '#dddadd', border: '1px solid rgba(196,193,196,0.20)' }}>
-                  30% Off
-                </span>
 
                 <span className="section-label mb-1">{plan.label}</span>
 
                 {/* Price block */}
                 <div className="mb-2">
-                  <span className="block text-sm font-medium line-through mb-0.5" style={{ color: 'rgba(245,240,235,0.45)', letterSpacing: '-0.01em' }}>
-                    from {plan.mrpFrom}
-                  </span>
+                  {plan.mrpFrom && (
+                    <span className="block text-sm font-medium line-through mb-0.5" style={{ color: 'rgba(245,240,235,0.45)', letterSpacing: '-0.01em' }}>
+                      from {plan.mrpFrom}
+                    </span>
+                  )}
                   <div className="flex items-end gap-1.5">
                     <span className="font-display" style={{ fontSize: 'clamp(36px,6vw,56px)', fontWeight: 300, letterSpacing: '-0.04em', color: '#f5f0eb', lineHeight: 1 }}>
                       {plan.priceFrom}
@@ -181,13 +179,13 @@ export default function PricingPreview() {
           ))}
         </div>
 
-        {/* ICN callout */}
+        {/* Athlete callout */}
         <FadeIn direction="up" delay={320}>
           <div className="mt-8 p-5 rounded-2xl flex items-start gap-4" style={{ background: 'linear-gradient(135deg,rgba(120,83,7,0.30),rgba(146,64,14,0.25))', border: '1px solid rgba(234,179,8,0.25)' }}>
             <span className="text-xl shrink-0">🏆</span>
             <div className="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <div>
-                <p className="font-bold text-sm" style={{ color: '#fde68a' }}>ICN Athletes — 50% Off Every Visit</p>
+                <p className="font-bold text-sm" style={{ color: '#fde68a' }}>Athletes — 50% Off Every Visit</p>
                 <p className="text-xs mt-0.5" style={{ color: 'rgba(253,230,138,0.70)' }}>Show your registration card at the studio. <strong style={{ color: '#fde68a' }}>Permanent benefit</strong> — no expiry, no time limit.</p>
               </div>
               <Link href="/pricing" className="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide transition-all hover:opacity-90" style={{ background: 'rgba(234,179,8,0.18)', border: '1px solid rgba(234,179,8,0.30)', color: '#fde68a' }}>

@@ -43,7 +43,7 @@ export default function TermsPage() {
           Terms &amp; Conditions
         </h1>
         <div style={{ display: 'flex', gap: 16, alignItems: 'center', marginBottom: 8, flexWrap: 'wrap' }}>
-          <span style={{ fontSize: 13, color: 'rgba(245,240,235,0.50)' }}>Last updated: August 2026</span>
+          <span style={{ fontSize: 13, color: 'rgba(245,240,235,0.50)' }}>Last updated: October 2026</span>
           <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(245,240,235,0.20)', display: 'inline-block' }} />
           <span style={{ fontSize: 13, color: 'rgba(245,240,235,0.50)' }}>Bare Recovery Studio · Kompally, Secunderabad</span>
         </div>

@@ -4,7 +4,7 @@ export const SITE_CONFIG = {
     name: 'Bare Recovery Studio',
     tagline: 'Recover Better. Perform Better. Feel Better.',
     description:
-        'Bare Recovery Studio — Hyderabad\'s first dedicated recovery studio in Kompally, Secunderabad. Cold Plunge, Sauna, Red Light Therapy, Compression, Contrast Therapy & Full Circuit. Introductory offer available. ICN athlete discount available. Open 10 AM–10 PM.',
+        'Bare Recovery Studio — Hyderabad\'s first dedicated recovery studio in Kompally, Secunderabad. Cold Plunge, Sauna, Red Light Therapy, Compression, Contrast Therapy & Full Circuit. athlete discount available. Open 10 AM–10 PM.',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.barerecovery.in',
     ogImage: '/images/og-image.png',
     keywords: [
@@ -33,7 +33,7 @@ export const SITE_CONFIG = {
         'muscle recovery Hyderabad',
         'athlete recovery Hyderabad',
         'post workout recovery Hyderabad',
-        'ICN athlete discount Hyderabad',
+        'athlete discount Hyderabad',
         'recovery studio near me Hyderabad',
         'full circuit recovery session',
         'photobiomodulation therapy Hyderabad',
